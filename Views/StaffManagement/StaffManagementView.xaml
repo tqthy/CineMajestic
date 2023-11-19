@@ -75,7 +75,8 @@
                         materialDesign:ButtonAssist.CornerRadius="10"
                         VerticalAlignment="Bottom"
                         Height="40"
-                        Width="180">
+                        Width="180"
+                        Command="{Binding PhatLuongCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon

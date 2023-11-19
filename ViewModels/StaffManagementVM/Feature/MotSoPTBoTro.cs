@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace CineMajestic.ViewModels.StaffManagementVM
 {
@@ -38,6 +39,26 @@ namespace CineMajestic.ViewModels.StaffManagementVM
                 }
             }
             return true;
+        }
+
+
+
+
+        //phương thức kiểm tra tháng này nhân viên được phát lương chưa
+        public static bool checkSalary()
+        {
+            StaffSalaryDA staffSalaryDA = new StaffSalaryDA();
+            List<string>list=staffSalaryDA.listDateBill();
+            string timeNow = DateTime.Today.ToString("yyyy-MM-dd");
+            foreach(var item in list)
+            {
+                if (item == timeNow)
+                {
+                    return true;
+                }
+            }
+
+            return false; ;
         }
     }
 }
