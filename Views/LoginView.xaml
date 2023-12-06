@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CineMajestic.Views"
+        xmlns:vm="clr-namespace:CineMajestic.ViewModels"
         mc:Ignorable="d"
         WindowStyle="None"
         ResizeMode="NoResize"
@@ -12,13 +13,16 @@
         Background="Transparent"
         MouseDown="Window_MouseDown"
         Title="LoginView" Height="550" Width="800">
+    <Window.DataContext>
+        <vm:LoginViewModel/>
+    </Window.DataContext>
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
 
-    <!--<Window.Visibility>
+    <Window.Visibility>
         <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}" />
-    </Window.Visibility>-->
+    </Window.Visibility>
 
     <Border CornerRadius="12">
         <Border.Background>

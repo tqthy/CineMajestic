@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows;
+using CineMajestic.Models.DataAccessLayer;
 
 namespace CineMajestic.ViewModels
 {
@@ -18,7 +19,7 @@ namespace CineMajestic.ViewModels
         private SecureString _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
-
+        private UserDA userDA;
         
 
         public string Username
@@ -48,7 +49,7 @@ namespace CineMajestic.ViewModels
 
         public LoginViewModel()
         {
-            userRepository = new UserRepository();
+            userDA = new UserDA();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPasswordCommand("", ""));
         }
@@ -65,7 +66,8 @@ namespace CineMajestic.ViewModels
 
         private void ExecuteLoginCommand(object obj)
         {
-            var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(Username, Password));
+            var isValidUser = userDA.AuthenticateUser(new NetworkCredential(Username, Password));
+
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
@@ -82,7 +84,7 @@ namespace CineMajestic.ViewModels
         // Utility methods
         private bool ValidAccount()
         {
-            if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Password)) return false;
+            if (string.IsNullOrWhiteSpace(Username) || Password == null) return false;
             return true;
         }
 
