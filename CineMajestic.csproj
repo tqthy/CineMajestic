@@ -9,9 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\DTOs\" />
-    <Folder Include="Models\DataAccessLayer\" />
-    <Folder Include="ViewModels\" />
+    <None Remove="Images\background.jpg" />
+    <None Remove="Images\logo.png" />
+    <None Remove="Images\logo1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\background.jpg" />
+    <Resource Include="Images\logo.png" />
+    <Resource Include="Images\logo1.png" />
   </ItemGroup>
 
 </Project>
