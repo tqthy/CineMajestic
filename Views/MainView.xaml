@@ -4,9 +4,169 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CineMajestic.Views"
+        xmlns:vm="clr-namespace:CineMajestic.ViewModels"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="MainView" Height="675" Width="1200">
+
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    
+    <Border CornerRadius="12"
+            Background="#F5f5f5">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="27"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <!--Top bar-->
+            
+            <Border CornerRadius="12,12,0,0"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Background="#DFD7BF">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1150"/>
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="25"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Text="CineMajestic"
+                               Foreground="#3F2305"
+                               FontSize="20"
+                               Margin="40,0,0,0"
+                               VerticalAlignment="Center" 
+                               FontFamily="Candara" 
+                               FontWeight="SemiBold"/>
+                    <Button x:Name="btnMinimize"
+                            BorderThickness="0"
+                            Content="-"
+                            Foreground="#623b00"
+                            FontSize="16"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="1"
+                            Click="btnMinimize_Click">     
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" 
+                                        Value="#F2EAD3"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" 
+                                             Value="True">
+                                        <Setter Property="Background"
+                                                Value="#E4D4C5"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <Button x:Name="btnClose"
+                            BorderThickness="0"
+                            Content="X"
+                            Foreground="#fffaf5"
+                            FontSize="12"
+                            FontFamily="Montserrat"
+                            Cursor="Hand"
+                            Grid.Column="2"
+                            Click="btnClose_Click">    
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="#3f2305"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background"
+                                                Value="#8B580B"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Width="18" Height="18"
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center"
+                                                      VerticalAlignment="Center"
+                                                      Margin="0, 1, 0, 0"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                </Grid>
+            </Border>
+            
+            <!--List of feature-->
+            
+            <Border Grid.Row="1"
+                    Grid.Column="0"
+                    Background="White" 
+                    Grid.RowSpan="3"
+                    CornerRadius="0,20,20,20">
+                <StackPanel>
+
+                    <Button Foreground="Black"
+                            FontWeight="Medium"
+                            Command="{Binding SwitchViewCommand}"
+                            CommandParameter="Movies"
+                            Margin="0,20,0,10"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="MovieCog"
+                                                     Height="25"
+                                                     Width="25"
+                                                     VerticalAlignment="Center"/>
+                            <TextBlock Text="Quản Lý Phim"
+                                       VerticalAlignment="Bottom"
+                                       Margin="10,0,0,0"
+                                       FontSize="18"/>
+                        </StackPanel>
+                    </Button>
+                    
+                    
+                    
+                </StackPanel>                
+            </Border>
+                
+            <!--<DockPanel Grid.Column="0"/>-->
+            
+             <!--Display current view-->
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.RowSpan="2"
+                            Content="{Binding CurrentView}"/>
+
+        </Grid>
+    </Border>
 </Window>

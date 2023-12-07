@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,27 +11,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CineMajestic.Views
+namespace CineMajestic.Views.MovieManagement
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Interaction logic for MovieManagementView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class MovieManagementView : UserControl
     {
-        public MainView()
+        public MovieManagementView()
         {
+            MovieManagementViewModel viewModel = new();
             InitializeComponent();
-        }
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
+            DataContext = viewModel;
         }
     }
 }

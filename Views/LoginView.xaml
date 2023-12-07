@@ -12,7 +12,8 @@
         AllowsTransparency="True"
         Background="Transparent"
         MouseDown="Window_MouseDown"
-        Title="LoginView" Height="550" Width="800">
+        Title="LoginView" Height="550" Width="800"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Window.DataContext>
         <vm:LoginViewModel/>
     </Window.DataContext>
@@ -152,7 +153,14 @@
                                FontFamily="Montserrat"
                                TextAlignment="Left"
                                Margin="0,30,0,0"/>
-                    <TextBox x:Name="txtUsername"
+                    <DockPanel Margin="0,5,0,0"
+                               LastChildFill="True">
+                        <materialDesign:PackIcon Kind="Account"
+                                                 DockPanel.Dock="Left"
+                                                 VerticalAlignment="Bottom"
+                                                 Margin="0,0,5,1"
+                                                 Foreground="#623b00"/>
+                        <TextBox x:Name="txtUsername"
                              Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
                              FontWeight="Medium"
@@ -163,32 +171,40 @@
                              BorderBrush="#DBC4AD"
                              BorderThickness="0,0,0,1"
                              Height="28"
-                             VerticalContentAlignment="Center"
-                             Margin="0,5,0,0">
-
-                    </TextBox>
+                             VerticalContentAlignment="Center">
+                        </TextBox>
+                    </DockPanel>
 
                     <TextBlock Text="Password"
-                               Foreground="#623b00"
-                               FontSize="12"
-                               FontWeight="Medium"
-                               FontFamily="Montserrat"
-                               TextAlignment="Left"
-                               Margin="0,10,0,0"/>
-                    <PasswordBox x:Name="txtPassword"
-                             FontSize="13"
-                             FontWeight="Medium"
-                             FontFamily="Montserrat"
-                             Background="Transparent"
-                             Foreground="Black"
-                             CaretBrush="SaddleBrown"
-                             BorderBrush="#DBC4AD"
-                             BorderThickness="0,0,0,1"
-                             Height="28"
-                             VerticalContentAlignment="Center"
-                             Margin="0,5,0,0"
-                             PasswordChanged="txtPassword_PasswordChanged">      
-                    </PasswordBox>
+                                Foreground="#623b00"
+                                FontSize="12"
+                                FontWeight="Medium"
+                                FontFamily="Montserrat"
+                                TextAlignment="Left"
+                                Margin="0,10,0,0"/>
+
+                    <DockPanel Margin="0,5,0,0"
+                               LastChildFill="True">
+                        <materialDesign:PackIcon Kind="Lock"
+                                                 DockPanel.Dock="Left"
+                                                 VerticalAlignment="Bottom"
+                                                 Margin="0,0,5,2"
+                                                 Foreground="#623b00"/>
+                        <PasswordBox x:Name="txtPassword"
+                                     FontSize="13"
+                                     FontWeight="Medium"
+                                     FontFamily="Montserrat"
+                                     Background="Transparent"
+                                     Foreground="Black"
+                                     CaretBrush="SaddleBrown"
+                                     BorderBrush="#DBC4AD"
+                                     BorderThickness="0,0,0,1"
+                                     Height="28"
+                                     VerticalContentAlignment="Center"
+                                     PasswordChanged="txtPassword_PasswordChanged">
+                        </PasswordBox>
+                    </DockPanel>
+                    
 
                     <TextBlock Text="{Binding ErrorMessage}"
                                Foreground="OrangeRed"
