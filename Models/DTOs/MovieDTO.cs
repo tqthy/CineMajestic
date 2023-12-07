@@ -10,7 +10,7 @@ namespace CineMajestic.Models.DTOs
 {
     public class MovieDTO
     {
-        public string id { get; set; }
+        public string Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Director { get; set; }

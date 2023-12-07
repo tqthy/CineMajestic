@@ -11,6 +11,7 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="MainView" Height="675" Width="1200">
 
     <Window.DataContext>
@@ -62,9 +63,11 @@
                             Click="btnMinimize_Click">     
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#F2EAD3"/>
+                                <Setter Property="Background" 
+                                        Value="#F2EAD3"/>
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger Property="IsMouseOver" 
+                                             Value="True">
                                         <Setter Property="Background"
                                                 Value="#E4D4C5"/>
                                     </Trigger>
@@ -129,12 +132,30 @@
                     Grid.RowSpan="3"
                     CornerRadius="0,20,20,20">
                 <StackPanel>
-                    <Button Content="Movies Management"
+
+                    <Button Foreground="Black"
+                            FontWeight="Medium"
                             Command="{Binding SwitchViewCommand}"
-                            CommandParameter="Movies">
+                            CommandParameter="Movies"
+                            Margin="0,20,0,10"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="MovieCog"
+                                                     Height="25"
+                                                     Width="25"
+                                                     VerticalAlignment="Center"/>
+                            <TextBlock Text="Quản Lý Phim"
+                                       VerticalAlignment="Bottom"
+                                       Margin="10,0,0,0"
+                                       FontSize="18"/>
+                        </StackPanel>
                     </Button>
-                    <Button Content="Employees Management">
-                    </Button>
+                    
+                    
+                    
                 </StackPanel>                
             </Border>
                 

@@ -23,8 +23,8 @@ namespace CineMajestic.Views.MovieManagement
     {
         public MovieManagementView()
         {
-            InitializeComponent();
             MovieManagementViewModel viewModel = new();
+            InitializeComponent();
             DataContext = viewModel;
         }
     }

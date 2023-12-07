@@ -8,7 +8,7 @@ namespace CineMajestic.Models.DTOs
 {
     public class GenreDTO
     {
-        public string id { get; set; }
+        public string Id { get; set; }
         public string Title { get; set; }
     }
 }
