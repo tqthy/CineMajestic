@@ -67,7 +67,7 @@
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="ID"/>
-                            <GridViewColumn Header="Họ và tên" Width="120"/>
+                            <GridViewColumn Header="Họ và tên" Width="180"/>
                             <GridViewColumn Header="Ngày sinh" Width="150"/>
                             <GridViewColumn Header="Giới tính" Width="120"/>
                             <GridViewColumn Header="Số điện thoại" Width="150"/>
