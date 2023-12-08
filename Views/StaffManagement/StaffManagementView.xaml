@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="CineMajestic.Views.StaffManagement.StaffManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CineMajestic.Views.StaffManagement"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="648" d:DesignWidth="1000">
+    <Grid Background="white">
+        <!--Chia layout-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+
+        <!--Phần nút tìm kiếm thêm-->
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal"
+                        Margin="30,0,0,0">
+
+                <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
+                 FontSize="25"
+                 Foreground="#DD000000"
+                 FontFamily="Arial"
+                 AllowDrop="True"
+                 BorderThickness="0,0,0,1"
+                 Width="500"
+                 Height="30"
+                 Padding="0"
+                 x:Name="FilterBox"
+                 VerticalAlignment="Bottom"/>
+                
+                <!--Nút thêm-->
+                <StackPanel Orientation="Horizontal"
+                            Margin="30,0,0,0"
+                            VerticalAlignment="Bottom">
+                    <Button VerticalAlignment="Top"
+                            HorizontalAlignment="Center"
+                            Width="120"
+                            Height="40"
+                            FontSize="25"
+                            FontFamily="arial"
+                            Padding="0"
+                            materialDesign:ButtonAssist.CornerRadius="8"
+                            >    
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="PlusCircleOutline"
+                                         Width="25"
+                                         Height="25"
+                                         VerticalAlignment="Center"
+                                         Margin="0,0,0,0" />
+                                <TextBlock Text="Thêm"
+                                           Margin="5,0,0,0" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
+        <!--List view nhân sự-->
+        <Grid Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ListView x:Name="lvStaff">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="ID"/>
+                            <GridViewColumn Header="Họ và tên" Width="120"/>
+                            <GridViewColumn Header="Ngày sinh" Width="150"/>
+                            <GridViewColumn Header="Giới tính" Width="120"/>
+                            <GridViewColumn Header="Số điện thoại" Width="150"/>
+                            <GridViewColumn Header="Email" Width="200"/>
+                            <GridViewColumn Header="Lương" Width="150"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>
