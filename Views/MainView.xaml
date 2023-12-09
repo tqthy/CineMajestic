@@ -153,9 +153,30 @@
                                        FontSize="18"/>
                         </StackPanel>
                     </Button>
-                    
-                    
-                    
+
+                            <!--Quản lí nhân sự-->
+                    <Button Foreground="Black"
+                            FontWeight="Medium"
+                            Command="{Binding SwitchViewCommand}"
+                            CommandParameter="Movies"
+                            Margin="0,20,0,10"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Account"
+                                     Height="20"
+                                     Width="20"
+                                     VerticalAlignment="Center"/>
+                            <TextBlock Text="Quản Lý Nhân Sự"
+                                       VerticalAlignment="Bottom"
+                                       Margin="10,0,0,0"
+                                       FontSize="17"/>
+                        </StackPanel>
+                    </Button>
+
+
                 </StackPanel>                
             </Border>
                 
