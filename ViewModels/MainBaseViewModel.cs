@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Views;
 using CineMajestic.Views.MovieManagement;
+using CineMajestic.Views.StaffManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,7 @@ namespace CineMajestic.ViewModels
                     break;
 
                 case "Staff": // Quản lí nhân viên
-                    CurrentView = new MovieManagementView();
+                    CurrentView = new StaffManagementView();
                     break;
             }
         }
