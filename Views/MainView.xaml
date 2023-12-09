@@ -158,7 +158,7 @@
                     <Button Foreground="Black"
                             FontWeight="Medium"
                             Command="{Binding SwitchViewCommand}"
-                            CommandParameter="Movies"
+                            CommandParameter="Staff"
                             Margin="0,20,0,10"
                             BorderThickness="0"
                             Background="Transparent"
