@@ -33,6 +33,10 @@ namespace CineMajestic.ViewModels
                 case "Movies":
                     CurrentView = new MovieManagementView();
                     break;
+
+                case "Staff": // Quản lí nhân viên
+                    CurrentView = new MovieManagementView();
+                    break;
             }
         }
     }
