@@ -9,7 +9,7 @@ namespace CineMajestic.Models.DTOs.ProductManagement
 {
 
     //test để xem hiển thị UI đúng k
-    public class ProductDTO
+    public class ProductDTO 
     {
         private int id;
         private string name;
@@ -20,7 +20,7 @@ namespace CineMajestic.Models.DTOs.ProductManagement
 
         public int Id { get { return id; } set { id = value; } }
         public string Name { get { return name; } set { name = value; } }
-        public int Quantity {  get { return quantity; } set {  quantity = value; } }
+        public int Quantity { get { return quantity; } set { quantity = value; } }
         public int Price { get { return price; } set { price = value; } }
         public int Type { get { return type; } set { type = value; } }
         public string ImageSource { get { return imageSource; } set { imageSource = value; } }
@@ -34,5 +34,6 @@ namespace CineMajestic.Models.DTOs.ProductManagement
             Type = type;
             ImageSource = imageSource;
         }
+
     }
 }

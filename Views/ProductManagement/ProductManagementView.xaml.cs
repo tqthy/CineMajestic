@@ -27,5 +27,6 @@ namespace CineMajestic.Views.ProductManagement
             ProductManagementViewModel viewModel = new ProductManagementViewModel();
             this.DataContext = viewModel;
         }
+
     }
 }

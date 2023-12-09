@@ -6,17 +6,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CineMajestic.Models.DataAccessLayer;
+using System.Windows.Input;
+using System.Windows.Controls;
+using System.Windows;
+using System.Reflection.Metadata;
 
 namespace CineMajestic.ViewModels.ProductManagement
 {
-    //test xem hiển thị UI đúng k
-    public class ProductManagementViewModel
+    
+    public partial class ProductManagementViewModel:BaseViewModel
     {
-        public ObservableCollection<ProductDTO> DSSP {  get; set; }
+
+        private ObservableCollection<ProductDTO> DSSP_All = new ObservableCollection<ProductDTO>();//tất cả
+        private ObservableCollection<ProductDTO> DSSP_ThucAn =new ObservableCollection<ProductDTO>();
+        private ObservableCollection<ProductDTO> DSSP_DoUong=new ObservableCollection<ProductDTO>();
+
+        private ObservableCollection<ProductDTO> dssp;
+        public ObservableCollection<ProductDTO> DSSP
+        {
+            get { return dssp; }
+            set
+            {
+                if (dssp != value)
+                {
+                    dssp = value;
+                    OnPropertyChanged(nameof(DSSP));
+                }
+            }
+        }
 
         public ProductManagementViewModel()
         {
-            DSSP=ProductDA.getDSSP();
+            PhanLoai();
+            DSSP = DSSP_All;
         }
 
     }

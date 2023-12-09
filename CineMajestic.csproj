@@ -30,6 +30,7 @@
   <ItemGroup>
     <PackageReference Include="MaterialDesignColors" Version="2.1.4" />
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
@@ -51,5 +52,4 @@
     <Resource Include="Images\ProductManagement\5.jpg" />
     <Resource Include="Images\ProductManagement\6.jpg" />
   </ItemGroup>
-
 </Project>
