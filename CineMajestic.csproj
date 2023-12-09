@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Image Include="Images\ProductManagement\**\*.*">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		  <BuildAction>Resource</BuildAction>
+    </Image>
     <None Remove="Icon\DauCong.png" />
     <None Remove="Icon\delete.png" />
     <None Remove="Icon\money.png" />

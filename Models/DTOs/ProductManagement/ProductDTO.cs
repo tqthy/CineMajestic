@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 namespace CineMajestic.Models.DTOs.ProductManagement
 {
-
-    //test để xem hiển thị UI đúng k
     public class ProductDTO 
     {
         private int id;

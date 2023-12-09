@@ -1,38 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CineMajestic.Models.DTOs;
 using CineMajestic.Models.DTOs.ProductManagement;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
 
-    //Test để xem hiển thị UI đúng k
-    public class ProductDA
+    public class ProductDA : DataAccess
     {
-        public static ObservableCollection<ProductDTO> getDSSP()
+        public ObservableCollection<ProductDTO> getDSSP()
         {
-            ObservableCollection<ProductDTO> DSSP = new ObservableCollection<ProductDTO>()
+            ObservableCollection<ProductDTO> DSSP = new ObservableCollection<ProductDTO>();
+
+            using (SqlConnection connection = GetConnection())
             {
-                new ProductDTO(1,"Coca",25,10000,2,"pack://application:,,,/Images/ProductManagement/1.jpg"),
-                new ProductDTO(2,"Pepsi",10,10000,2,"pack://application:,,,/Images/ProductManagement/2.jpg"),
-                new ProductDTO(3,"Gà khô theo gói",40,250000,1, "pack://application:,,,/Images/ProductManagement/3.jpg"),
-                new ProductDTO(4,"Bò khô theo gói",50,400000,1, "pack://application:,,,/Images/ProductManagement/4.jpg"),
-                new ProductDTO(5,"Sting",15,10000,2, "pack://application:,,,/Images/ProductManagement/5.jpg"),
-                new ProductDTO(6,"Hướng dương",33,29000,1, "pack://application:,,,/Images/ProductManagement/6.jpg"),
+                connection.Open();
+                string truyvan = "select * from Product";
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("ID"));
+                            string name = reader.GetString(reader.GetOrdinal("Name"));
+                            string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                            int quantity = reader.GetInt32(reader.GetOrdinal("Quantity"));
+                            int price = reader.GetInt32(reader.GetOrdinal("Price"));
+                            int type = reader.GetInt32(reader.GetOrdinal("Type"));
 
-                 new ProductDTO(7,"Coca",25,10000,2,"pack://application:,,,/Images/ProductManagement/1.jpg"),
-                new ProductDTO(8,"Pepsi",10,10000,2,"pack://application:,,,/Images/ProductManagement/2.jpg"),
-                new ProductDTO(9,"Gà khô theo gói",40,250000,1, "pack://application:,,,/Images/ProductManagement/3.jpg"),
-                new ProductDTO(10,"Bò khô theo gói",50,400000,1, "pack://application:,,,/Images/ProductManagement/4.jpg"),
-                new ProductDTO(11,"Sting",15,10000,2, "pack://application:,,,/Images/ProductManagement/5.jpg"),
-                new ProductDTO(12,"Hướng dương",33,29000,1, "pack://application:,,,/Images/ProductManagement/6.jpg"),
-            };
-            
-
+                            DSSP.Add(new ProductDTO(id,name,quantity,price,type,imageSource));
+                        }
+                    }
+                }
+            }
             return DSSP;
         }
+
     }
 }
+

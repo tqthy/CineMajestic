@@ -12,7 +12,10 @@ namespace CineMajestic.Models.DataAccessLayer
         private readonly string _connectionString;
         public DataAccess()
         {
-            _connectionString = "Server=tcp:192.168.0.199,1433;Database=CinemaManagement;User ID=sa;Password=Password.1";
+            //_connectionString = "Server=tcp:192.168.0.199,1433;Database=CinemaManagement;User ID=sa;Password=Password.1";
+
+            //dùng tạm local để test
+            _connectionString = @"Data Source=DESKTOP-34OSP4G\SQLEXPRESS;Initial Catalog=QL_RapChieuPhim;Integrated Security=True;Trust Server Certificate=True";
         }
         protected SqlConnection GetConnection()
         {
