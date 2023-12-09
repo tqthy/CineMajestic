@@ -1,4 +1,4 @@
-CREATE DATABASE CinemaManagement;
+﻿CREATE DATABASE CinemaManagement;
 GO
 USE CinemaManagement;
 GO
@@ -20,3 +20,17 @@ CREATE TABLE EMPLOYEES(
     Account_id INT,
     CONSTRAINT FK_Account FOREIGN KEY (Account_id) REFERENCES ACCOUNTS(id)
 );
+
+
+--tạo bảng product
+go
+create table Product
+(
+	ID int identity(1,1) primary key,
+	Name nvarchar(100) not null,
+	ImageSource varchar(200) not null,
+	Quantity int not null,
+	Price int not null,
+	Type int not null,
+)
+go
