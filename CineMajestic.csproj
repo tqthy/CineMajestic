@@ -12,6 +12,7 @@
     <None Remove="Icon\DauCong.png" />
     <None Remove="Icon\delete.png" />
     <None Remove="Icon\money.png" />
+    <None Remove="Icon\Open.png" />
     <None Remove="Icon\pen.png" />
     <None Remove="Icon\QLProduct.png" />
     <None Remove="Icon\SL.png" />
@@ -38,6 +39,7 @@
     <Resource Include="Icon\DauCong.png" />
     <Resource Include="Icon\delete.png" />
     <Resource Include="Icon\money.png" />
+    <Resource Include="Icon\Open.png" />
     <Resource Include="Icon\pen.png" />
     <Resource Include="Icon\QLProduct.png" />
     <Resource Include="Icon\SL.png" />

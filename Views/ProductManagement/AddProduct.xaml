@@ -1,0 +1,160 @@
+﻿<UserControl
+    x:Class="CineMajestic.Views.ProductManagement.AddProduct"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CineMajestic.Views.ProductManagement"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="330"
+    d:DesignWidth="220"
+    mc:Ignorable="d">
+    <Grid Background="White">
+        <Border CornerRadius="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="120" />
+                    <RowDefinition Height="140" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+
+                <!--  Tiêu đề  -->
+                <Grid Grid.Row="0">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="25"
+                        FontWeight="Bold">
+                        Thêm sản phẩm
+                    </TextBlock>
+                    <Border BorderBrush="LightGray" BorderThickness="0,0,0,2" />
+                </Grid>
+
+
+                <!--  phần nhập thông tin  -->
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!--  Name sp  -->
+                    <Grid Grid.Row="0">
+                        <TextBlock
+                            Width="50"
+                            Height="15"
+                            Margin="10,7.5,160,7.5"
+                            FontFamily="Arial"
+                            FontSize="14"
+                            TextAlignment="Center">
+                            Tên
+                        </TextBlock>
+                        <TextBox
+                            Width="150"
+                            Margin="60,7.5,10,7.5"
+                            FontFamily="Arial"
+                            FontSize="14" />
+                    </Grid>
+
+                    <!--  Gía sản phẩm  -->
+                    <Grid Grid.Row="1">
+                        <TextBlock
+                            Width="50"
+                            Height="15"
+                            Margin="10,7.5,160,7.5"
+                            FontFamily="Arial"
+                            FontSize="14"
+                            TextAlignment="Center">
+                            Giá
+                        </TextBlock>
+                        <TextBox
+                            Width="150"
+                            Margin="60,7.5,10,7.5"
+                            FontFamily="Arial"
+                            FontSize="14" />
+                    </Grid>
+
+                    <!--  Số lượng  -->
+                    <Grid Grid.Row="2">
+                        <TextBlock
+                            Width="50"
+                            Height="15"
+                            Margin="10,7.5,160,7.5"
+                            FontFamily="Arial"
+                            FontSize="14"
+                            TextAlignment="Center">
+                            SL
+                        </TextBlock>
+                        <TextBox
+                            Width="150"
+                            Margin="60,7.5,10,7.5"
+                            FontFamily="Arial"
+                            FontSize="14" />
+                    </Grid>
+
+                    <!--  Loại  -->
+                    <Grid Grid.Row="3">
+                        <TextBlock
+                            Width="50"
+                            Height="15"
+                            Margin="10,7.5,160,7.5"
+                            FontFamily="Arial"
+                            FontSize="14"
+                            TextAlignment="Center">
+                            Loại
+                        </TextBlock>
+                        <ComboBox
+                            Width="150"
+                            Margin="60,7.5,10,7.5"
+                            FontFamily="Arial"
+                            FontSize="14">
+                            <ComboBoxItem>Thức ăn</ComboBoxItem>
+                            <ComboBoxItem>Đồ uống</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+
+
+                <!--  Phần up ảnh cho sản phẩm  -->
+                <Grid Grid.Row="2">
+                    <Grid
+                        Width="125"
+                        Height="125"
+                        Margin="20,7.5,75,7.5"
+                        Background="White">
+                        <Border BorderBrush="LightGray" BorderThickness="2" />
+                    </Grid>
+
+                    <Button
+                        Width="25"
+                        Height="25"
+                        Margin="170,57.5,25,57.5">
+                        <Button.Background>
+                            <ImageBrush ImageSource="pack://application:,,,/Icon/Open.png" />
+                        </Button.Background>
+                    </Button>
+                </Grid>
+
+                <!--  Phần hủy và thoát  -->
+                <Grid Grid.Row="3">
+                    <Button
+                        Width="78"
+                        Margin="50,0,92,0"
+                        Background="#9999FF"
+                        Content="Đồng ý" />
+
+                    <Button
+                        Width="58"
+                        Margin="150,0,12,0"
+                        Background="#FF3300"
+                        Content="Hủy" />
+                </Grid>
+            </Grid>
+        </Border>
+
+
+    </Grid>
+</UserControl>
