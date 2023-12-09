@@ -24,6 +24,14 @@ namespace CineMajestic
                 }
             };
         }
+
+
+        //test
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            MainView mainView = new MainView();
+            mainView.Show();
+        }
     }
 
 }

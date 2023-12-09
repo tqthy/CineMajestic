@@ -9,9 +9,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icon\DauCong.png" />
+    <None Remove="Icon\delete.png" />
+    <None Remove="Icon\money.png" />
+    <None Remove="Icon\pen.png" />
+    <None Remove="Icon\QLProduct.png" />
+    <None Remove="Icon\SL.png" />
+    <None Remove="Icon\ThemSP.jpg" />
     <None Remove="Images\background.jpg" />
     <None Remove="Images\logo.png" />
     <None Remove="Images\logo1.png" />
+    <None Remove="Images\ProductManagement\1.jpg" />
+    <None Remove="Images\ProductManagement\2.jpg" />
+    <None Remove="Images\ProductManagement\3.jpg" />
+    <None Remove="Images\ProductManagement\4.jpg" />
+    <None Remove="Images\ProductManagement\5.jpg" />
+    <None Remove="Images\ProductManagement\6.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,9 +34,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Icon\DauCong.png" />
+    <Resource Include="Icon\delete.png" />
+    <Resource Include="Icon\money.png" />
+    <Resource Include="Icon\pen.png" />
+    <Resource Include="Icon\QLProduct.png" />
+    <Resource Include="Icon\SL.png" />
+    <Resource Include="Icon\ThemSP.jpg" />
     <Resource Include="Images\background.jpg" />
     <Resource Include="Images\logo.png" />
     <Resource Include="Images\logo1.png" />
+    <Resource Include="Images\ProductManagement\1.jpg" />
+    <Resource Include="Images\ProductManagement\2.jpg" />
+    <Resource Include="Images\ProductManagement\3.jpg" />
+    <Resource Include="Images\ProductManagement\4.jpg" />
+    <Resource Include="Images\ProductManagement\5.jpg" />
+    <Resource Include="Images\ProductManagement\6.jpg" />
   </ItemGroup>
 
 </Project>
