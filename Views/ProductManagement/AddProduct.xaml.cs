@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CineMajestic.Views.ProductManagement
@@ -18,7 +17,7 @@ namespace CineMajestic.Views.ProductManagement
     /// <summary>
     /// Interaction logic for AddProduct.xaml
     /// </summary>
-    public partial class AddProduct : UserControl
+    public partial class AddProduct : Window
     {
         public AddProduct()
         {

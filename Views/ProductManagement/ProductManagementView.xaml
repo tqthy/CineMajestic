@@ -45,7 +45,6 @@
                     materialDesign:ButtonAssist.CornerRadius="8"
                     FontFamily="Arial"
                     FontSize="25"
-                   
                     >
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
