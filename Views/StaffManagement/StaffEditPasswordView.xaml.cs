@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CineMajestic.Views.StaffManagement
 {
     /// <summary>
-    /// Interaction logic for StaffEditPassword.xaml
+    /// Interaction logic for StaffEditPasswordView.xaml
     /// </summary>
-    public partial class StaffEditPassword : UserControl
+    public partial class StaffEditPasswordView : Window
     {
-        public StaffEditPassword()
+        public StaffEditPasswordView()
         {
             InitializeComponent();
         }

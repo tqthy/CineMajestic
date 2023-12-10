@@ -10,7 +10,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CineMajestic.Views.StaffManagement
@@ -18,7 +17,7 @@ namespace CineMajestic.Views.StaffManagement
     /// <summary>
     /// Interaction logic for StaffAddView.xaml
     /// </summary>
-    public partial class StaffAddView : UserControl
+    public partial class StaffAddView : Window
     {
         public StaffAddView()
         {
