@@ -17,6 +17,7 @@ CREATE TABLE EMPLOYEES(
     PhoneNumber VARCHAR(20),
     Email VARCHAR(50),
     Salary MONEY,
+    Role NVARCHAR(20),
     Account_id INT,
     CONSTRAINT FK_Account FOREIGN KEY (Account_id) REFERENCES ACCOUNTS(id)
 );
