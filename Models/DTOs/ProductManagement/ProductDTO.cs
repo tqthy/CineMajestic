@@ -33,5 +33,16 @@ namespace CineMajestic.Models.DTOs.ProductManagement
             ImageSource = imageSource;
         }
 
+
+        //constructor phục vụ việc add 1 product
+        public ProductDTO(string name, int quantity, int price, int type, string imageSource)
+        {
+            Name = name;
+            Quantity = quantity;
+            Price = price;
+            Type = type;
+            ImageSource = imageSource;
+        }
+
     }
 }

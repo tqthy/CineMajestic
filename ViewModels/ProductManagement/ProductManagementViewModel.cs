@@ -17,9 +17,12 @@ namespace CineMajestic.ViewModels.ProductManagement
     public partial class ProductManagementViewModel:BaseViewModel
     {
 
-        private ObservableCollection<ProductDTO> DSSP_All = new ObservableCollection<ProductDTO>();//tất cả
-        private ObservableCollection<ProductDTO> DSSP_ThucAn =new ObservableCollection<ProductDTO>();
-        private ObservableCollection<ProductDTO> DSSP_DoUong=new ObservableCollection<ProductDTO>();
+        //private ObservableCollection<ProductDTO> DSSP_All = new ObservableCollection<ProductDTO>();//tất cả
+        //private ObservableCollection<ProductDTO> DSSP_ThucAn = new ObservableCollection<ProductDTO>();
+        //private ObservableCollection<ProductDTO> DSSP_DoUong = new ObservableCollection<ProductDTO>();
+        private ObservableCollection<ProductDTO> DSSP_All;
+        private ObservableCollection<ProductDTO> DSSP_ThucAn;
+        private ObservableCollection<ProductDTO> DSSP_DoUong;
 
         private ObservableCollection<ProductDTO> dssp;
         public ObservableCollection<ProductDTO> DSSP
@@ -39,7 +42,6 @@ namespace CineMajestic.ViewModels.ProductManagement
         {
             PhanLoai();
             addProduct();
-            DSSP = DSSP_All;
         }
 
     }

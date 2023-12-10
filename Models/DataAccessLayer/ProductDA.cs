@@ -46,6 +46,30 @@ namespace CineMajestic.Models.DataAccessLayer
             return DSSP;
         }
 
+
+
+        public void addProduct(ProductDTO product)
+        {
+            using(SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string insert =
+                    "insert into Product(Name,ImageSource,Quantity,Price,Type)\n"
+                    +
+                    "values("
+                    +
+                    "N'" + product.Name + "',"
+                    + "'" + product.ImageSource + "',"
+                    + product.Quantity.ToString() + ","
+                    + product.Price.ToString() + ","
+                    + product.Type.ToString() + ")";
+
+                using(SqlCommand command=new SqlCommand(insert,connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
 

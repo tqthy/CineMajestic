@@ -65,6 +65,10 @@ namespace CineMajestic.ViewModels.ProductManagement
 
         private void loadData()
         {
+            DSSP_All = new ObservableCollection<ProductDTO>();
+            DSSP_ThucAn = new ObservableCollection<ProductDTO>();   
+            DSSP_DoUong = new ObservableCollection<ProductDTO>();
+            
             ProductDA data = new ProductDA();
             ObservableCollection<ProductDTO> getDSSP = data.getDSSP();
             foreach (var item in getDSSP)
@@ -78,6 +82,20 @@ namespace CineMajestic.ViewModels.ProductManagement
                     DSSP_DoUong.Add(item);
                 }
                 DSSP_All.Add(item);
+            }
+
+
+            if (SelectedItemIndex == 1)//có cái này là để phục vụ tính năng thêm 1 sản phẩm(kiểu người dùng có đang ở loại thức ăn, thì nó load lại thức ăn)
+            {
+                DSSP = DSSP_ThucAn;
+            }
+            else if (SelectedItemIndex == 2)
+            {
+                DSSP = DSSP_DoUong;
+            }
+            else
+            {
+                DSSP = DSSP_All;
             }
         }
     }
