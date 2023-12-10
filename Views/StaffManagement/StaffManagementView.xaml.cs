@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels.StaffManagementVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace CineMajestic.Views.StaffManagement
         public StaffManagementView()
         {
             InitializeComponent();
+            StaffManageVM staffManageVM = new StaffManageVM();
+            this.DataContext = staffManageVM;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace CineMajestic.Views.StaffManagement
     /// <summary>
     /// Interaction logic for StaffEditView.xaml
     /// </summary>
-    public partial class StaffEditView : UserControl
+    public partial class StaffEditView : Window
     {
         public StaffEditView()
         {

@@ -42,6 +42,7 @@
                             FontSize="25"
                             FontFamily="arial"
                             Padding="0"
+                            Command="{Binding OpenStaffAddCommand}"
                             materialDesign:ButtonAssist.CornerRadius="8"
                             >    
                         <Button.Content>

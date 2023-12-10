@@ -342,6 +342,7 @@
             Margin="280,0,0,0"
             Width="90"
             Background="Red"
+            Command="{Binding CancelCommand}"
             materialDesign:ButtonAssist.CornerRadius="20"/>
                 <Button
               Content="Xác nhận"
