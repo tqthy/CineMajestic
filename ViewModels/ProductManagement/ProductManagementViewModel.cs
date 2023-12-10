@@ -38,6 +38,7 @@ namespace CineMajestic.ViewModels.ProductManagement
         public ProductManagementViewModel()
         {
             PhanLoai();
+            addProduct();
             DSSP = DSSP_All;
         }
 

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using CineMajestic.ViewModels.ProductManagement;
 
 namespace CineMajestic.Views.ProductManagement
 {
@@ -22,6 +23,8 @@ namespace CineMajestic.Views.ProductManagement
         public AddProduct()
         {
             InitializeComponent();
+            AddProductViewModel wd = new AddProductViewModel(this);
+            this.DataContext = wd;
         }
     }
 }

@@ -161,7 +161,8 @@
                         Width="58"
                         Margin="150,0,12,0"
                         Background="#FF3300"
-                        Content="Hủy" />
+                        Content="Hủy" 
+                        Command="{Binding quitCommand}"/>
                 </Grid>
             </Grid>
         </Border>
