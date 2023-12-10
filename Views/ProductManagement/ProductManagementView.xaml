@@ -36,6 +36,7 @@
             <!--  Thêm  -->
             <Grid Grid.Column="1">
                 <Button
+                    Name="btnThemMotSP"
                     Width="120"
                     Height="40"
                     Padding="0"
@@ -43,7 +44,9 @@
                     VerticalAlignment="Bottom"
                     materialDesign:ButtonAssist.CornerRadius="8"
                     FontFamily="Arial"
-                    FontSize="25">
+                    FontSize="25"
+                   
+                    >
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon
@@ -109,7 +112,8 @@
                                             BorderBrush="LightGray"
                                             CornerRadius="5">
                                             <Border.Background>
-                                                <ImageBrush ImageSource="{Binding ImageSource}" />
+                                                <ImageBrush ImageSource="{Binding ImageSource}" 
+                                                            Stretch="Fill"/>
                                             </Border.Background>
                                         </Border>
 

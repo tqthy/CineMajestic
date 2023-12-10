@@ -65,7 +65,8 @@ namespace CineMajestic.ViewModels.ProductManagement
 
         private void loadData()
         {
-            ObservableCollection<ProductDTO> getDSSP=ProductDA.getDSSP();
+            ProductDA data = new ProductDA();
+            ObservableCollection<ProductDTO> getDSSP = data.getDSSP();
             foreach (var item in getDSSP)
             {
                 if (item.Type == 1)

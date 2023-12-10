@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CineMajestic.Models.DTOs;
 using CineMajestic.Models.DTOs.ProductManagement;
+using CineMajestic.ViewModels.ProductManagement;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -34,6 +35,9 @@ namespace CineMajestic.Models.DataAccessLayer
                             int price = reader.GetInt32(reader.GetOrdinal("Price"));
                             int type = reader.GetInt32(reader.GetOrdinal("Type"));
 
+
+
+                            imageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + imageSource;
                             DSSP.Add(new ProductDTO(id,name,quantity,price,type,imageSource));
                         }
                     }
