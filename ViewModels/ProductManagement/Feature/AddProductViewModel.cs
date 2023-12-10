@@ -87,6 +87,7 @@ namespace CineMajestic.ViewModels.ProductManagement
             ProductDA productDA = new ProductDA();
             productDA.addProduct(new ProductDTO(Name, Quantity, Price, Type, ImageSource));
             MessageBox.Show("Thêm thành công");
+            wd.Close();
         }
 
 

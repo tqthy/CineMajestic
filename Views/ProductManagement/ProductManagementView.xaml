@@ -133,7 +133,10 @@
                                         <Button
                                             Width="30"
                                             Height="30"
-                                            Margin="135,42,5,123">
+                                            Margin="135,42,5,123"
+                                            Command="{Binding DataContext.deleteProductCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                            CommandParameter="{Binding}"
+                                            >
                                             <Button.Background>
                                                 <ImageBrush ImageSource="pack://application:,,,/Icon/delete.png" />
                                             </Button.Background>

@@ -48,6 +48,7 @@ namespace CineMajestic.Models.DataAccessLayer
 
 
 
+        //thêm 1 sản phẩm
         public void addProduct(ProductDTO product)
         {
             using(SqlConnection connection = GetConnection())
@@ -65,6 +66,25 @@ namespace CineMajestic.Models.DataAccessLayer
                     + product.Type.ToString() + ")";
 
                 using(SqlCommand command=new SqlCommand(insert,connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        //xóa 1 sản phẩm
+        public void deleteProduct(ProductDTO product)
+        {
+            using(SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string delete =
+                    "delete Product\n"
+                    +
+                    "where ID=" + product.Id;
+
+                using (SqlCommand command = new SqlCommand(delete, connection))
                 {
                     command.ExecuteNonQuery();
                 }
