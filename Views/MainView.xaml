@@ -153,9 +153,28 @@
                                        FontSize="18"/>
                         </StackPanel>
                     </Button>
-                    
-                    
-                    
+
+                    <Button Foreground="Black"
+                            FontWeight="Medium"
+                            Command="{Binding SwitchViewCommand}"
+                            CommandParameter="Customer"
+                            Margin="0,20,0,10"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="AccountGroup"
+                                                     Height="20"
+                                                     Width="20"
+                                                    VerticalAlignment="Center"/>
+                            <TextBlock Text="Quản Lý Khách Hàng"
+                                       VerticalAlignment="Bottom"
+                                       Margin="10,0,0,0"
+                                       FontSize="14"/>
+                        </StackPanel>
+                    </Button>
+
                 </StackPanel>                
             </Border>
                 
