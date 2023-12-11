@@ -14,7 +14,7 @@
             <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
 
-        <!--Phần nút tìm kiếm thêm-->
+        <!--Phần textbox tìm kiếm-->
         <Grid Grid.Row="0">
             <StackPanel Orientation="Horizontal"
                         Margin="30,0,0,0">
@@ -67,8 +67,10 @@
                 <ListView x:Name="lvStaff">
                     <ListView.View>
                         <GridView>
+                            <!--Danh sách cần cột hiển thị trong listview-->
+                            <GridViewColumn Header="ID" Width="80"/>
                             <GridViewColumn Header="Họ và tên" Width="120"/>
-                            <GridViewColumn Header="Ngày sinh" Width="120"/>
+                            <GridViewColumn Header="Ngày sinh" Width="130"/>
                             <GridViewColumn Header="Giới tính" Width="120"/>
                             <GridViewColumn Header="SĐT" Width="140"/>
                             <GridViewColumn Header="Email" Width="160"/>
@@ -77,6 +79,7 @@
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
+                                        <!--Nút sửa-->
                                         <StackPanel Orientation="Horizontal">
                                             <Border BorderBrush="Black"
                                                     BorderThickness="0.5"
@@ -97,6 +100,7 @@
                                                                          Width="30"
                                                                          Height="30"/>
                                             </Border>
+                                            <!--Nút xóa-->
                                             <Border BorderThickness="0.5"
                                                     BorderBrush="Black"
                                                     CornerRadius="5"

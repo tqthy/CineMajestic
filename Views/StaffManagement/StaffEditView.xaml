@@ -23,6 +23,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition Height="90"/>
             </Grid.RowDefinitions>
             <!--Tiêu đề-->
@@ -207,8 +208,33 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"/>
             </Grid>
+                <!--Lương-->
+            <Grid Grid.Row="8">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock   Text="Lương"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Right"
+                             Margin="0,0,5,0"
+                             FontSize="15"/>
+                <TextBox 
+                     x:Name="txtLuong"
+                     Grid.Column="1"
+                     Width="350"
+                     Height="30"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Left"
+                     Margin="5,0,0,0"
+                     FontSize="15"
+                     VerticalContentAlignment="Center"/>
+
+            </Grid>
             <!--Nút hủy, đổi mật khẩu xác hoàn tất-->
-            <Grid Grid.Row="13">
+            <Grid Grid.Row="9">
+                <!--Nút đổi mật khẩu-->
                 <Button
                         Name="btnQuenMatKhau" 
                         Background="Transparent"
@@ -220,21 +246,22 @@
                         Width="125"
                         materialDesign:ButtonAssist.CornerRadius="20"
                         />
-                
+                <!--Nút hủy dùng để quay lại màn hình chính -->
                 <Button
-                Content="Hủy"
-                Name="btnHuy"
-                Margin="280,0,0,0"
-                Width="90"
-                Background="Red"
-                materialDesign:ButtonAssist.CornerRadius="20"/>
+                        Content="Hủy"
+                        Name="btnHuy"
+                        Margin="280,0,0,0"
+                        Width="90"
+                        Background="Red"
+                        materialDesign:ButtonAssist.CornerRadius="20"/>
+                <!--Nút xác nhận sửa thông tin-->
                 <Button
-                  Content="Xác nhận"
-                  Name="btnXacNhan"
-                  Margin="490,0,10,0"
-                  Width="90"
-                  Background="BLUE"
-                  materialDesign:ButtonAssist.CornerRadius="20"/>
+                      Content="Xác nhận"
+                      Name="btnXacNhan"
+                      Margin="490,0,10,0"
+                      Width="90"
+                      Background="BLUE"
+                      materialDesign:ButtonAssist.CornerRadius="20"/>
             </Grid>
         </Grid>
 
