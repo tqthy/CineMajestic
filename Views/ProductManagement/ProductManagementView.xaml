@@ -30,7 +30,9 @@
                     VerticalAlignment="Bottom"
                     FontSize="25"
                     Foreground="LightGray"
-                    Text="Tìm kiếm" />
+                    Text="Tìm kiếm"
+                    >
+                </TextBox>
             </Grid>
 
             <!--  Thêm  -->
@@ -43,10 +45,9 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Bottom"
                     materialDesign:ButtonAssist.CornerRadius="8"
-                    FontFamily="Arial"
-                    FontSize="25"
                     Command="{Binding showWDAddProductCommand}"
-                    >
+                    FontFamily="Arial"
+                    FontSize="25">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon
@@ -112,8 +113,7 @@
                                             BorderBrush="LightGray"
                                             CornerRadius="5">
                                             <Border.Background>
-                                                <ImageBrush ImageSource="{Binding ImageSource}" 
-                                                            Stretch="Fill"/>
+                                                <ImageBrush ImageSource="{Binding ImageSource}" Stretch="Fill" />
                                             </Border.Background>
                                         </Border>
 
@@ -135,8 +135,7 @@
                                             Height="30"
                                             Margin="135,42,5,123"
                                             Command="{Binding DataContext.deleteProductCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                            CommandParameter="{Binding}"
-                                            >
+                                            CommandParameter="{Binding}">
                                             <Button.Background>
                                                 <ImageBrush ImageSource="pack://application:,,,/Icon/delete.png" />
                                             </Button.Background>

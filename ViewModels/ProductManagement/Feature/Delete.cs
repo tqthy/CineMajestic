@@ -30,11 +30,6 @@ namespace CineMajestic.ViewModels.ProductManagement
                 loadData();
 
                 //lưu path ảnh để xóa
-                try
-                {
-                    File.Delete("deleteAnh.txt");
-                }
-                catch { }
 
                 using(FileStream fStream =new FileStream("deleteAnh.txt", FileMode.Append, FileAccess.Write))
                 {
@@ -65,6 +60,13 @@ namespace CineMajestic.ViewModels.ProductManagement
                     }
                 }
             }
+
+
+            try
+            {
+                File.Delete("deleteAnh.txt");
+            }
+            catch{ }
         }
     }
 }
