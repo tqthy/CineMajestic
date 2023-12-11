@@ -18,9 +18,6 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             
         }
 
-        private void BackMainViewStaff( object obj)
-        {
-           
-        }
+     
     }
 }
