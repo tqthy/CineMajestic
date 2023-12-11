@@ -5,177 +5,228 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:CineMajestic.Views.ProductManagement"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     Title="AddProduct"
-    Width="220"
-    Height="340"
+    Width="300"
+    Height="400"
     mc:Ignorable="d"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     AllowsTransparency="True">
-    <Grid
+    <Border
+         CornerRadius="10"
+         BorderThickness="2"
+         BorderBrush="#57d2e6"
+         Background="White">
+        <Grid
         Background="White">
-        <Border CornerRadius="10">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="120" />
-                    <RowDefinition Height="140" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-
-
-                <!--  Tiêu đề  -->
-                <Grid Grid.Row="0">
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        FontSize="25"
-                        FontWeight="Bold">
-                        Thêm sản phẩm
-                    </TextBlock>
-                    <Border BorderBrush="LightGray" BorderThickness="0,0,0,2" />
-                </Grid>
-
-
-                <!--  phần nhập thông tin  -->
-                <Grid Grid.Row="1">
+            <Border CornerRadius="10">
+                <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition />
-                        <RowDefinition />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="120" />
+                        <RowDefinition Height="160" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <!--  Name sp  -->
+
+                    <!--  Tiêu đề  -->
                     <Grid Grid.Row="0">
                         <TextBlock
-                            Width="50"
-                            Height="15"
-                            Margin="10,7.5,160,7.5"
-                            FontFamily="Arial"
-                            FontSize="14"
-                            TextAlignment="Center">
-                            Tên
-                        </TextBlock>
-                        <TextBox
-                            Width="150"
-                            Height="20"
-                            Margin="60,5.5,10,4.5"
-                            FontFamily="Arial"
-                            FontSize="12" 
-                            Text="{Binding Name}"/>
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        FontSize="25"
+                        FontWeight="Bold"
+                        Text="Thêm sản phẩm"
+                        Margin="10,0,0,0"/>
+                        <Border BorderBrush="LightGray" BorderThickness="0,0,0,2" />
                     </Grid>
 
-                    <!--  Gía sản phẩm  -->
+
+                    <!--  phần nhập thông tin  -->
                     <Grid Grid.Row="1">
-                        <TextBlock
-                            Width="50"
-                            Height="15"
-                            Margin="10,7.5,160,7.5"
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <!--  Name sp  -->
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                            Text="Tên"
+                            Grid.Column="0"
                             FontFamily="Arial"
-                            FontSize="14"
-                            TextAlignment="Center">
-                            Giá
-                        </TextBlock>
-                        <TextBox
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontSize="15" 
+                            Margin="0,0,5,0"/>
+
+                            <TextBox
+                            Grid.Column="1"
                             Width="150"
-                            Height="20"
-                            Margin="60,5.5,10,4.5"
+                            Height="30"
+                            Margin="5,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"
                             FontFamily="Arial"
-                            FontSize="12" 
+                            FontSize="15" 
+                            Text="{Binding Name}"/>
+                        </Grid>
+
+                        <!--  Gía sản phẩm  -->
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                            Margin="0,0,5,0"
+                            Grid.Column="0"                        
+                            FontFamily="Arial"
+                            FontSize="15"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Right"
+                            Text="Giá"/>
+
+                            <TextBox
+                            Margin="5,0,0,0"
+                            Grid.Column="1"
+                            Width="150"
+                            Height="30"
+                            FontFamily="Arial"
+                            FontSize="15" 
+                            VerticalContentAlignment="Center"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
                             Text="{Binding Price}"/>
-                    </Grid>
+                        </Grid>
 
-                    <!--  Số lượng  -->
-                    <Grid Grid.Row="2">
-                        <TextBlock
-                            Width="50"
-                            Height="15"
-                            Margin="10,7.5,160,7.5"
+                        <!--  Số lượng  -->
+                        <Grid Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                            Grid.Column="0"
+                            Text="Số lượng"
+                            
                             FontFamily="Arial"
-                            FontSize="14"
-                            TextAlignment="Center">
-                            SL
-                        </TextBlock>
-                        <TextBox
+                            FontSize="15"
+                            Margin="0,0,5,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"/>
+
+                            <TextBox
+                            Grid.Column="1"
                             Width="150"
-                            Height="20"
-                            Margin="60,5.5,10,4.5"
+                            Height="30"
+                            Margin="5,0,0,0"
                             FontFamily="Arial"
-                            FontSize="12" 
+                            FontSize="15" 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"
                             Text="{Binding Quantity}"/>
-                    </Grid>
+                        </Grid>
 
-                    <!--  Loại  -->
-                    <Grid Grid.Row="3">
-                        <TextBlock
-                            Width="50"
-                            Height="15"
-                            Margin="10,7.5,160,7.5"
+                        <!--  Loại  -->
+                        <Grid Grid.Row="3">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                            Grid.Column = "0"                     
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
                             FontFamily="Arial"
-                            FontSize="14"
-                            TextAlignment="Center">
-                            Loại
-                        </TextBlock>
-                        <ComboBox
+                            FontSize="15"
+                            Margin="0,0,5,0"
+                            TextAlignment="Center"
+                            Text="Loại"/>
+
+                            <ComboBox
+                            Grid.Column="1"
                             Width="150"
-                            Height="20"
-                            Margin="60,5.5,10,4.5"
+                            Height="30"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"
                             FontFamily="Arial"
-                            FontSize="12"
+                            FontSize="15"
+                            Margin="5,0,0,0"
                             SelectedIndex="{Binding Type}">
-                            <ComboBoxItem>Thức ăn</ComboBoxItem>
-                            <ComboBoxItem>Đồ uống</ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
-                </Grid>
-
-
-                <!--  Phần up ảnh cho sản phẩm  -->
-                <Grid Grid.Row="2">
-                    <Grid
-                        Width="125"
-                        Height="125"
-                        Margin="20,7.5,75,7.5"
-                        >
-                        <Border BorderBrush="LightGray" BorderThickness="2" CornerRadius="10">
-                            <Border.Background>
-                                <ImageBrush ImageSource="{Binding ImageSource}"></ImageBrush>
-                            </Border.Background>
-                        </Border>
-                        
+                                <ComboBoxItem>Thức ăn</ComboBoxItem>
+                                <ComboBoxItem>Đồ uống</ComboBoxItem>
+                            </ComboBox>
+                        </Grid>
                     </Grid>
 
-                    <Button
+
+                    <!--  Phần up ảnh cho sản phẩm  -->
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid
+                        Width="150"
+                        Height="150"
+                        HorizontalAlignment="Left"
+                        Margin="39,0,0,0"
+                        Grid.Column="0">
+                            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{Binding ImageSource}"></ImageBrush>
+                                </Border.Background>
+                            </Border>
+
+                        </Grid>
+
+                        <Button
                         Width="25"
                         Height="25"
-                        Margin="170,57.5,25,57.5"
-                        Command="{Binding addImageCommand}">
-                        <Button.Background>
-                            <ImageBrush ImageSource="pack://application:,,,/Icon/Open.png" />
-                        </Button.Background>
-                    </Button>
-                </Grid>
+                        HorizontalAlignment="Left"
+                        Margin="33,0,0,0"
+                        Command="{Binding addImageCommand}" Grid.Column="1">
+                            <Button.Background>
+                                <ImageBrush ImageSource="pack://application:,,,/Icon/Open.png" />
+                            </Button.Background>
+                        </Button>
+                    </Grid>
 
-                <!--  Phần hủy và đồng ý  -->
-                <Grid Grid.Row="3">
-                    <Button
+                    <!--  Phần hủy và đồng ý  -->
+                    <Grid Grid.Row="3">
+                        <Button
                         Width="78"
-                        Margin="50,4,92,4"
+                        Margin="90,4,92,4"
                         Background="#9999FF"
                         Content="Đồng ý" 
+                        materialDesign:ButtonAssist.CornerRadius="20"
                         Command="{Binding acceptCommand}"/>
 
-                    <Button
-                        Width="58"
-                        Margin="150,4,12,4"
+                        <Button
+                        Width="78"
+                        Margin="180,4,12,4"
                         Background="#FF3300"
                         Content="Hủy" 
+                        materialDesign:ButtonAssist.CornerRadius="20"
                         Command="{Binding quitCommand}"/>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Border>
+            </Border>
 
 
-    </Grid>
+        </Grid>
+
+
+    </Border>
 </Window>
