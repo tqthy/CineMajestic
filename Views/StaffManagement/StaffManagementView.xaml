@@ -67,13 +67,61 @@
                 <ListView x:Name="lvStaff">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="ID"/>
-                            <GridViewColumn Header="Họ và tên" Width="180"/>
-                            <GridViewColumn Header="Ngày sinh" Width="150"/>
+                            <GridViewColumn Header="Họ và tên" Width="120"/>
+                            <GridViewColumn Header="Ngày sinh" Width="120"/>
                             <GridViewColumn Header="Giới tính" Width="120"/>
-                            <GridViewColumn Header="Số điện thoại" Width="150"/>
-                            <GridViewColumn Header="Email" Width="200"/>
-                            <GridViewColumn Header="Lương" Width="150"/>
+                            <GridViewColumn Header="SĐT" Width="140"/>
+                            <GridViewColumn Header="Email" Width="160"/>
+                            <GridViewColumn Header="Lương" Width="120"/>
+                            <!--Nút Sửa và Xóa theo thứ tự từ trái sang phải-->
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border BorderBrush="Black"
+                                                    BorderThickness="0.5"
+                                                    CornerRadius="5"
+                                                    Cursor="Hand">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver"
+                                                                        Value="True">
+                                                                <Setter Property="Background"
+                                                                        Value="#00e5ff" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <materialDesign:PackIcon Kind="AccountEdit"
+                                                                         Width="30"
+                                                                         Height="30"/>
+                                            </Border>
+                                            <Border BorderThickness="0.5"
+                                                    BorderBrush="Black"
+                                                    CornerRadius="5"
+                                                    Margin="10,0,0,0"
+                                                    Cursor="Hand">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver"
+                                                                        Value="True">
+                                                                <Setter Property="Background"
+                                                                        Value="#ff6255" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <materialDesign:PackIcon Kind="Delete"
+                                                    Width="30"
+                                                    Height="30">
+                                                </materialDesign:PackIcon>
+                                            </Border>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
