@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels.MovieManagementVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,16 +13,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CineMajestic.Views
+namespace CineMajestic.Views.MovieManagement
 {
     /// <summary>
-    /// Interaction logic for MainView.xaml
+    /// Interaction logic for AddMovieView.xaml
     /// </summary>
-    public partial class MainView : Window
+    public partial class AddMovieView : Window
     {
-        public MainView()
+        public AddMovieView()
         {
             InitializeComponent();
+            
         }
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
@@ -31,19 +33,6 @@ namespace CineMajestic.Views
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-
-        
-        private void Window_Deactivated(object sender, EventArgs e)
-        {
-            this.blurPanel.Opacity = 0.2;
-            this.blurPanel.Visibility = Visibility.Visible;
-        }
-
-        private void Window_Activated(object sender, EventArgs e)
-        {
-            this.blurPanel.Visibility = Visibility.Hidden;
-            this.blurPanel.Opacity = 0;
         }
     }
 }

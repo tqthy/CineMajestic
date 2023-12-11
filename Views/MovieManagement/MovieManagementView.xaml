@@ -7,6 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
+             FontFamily="Roboto"
              d:DesignHeight="648" d:DesignWidth="1000">
     <Grid Background="#f5f5f5">
         <Grid.RowDefinitions>
@@ -19,14 +20,14 @@
             <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
                      FontSize="25"
                      Foreground="#DD000000"
-                     FontFamily="Arial"
                      AllowDrop="True"
                      BorderThickness="0,0,0,1"
                      Width="500"
                      Height="30"
                      Padding="0"
-                     x:Name="FilterBox"
-                     VerticalAlignment="Bottom">
+                     x:Name="SearchFilterBox"
+                     VerticalAlignment="Bottom"
+                     TextChanged="SearchFilterBox_TextChanged">
             </TextBox>
             <StackPanel Orientation="Horizontal"
                         Margin="30,0,0,0"
@@ -36,10 +37,9 @@
                         Width="120"
                         Height="40"
                         FontSize="25"
-                        FontFamily="arial"
                         Padding="0"
                         materialDesign:ButtonAssist.CornerRadius="8"
-                        Command="{Binding AddMovieCommand}">
+                        Command="{Binding ButtonAddMovieCommand}">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="PlusCircleOutline"

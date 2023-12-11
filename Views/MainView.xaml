@@ -11,13 +11,15 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
+        Deactivated="Window_Deactivated"
+        Activated="Window_Activated"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="MainView" Height="675" Width="1200">
 
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
-    
+            
     <Border CornerRadius="12"
             Background="#F5f5f5">
         <Grid>
@@ -31,6 +33,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
+            
             <!--Top bar-->
             
             <Border CornerRadius="12,12,0,0"
@@ -167,6 +170,15 @@
                             Grid.RowSpan="2"
                             Content="{Binding CurrentView}"/>
 
+
+            <StackPanel Background="Black"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Grid.ColumnSpan="10"
+                        Grid.RowSpan="10"
+                        Opacity="0"
+                        x:Name="blurPanel"
+                        Visibility="Hidden"/>
         </Grid>
     </Border>
 </Window>

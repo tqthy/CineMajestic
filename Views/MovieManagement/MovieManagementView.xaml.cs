@@ -1,4 +1,5 @@
-﻿using CineMajestic.ViewModels;
+﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels.MovieManagementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,21 @@ namespace CineMajestic.Views.MovieManagement
             MovieManagementViewModel viewModel = new();
             InitializeComponent();
             DataContext = viewModel;
+            
+        }
+        private bool UserSearchFilter(object item)
+        {
+            if (String.IsNullOrEmpty(SearchFilterBox.Text)) return true;
+            else
+            {
+                return ((item as MovieDTO).Title.IndexOf(SearchFilterBox.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+        }
+        private void SearchFilterBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvMovies.ItemsSource);
+            view.Filter = UserSearchFilter;
+            CollectionViewSource.GetDefaultView(lvMovies.ItemsSource).Refresh();
         }
     }
 }
