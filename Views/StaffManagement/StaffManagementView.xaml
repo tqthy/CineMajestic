@@ -63,18 +63,18 @@
         
         <!--List view nhân sự-->
         <Grid Grid.Row="1">
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <ListView x:Name="lvStaff" ItemsSource="{Binding DSNV}">
                     <ListView.View>
                         <GridView>
                             <!--Danh sách cần cột hiển thị trong listview-->
-                            <GridViewColumn Header="ID" Width="80" DisplayMemberBinding="{Binding Id}"/>
-                            <GridViewColumn Header="Họ và tên" Width="120" DisplayMemberBinding="{Binding FullName}"/>
-                            <GridViewColumn Header="Ngày sinh" Width="130" DisplayMemberBinding="{Binding Birth}"/>
-                            <GridViewColumn Header="Giới tính" Width="120" DisplayMemberBinding="{Binding Gender}"/>
-                            <GridViewColumn Header="SĐT" Width="140" DisplayMemberBinding="{Binding PhoneNumber}"/>
-                            <GridViewColumn Header="Email" Width="160" DisplayMemberBinding="{Binding Email}"/>
-                            <GridViewColumn Header="Lương" Width="120" DisplayMemberBinding="{Binding Salary}"/>
+                            <GridViewColumn Header="ID" Width="Auto" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Họ và tên" Width="Auto" DisplayMemberBinding="{Binding FullName}"/>
+                            <GridViewColumn Header="Ngày sinh" Width="Auto" DisplayMemberBinding="{Binding Birth}"/>
+                            <GridViewColumn Header="Giới tính" Width="Auto" DisplayMemberBinding="{Binding Gender}"/>
+                            <GridViewColumn Header="SĐT" Width="Auto" DisplayMemberBinding="{Binding PhoneNumber}"/>
+                            <GridViewColumn Header="Email" Width="Auto" DisplayMemberBinding="{Binding Email}"/>
+                            <GridViewColumn Header="Lương" Width="Auto" DisplayMemberBinding="{Binding Salary}"/>
                             <!--Nút Sửa và Xóa theo thứ tự từ trái sang phải-->
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>
