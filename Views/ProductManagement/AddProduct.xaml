@@ -15,7 +15,7 @@
     AllowsTransparency="True">
     <Border
          CornerRadius="10"
-         BorderThickness="2"
+         BorderThickness="1"
          BorderBrush="#57d2e6"
          Background="White">
         <Grid
