@@ -17,7 +17,7 @@
                     Orientation="Horizontal"
                     Margin="30,0,0,0">
             <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
-                     FontSize="25"
+                     FontSize="20"
                      Foreground="#DD000000"
                      FontFamily="Arial"
                      AllowDrop="True"
@@ -28,8 +28,96 @@
                      x:Name="FilterBox"
                      VerticalAlignment="Bottom">
             </TextBox>
+            
+            <!--ComboBox lựa chọn tìm kiếm theo sđt hay tên khách hàng-->
+            <ComboBox Width="130"
+                      Margin="10,0,0,0"
+                      FontSize="15"
+                      Height="35"
+                      VerticalAlignment="Bottom"
+                      VerticalContentAlignment="Center">
+                <ComboBoxItem>Tên khách hàng</ComboBoxItem>
+                <ComboBoxItem>Số điện thoại</ComboBoxItem>
+            </ComboBox>
 
         </StackPanel>
+
+        <Grid Grid.Row="1">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <ListView x:Name="lvCustomer">
+                    <ListView.View>
+                        <GridView>
+                            <!--  Danh sách cần cột hiển thị trong listview  -->
+                            <GridViewColumn
+                                Width="Auto"
+                                Header="ID" />
+                            <GridViewColumn
+                                Width="Auto"
+                                Header="Họ và tên" />
+                            <GridViewColumn
+                                Width="Auto"
+                                Header="SĐT" />
+                            <GridViewColumn
+                                Width="Auto"
+                                Header="Email" />
+                            <GridViewColumn
+                                Width="Auto"
+                                Header="Tổng chi tiêu" />
+                            <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <!--  Nút sửa  -->
+                                        <StackPanel Orientation="Horizontal">
+                                            <Border
+                                                BorderBrush="Black"
+                                                BorderThickness="0.5"
+                                                CornerRadius="5"
+                                                Cursor="Hand">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#00e5ff" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <materialDesign:PackIcon
+                                                    Width="30"
+                                                    Height="30"
+                                                    Kind="AccountEdit" />
+                                            </Border>
+                                            <!--  Nút xóa  -->
+                                            <Border
+                                                Margin="10,0,0,0"
+                                                BorderBrush="Black"
+                                                BorderThickness="0.5"
+                                                CornerRadius="5"
+                                                Cursor="Hand">
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#ff6255" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <materialDesign:PackIcon
+                                                    Width="30"
+                                                    Height="30"
+                                                    Kind="Delete" />
+                                            </Border>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
+    </Grid>
 
     </Grid>
 </UserControl>
