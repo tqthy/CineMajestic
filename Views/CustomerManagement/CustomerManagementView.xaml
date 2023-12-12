@@ -4,9 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CineMajestic.Views.CustomerManagement"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="648" d:DesignWidth="1000">
+    <Grid Background="#f5f5f5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
+        </Grid.RowDefinitions>
+        <!--textbox phần filter-->
+        <StackPanel Grid.Row="0"
+                    Orientation="Horizontal"
+                    Margin="30,0,0,0">
+            <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
+                     FontSize="25"
+                     Foreground="#DD000000"
+                     FontFamily="Arial"
+                     AllowDrop="True"
+                     BorderThickness="0,0,0,1"
+                     Width="350"
+                     Height="30"
+                     Padding="0"
+                     x:Name="FilterBox"
+                     VerticalAlignment="Bottom">
+            </TextBox>
+
+        </StackPanel>
+
     </Grid>
 </UserControl>
