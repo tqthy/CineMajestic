@@ -6,6 +6,12 @@
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     xmlns:local="clr-namespace:CineMajestic.Views.ProductManagement"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="13"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    FontFamily="{DynamicResource MaterialDesignFont}"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="EditProduct"
     Width="300"
@@ -216,7 +222,6 @@
                     Width="78"
                     Margin="180,4,12,4"
                     materialDesign:ButtonAssist.CornerRadius="20"
-                    Background="#9999FF"
                     Command="{Binding acceptEditCommand}"
                     Content="Đồng ý" />
 
@@ -224,7 +229,7 @@
                     Width="78"
                     Margin="90,4,92,4"
                     materialDesign:ButtonAssist.CornerRadius="20"
-                    Background="#FF3300"
+                    Background="red"
                     Command="{Binding quitCommand}"
                     Content="Hủy" />
             </Grid>

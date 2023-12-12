@@ -6,6 +6,12 @@
     xmlns:local="clr-namespace:CineMajestic.Views.ProductManagement"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="13"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    FontFamily="{DynamicResource MaterialDesignFont}"
     Title="AddProduct"
     Width="300"
     Height="400"
@@ -204,7 +210,6 @@
                 <Button
                         Width="78"
                         Margin="180,4,12,4"
-                        Background="#9999FF"
                         Content="Đồng ý" 
                         materialDesign:ButtonAssist.CornerRadius="20"
                         Command="{Binding acceptCommand}"/>
@@ -212,7 +217,7 @@
                 <Button
                         Width="78"
                         Margin="90,4,92,4"
-                        Background="#FF3300"
+                        Background="Red"
                         Content="Hủy" 
                         materialDesign:ButtonAssist.CornerRadius="20"
                         Command="{Binding quitCommand}"/>
