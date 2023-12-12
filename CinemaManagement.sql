@@ -64,12 +64,11 @@ GO
 
 CREATE TABLE CUSTOMER
 (
-    FullName nvarchar(50),
-    Id int Primary key,
-    PhoneNumber varchar(10),
-    Email varchar(50),
-    Ranks varchar(40),
-    Point int,
-    Birth smalldatetime,
-    gender nvarchar(20),
+    Id int identity(1,1) primary key ,
+    FullName nvarchar(50) not null,
+    PhoneNumber varchar(10) not null,
+    Email varchar(50) not null,
+    Point int not null,
+    Birth smalldatetime not null,
+    Gender nvarchar(20) not null,
 )   

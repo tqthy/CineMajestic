@@ -62,7 +62,7 @@
                                 Header="Email" />
                             <GridViewColumn
                                 Width="Auto"
-                                Header="Tổng chi tiêu" />
+                                Header="Điểm" />
                             <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>
