@@ -35,7 +35,7 @@
             
             <!--Tiêu đề-->
             <Grid>
-                <Grid Background="#DFD7BF">
+                <Grid >
                     <Border
                         BorderBrush="Black"
                         BorderThickness="0,0,0,1">
