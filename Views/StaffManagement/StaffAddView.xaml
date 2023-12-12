@@ -40,20 +40,18 @@
             </Grid.RowDefinitions>
             <!--Tiêu đề-->
 
-            <Grid>
-                <Border
-                BorderBrush="Black"
-                BorderThickness="0,0,0,1">
-                    <TextBlock
+            <Border CornerRadius="10,10,0,0"
+                     Background="#DFD7BF"
+                     BorderBrush="Black"
+                     BorderThickness="0,0,0,1"> 
+                <TextBlock
                 Text="Thêm nhân viên"
                 VerticalAlignment="Center"
                 Margin="20,0,0,0"
                 FontSize="25"
                 FontWeight="Bold">
-                    </TextBlock>
-                </Border>
-
-            </Grid>
+                </TextBlock>
+            </Border>
 
             <Grid Grid.Row="1">
                 <TextBlock Text="Thông tin cơ bản"

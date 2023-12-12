@@ -36,18 +36,17 @@
                 <RowDefinition Height="90"/>
             </Grid.RowDefinitions>
             <!--Tiêu đề-->
-            <Grid>
-                <Border
-                    BorderThickness="0,0,0,1"
-                    BorderBrush="Black">
-                    <TextBlock
+            <Border CornerRadius="10,10,0,0"
+                     Background="#DFD7BF"
+                     BorderBrush="Black"
+                     BorderThickness="0,0,0,1">
+                <TextBlock
                         Text="SỬA THÔNG TIN"
                         FontSize="25"
                         FontWeight="Bold"
                         VerticalAlignment="Center"
                         Margin="20,0,0,0"/>
-                </Border>
-            </Grid>
+            </Border>
 
             <!--Vùng chứa thông tin-->
             <!--Họ và tên-->
