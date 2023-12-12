@@ -61,3 +61,15 @@ INSERT INTO MOVIES VALUES(N'Bố Già',
 GO              
 INSERT INTO GENRES VALUES (N'Gia Đình'), (N'Hài');
 GO
+
+CREATE TABLE CUSTOMER
+(
+    FullName nvarchar(50),
+    Id int Primary key,
+    PhoneNumber varchar(10),
+    Email varchar(50),
+    Ranks varchar(40),
+    Point int,
+    Birth smalldatetime,
+    gender nvarchar(20),
+)   
