@@ -98,10 +98,6 @@
                                 Header="Email" />
                             <GridViewColumn
                                 Width="Auto"
-                                DisplayMemberBinding="{Binding }"
-                                Header="Ngày vào làm" />
-                            <GridViewColumn
-                                Width="Auto"
                                 DisplayMemberBinding="{Binding}"
                                 Header="Chức vụ"/>
                             <GridViewColumn
