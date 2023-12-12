@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Views;
 using CineMajestic.Views.MovieManagement;
+using CineMajestic.Views.VoucherManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,9 @@ namespace CineMajestic.ViewModels
             {
                 case "Movies":
                     CurrentView = new MovieManagementView();
+                    break;
+                case "Vouchers":
+                    CurrentView = new VoucherManagement();
                     break;
             }
         }

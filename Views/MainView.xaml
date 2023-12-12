@@ -136,7 +136,7 @@
                     <Button Foreground="Black"
                             FontWeight="Medium"
                             Command="{Binding SwitchViewCommand}"
-                            CommandParameter="Movies"
+                            CommandParameter="Vouchers"
                             Margin="0,20,0,10"
                             BorderThickness="0"
                             Background="Transparent"
@@ -154,8 +154,30 @@
                         </StackPanel>
                     </Button>
                     
-                    
-                    
+                    <!--Voucher-->
+                    <Button Foreground="Black"
+                            FontWeight="Medium"
+                            Command="{Binding SwitchViewCommand}"
+                            CommandParameter="Vouchers"
+                            Margin="0,20,0,10"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            HorizontalAlignment="Left">
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="TicketPercent"
+                                 Height="25"
+                                 Width="25"
+                                 VerticalAlignment="Center"/>
+                            <TextBlock Text="Voucher"
+                                       VerticalAlignment="Bottom"
+                                       Margin="10,0,0,0"
+                                       FontSize="18"/>
+                        </StackPanel>
+                    </Button>
+
+
+
                 </StackPanel>                
             </Border>
                 

@@ -41,13 +41,13 @@
                     Orientation="Horizontal">
                     <Button
                         Width="120"
-                        Height="40"
+                        Height="35"
                         Padding="0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         materialDesign:ButtonAssist.CornerRadius="8"
                         FontFamily="arial"
-                        FontSize="25">
+                        FontSize="24">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon
@@ -56,7 +56,7 @@
                                     Margin="0,0,0,0"
                                     VerticalAlignment="Center"
                                     Kind="PlusCircleOutline" />
-                                <TextBlock Margin="5,0,0,0" Text="Thêm" />
+                                <TextBlock Margin="5,0,0,0" Text="Thêm"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>
