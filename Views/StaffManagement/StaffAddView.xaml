@@ -349,7 +349,6 @@
               Name="btnXacNhan"
               Margin="490,0,10,0"
               Width="90"
-              Background="BLUE"
               materialDesign:ButtonAssist.CornerRadius="20"/>
 
 
