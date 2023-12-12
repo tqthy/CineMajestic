@@ -43,6 +43,7 @@ namespace CineMajestic.ViewModels.ProductManagement
             PhanLoai();
             addProduct();
             delete();
+            editProduct();
         }
 
     }
