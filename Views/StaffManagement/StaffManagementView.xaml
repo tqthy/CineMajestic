@@ -6,6 +6,12 @@
     xmlns:local="clr-namespace:CineMajestic.Views.StaffManagement"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextElement.FontWeight="Regular"
+    TextElement.FontSize="13"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    FontFamily="{DynamicResource MaterialDesignFont}"
     d:DesignHeight="648"
     d:DesignWidth="1000"
     mc:Ignorable="d">
