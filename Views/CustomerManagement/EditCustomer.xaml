@@ -15,7 +15,7 @@
     <Border
          CornerRadius="10"
          BorderThickness="1"
-         BorderBrush="#57d2e6"
+         BorderBrush="Brown"
          Background="White">
         <Grid>
             <Grid.RowDefinitions>
