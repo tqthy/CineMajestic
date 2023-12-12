@@ -28,9 +28,8 @@
                 <TextBox
                     Margin="20,0,0,0"
                     VerticalAlignment="Bottom"
-                    FontSize="25"
-                    Foreground="LightGray"
-                    Text="Tìm kiếm"
+                    FontSize="20"
+                    materialDesign:HintAssist.Hint="Tìm kiếm"
                     >
                 </TextBox>
             </Grid>
@@ -39,7 +38,7 @@
             <Grid Grid.Column="1">
                 <Button
                     Name="btnThemMotSP"
-                    Width="120"
+                    Width="110"
                     Height="40"
                     Padding="0"
                     HorizontalAlignment="Center"
@@ -47,7 +46,7 @@
                     materialDesign:ButtonAssist.CornerRadius="8"
                     Command="{Binding showWDAddProductCommand}"
                     FontFamily="Arial"
-                    FontSize="25">
+                    FontSize="22">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon
@@ -66,13 +65,14 @@
             <Grid Grid.Column="2">
                 <ComboBox
                     Name="cboPhanLoai"
-                    Width="200"
-                    Height="30"
+                    Width="150"
+                    Height="40" 
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
+                    VerticalContentAlignment="Center"
+                    Margin="0,0,15,0"
                     FontFamily="Arial"
                     FontSize="20"
-                    Foreground="LightGray"
                     SelectedIndex="{Binding SelectedItemIndex}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
