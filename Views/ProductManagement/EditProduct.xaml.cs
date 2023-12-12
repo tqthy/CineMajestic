@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels.ProductManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace CineMajestic.Views.ProductManagement
         public EditProduct()
         {
             InitializeComponent();
+            EditProductViewModel editProductViewModel = new EditProductViewModel(this);
+            this.DataContext = editProductViewModel;
         }
     }
 }
