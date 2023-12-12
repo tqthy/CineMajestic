@@ -100,7 +100,7 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 connection.Open();
                 string update =
-                    "update Prodcut\n"
+                    "update Product\n"
                     +
                     "set Name=" + "N'" + product.Name + "'" + ","
                     +

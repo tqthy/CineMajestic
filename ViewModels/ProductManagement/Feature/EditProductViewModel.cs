@@ -25,9 +25,12 @@ namespace CineMajestic.ViewModels.ProductManagement
         }
         private void ShowWDEditProduct(object obj)
         {
-            EditProduct editProduct = new EditProduct();
-            editProduct.ShowDialog();
+            //truyền ID để phục vụ update
+            ProductDTO product=obj as ProductDTO;
+            EditProduct editProduct = new EditProduct(product);
 
+
+            editProduct.ShowDialog();
             //load lại danh sách
             loadData();
         }
@@ -35,6 +38,7 @@ namespace CineMajestic.ViewModels.ProductManagement
 
     public class EditProductViewModel:INotifyPropertyChanged
     {
+        public ProductDTO productEdit {  get; set; }
         public string Name { get; set; }
 
         private string imageSource;
@@ -58,15 +62,26 @@ namespace CineMajestic.ViewModels.ProductManagement
 
         public ICommand quitCommand { get; set; }//thoát k sửa product nữa
         public ICommand addImageCommand {  get; set; }//đồng ý edit
+        public ICommand acceptEditCommand { get; set; }//đồng ý edit
 
-    
+
         public EditProductViewModel(EditProduct wd)
         {
             quitCommand = new ViewModelCommand(quit);  
             addImageCommand=new ViewModelCommand(addImage);
+            acceptEditCommand = new ViewModelCommand(acceptEdit);
             this.wd = wd;
+
         }
 
+        public void khoitao()
+        {
+            Name = productEdit.Name;
+            Quantity=productEdit.Quantity;
+            Price = productEdit.Price;
+            Type = productEdit.Type - 1;
+            ImageSource= productEdit.ImageSource;
+        }
 
         //thoát(hủy k edit nữa)
         private void quit(object obj)
@@ -74,6 +89,21 @@ namespace CineMajestic.ViewModels.ProductManagement
             wd.Close();
         }
 
+
+        //accept edit
+        private void acceptEdit(object obj)
+        {
+            string nameNew = Name;
+            int quantityNew = Quantity;
+            int priceNew= Price;
+            int typeNew = Type + 1;
+            string imageSourceNew = Path.GetFileName(ImageSource);
+
+            ProductDA productDA = new ProductDA();
+            productDA.editProduct(new ProductDTO(productEdit.Id,nameNew, quantityNew, priceNew, typeNew, imageSourceNew));
+            MessageBox.Show("Sửa thành công");
+            wd.Close();
+        }
 
 
         //add image

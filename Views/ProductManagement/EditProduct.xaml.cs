@@ -1,4 +1,5 @@
-﻿using CineMajestic.ViewModels.ProductManagement;
+﻿using CineMajestic.Models.DTOs.ProductManagement;
+using CineMajestic.ViewModels.ProductManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,12 @@ namespace CineMajestic.Views.ProductManagement
     /// </summary>
     public partial class EditProduct : Window
     {
-        public EditProduct()
+        public EditProduct(ProductDTO productEdit)
         {
             InitializeComponent();
             EditProductViewModel editProductViewModel = new EditProductViewModel(this);
+            editProductViewModel.productEdit = productEdit;
+            editProductViewModel.khoitao();
             this.DataContext = editProductViewModel;
         }
     }

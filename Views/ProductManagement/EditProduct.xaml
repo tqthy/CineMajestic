@@ -210,7 +210,7 @@
                         Background="#9999FF"
                         Content="Đồng ý" 
                         materialDesign:ButtonAssist.CornerRadius="20"
-                        Command="{Binding acceptCommand}"/>
+                        Command="{Binding acceptEditCommand}"/>
 
                         <Button
                         Width="78"                     
