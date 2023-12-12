@@ -12,13 +12,13 @@
         TextOptions.TextRenderingMode="Auto"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="AddStaff"
+        Title="AddStaff" Background="Transparent"
         Height="625" Width="600" WindowStyle="None"
         AllowsTransparency="True" WindowStartupLocation="CenterScreen">
     <Border
      CornerRadius="10"
-     BorderThickness="2"
-     BorderBrush="#57d2e6"
+     BorderThickness="1"
+     BorderBrush="Brown"
      Background="White">
         <Grid>
             <Grid.RowDefinitions>
