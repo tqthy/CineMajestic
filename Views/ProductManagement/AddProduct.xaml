@@ -33,19 +33,21 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <!--  Tiêu đề  -->
-            <Grid Grid.Row="0">
+            <Border CornerRadius="10,10,0,0"
+             Background="#DFD7BF"
+             BorderBrush="Black"
+             BorderThickness="0,0,0,1"> 
                 <TextBlock
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         FontSize="25"
-                        FontWeight="DemiBold"
+                        FontWeight="SemiBold"
                         Text="Thêm sản phẩm"
                         Margin="10,0,0,0"/>
-                <Border BorderBrush="LightGray" BorderThickness="0,0,0,2" />
-            </Grid>
+            </Border>
 
 
-            <!--  phần nhập thông tin  -->
+    <!--  phần nhập thông tin  -->
             <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition />
