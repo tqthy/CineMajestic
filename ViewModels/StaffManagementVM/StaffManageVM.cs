@@ -11,7 +11,7 @@ using CineMajestic.Models.DataAccessLayer;
 
 namespace CineMajestic.ViewModels.StaffManagementVM
 {
-    public class StaffManageVM:BaseViewModel 
+    public partial class StaffManageVM:BaseViewModel 
     {
        
         private ObservableCollection<StaffDTO> dsnv;
@@ -32,6 +32,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         {
             DSNV = new ObservableCollection<StaffDTO>();
             DSNV=StaffDA.getDSNV();
+            SearchStaff();
         }
         
     }
