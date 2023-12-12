@@ -63,13 +63,14 @@ namespace CineMajestic.ViewModels.ProductManagement
         public ICommand quitCommand { get; set; }//thoát k sửa product nữa
         public ICommand addImageCommand {  get; set; }//đồng ý edit
         public ICommand acceptEditCommand { get; set; }//đồng ý edit
-
+        public ICommand WindowClosingCommand { get; set; }
 
         public EditProductViewModel(EditProduct wd)
         {
             quitCommand = new ViewModelCommand(quit);  
             addImageCommand=new ViewModelCommand(addImage);
             acceptEditCommand = new ViewModelCommand(acceptEdit);
+            WindowClosingCommand = new ViewModelCommand(windowClosing);
             this.wd = wd;
 
         }
@@ -129,6 +130,11 @@ namespace CineMajestic.ViewModels.ProductManagement
                     wd.Close();
                 }
             }
+        }
+
+        private void windowClosing(object obj)
+        {
+            MessageBox.Show("hihi");
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
