@@ -72,7 +72,7 @@ namespace CineMajestic.ViewModels.ProductManagement
             acceptEditCommand = new ViewModelCommand(acceptEdit);
             WindowClosingCommand = new ViewModelCommand(windowClosing);
             this.wd = wd;
-
+            deleteImageEdit();
         }
 
         public void khoitao()
@@ -134,7 +134,27 @@ namespace CineMajestic.ViewModels.ProductManagement
 
         private void windowClosing(object obj)
         {
-            MessageBox.Show("hihi");
+
+        }
+        
+
+        private void deleteImageEdit()
+        {
+            try
+            {
+                string s = "";
+                DirectoryInfo dir = new DirectoryInfo(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
+                FileInfo[] files = dir.GetFiles("*.*", SearchOption.AllDirectories);
+                foreach (FileInfo file in files)
+                {
+                    try
+                    {
+                        File.Delete(file.FullName);
+                    }
+                    catch { }
+                }
+            }
+            catch { }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
