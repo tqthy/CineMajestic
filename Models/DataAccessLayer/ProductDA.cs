@@ -90,6 +90,37 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+        
+
+        //update sản phẩm
+        public void editProduct(ProductDTO product)
+        {
+            using(SqlConnection connection=GetConnection())
+            {
+                connection.Open();
+                string update =
+                    "update Prodcut\n"
+                    +
+                    "set Name=" + "N'" + product.Name + "'" + ","
+                    +
+                    "Quantity=" + product.Quantity + ","
+                    +
+                    "Price=" + product.Price + ","
+                    +
+                    "Type=" + product.Type + ","
+                    +
+                    "ImageSource=" + "'" + product.ImageSource + "'" + "\n"
+                    +
+                    "where ID=" + product.Id;
+
+
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
 
