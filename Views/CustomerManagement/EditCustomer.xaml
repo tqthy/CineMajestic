@@ -35,7 +35,7 @@
             
             <!--Tiêu đề-->
             <Grid>
-                <Grid>
+                <Grid Background="#DFD7BF">
                     <Border
                         BorderBrush="Black"
                         BorderThickness="0,0,0,1">
@@ -48,7 +48,6 @@
                             FontWeight="Bold">
                         </TextBlock>
                     </Border>
-
                 </Grid>
             </Grid>
             <!--Vùng chứa thông tin-->
