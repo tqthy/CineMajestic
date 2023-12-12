@@ -15,6 +15,9 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 {
     public partial class MovieManagementViewModel : MainBaseViewModel
     {
+        private string id;
+        public string Id { get => id; set { id = value; OnPropertyChanged(nameof(Id)); } }
+
         private string title;
         public string Title { get => title; set { title = value; OnPropertyChanged(nameof(Title)); } }
         private string country;
@@ -35,6 +38,9 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             }
         }
 
+        private MovieDTO selectedItem;
+        public MovieDTO SelectedItem { get => selectedItem; set { selectedItem = value; OnPropertyChanged(nameof(SelectedItem)); } }
+
         // Commands
         public ICommand ButtonAddMovieCommand { get; }
         public ICommand RemoveMovieCommand { get; }
@@ -54,5 +60,6 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             addMoviePopup.DataContext = this;
             addMoviePopup.ShowDialog();
         }
+
     }
 }
