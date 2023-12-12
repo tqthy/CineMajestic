@@ -98,6 +98,10 @@
                                 Header="Email" />
                             <GridViewColumn
                                 Width="Auto"
+                                DisplayMemberBinding="{Binding}"
+                                Header="Chức vụ"/>
+                            <GridViewColumn
+                                Width="Auto"
                                 DisplayMemberBinding="{Binding Salary}"
                                 Header="Lương" />
                             <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
