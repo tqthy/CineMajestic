@@ -148,7 +148,7 @@
                 <Button
             Content="Hủy"
             Name="btnHuy"
-            Margin="200,0,0,0"
+            Margin="190,0,0,0"
             Width="90"
             Background="Red"
             Command="{Binding CancelCommand}"
@@ -156,7 +156,7 @@
                 <Button
               Content="Xác nhận"
               Name="btnXacNhan"
-              Margin="400,0,10,0"
+              Margin="390,0,10,0"
               Width="90"
               materialDesign:ButtonAssist.CornerRadius="20"/>
 
