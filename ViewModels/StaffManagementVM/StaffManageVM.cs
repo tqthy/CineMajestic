@@ -34,6 +34,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             loadData();
             //SearchStaff();//gọi ở hàm loaddata rồi nên không cần nữa
             addStaff();
+            delete();
         }
 
         private void loadData()
@@ -43,6 +44,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             SearchStaff();//gọi ở đây để phòng trường hợp add 1 nhân viên
         }
         
+
     }
 }
 
