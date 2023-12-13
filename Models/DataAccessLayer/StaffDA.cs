@@ -86,5 +86,23 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+        //xóa 1 staff
+        public void deleteStaff(StaffDTO staff)
+        {
+            using(SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string delete =
+                    "delete Staff\n"
+                    +
+                    "where Id=" + staff.Id;
+                using (SqlCommand command = new SqlCommand(delete, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
