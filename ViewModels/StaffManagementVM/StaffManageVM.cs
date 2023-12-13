@@ -31,8 +31,14 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         public StaffManageVM()
         {
             DSNV = new ObservableCollection<StaffDTO>();
-            DSNV=StaffDA.getDSNV();
+            loadData();
             SearchStaff();
+        }
+
+        private void loadData()
+        {
+            StaffDA staffDA = new StaffDA();
+            DSNV=staffDA.getDSNV();
         }
         
     }

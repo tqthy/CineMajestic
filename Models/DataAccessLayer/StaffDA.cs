@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,12 +9,46 @@ using CineMajestic.Models.DTOs.StaffManagement;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
-    public class StaffDA
+    public class StaffDA:DataAccess
     {
-        public static ObservableCollection<StaffDTO> getDSNV()
+        public ObservableCollection<StaffDTO> getDSNV()
         {
             ObservableCollection<StaffDTO>list = new ObservableCollection<StaffDTO>();
-            list.Add(new StaffDTO(1, "Nguyễn Văn A", "2002", "Nam", "A@gmail.com", "090988777", 10000000, "Quản lí","2000/10/01"));
+            using(SqlConnection connection=GetConnection())
+            {
+                connection.Open();
+                string truyvan = "select * from Staff";
+                using(SqlCommand command=new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("Id"));
+
+                            string fullname = reader.GetString(reader.GetOrdinal("FullName"));
+
+                            DateTime birthDate = reader.GetDateTime(reader.GetOrdinal("Birth"));
+                            string birth = birthDate.ToString("dd/MM/yyyy");
+
+                            string gender = reader.GetString(reader.GetOrdinal("Gender"));
+
+                            string email = reader.GetString(reader.GetOrdinal("Email"));
+
+                            string phoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+
+                            int salary = reader.GetInt32(reader.GetOrdinal("Salary"));
+
+                            string role = reader.GetString(reader.GetOrdinal("Role"));
+
+                            DateTime NgayVL = reader.GetDateTime(reader.GetOrdinal("NgayVaolam"));
+                            string ngayVL = birthDate.ToString("dd/MM/yyyy");
+
+                            list.Add(new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL));
+                        }
+                    }
+                }
+            }
             return list;
         }
     }
