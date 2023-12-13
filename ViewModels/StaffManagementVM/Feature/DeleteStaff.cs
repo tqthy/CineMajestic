@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs.StaffManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +21,13 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 
         private void deleteStaff(object obj)
         {
-            MessageBox.Show("hihi");
+            StaffDA staffDA=new StaffDA();
+            if(obj is StaffDTO staff)
+            {
+                staffDA.deleteStaff(staff);
+                MessageBox.Show("Xóa nhân viên thành công");
+                loadData();
+            }
         }
     }
 }
