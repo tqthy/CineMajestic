@@ -192,6 +192,11 @@
                                                     Width="30"
                                                     Height="30"
                                                     Kind="AccountEdit" />
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.showWdEditStaffCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
                                             </Border>
                                             <!--  Nút xóa  -->
                                             <Border
