@@ -46,14 +46,14 @@ namespace CineMajestic.Models.DataAccessLayer
                             Title = reader[1].ToString(),
                             Description = reader[2].ToString(),
                             Director = reader[3].ToString(),
-                            ReleaseDate = reader[4].ToString(),
+                            ReleaseYear = reader[4].ToString(),
                             Language = reader[5].ToString(),
                             Country = reader[6].ToString(),
                             Length = reader[7].ToString(),
                             Trailer = reader[8].ToString(),
                             StartDate = reader[9].ToString(),
                             EndDate = reader[10].ToString(),
-                            Genres = new List<GenreDTO>()
+                            Genre = "Funny"
                         };
                         movies.Add(movie);
                     }
