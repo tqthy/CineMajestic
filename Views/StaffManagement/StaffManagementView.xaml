@@ -80,36 +80,109 @@
                             <!--  Danh sách cần cột hiển thị trong listview  -->
                             <GridViewColumn
                                 Width="Auto"
-                                DisplayMemberBinding="{Binding Id}"
-                                Header="ID"/>
+                                Header="ID">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding Id}"
+                                            FontSize="14"
+                                            Margin="16,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
                             <GridViewColumn
                                 Width="Auto"
-                                DisplayMemberBinding="{Binding FullName}"
-                                Header="Họ và tên" />
+                                Header="Họ và tên">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding FullName}"
+                                            FontSize="14"
+                                            Margin="16,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
                             <GridViewColumn
                                 Width="Auto"
-                                DisplayMemberBinding="{Binding Birth}"
-                                Header="Ngày sinh" />
+                                Header="Ngày sinh">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding Birth}"
+                                            FontSize="14"
+                                            Margin="16,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
                             <GridViewColumn
                                 Width="Auto"
-                                DisplayMemberBinding="{Binding Gender}"
-                                Header="Giới tính" />
+                                Header="Giới tính">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding Gender}"
+                                            FontSize="14"
+                                            Margin="16,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
                             <GridViewColumn
                                 Width="Auto"
-                                DisplayMemberBinding="{Binding PhoneNumber}"
-                                Header="SĐT" />
+                                Header="SĐT">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                        Text="{Binding PhoneNumber}"
+                                        FontSize="14"
+                                        Margin="16,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
                             <GridViewColumn
                                 Width="Auto"
-                                DisplayMemberBinding="{Binding Email}"
-                                Header="Email" />
+                                Header="Email">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding Email}"
+                                            FontSize="14"
+                                            Margin="16,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
                             <GridViewColumn
                                 Width="Auto"
-                                DisplayMemberBinding="{Binding Role}"
-                                Header="Chức vụ"/>
+                                Header="Chức vụ">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding Role}"
+                                            FontSize="14"
+                                            Margin="16,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
                             <GridViewColumn
                                 Width="Auto"
-                                DisplayMemberBinding="{Binding Salary}"
-                                Header="Lương" />
+                                Header="Lương">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Text="{Binding Salary}"
+                                            FontSize="14"
+                                            Margin="16,0,0,0"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            
+                            
                             <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>
