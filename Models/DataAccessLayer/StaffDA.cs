@@ -68,7 +68,7 @@ namespace CineMajestic.Models.DataAccessLayer
                     +
                     "'"+staff.Birth+"',"
                     +
-                    "'"+staff.Gender+"',"
+                    "N'"+staff.Gender+"',"
                     +
                     "'"+staff.Email+"',"
                     +
