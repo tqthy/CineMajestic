@@ -11,8 +11,20 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 {
     public partial class StaffManageVM
     {
-        public ObservableCollection<StaffDTO> FilterDSNV { get; set; } // Danh sách đã lọc
-
+        private ObservableCollection<StaffDTO> filterDSNV;
+        public ObservableCollection<StaffDTO> FilterDSNV
+        {
+            get => filterDSNV;
+            set
+            {
+                if(filterDSNV != value)
+                {
+                    filterDSNV = value;
+                    OnPropertyChanged(nameof(FilterDSNV));
+                }
+            }
+        }
+      
         private string searchText;
         public string SearchText
         {
@@ -44,7 +56,6 @@ namespace CineMajestic.ViewModels.StaffManagementVM
                 FilterDSNV = new ObservableCollection<StaffDTO>(
                     DSNV.Where(s => s.FullName.ToLower().Contains(SearchText.ToLower())));
             }
-            OnPropertyChanged(nameof(FilterDSNV));
         }
     }
 }

@@ -32,7 +32,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         {
             DSNV = new ObservableCollection<StaffDTO>();
             loadData();
-            SearchStaff();
+            //SearchStaff();//gọi ở hàm loaddata rồi nên không cần nữa
             addStaff();
         }
 
@@ -40,6 +40,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         {
             StaffDA staffDA = new StaffDA();
             DSNV=staffDA.getDSNV();
+            SearchStaff();//gọi ở đây để phòng trường hợp add 1 nhân viên
         }
         
     }
