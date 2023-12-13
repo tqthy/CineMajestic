@@ -29,5 +29,19 @@ namespace CineMajestic.Models.DTOs.StaffManagement
             Role=role;
             NgayVaoLam=ngayVL;
         }
+
+
+        //phục vụ việc thêm 1 staff
+        public StaffDTO(string fullName, string birth, string gender, string email, string phoneNumber, int salary, string role, string ngayVL)
+        {
+            FullName = fullName;
+            Birth = birth;
+            Gender = gender;
+            Email = email;
+            PhoneNumber = phoneNumber;
+            Salary = salary;
+            Role = role;
+            NgayVaoLam = ngayVL;
+        }
     }
 }
