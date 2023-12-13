@@ -81,7 +81,7 @@
                             <GridViewColumn
                                 Width="Auto"
                                 DisplayMemberBinding="{Binding Id}"
-                                Header="ID" />
+                                Header="ID"/>
                             <GridViewColumn
                                 Width="Auto"
                                 DisplayMemberBinding="{Binding FullName}"
@@ -104,7 +104,7 @@
                                 Header="Email" />
                             <GridViewColumn
                                 Width="Auto"
-                                DisplayMemberBinding="{Binding}"
+                                DisplayMemberBinding="{Binding Role}"
                                 Header="Chức vụ"/>
                             <GridViewColumn
                                 Width="Auto"
