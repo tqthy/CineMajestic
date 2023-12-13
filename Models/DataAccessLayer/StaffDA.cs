@@ -51,5 +51,40 @@ namespace CineMajestic.Models.DataAccessLayer
             }
             return list;
         }
+
+
+        //insert
+        public void addStaff(StaffDTO staff)
+        {
+            using(SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string insert=
+                    "insert into Staff\n"
+                    +
+                    "values("
+                    +
+                    "N'"+staff.FullName+"',"
+                    +
+                    "'"+staff.Birth+"',"
+                    +
+                    "'"+staff.Gender+"',"
+                    +
+                    "'"+staff.Email+"',"
+                    +
+                    "'"+staff.PhoneNumber+"',"
+                    +
+                    staff.Salary+","
+                    +
+                    "N'"+staff.Role+"',"
+                    +
+                    "'"+staff.NgayVaoLam+"')";
+
+                using(SqlCommand command=new SqlCommand(insert, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
