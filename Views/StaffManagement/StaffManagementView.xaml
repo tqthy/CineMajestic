@@ -194,7 +194,7 @@
                                                     Kind="AccountEdit" />
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                        <i:InvokeCommandAction Command="{Binding DataContext.showWdEditStaffCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" />
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.showWdEditStaffCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
                                             </Border>
@@ -220,7 +220,7 @@
                                                     Kind="Delete" />
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                        <i:InvokeCommandAction Command="{Binding DataContext.deleteStaffCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" />
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.deleteStaffCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
                                                     </i:EventTrigger>
                                                 </i:Interaction.Triggers>
                                             </Border>
