@@ -62,3 +62,38 @@ INSERT INTO MOVIES VALUES(N'Bố Già',
 GO              
 INSERT INTO GENRES VALUES (N'Gia Đình'), (N'Hài');
 GO
+
+
+--xóa bảng employees
+drop table EMPLOYEES
+
+--xóa bảng accounts
+drop table ACCOUNTS
+
+--thêm bảng staff
+go
+create table Staff
+(
+	Id int primary key identity(1, 1),
+	FullName nvarchar(100) not null,
+	Birth smalldatetime not null,
+	Gender nvarchar(20) not null,
+	Email varchar(100) not null,
+	PhoneNumber varchar(20) not null,
+	Salary int not null,
+	Role nvarchar(30) not null,
+	NgayVaolam smalldatetime not null,
+)
+go
+
+--thêm bảng ACCOUNTS
+go
+create table ACCOUNTS
+(
+	id INT PRIMARY KEY IDENTITY(1, 1),
+    Username VARCHAR(40) not null unique,
+    Password VARCHAR(40) not null,
+	Staff_Id int not null,
+	Constraint FK_StaffId foreign key(Staff_Id) references Staff(Id)
+)
+go
