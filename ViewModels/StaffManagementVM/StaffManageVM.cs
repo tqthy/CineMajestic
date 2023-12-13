@@ -33,6 +33,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             DSNV = new ObservableCollection<StaffDTO>();
             loadData();
             SearchStaff();
+            addStaff();
         }
 
         private void loadData()

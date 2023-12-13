@@ -52,7 +52,7 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         materialDesign:ButtonAssist.CornerRadius="8"
-                        Command="{Binding OpenStaffAddCommand}"
+                        Command="{Binding showWdAddStaffCommand}"
                         FontFamily="arial"
                         FontSize="25">
                         <Button.Content>
