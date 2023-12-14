@@ -24,7 +24,7 @@ namespace CineMajestic.Views.StaffManagement
         public StaffManagementView()
         {
             InitializeComponent();
-            StaffManageVM staffManageVM = new StaffManageVM();
+            StaffManageVM staffManageVM = new StaffManageVM(this);
             this.DataContext = staffManageVM;
         }
     }

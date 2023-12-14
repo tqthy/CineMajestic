@@ -28,7 +28,8 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             }
         }
 
-        public StaffManageVM()
+        private StaffManagementView staffManagementView;//phục vụ việc set lại chiều rộng cột khi thêm,edit,xóa
+        public StaffManageVM(StaffManagementView staffManagementView)
         {
             DSNV = new ObservableCollection<StaffDTO>();
             loadData();
@@ -36,6 +37,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             addStaff();
             delete();
             editStaff();
+            this.staffManagementView = staffManagementView;
         }
 
         private void loadData()
@@ -43,9 +45,38 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             StaffDA staffDA = new StaffDA();
             DSNV=staffDA.getDSNV();
             SearchStaff();//gọi ở đây để phòng trường hợp add 1 nhân viên
+            loadWidthColumn();
         }
         
+        private void loadWidthColumn()
+        {
+            if (staffManagementView != null)
+            {
+                staffManagementView.clId.Width = 0;
+                staffManagementView.clId.Width = double.NaN;
 
+                staffManagementView.clFullName.Width = 0;
+                staffManagementView.clFullName.Width = double.NaN;
+
+                staffManagementView.clBirth.Width = 0;
+                staffManagementView.clBirth.Width = double.NaN;
+
+                staffManagementView.clGender.Width = 0;
+                staffManagementView.clGender.Width = double.NaN;
+
+                staffManagementView.clEmail.Width = 0;
+                staffManagementView.clEmail.Width = double.NaN;
+
+                staffManagementView.clPhoneNumber.Width = 0;
+                staffManagementView.clPhoneNumber.Width = double.NaN;
+
+                staffManagementView.clSalary.Width = 0;
+                staffManagementView.clSalary.Width = double.NaN;
+
+                staffManagementView.clRole.Width = 0;
+                staffManagementView.clRole.Width = double.NaN;
+            }
+        }
     }
 }
 

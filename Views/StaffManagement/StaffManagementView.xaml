@@ -79,7 +79,7 @@
                     <ListView.View>
                         <GridView>
                             <!--  Danh sách cần cột hiển thị trong listview  -->
-                            <GridViewColumn Width="Auto" Header="ID">
+                            <GridViewColumn x:Name="clId" Width="Auto" Header="ID">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -90,7 +90,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Họ và tên">
+                            <GridViewColumn x:Name="clFullName" Width="Auto" Header="Họ và tên">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -101,7 +101,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Ngày sinh">
+                            <GridViewColumn x:Name="clBirth" Width="Auto" Header="Ngày sinh">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -112,7 +112,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Giới tính">
+                            <GridViewColumn x:Name="clGender" Width="Auto" Header="Giới tính">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -123,7 +123,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="SĐT">
+                            <GridViewColumn x:Name="clPhoneNumber" Width="Auto" Header="SĐT">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -134,7 +134,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Email">
+                            <GridViewColumn x:Name="clEmail" Width="Auto" Header="Email">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -145,7 +145,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Chức vụ">
+                            <GridViewColumn x:Name="clRole" Width="Auto" Header="Chức vụ">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -156,7 +156,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Lương">
+                            <GridViewColumn x:Name="clSalary" Width="Auto" Header="Lương">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
