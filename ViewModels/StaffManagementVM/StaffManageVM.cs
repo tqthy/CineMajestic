@@ -49,20 +49,3 @@ namespace CineMajestic.ViewModels.StaffManagementVM
     }
 }
 
-//public ICommand OpenStaffAddCommand { get; set; }
-//public StaffManageVM()
-//{
-//  //  OpenStaffAddCommand = new ViewModelCommand(OpenStaffAdd);
-//    StaffAdd();
-//}
-
-//void StaffAdd()
-//{
-//    OpenStaffAddCommand = new ViewModelCommand(OpenStaffAdd);
-//}
-
-//private void OpenStaffAdd(object obj)
-//{
-//    StaffAddView staffAdd = new StaffAddView();
-//    staffAdd.ShowDialog();
-//}

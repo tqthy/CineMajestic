@@ -1,4 +1,5 @@
-﻿using CineMajestic.ViewModels.StaffManagementVM;
+﻿using CineMajestic.Models.DTOs.StaffManagement;
+using CineMajestic.ViewModels.StaffManagementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,12 @@ namespace CineMajestic.Views.StaffManagement
     /// </summary>
     public partial class StaffEditView : Window
     {
-        public StaffEditView()
+        public StaffEditView(StaffDTO staff)
         {
             InitializeComponent();
             EditStaffViewModel editStaffViewModel = new EditStaffViewModel(this);
+            editStaffViewModel.staffDTO = staff;
+            editStaffViewModel.khoitao();
             this.DataContext = editStaffViewModel;
         }
     }

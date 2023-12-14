@@ -1,263 +1,290 @@
-﻿<Window x:Class="CineMajestic.Views.StaffManagement.StaffEditView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CineMajestic.Views.StaffManagement"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             TextElement.FontWeight="Regular"
-             TextElement.FontSize="13"
-             TextOptions.TextFormattingMode="Ideal"
-             TextOptions.TextRenderingMode="Auto"
-             FontFamily="{DynamicResource MaterialDesignFont}"     
-             mc:Ignorable="d" WindowStyle="None"
-             AllowsTransparency="True" 
-             WindowStartupLocation="CenterScreen"
-             Background="Transparent"
-             d:DesignHeight="625" d:DesignWidth="600">
+﻿<Window
+    x:Class="CineMajestic.Views.StaffManagement.StaffEditView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CineMajestic.Views.StaffManagement"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="625"
+    d:DesignWidth="600"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
     <Border
-        CornerRadius="10"
-        BorderThickness="1"
+        Background="White"
         BorderBrush="Brown"
-        Background="White">
+        BorderThickness="1"
+        CornerRadius="10">
         <Grid>
-            <!--Chia layout -->
+            <!--  Chia layout  -->
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition Height="90"/>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="90" />
             </Grid.RowDefinitions>
-            <!--Tiêu đề-->
-            <Border CornerRadius="10,10,0,0"
-                     Background="#DFD7BF"
-                     BorderBrush="Black"
-                     BorderThickness="0,0,0,1">
+            <!--  Tiêu đề  -->
+            <Border
+                Background="#DFD7BF"
+                BorderBrush="Black"
+                BorderThickness="0,0,0,1"
+                CornerRadius="10,10,0,0">
                 <TextBlock
-                        Text="SỬA THÔNG TIN"
-                        FontSize="25"
-                        FontWeight="Bold"
-                        VerticalAlignment="Center"
-                        Margin="20,0,0,0"/>
+                    Margin="20,0,0,0"
+                    VerticalAlignment="Center"
+                    FontSize="25"
+                    FontWeight="Bold"
+                    Text="SỬA THÔNG TIN" />
             </Border>
 
-            <!--Vùng chứa thông tin-->
-            <!--Họ và tên-->
+            <!--  Vùng chứa thông tin  -->
+            <!--  Họ và tên  -->
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Họ và tên"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Right"
-                       Margin="0,0,5,0"
-                       FontSize="15"/>
-                <TextBox 
-                x:Name="txtHovaTen"
-                Grid.Column="1"
-                Width="350"
-                Height="30"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Margin="5,0,0,0"
-                FontSize="15"
-                VerticalContentAlignment="Center"/>
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Text="Họ và tên" />
+                <TextBox
+                    x:Name="txtHovaTen"
+                    Grid.Column="1"
+                    Width="350"
+                    Height="30"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="15" 
+                    Text="{Binding FullName}"></TextBox>
             </Grid>
 
-            <!--Giới tính-->
+            <!--  Giới tính  -->
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <TextBlock Text="Giới tính"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Right"
-                       FontSize="15"
-                       Margin="0,0,5,0"/>
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Text="Giới tính" />
 
-                <ComboBox  x:Name="cbGioiTinh"
-                       Grid.Column="1"
-                       FontSize="15"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       VerticalContentAlignment="Center"
-                       Margin="5,0,0,0"
-                       Width="350"
-                       Height="30">
-                    <ComboBoxItem Content="Nam"/>
-                    <ComboBoxItem Content="Nữ"/>
+                <ComboBox
+                    x:Name="cbGioiTinh"
+                    Grid.Column="1"
+                    Width="350"
+                    Height="30"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="15"
+                    SelectedValue="{Binding Gender}"
+                    SelectedValuePath="Content">
+                    <ComboBoxItem Content="Nam" />
+                    <ComboBoxItem Content="Nữ" />
                 </ComboBox>
             </Grid>
 
-            <!--Ngày sinh-->
+            <!--  Ngày sinh  -->
             <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Ngày sinh"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Right"
-                       Margin="0,0,5,0"
-                       FontSize="15"/>
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Text="Ngày sinh" />
 
-                <DatePicker Grid.Column="1"
-                        x:Name="dpNgaySinh"
-                        Margin="0,0,90,0"
-                        Width="350"
-                        Height="30"
-                        VerticalAlignment="Center"
-                        VerticalContentAlignment="Center"/>
+                <DatePicker
+                    x:Name="dpNgaySinh"
+                    Grid.Column="1"
+                    Width="350"
+                    Height="30"
+                    Margin="0,0,90,0"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center" 
+                    SelectedDate="{Binding Birth}"/>
             </Grid>
 
-            <!--Email-->
+            <!--  Email  -->
             <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Email"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Right"
-                       Margin="0,0,5,0"
-                       FontSize="15"/>
-                <TextBox 
-                x:Name="txtEmail"
-                Grid.Column="1"
-                Width="350"
-                Height="30"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Left"
-                Margin="5,0,0,0"
-                FontSize="15"
-                VerticalContentAlignment="Center"/>
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Text="Email" />
+                <TextBox
+                    x:Name="txtEmail"
+                    Grid.Column="1"
+                    Width="350"
+                    Height="30"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="15" 
+                    Text="{Binding Email}"/>
             </Grid>
 
-            <!--SĐT-->
+            <!--  SĐT  -->
             <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Số điện thoại"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Right"
-                        Margin="0,0,5,0"
-                        FontSize="15"/>
-                <TextBox 
-                        x:Name="txtSDT"
-                        Grid.Column="1"
-                        Width="350"
-                        Height="30"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Left"
-                        Margin="5,0,0,0"
-                        FontSize="15"
-                        VerticalContentAlignment="Center"/>
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Text="Số điện thoại" />
+                <TextBox
+                    x:Name="txtSDT"
+                    Grid.Column="1"
+                    Width="350"
+                    Height="30"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="15" 
+                    Text="{Binding PhoneNumber}"/>
             </Grid>
 
-            <!--Chức vụ-->
+            <!--  Chức vụ  -->
             <Grid Grid.Row="6">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock  Text="Chức vụ"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Right"
-                        Margin="0,0,5,0"
-                        FontSize="15"/>
-                <ComboBox  x:Name="cbChucVu"
-               Grid.Column="1"
-               HorizontalAlignment="Left"
-               VerticalAlignment="Center"
-               VerticalContentAlignment="Center"
-               Margin="5,0,0,0"
-               FontSize="15"
-               Width="350"
-               Height="30">
-                    <ComboBoxItem Content="Quản lý"/>
-                    <ComboBoxItem Content="Nhân viên    "/>
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Text="Chức vụ" />
+                <ComboBox
+                    x:Name="cbChucVu"
+                    Grid.Column="1"
+                    Width="350"
+                    Height="30"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="15"
+                    SelectedValue="{Binding Role}"
+                    SelectedValuePath="Content">
+                    <ComboBoxItem Content="Quản lý" />
+                    <ComboBoxItem Content="Nhân viên" />
                 </ComboBox>
             </Grid>
 
-            <!--Ngày vào làm-->
+            <!--  Ngày vào làm  -->
             <Grid Grid.Row="7">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Ngày vào làm"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Right"
-                       Margin="0,0,5,0"
-                       FontSize="15"/>
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Text="Ngày vào làm" />
 
-                <DatePicker Grid.Column="1"
-                        x:Name="dpNgayVaoLam"
-                        Margin="0,0,90,0"
-                        Width="350"
-                        Height="30"
-                        VerticalAlignment="Center"
-                        VerticalContentAlignment="Center"/>
+                <DatePicker
+                    x:Name="dpNgayVaoLam"
+                    Grid.Column="1"
+                    Width="350"
+                    Height="30"
+                    Margin="0,0,90,0"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center" 
+                    SelectedDate="{Binding NgayVL}"/>
             </Grid>
-                <!--Lương-->
+            <!--  Lương  -->
             <Grid Grid.Row="8">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock   Text="Lương"
-                             VerticalAlignment="Center"
-                             HorizontalAlignment="Right"
-                             Margin="0,0,5,0"
-                             FontSize="15"/>
-                <TextBox 
-                     x:Name="txtLuong"
-                     Grid.Column="1"
-                     Width="350"
-                     Height="30"
-                     VerticalAlignment="Center"
-                     HorizontalAlignment="Left"
-                     Margin="5,0,0,0"
-                     FontSize="15"
-                     VerticalContentAlignment="Center"/>
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    FontSize="15"
+                    Text="Lương" />
+                <TextBox
+                    x:Name="txtLuong"
+                    Grid.Column="1"
+                    Width="350"
+                    Height="30"
+                    Margin="5,0,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    FontSize="15" 
+                    Text="{Binding Salary}"/>
 
             </Grid>
-            <!--Nút hủy, đổi mật khẩu xác hoàn tất-->
+            <!--  Nút hủy, đổi mật khẩu xác hoàn tất  -->
             <Grid Grid.Row="9">
-                <!--Nút hủy dùng để quay lại màn hình chính -->
+                <!--  Nút hủy dùng để quay lại màn hình chính  -->
                 <Button
-                        Content="Hủy"
-                        Name="btnHuy"
-                        Margin="280,0,0,0"
-                        Width="90"
-                        Background="Red"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                    Command="{Binding quitCommand}"/>
-                <!--Nút xác nhận sửa thông tin-->
+                    Name="btnHuy"
+                    Width="90"
+                    Margin="280,0,0,0"
+                    materialDesign:ButtonAssist.CornerRadius="20"
+                    Background="Red"
+                    Command="{Binding quitCommand}"
+                    Content="Hủy" />
+                <!--  Nút xác nhận sửa thông tin  -->
                 <Button
-                      Content="Xác nhận"
-                      Name="btnXacNhan"
-                      Margin="490,0,10,0"
-                      Width="90"
-                      materialDesign:ButtonAssist.CornerRadius="20"/>
+                    Name="btnXacNhan"
+                    Width="90"
+                    Margin="490,0,10,0"
+                    materialDesign:ButtonAssist.CornerRadius="20"
+                    Command="{Binding acceptCommand}"
+                    Content="Xác nhận" />
             </Grid>
         </Grid>
 
