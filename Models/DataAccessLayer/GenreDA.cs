@@ -34,5 +34,6 @@ namespace CineMajestic.Models.DataAccessLayer
             }
             return genres;
         }
+
     }
 }

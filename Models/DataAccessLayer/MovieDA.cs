@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
+using System.Globalization;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -19,11 +20,22 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO [MOVIES](Title, Country, Length, Director) VALUES(@title, @country, @length, @director)";
+                command.CommandText = "INSERT INTO [MOVIES] VALUES(@title, @description, @director, @releaseyear, @language, @country, @length, @trailer, @startdate, @enddate, @genreid, @poster)";
                 command.Parameters.Add("@title", SqlDbType.NVarChar).Value = movie.Title;
-                command.Parameters.Add("@country", SqlDbType.NVarChar).Value = movie.Country;
+                command.Parameters.Add("@description", SqlDbType.NVarChar).Value = movie.Description;
                 command.Parameters.Add("@director", SqlDbType.NVarChar).Value = movie.Director;
+                command.Parameters.Add("@releaseyear", SqlDbType.Int).Value = movie.ReleaseYear;
+                command.Parameters.Add("@language", SqlDbType.NVarChar).Value = movie.Language;
+                command.Parameters.Add("@country", SqlDbType.NVarChar).Value = movie.Country;
                 command.Parameters.Add("@length", SqlDbType.Int).Value = movie.Length;
+                command.Parameters.Add("@trailer", SqlDbType.NVarChar).Value = movie.Trailer;
+                DateTime date;
+                date = DateTime.ParseExact(movie.StartDate, "MM/dd/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
+                command.Parameters.Add("@startdate", SqlDbType.SmallDateTime).Value = date;
+                date = DateTime.ParseExact(movie.EndDate, "MM/dd/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
+                command.Parameters.Add("@enddate", SqlDbType.SmallDateTime).Value = date;
+                command.Parameters.Add("@genreid", SqlDbType.Int).Value = movie.Genre;
+                command.Parameters.Add("@poster", SqlDbType.NVarChar).Value = movie.Poster;
                 var rows_affected = command.ExecuteNonQuery();
             }
         }

@@ -40,8 +40,6 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         public string StartDate { get => startDate; set { startDate = value; OnPropertyChanged(nameof(StartDate)); } }
         private string endDate;
         public string EndDate { get => endDate; set { endDate = value; OnPropertyChanged(nameof(EndDate)); } }
-        private string genre;
-        public string Genre { get => genre; set { genre = value; OnPropertyChanged(nameof(Genre)); } }
 
         private BitmapImage moviePoster;
         public BitmapImage MoviePoster { get => moviePoster; set { moviePoster = value; OnPropertyChanged(nameof(MoviePoster)); } }
@@ -71,6 +69,12 @@ namespace CineMajestic.ViewModels.MovieManagementVM
                 OnPropertyChanged(nameof(GenreList));
             }
         }
+
+        // ComboBox selected genre
+        private GenreDTO selectedGenre;
+        public GenreDTO SelectedGenre { get => selectedGenre; set { selectedGenre = value; OnPropertyChanged(nameof(SelectedGenre)); } }
+
+        // Listview selected item
 
         private MovieDTO selectedItem;
         public MovieDTO SelectedItem { get => selectedItem; set { selectedItem = value; OnPropertyChanged(nameof(SelectedItem)); } }

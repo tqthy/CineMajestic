@@ -20,8 +20,10 @@ namespace CineMajestic.Views
     /// </summary>
     public partial class LoginView : Window
     {
+        public bool isClosed;
         public LoginView()
         {
+            isClosed = false;
             InitializeComponent();
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
@@ -39,6 +41,7 @@ namespace CineMajestic.Views
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            isClosed = true;
             Application.Current.Shutdown();
         }
 

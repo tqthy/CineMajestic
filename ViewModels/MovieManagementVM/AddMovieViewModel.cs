@@ -4,6 +4,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,15 +32,25 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             movie.Director = Director;
             movie.Country = Country;
             movie.Length = Length;
+            movie.ReleaseYear = ReleaseYear;
             movie.Description = Description;
             movie.StartDate = StartDate;
             movie.EndDate = EndDate;
             movie.Language = Language;
-            movie.Genre = Genre;
-            movie.Poster = MoviePoster.UriSource.ToString();
+            movie.Trailer = Trailer;
+            movie.Genre = SelectedGenre.Id;
+            movie.Poster = Path.GetFileName(MoviePoster.UriSource.ToString());
+            string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", Title, "Poster");
+            if (!Directory.Exists(applicationFolder))
+            {
+                Directory.CreateDirectory(applicationFolder);
+            }
+            File.Copy(MoviePoster.UriSource.LocalPath, Path.Combine(applicationFolder, movie.Poster), true);
             MovieDA movieDA = new MovieDA();
             movieDA.AddMovie(movie);
             MovieList = new ObservableCollection<MovieDTO>(movieDA.GetAllMovies());
+
+            MessageBox.Show("Success");
         }
         public bool CanExecuteAddMovieCommand(object parameter)
         {
