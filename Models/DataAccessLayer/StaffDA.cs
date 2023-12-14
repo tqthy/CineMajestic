@@ -104,5 +104,41 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+        //update
+        public void updateStaff(StaffDTO staff)
+        {
+            using(SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string update =
+                    "update Staff\n"
+                    +
+                    "set FullName=" + "N'" + staff.FullName + "',"
+                    +
+                    "Birth=" + "'" + staff.Birth + "',"
+                    +
+                    "Gender=" + "N'" + staff.Gender + "',"
+                    +
+                    "Email=" + "'" + staff.Email + "',"
+                    +
+                    "PhoneNumber=" + "'" + staff.PhoneNumber + "',"
+                    +
+                    "Salary=" + staff.Salary + ","
+                    +
+                    "Role=" + "N'" + staff.Role + "',"
+                    +
+                    "NgayVaolam=" + "'" + staff.NgayVaoLam + "'\n"
+                    +
+                    "where Id=" + staff.Id;
+
+
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
