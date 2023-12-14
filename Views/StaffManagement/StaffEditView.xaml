@@ -249,7 +249,8 @@
                         Margin="280,0,0,0"
                         Width="90"
                         Background="Red"
-                        materialDesign:ButtonAssist.CornerRadius="20"/>
+                        materialDesign:ButtonAssist.CornerRadius="20"
+                    Command="{Binding quitCommand}"/>
                 <!--Nút xác nhận sửa thông tin-->
                 <Button
                       Content="Xác nhận"

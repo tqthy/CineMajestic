@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.Views.StaffManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,27 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 
         private void showWdEditStaff(object obj)
         {
-            MessageBox.Show("hihi");
+            StaffEditView staffEditView = new StaffEditView();
+            staffEditView.ShowDialog();
+        }
+    }
+
+
+    public class EditStaffViewModel
+    {
+        private StaffEditView wd;//phục vụ button hủy
+        public ICommand quitCommand { get; set; }
+
+
+        public EditStaffViewModel(StaffEditView wd)
+        {
+            this.wd = wd;
+            quitCommand = new ViewModelCommand(quit);
+        }
+
+        private void quit(object obj)
+        {
+            wd.Close();
         }
     }
 }
