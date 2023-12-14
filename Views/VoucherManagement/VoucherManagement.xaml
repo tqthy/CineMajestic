@@ -79,6 +79,12 @@
                             <GridViewColumn
                                 Width="Auto"
                                 Header="Thông tin vouchcer" />
+                            <GridViewColumn
+                                Width="Auto"
+                                Header="Ngày bắt đầu"/>
+                            <GridViewColumn
+                                Width="Auto"
+                                Header="Ngày kết thúc"/>
                             <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>
