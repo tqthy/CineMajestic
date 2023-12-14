@@ -242,18 +242,6 @@
             </Grid>
             <!--Nút hủy, đổi mật khẩu xác hoàn tất-->
             <Grid Grid.Row="9">
-                <!--Nút đổi mật khẩu-->
-                <Button
-                        Name="btnQuenMatKhau" 
-                        Background="Transparent"
-                        BorderThickness="0,0,0,0"
-                        Content="Đổi mật khẩu"
-                        FontSize="15"
-                        Foreground="BlueViolet"
-                        Margin="-360,0,0,0"
-                        Width="125"
-                        materialDesign:ButtonAssist.CornerRadius="20"
-                        />
                 <!--Nút hủy dùng để quay lại màn hình chính -->
                 <Button
                         Content="Hủy"
