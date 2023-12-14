@@ -349,7 +349,14 @@
                     
                     <ComboBox Margin="0,5,0,0"
                               Width="100"
-                              x:Name="GenreComboBox"></ComboBox>
+                              x:Name="GenreComboBox"
+                              ItemsSource="{Binding GenreList}">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Title}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                     
                 </StackPanel>
                 

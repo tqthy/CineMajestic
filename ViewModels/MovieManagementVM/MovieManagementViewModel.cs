@@ -42,6 +42,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         public string EndDate { get => endDate; set { endDate = value; OnPropertyChanged(nameof(EndDate)); } }
         private string genre;
         public string Genre { get => genre; set { genre = value; OnPropertyChanged(nameof(Genre)); } }
+
         private BitmapImage moviePoster;
         public BitmapImage MoviePoster { get => moviePoster; set { moviePoster = value; OnPropertyChanged(nameof(MoviePoster)); } }
         
@@ -55,6 +56,19 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             {
                 movieList = value;
                 OnPropertyChanged(nameof(MovieList));
+            }
+        }
+
+        // Genres List
+
+        private ObservableCollection<GenreDTO> genreList;
+        public ObservableCollection<GenreDTO> GenreList
+        {
+            get => genreList;
+            set
+            {
+                genreList = value;
+                OnPropertyChanged(nameof(GenreList));
             }
         }
 
@@ -77,11 +91,25 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         #region Constructor
         public MovieManagementViewModel()
         {
-            MovieDA movieDA = new MovieDA();
-            MovieList = new ObservableCollection<MovieDTO>(movieDA.GetAllMovies());
+            _ = LoadCollection();
             AddMovieCommand = new ViewModelCommand(ExecuteAddMovieCommand, CanExecuteAddMovieCommand);
             ButtonAddMovieCommand = new ViewModelCommand(ExecuteButtonAddMovieCommand);
             UploadPosterCommand = new ViewModelCommand(ExecuteUploadPosterCommand);
+        }
+
+        private async Task LoadCollection()
+        {
+            MovieDA movieDA = new MovieDA();
+            GenreDA genreDA = new GenreDA();
+
+            Task<List<MovieDTO>> movietasks = Task.Run(() => movieDA.GetAllMovies());
+            Task<List<GenreDTO>> genretasks = Task.Run(() => genreDA.GetAllGenres());
+
+            List<MovieDTO> movies = await movietasks;
+            List<GenreDTO> genres = await genretasks;
+
+            MovieList = new ObservableCollection<MovieDTO>(movies);
+            GenreList = new ObservableCollection<GenreDTO>(genres);
         }
 
         #endregion

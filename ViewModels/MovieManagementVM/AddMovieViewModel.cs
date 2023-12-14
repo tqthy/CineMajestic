@@ -41,14 +41,14 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             movieDA.AddMovie(movie);
             MovieList = new ObservableCollection<MovieDTO>(movieDA.GetAllMovies());
         }
-        public bool CanExecuteAddMovieCommand(object paramenter)
+        public bool CanExecuteAddMovieCommand(object parameter)
         {
             return (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Director) && !string.IsNullOrEmpty(Country) && !string.IsNullOrEmpty(Length));
         }
 
         // Upload Poster
 
-        public void ExecuteUploadPosterCommand(object paramenter)
+        public void ExecuteUploadPosterCommand(object parameter)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
