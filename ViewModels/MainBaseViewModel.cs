@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace CineMajestic.ViewModels
 {
-    public abstract class MainBaseViewModel : BaseViewModel
+    public abstract class MainBaseViewModel :BaseViewModel
     {
         private object currentView;
         public object CurrentView
@@ -35,7 +35,7 @@ namespace CineMajestic.ViewModels
                     CurrentView = new MovieManagementView();
                     break;
                 case "Vouchers":
-                    CurrentView = new VoucherManagement();
+                    CurrentView = new VoucherManagementView();
                     break;
             }
         }
