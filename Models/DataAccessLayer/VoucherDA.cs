@@ -77,5 +77,35 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+
+        //edit 1 voucher
+        public void editVoucher(VoucherDTO voucher)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string update =
+                    "update Voucher\n"
+                    +
+                    "set Name=" + "N'" + voucher.Name + "',"
+                    +
+                    "VoucherDetail=" + "N'" + voucher.VoucherDetail + "',"
+                    +
+                    "Type=" + "'" + voucher.Type + "',"
+                    +
+                    "StartDate=" + "'" + voucher.StartDate + "',"
+                    +
+                    "FinDate=" + "'" + voucher.FinDate + "'\n"
+                    +
+                    "where Id=" + voucher.Id;
+
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
