@@ -317,7 +317,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     VerticalContentAlignment="Center"
-                    FontSize="15" />
+                    FontSize="15" 
+                    Text="{Binding Username}"/>
             </Grid>
 
             <!--  Password  -->
