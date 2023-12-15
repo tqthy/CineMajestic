@@ -33,9 +33,10 @@ namespace CineMajestic.Models.DTOs
             RegDate = regDate;
             Gender = gender;
         }
-
-        public CustomerDTO(string fullName, string phoneNumber, string email, int point, string regDate)
+        //Phục vụ edit
+        public CustomerDTO(int id,string fullName, string phoneNumber, string email, string regDate, int point)
         {
+            Id = id;
             FullName = fullName;
             PhoneNumber = phoneNumber;
             Email = email;

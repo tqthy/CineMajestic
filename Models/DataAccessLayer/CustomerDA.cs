@@ -52,7 +52,7 @@ namespace CineMajestic.Models.DataAccessLayer
         }
         
         //edit 1 khách hàng
-        public void editVoucher(CustomerDTO customer)
+        public void editCustomer(CustomerDTO customer)
         {
             using (SqlConnection connection = GetConnection())
             {
@@ -60,15 +60,15 @@ namespace CineMajestic.Models.DataAccessLayer
                 string update =
                     "update Customer\n"
                     +
-                    "set Name=" + "N'" + customer.FullName + "',"
+                    "set FullName=" + "N'" + customer.FullName + "',"
                     +
-                    "PhoneNumber" + "'" + customer.PhoneNumber+ "',"
+                    "PhoneNumber =" + "'" + customer.PhoneNumber+ "',"
                     +
                     "Email=" + "'" + customer.Email+ "',"
                     +
                     "RegDate=" + "'" + customer.RegDate + "',"
                     +
-                    "Point="  + customer.Point + "\n"
+                    "Point=" + customer.Point + "\n"
                     +
                     "where Id=" + customer.Id;
 

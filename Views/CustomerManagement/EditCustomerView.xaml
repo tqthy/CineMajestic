@@ -197,7 +197,8 @@
                     Width="90"
                     Margin="390,0,10,0"
                     materialDesign:ButtonAssist.CornerRadius="20"
-                    Content="Xác nhận" />
+                    Content="Xác nhận"
+                    Command="{Binding acceptCommand}"/>
 
 
             </Grid>
