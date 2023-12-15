@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels.VoucherManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace CineMajestic.Views.VoucherManagement
         public EditVoucher()
         {
             InitializeComponent();
+            EditVoucherViewModel editVoucherViewModel = new EditVoucherViewModel(this);
+            this.DataContext = editVoucherViewModel;
         }
     }
 }

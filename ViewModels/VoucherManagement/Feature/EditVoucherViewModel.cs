@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DTOs;
 using CineMajestic.Views.VoucherManagement;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,24 @@ namespace CineMajestic.ViewModels.VoucherManagement
             editVoucher.ShowDialog();
 
             loadData();
+        }
+    }
+
+
+    public class EditVoucherViewModel
+    {
+        private EditVoucher wd;
+        public ICommand quitCommand { get; set; }
+
+        public EditVoucherViewModel(EditVoucher wd)
+        {
+            this.wd = wd;
+            quitCommand=new ViewModelCommand(quit);
+        }
+
+        private void quit(object obj)
+        {
+            wd.Close();
         }
     }
 }
