@@ -28,6 +28,7 @@ namespace CineMajestic.ViewModels.CustomerManagement
         public CustomerManagementViewModel()
         {
             loadData();
+            editCustomer();
         }
 
         void loadData()
