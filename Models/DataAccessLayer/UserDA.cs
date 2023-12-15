@@ -79,5 +79,29 @@ namespace CineMajestic.Models.DataAccessLayer
         {
             throw new NotImplementedException();
         }
+
+
+        //insert  account
+        public void addAccount(UserDTO user)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string insert =
+                    "insert into ACCOUNTS\n"
+                    +
+                    "values("
+                    +
+                    "'" + user.Username + "',"
+                    +
+                    "'" + user.Password + "',"
+                    +
+                    user.Staff_Id + ")";
+                using (SqlCommand command = new SqlCommand(insert, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
