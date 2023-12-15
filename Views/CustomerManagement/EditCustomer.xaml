@@ -17,7 +17,8 @@
         Width="500"
         WindowStyle="None"
         ResizeMode="NoResize"
-        Title="EditCustomer">
+        Title="EditCustomer"
+        WindowStartupLocation="CenterScreen">
     <Border
          CornerRadius="10"
          BorderThickness="1"
