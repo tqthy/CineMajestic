@@ -14,7 +14,7 @@ using System.Reflection.Metadata;
 namespace CineMajestic.ViewModels.ProductManagement
 {
     
-    public partial class ProductManagementViewModel:BaseViewModel
+    public partial class ProductManagementViewModel:MainBaseViewModel
     {
 
         //private ObservableCollection<ProductDTO> DSSP_All = new ObservableCollection<ProductDTO>();//tất cả
