@@ -23,4 +23,20 @@ namespace CineMajestic.ViewModels.CustomerManagement
             loadData();
         }
     }
+    public class EditCustomerViewModel
+    {
+        private EditCustomerView wd;
+        public ICommand quitCommand { get; set; }
+
+        public EditCustomerViewModel(EditCustomerView wd)
+        {
+            this.wd = wd;
+            quitCommand = new ViewModelCommand(quit);
+        }
+
+        private void quit(object obj)
+        {
+            wd.Close();
+        }
+    }
 }

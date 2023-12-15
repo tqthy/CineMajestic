@@ -23,6 +23,9 @@ namespace CineMajestic.Views.CustomerManagement
         public EditCustomerView()
         {
             InitializeComponent();
+            EditCustomerViewModel editCustomerViewModel = new EditCustomerViewModel(this);
+            this.DataContext = editCustomerViewModel;
+
         }
     }
 }

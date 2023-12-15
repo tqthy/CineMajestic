@@ -185,7 +185,7 @@
                     Margin="190,0,0,0"
                     materialDesign:ButtonAssist.CornerRadius="20"
                     Background="Red"
-                    Command="{Binding CancelCommand}"
+                    Command="{Binding quitCommand}"
                     Content="Hủy" />
                 <Button
                     Name="btnXacNhan"
