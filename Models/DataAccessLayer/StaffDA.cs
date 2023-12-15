@@ -140,5 +140,27 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+        //iden curent
+        public int identCurrent()
+        {
+            int identCurrent;
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string cm =
+                    "select ident_current('Staff') as lastId";
+                using (SqlCommand command = new SqlCommand(cm, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        identCurrent = (int)reader.GetDecimal(reader.GetOrdinal("lastId"));
+                    }
+                }
+            }
+            return identCurrent;
+        }
     }
 }
