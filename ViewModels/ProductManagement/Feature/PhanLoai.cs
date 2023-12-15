@@ -51,15 +51,15 @@ namespace CineMajestic.ViewModels.ProductManagement
         {
             if(SelectedItemIndex == 1)
             {
-                DSSP = DSSP_ThucAn;
+                FilterDSSP = DSSP_ThucAn;
             }
             else if(SelectedItemIndex == 2)
             {
-                DSSP = DSSP_DoUong;
+                FilterDSSP = DSSP_DoUong;
             }
             else
             {
-                DSSP = DSSP_All;
+                FilterDSSP = DSSP_All;
             }
         }
 
@@ -84,19 +84,7 @@ namespace CineMajestic.ViewModels.ProductManagement
                 DSSP_All.Add(item);
             }
 
-
-            if (SelectedItemIndex == 1)//có cái này là để phục vụ tính năng thêm 1 sản phẩm(kiểu người dùng có đang ở loại thức ăn, thì nó load lại thức ăn)
-            {
-                DSSP = DSSP_ThucAn;
-            }
-            else if (SelectedItemIndex == 2)
-            {
-                DSSP = DSSP_DoUong;
-            }
-            else
-            {
-                DSSP = DSSP_All;
-            }
+            SearchProduct();
         }
     }
 }

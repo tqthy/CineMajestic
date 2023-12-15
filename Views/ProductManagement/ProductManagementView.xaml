@@ -36,6 +36,8 @@
                     VerticalAlignment="Bottom"
                     FontSize="20"
                     materialDesign:HintAssist.Hint="Tìm kiếm"
+                    Name="filterBySearch"
+                    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
                     >
                 </TextBox>
             </Grid>
@@ -97,7 +99,7 @@
         <!--  Phần show danh sách sản phẩm  -->
         <Grid Grid.Row="1">
             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                <ItemsControl ItemsSource="{Binding DSSP}">
+                <ItemsControl ItemsSource="{Binding FilterDSSP}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <!--  Cách thể hiện của 1 sản phẩm  -->
