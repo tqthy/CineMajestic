@@ -64,10 +64,10 @@ namespace CineMajestic.Models.DataAccessLayer
                     {
                         user = new UserDTO()
                         {
-                            Id = reader[0].ToString(),
-                            Username = reader[1].ToString(),
-                            Password = string.Empty,
-                            AccountType = reader[3].ToString(),
+                            //Id = reader[0].ToString(),
+                            //Username = reader[1].ToString(),
+                            //Password = string.Empty,
+                            //AccountType = reader[3].ToString(),
                         };
                     }
                 }
