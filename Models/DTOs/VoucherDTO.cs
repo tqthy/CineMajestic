@@ -33,6 +33,7 @@ namespace CineMajestic.Models.DTOs
             FinDate = finDate;
         }
 
+        //phục vụ add
         public VoucherDTO(string name, string code, string voucherDetail, string type, string startDate, string finDate)
         {
             Name = name;
@@ -43,5 +44,15 @@ namespace CineMajestic.Models.DTOs
             FinDate = finDate;
         }
 
+        //phục vụ edit
+        public VoucherDTO(int id,string name, string voucherDetail, string type, string startDate, string finDate)
+        {
+            Id = id;
+            Name = name;
+            VoucherDetail = voucherDetail;
+            Type = type;
+            StartDate = startDate;
+            FinDate = finDate;
+        }
     }
 }

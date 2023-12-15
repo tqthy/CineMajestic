@@ -192,7 +192,8 @@
                     Name="btnXacNhan"
                     Margin="430,0,10,0"
                     Width="90"
-                    materialDesign:ButtonAssist.CornerRadius="20"/>
+                    materialDesign:ButtonAssist.CornerRadius="20"
+                    Command="{Binding acceptCommand}"/>
             </Grid>
         </Grid>
     </Border>
