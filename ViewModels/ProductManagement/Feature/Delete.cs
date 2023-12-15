@@ -35,7 +35,7 @@ namespace CineMajestic.ViewModels.ProductManagement
                 {
                     using(StreamWriter sw = new StreamWriter(fStream))
                     {
-                        sw.WriteLine(product.ImageSource);
+                        sw.WriteLine(Path.GetFileName(product.ImageSource));
                     }
                 }
             }
@@ -54,7 +54,7 @@ namespace CineMajestic.ViewModels.ProductManagement
                     {
                         try
                         {
-                            File.Delete(line);
+                            File.Delete(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\"+line);
                         }
                         catch { }
                     }
