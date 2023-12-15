@@ -78,7 +78,7 @@
                                 Header="Tên voucher" />
                             <GridViewColumn
                                 Width="Auto"
-                                Header="Thông tin vouchcer" />
+                                Header="Thông tin vouchcer"/>
                             <GridViewColumn
                                 Width="Auto"
                                 Header="Ngày bắt đầu"/>

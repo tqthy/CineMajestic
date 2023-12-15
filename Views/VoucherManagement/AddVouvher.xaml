@@ -13,7 +13,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         Title="AddVouvher" 
-        Height="625" Width="600" WindowStyle="None"
+        Height="600" Width="600" WindowStyle="None"
         AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen">
     <Border 
@@ -23,7 +23,6 @@
      Background="White">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -72,32 +71,8 @@
                     VerticalContentAlignment="Center"/>
             </Grid>
 
-            <!--Mã voucher-->
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Text="Mã voucher"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Right"
-                   Margin="0,0,5,0"
-                   FontSize="15"/>
-                <TextBox 
-                    x:Name="txtMa"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Left"
-                    Margin="5,0,0,0"
-                    FontSize="15"
-                    VerticalContentAlignment="Center"/>
-            </Grid>
-
             <!--Thông tin voucher-->
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
@@ -121,7 +96,7 @@
             </Grid>
 
             <!--Ngày bắt đầu dùng voucher-->
-            <Grid Grid.Row="4">
+            <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
@@ -144,7 +119,7 @@
                     VerticalContentAlignment="Center"/>
             </Grid>
             <!--Ngày bắt đầu dùng voucher-->
-            <Grid Grid.Row="5">
+            <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
@@ -168,7 +143,7 @@
             </Grid>
 
             <!--Nút hủy và xác hoàn tất-->
-            <Grid Grid.Row="6">
+            <Grid Grid.Row="5">
                 <Button
                 Content="Hủy"
                 Name="btnHuy"
