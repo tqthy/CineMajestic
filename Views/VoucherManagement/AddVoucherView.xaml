@@ -179,7 +179,8 @@
                 Margin="220,0,0,0"
                 Width="90"
                 Background="Red"
-                materialDesign:ButtonAssist.CornerRadius="20"/>
+                materialDesign:ButtonAssist.CornerRadius="20"
+                    Command="{Binding quitCommand}"/>
                 <Button
                 Content="Xác nhận"
                 Name="btnXacNhan"

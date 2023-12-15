@@ -24,4 +24,21 @@ namespace CineMajestic.ViewModels.VoucherManagement
             addVoucherView.ShowDialog();
         }
     }
+
+
+    public class AddVoucherViewModel
+    {
+        private AddVoucherView wd;
+        public ICommand quitCommand {  get; set; }
+
+        public AddVoucherViewModel(AddVoucherView wd)
+        {
+            this.wd= wd;
+            quitCommand = new ViewModelCommand(quit);
+        }
+        private void quit(object obj)
+        {
+            wd.Close();
+        }
+    }
 }
