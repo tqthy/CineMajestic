@@ -7,6 +7,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using CineMajestic.Models.DTOs;
+using System.Collections;
+using CineMajestic.Models.DTOs.StaffManagement;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -98,6 +100,23 @@ namespace CineMajestic.Models.DataAccessLayer
                     +
                     user.Staff_Id + ")";
                 using (SqlCommand command = new SqlCommand(insert, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        //delete account
+        public void deleteAccount(StaffDTO staff)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string delete =
+                    "delete ACCOUNTS\n"
+                +
+                    "where Staff_Id=" + staff.Id;
+                using (SqlCommand command = new SqlCommand(delete, connection))
                 {
                     command.ExecuteNonQuery();
                 }

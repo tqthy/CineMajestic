@@ -21,9 +21,11 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 
         private void deleteStaff(object obj)
         {
+            UserDA userDA = new UserDA();
             StaffDA staffDA=new StaffDA();
             if(obj is StaffDTO staff)
             {
+                userDA.deleteAccount(staff);//bởi vì ràng buộc khóa ngoại tham chiếu
                 staffDA.deleteStaff(staff);
                 MessageBox.Show("Xóa nhân viên thành công");
                 loadData();
