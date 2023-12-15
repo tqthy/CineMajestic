@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DTOs;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
@@ -51,5 +52,30 @@ namespace CineMajestic.Models.DataAccessLayer
             return list;
         }
 
+
+
+        //add 1 voucher
+        public void addVoucher(VoucherDTO voucher)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string insert =
+                    "insert into Voucher\n"
+                    +
+                    "values("
+                    + "N'" + voucher.Name + "',"
+                    + "'" + voucher.Code + "',"
+                    + "N'" + voucher.VoucherDetail + "',"
+                    + "'" + voucher.Type + "',"
+                    + "'" + voucher.StartDate + "',"
+                    + "'" + voucher.FinDate + "')";
+
+                using (SqlCommand command = new SqlCommand(insert, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

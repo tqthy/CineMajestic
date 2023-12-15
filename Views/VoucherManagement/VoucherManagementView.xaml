@@ -47,7 +47,8 @@
                         VerticalAlignment="Top"
                         materialDesign:ButtonAssist.CornerRadius="8"
                         FontFamily="arial"
-                        FontSize="24">
+                        FontSize="24"
+                        Command="{Binding addVoucherCommand}">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon
