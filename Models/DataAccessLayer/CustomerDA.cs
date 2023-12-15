@@ -50,5 +50,33 @@ namespace CineMajestic.Models.DataAccessLayer
             }
             return list;
         }
+        
+        //edit 1 khách hàng
+        public void editVoucher(CustomerDTO customer)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string update =
+                    "update Customer\n"
+                    +
+                    "set Name=" + "N'" + customer.FullName + "',"
+                    +
+                    "PhoneNumber" + "'" + customer.PhoneNumber+ "',"
+                    +
+                    "Email=" + "'" + customer.Email+ "',"
+                    +
+                    "RegDate=" + "'" + customer.RegDate + "',"
+                    +
+                    "Point="  + customer.Point + "\n"
+                    +
+                    "where Id=" + customer.Id;
+
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
