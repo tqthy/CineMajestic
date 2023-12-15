@@ -21,7 +21,7 @@ namespace CineMajestic.ViewModels.VoucherManagement
 
         private void showWdEditVoucher(object obj)
         {
-            EditVoucher  editVoucher=new EditVoucher();
+            EditVoucher  editVoucher=new EditVoucher((VoucherDTO)obj);
             editVoucher.ShowDialog();
 
             loadData();
@@ -32,12 +32,31 @@ namespace CineMajestic.ViewModels.VoucherManagement
     public class EditVoucherViewModel
     {
         private EditVoucher wd;
+        public VoucherDTO voucher { get; set; }
         public ICommand quitCommand { get; set; }
+        public string Name { get; set; }
+        public string VoucherDetail { get; set; }
+        public string Type { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? FinDate { get; set; }
 
         public EditVoucherViewModel(EditVoucher wd)
         {
             this.wd = wd;
             quitCommand=new ViewModelCommand(quit);
+        }
+
+        public void loadEditCurrent()
+        {
+            Name = voucher.Name;
+            VoucherDetail = voucher.VoucherDetail;
+            Type = voucher.Type;
+
+            string[]startDate= voucher.StartDate.Split('/');
+            StartDate = new DateTime(int.Parse(startDate[2]), int.Parse(startDate[1]), int.Parse(startDate[0]));
+
+            string[] finDate = voucher.FinDate.Split('/');
+            FinDate = new DateTime(int.Parse(finDate[2]), int.Parse(finDate[1]), int.Parse(finDate[0]));
         }
 
         private void quit(object obj)

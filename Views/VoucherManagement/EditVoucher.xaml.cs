@@ -1,4 +1,5 @@
-﻿using CineMajestic.ViewModels.VoucherManagement;
+﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels.VoucherManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,12 @@ namespace CineMajestic.Views.VoucherManagement
     /// </summary>
     public partial class EditVoucher : Window
     {
-        public EditVoucher()
+        public EditVoucher(VoucherDTO voucher)
         {
             InitializeComponent();
             EditVoucherViewModel editVoucherViewModel = new EditVoucherViewModel(this);
+            editVoucherViewModel.voucher = voucher;
+            editVoucherViewModel.loadEditCurrent();
             this.DataContext = editVoucherViewModel;
         }
     }

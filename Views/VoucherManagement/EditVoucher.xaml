@@ -69,7 +69,8 @@
                     HorizontalAlignment="Left"
                     Margin="5,0,0,0"
                     FontSize="15"
-                    VerticalContentAlignment="Center"/>
+                    VerticalContentAlignment="Center"
+                    Text="{Binding Name}"/>
             </Grid>
 
             <!--Thông tin voucher-->
@@ -93,7 +94,8 @@
                     HorizontalAlignment="Left"
                     Margin="5,0,0,0"
                     FontSize="15"
-                    VerticalContentAlignment="Center"/>
+                    VerticalContentAlignment="Center"
+                    Text="{Binding VoucherDetail}"/>
             </Grid>
 
             <!--Loại voucher-->
@@ -117,7 +119,9 @@
                     HorizontalAlignment="Left"
                     Margin="5,0,0,0"
                     FontSize="15"
-                    VerticalContentAlignment="Center">
+                    VerticalContentAlignment="Center"
+                    SelectedValue="{Binding Type}"
+                    SelectedValuePath="Content">
                     <ComboBoxItem Content="Vip 1"/>
                     <ComboBoxItem Content="Vip 2"/>
                     <ComboBoxItem Content="Vip 3"/>
@@ -145,7 +149,8 @@
                     HorizontalAlignment="Left"
                     Margin="5,0,0,0"
                     FontSize="15"
-                    VerticalContentAlignment="Center"/>
+                    VerticalContentAlignment="Center"
+                    SelectedDate="{Binding StartDate}"/>
             </Grid>
             <!--Ngày bắt đầu dùng voucher-->
             <Grid Grid.Row="5">
@@ -168,7 +173,8 @@
                     HorizontalAlignment="Left"
                     Margin="5,0,0,0"
                     FontSize="15"
-                    VerticalContentAlignment="Center"/>
+                    VerticalContentAlignment="Center"
+                    SelectedDate="{Binding FinDate}"/>
             </Grid>
 
             <!--Nút hủy và xác hoàn tất-->
