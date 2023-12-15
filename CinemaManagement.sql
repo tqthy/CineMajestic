@@ -70,5 +70,6 @@ CREATE TABLE CUSTOMER
     Email varchar(50) not null,
     Point int not null,
     Birth smalldatetime not null,
+    RegDate smalldatetime not null,
     Gender nvarchar(20) not null,
 )   

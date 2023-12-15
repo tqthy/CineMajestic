@@ -68,6 +68,9 @@
                                 Header="Email" />
                             <GridViewColumn
                                 Width="Auto"
+                                Header="Ngày đăng kí"/>
+                            <GridViewColumn
+                                Width="Auto"
                                 Header="Điểm" />
                             <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
                             <GridViewColumn>

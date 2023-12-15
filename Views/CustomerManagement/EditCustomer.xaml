@@ -32,6 +32,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             
             <!--Tiêu đề-->
@@ -74,32 +75,9 @@
                     VerticalContentAlignment="Center"/>
             </Grid>
 
-            <!--Ngày đăng kí-->
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Text="Ngày đăng kí"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Right"
-                   Margin="0,0,5,0"
-                   FontSize="15"/>
-                <DatePicker 
-                    x:Name="txtNgayDangKi"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Left"
-                    Margin="5,0,0,0"
-                    FontSize="15"
-                    VerticalContentAlignment="Center"/>
-            </Grid>
 
             <!--Số điện thoại-->
-            <Grid Grid.Row="3">
+            <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
@@ -123,7 +101,7 @@
             </Grid>
 
             <!--Email-->
-            <Grid Grid.Row="4">
+            <Grid Grid.Row="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
@@ -145,9 +123,56 @@
                     FontSize="15"
                     VerticalContentAlignment="Center"/>
             </Grid>
+            <!--Ngày đăng kí-->
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Ngày đăng kí"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="0,0,5,0"
+                   FontSize="15"/>
+                <DatePicker 
+                    x:Name="txtNgayDangKi"
+                    Grid.Column="1"
+                    Width="300"
+                    Height="30"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="5,0,0,0"
+                    FontSize="15"
+                    VerticalContentAlignment="Center"/>
+            </Grid>
+
+            <!--Điểm-->
+            <Grid Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Điểm"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="0,0,5,0"
+                   FontSize="15"/>
+                <TextBox 
+                    x:Name="txtDiem"
+                    Grid.Column="1"
+                    Width="300"
+                    Height="30"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="5,0,0,0"
+                    FontSize="15"
+                    VerticalContentAlignment="Center"/>
+            </Grid>
 
             <!--Nút hủy và xác hoàn tất-->
-            <Grid Grid.Row="5">
+            <Grid Grid.Row="6">
                 <Button
             Content="Hủy"
             Name="btnHuy"
