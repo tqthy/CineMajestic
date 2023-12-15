@@ -28,6 +28,7 @@ namespace CineMajestic.ViewModels.VoucherManagement
         public VoucherManagementViewModel()
         {
             loadData();
+            AddVoucher();
         }
 
         void loadData()

@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace CineMajestic.Views.VoucherManagement
 {
     /// <summary>
-    /// Interaction logic for AddVouvher.xaml
+    /// Interaction logic for AddVoucherView.xaml
     /// </summary>
-    public partial class AddVouvher : Window
+    public partial class AddVoucherView : Window
     {
-        public AddVouvher()
+        public AddVoucherView()
         {
             InitializeComponent();
         }
