@@ -74,7 +74,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     VerticalContentAlignment="Center"
-                    FontSize="15" />
+                    FontSize="15"
+                    Text="{Binding FullName}" />
             </Grid>
 
 
@@ -100,7 +101,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     VerticalContentAlignment="Center"
-                    FontSize="15" />
+                    FontSize="15"
+                    Text="{Binding PhoneNumber}" />
             </Grid>
 
             <!--  Email  -->
@@ -125,7 +127,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     VerticalContentAlignment="Center"
-                    FontSize="15" />
+                    FontSize="15"
+                    Text="{Binding Email}" />
             </Grid>
             <!--  Ngày đăng kí  -->
             <Grid Grid.Row="4">
@@ -149,7 +152,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     VerticalContentAlignment="Center"
-                    FontSize="15" />
+                    FontSize="15"
+                    SelectedDate="{Binding RegDate}" />
             </Grid>
 
             <!--  Điểm  -->
@@ -174,7 +178,8 @@
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     VerticalContentAlignment="Center"
-                    FontSize="15" />
+                    FontSize="15"
+                    Text="{Binding Point}" />
             </Grid>
 
             <!--  Nút hủy và xác hoàn tất  -->

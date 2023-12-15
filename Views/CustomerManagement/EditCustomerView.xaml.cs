@@ -1,4 +1,5 @@
-﻿using CineMajestic.ViewModels.CustomerManagement;
+﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels.CustomerManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,12 @@ namespace CineMajestic.Views.CustomerManagement
     /// </summary>
     public partial class EditCustomerView : Window
     {
-        public EditCustomerView()
+        public EditCustomerView(CustomerDTO customer)
         {
             InitializeComponent();
             EditCustomerViewModel editCustomerViewModel = new EditCustomerViewModel(this);
+            editCustomerViewModel.customer = customer;
+            editCustomerViewModel.loadEditCurrent();
             this.DataContext = editCustomerViewModel;
 
         }
