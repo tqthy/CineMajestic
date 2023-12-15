@@ -40,7 +40,7 @@
                     VerticalAlignment="Bottom"
                     Orientation="Horizontal">
                     <Button
-                        Width="120"
+                        Width="230"
                         Height="35"
                         Padding="0"
                         HorizontalAlignment="Center"
@@ -56,7 +56,7 @@
                                     Margin="0,0,0,0"
                                     VerticalAlignment="Center"
                                     Kind="PlusCircleOutline" />
-                                <TextBlock Margin="5,0,0,0" Text="Thêm"/>
+                                <TextBlock  Margin="5,0,0,0" Text="Nhập mã voucher"/>
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -78,7 +78,10 @@
                                 Header="Tên voucher" />
                             <GridViewColumn
                                 Width="Auto"
-                                Header="Thông tin vouchcer"/>
+                                Header="Thông tin voucher"/>
+                            <GridViewColumn
+                                Width="Auto"
+                                Header="Loại vouchcer"/>
                             <GridViewColumn
                                 Width="Auto"
                                 Header="Ngày bắt đầu"/>

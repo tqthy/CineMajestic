@@ -29,6 +29,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
 
             <!--Tiêu đề-->
@@ -95,8 +96,36 @@
                     VerticalContentAlignment="Center"/>
             </Grid>
 
-            <!--Ngày bắt đầu dùng voucher-->
+            <!--Loại voucher-->
             <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Loại voucher"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Right"
+                   Margin="0,0,5,0"
+                   FontSize="15"/>
+                <ComboBox 
+                    x:Name="cbLoaiVC"
+                    Grid.Column="1"
+                    Width="300"
+                    Height="30"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Margin="5,0,0,0"
+                    FontSize="15"
+                    VerticalContentAlignment="Center">
+                    <ComboBoxItem Content="Vip 1"/>
+                    <ComboBoxItem Content="Vip 2"/>
+                    <ComboBoxItem Content="Vip 3"/>
+
+                </ComboBox>
+            </Grid>
+            <!--Ngày bắt đầu dùng voucher-->
+            <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
@@ -119,7 +148,7 @@
                     VerticalContentAlignment="Center"/>
             </Grid>
             <!--Ngày bắt đầu dùng voucher-->
-            <Grid Grid.Row="4">
+            <Grid Grid.Row="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="150"/>
                     <ColumnDefinition/>
@@ -143,14 +172,13 @@
             </Grid>
 
             <!--Nút hủy và xác hoàn tất-->
-            <Grid Grid.Row="5">
+            <Grid Grid.Row="6">
                 <Button
                 Content="Hủy"
                 Name="btnHuy"
                 Margin="220,0,0,0"
                 Width="90"
                 Background="Red"
-                Command="{Binding CancelCommand}"
                 materialDesign:ButtonAssist.CornerRadius="20"/>
                 <Button
                 Content="Xác nhận"
