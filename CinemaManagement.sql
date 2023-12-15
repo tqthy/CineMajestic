@@ -66,7 +66,7 @@ CREATE TABLE CUSTOMER
 (
     Id int identity(1,1) primary key ,
     FullName nvarchar(50) not null,
-    PhoneNumber varchar(10) not null,
+    PhoneNumber varchar(10) not null unique,
     Email varchar(50) not null,
     Point int not null,
     Birth smalldatetime not null,

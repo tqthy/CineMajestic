@@ -1,47 +1,51 @@
-﻿<UserControl x:Class="CineMajestic.Views.CustomerManagement.CustomerManagementView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CineMajestic.Views.CustomerManagement"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             TextElement.FontWeight="Regular"
-             TextElement.FontSize="13"
-             TextOptions.TextFormattingMode="Ideal"
-             TextOptions.TextRenderingMode="Auto"
-             FontFamily="{DynamicResource MaterialDesignFont}"
-             mc:Ignorable="d" 
-             d:DesignHeight="648" d:DesignWidth="1000">
+﻿<UserControl
+    x:Class="CineMajestic.Views.CustomerManagement.CustomerManagementView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CineMajestic.Views.CustomerManagement"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="648"
+    d:DesignWidth="1000"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    mc:Ignorable="d">
     <Grid Background="#f5f5f5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
-        <!--textbox phần filter-->
-        <StackPanel Grid.Row="0"
-                    Orientation="Horizontal"
-                    Margin="30,0,0,0">
-            <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
-                     FontSize="20"
-                     Foreground="#DD000000"
-                     FontFamily="Arial"
-                     AllowDrop="True"
-                     BorderThickness="0,0,0,1"
-                     Width="350"
-                     Height="30"
-                     Padding="0"
-                     x:Name="FilterBox"
-                     VerticalAlignment="Bottom">
-            </TextBox>
-            
-            <!--ComboBox lựa chọn tìm kiếm theo sđt hay tên khách hàng-->
-            <ComboBox Width="130"
-                      Margin="10,0,0,0"
-                      FontSize="15"
-                      Height="35"
-                      VerticalAlignment="Bottom"
-                      VerticalContentAlignment="Center">
+        <!--  textbox phần filter  -->
+        <StackPanel
+            Grid.Row="0"
+            Margin="30,0,0,0"
+            Orientation="Horizontal">
+            <TextBox
+                x:Name="FilterBox"
+                Width="350"
+                Height="30"
+                Padding="0"
+                VerticalAlignment="Bottom"
+                materialDesign:HintAssist.Hint="Tìm kiếm"
+                AllowDrop="True"
+                BorderThickness="0,0,0,1"
+                FontFamily="Arial"
+                FontSize="20"
+                Foreground="#DD000000" />
+
+            <!--  ComboBox lựa chọn tìm kiếm theo sđt hay tên khách hàng  -->
+            <ComboBox
+                Width="130"
+                Height="35"
+                Margin="10,0,0,0"
+                VerticalAlignment="Bottom"
+                VerticalContentAlignment="Center"
+                FontSize="15">
                 <ComboBoxItem>Tên khách hàng</ComboBoxItem>
                 <ComboBoxItem>Số điện thoại</ComboBoxItem>
             </ComboBox>
@@ -50,28 +54,75 @@
 
         <Grid Grid.Row="1">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <ListView x:Name="lvCustomer">
+                <ListView x:Name="lvCustomer" ItemsSource="{Binding DSCTM}">
                     <ListView.View>
                         <GridView>
                             <!--  Danh sách cần cột hiển thị trong listview  -->
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="ID" />
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="Họ và tên" />
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="SĐT" />
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="Email" />
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="Ngày đăng kí"/>
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="Điểm" />
+                            <GridViewColumn Width="Auto" Header="ID">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,0,0,0"
+                                            FontSize="18"
+                                            Text="{Binding Id}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" Header="Họ và tên">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,0,0,0"
+                                            FontSize="18"
+                                            Text="{Binding FullName}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" Header="SĐT">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,0,0,0"
+                                            FontSize="18"
+                                            Text="{Binding PhoneNumber}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" Header="Email">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,0,0,0"
+                                            FontSize="18"
+                                            Text="{Binding Email}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Width="Auto" Header="Ngày đăng kí">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,0,0,0"
+                                            FontSize="18"
+                                            Text="{Binding RegDate}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" Header="Điểm">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,0,0,0"
+                                            FontSize="18"
+                                            Text="{Binding Point}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+
+                            </GridViewColumn>
                             <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>
@@ -126,7 +177,7 @@
                     </ListView.View>
                 </ListView>
             </ScrollViewer>
-    </Grid>
+        </Grid>
 
     </Grid>
 </UserControl>

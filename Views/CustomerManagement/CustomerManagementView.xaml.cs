@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels.CustomerManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace CineMajestic.Views.CustomerManagement
         public CustomerManagementView()
         {
             InitializeComponent();
+            CustomerManagementViewModel viewModel = new CustomerManagementViewModel();
+            this.DataContext = viewModel;
         }
     }
 }

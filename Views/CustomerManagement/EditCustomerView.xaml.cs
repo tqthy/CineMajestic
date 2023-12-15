@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels.CustomerManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,11 @@ using System.Windows.Shapes;
 namespace CineMajestic.Views.CustomerManagement
 {
     /// <summary>
-    /// Interaction logic for EditCustomer.xaml
+    /// Interaction logic for EditCustomerView.xaml
     /// </summary>
-    public partial class EditCustomer : Window
+    public partial class EditCustomerView : Window
     {
-        public EditCustomer()
+        public EditCustomerView()
         {
             InitializeComponent();
         }
