@@ -4,6 +4,8 @@ using CineMajestic.Views.MovieManagement;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +42,11 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         public string StartDate { get => startDate; set { startDate = value; OnPropertyChanged(nameof(StartDate)); } }
         private string endDate;
         public string EndDate { get => endDate; set { endDate = value; OnPropertyChanged(nameof(EndDate)); } }
+
+        // Add or Edit Window
+
+        private string windowTitle;
+        public string WindowTitle { get => windowTitle; set { windowTitle = value; OnPropertyChanged(nameof(WindowTitle)); } }
 
         private BitmapImage moviePoster;
         public BitmapImage MoviePoster { get => moviePoster; set { moviePoster = value; OnPropertyChanged(nameof(MoviePoster)); } }
@@ -79,6 +86,17 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         private MovieDTO selectedItem;
         public MovieDTO SelectedItem { get => selectedItem; set { selectedItem = value; OnPropertyChanged(nameof(SelectedItem)); } }
 
+        // UI
+
+        private string hintEndDate;
+        public string HintEndDate { get => hintEndDate; set { hintEndDate = value; OnPropertyChanged(nameof(HintEndDate)); } }
+
+        private string hintStartDate;
+        public string HintStartDate { get => hintStartDate; set { hintStartDate = value; OnPropertyChanged(nameof(HintStartDate)); } }
+
+        private double hintOpacity;
+        public double HintOpacity { get => hintOpacity; set { hintOpacity = value; OnPropertyChanged(nameof(HintOpacity)); } }
+
         #endregion
 
 
@@ -97,8 +115,9 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         public MovieManagementViewModel()
         {
             _ = LoadCollection();
-            AddMovieCommand = new ViewModelCommand(ExecuteAddMovieCommand, CanExecuteAddMovieCommand);
+            AddOrEditMovieCommand = new ViewModelCommand(ExecuteAddOrEditMovieCommand, CanExecuteAddOrEditMovieCommand);
             ButtonAddMovieCommand = new ViewModelCommand(ExecuteButtonAddMovieCommand);
+            ButtonEditMovieCommand = new ViewModelCommand(ExecuteButtonEditMovieCommand);
             UploadPosterCommand = new ViewModelCommand(ExecuteUploadPosterCommand);
             DeleteMovieCommand = new ViewModelCommand(ExecuteDeleteMovieCommand);
         }
@@ -124,10 +143,62 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
         public void ExecuteButtonAddMovieCommand(object obj)
         {
+            WindowTitle = "Thêm phim";
+            HintOpacity = 0.6;
+            HintStartDate = "Chọn ngày";
+            HintEndDate = "Chọn ngày";
             AddMovieView addMoviePopup = new AddMovieView();
+            Id = null;
+            Title = null;
+            Description = null;
+            Country = null;
+            Language = null;
+            StartDate = null;
+            EndDate = null;
+            Trailer = null;
+            Director = null;
+            ReleaseYear = null;
+            Length = null;
+            SelectedGenre = null;
             MoviePoster = null;
             addMoviePopup.DataContext = this;
             addMoviePopup.ShowDialog();
+        }
+
+        public void ExecuteButtonEditMovieCommand(object obj)
+        {
+            WindowTitle = "Chỉnh sửa phim";
+            HintOpacity = 1;
+            HintStartDate = SelectedItem.StartDate;
+            HintEndDate = SelectedItem.EndDate;
+            GenreDA genreDA = new GenreDA();
+            Id = SelectedItem.Id;
+            Title = SelectedItem.Title;
+            Description = SelectedItem.Description;
+            Country = SelectedItem.Country;
+            Language = SelectedItem.Language;
+            StartDate = SelectedItem.StartDate;
+            EndDate = SelectedItem.EndDate;
+            Trailer = SelectedItem.Trailer;
+            Director = SelectedItem.Director;
+            ReleaseYear = SelectedItem.ReleaseYear;
+            Length = SelectedItem.Length;
+            SelectedGenre = genreDA.GetGenreByID(SelectedItem.Genre);
+            MoviePoster = new BitmapImage(new Uri(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", SelectedItem.Title, "Poster", SelectedItem.Poster)));
+            AddMovieView editMoviePopup = new AddMovieView();
+            editMoviePopup.DataContext = this;
+            for (int i = 0; i < GenreList.Count; i++)
+            {
+                if (GenreList[i].Id == SelectedItem.Genre)
+                {
+                    editMoviePopup.GenreComboBox.SelectedItem = GenreList[i];
+                    break;
+                }
+            }
+            editMoviePopup.dpStart.DisplayDate = DateTime.Parse(StartDate);
+            editMoviePopup.dpEnd.DisplayDate = DateTime.Parse(EndDate);
+            editMoviePopup.ShowDialog();
+            
         }
 
         public void ExecuteDeleteMovieCommand(object obj)

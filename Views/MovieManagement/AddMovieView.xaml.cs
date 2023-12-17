@@ -23,7 +23,6 @@ namespace CineMajestic.Views.MovieManagement
         public AddMovieView()
         {
             InitializeComponent();
-            
         }
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {

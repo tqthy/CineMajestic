@@ -185,7 +185,11 @@
                                             <materialDesign:PackIcon Kind="MovieEditOutline"
                                                                     Width="30"
                                                                     Height="30"/>
-
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                    <i:InvokeCommandAction Command="{Binding ElementName=lvMovies, Path=DataContext.ButtonEditMovieCommand}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
 
                                         </Border>
                                         <Border BorderThickness="0"

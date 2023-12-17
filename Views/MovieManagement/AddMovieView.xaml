@@ -16,7 +16,7 @@
         AllowsTransparency="True"
         mc:Ignorable="d"
         FontSize="18"
-        Title="Thêm phim" Height="500" Width="800">
+        Title="{Binding WindowTitle}" Height="500" Width="800">
     <Border CornerRadius="12"
             Background="White">
         <Grid>
@@ -49,7 +49,7 @@
                         <ColumnDefinition Width="25"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Column="0"
-                               Text="Thêm phim"
+                               Text="{Binding WindowTitle}"
                                Foreground="#3F2305"
                                FontSize="20"
                                Margin="20,0,0,0"
@@ -106,7 +106,7 @@
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
                                         <Setter Property="Background"
-                                    Value="#8B580B"/>
+                                                Value="#8B580B"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -115,11 +115,11 @@
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Width="18" Height="18"
-                            CornerRadius="9"
-                            Background="{TemplateBinding Background}">
+                                        CornerRadius="9"
+                                        Background="{TemplateBinding Background}">      
                                     <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"
-                                          Margin="0, 1, 0, 0"/>
+                                                      VerticalAlignment="Center"
+                                                      Margin="0, 1, 0, 0"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
@@ -268,10 +268,12 @@
                                FontWeight="Bold"
                                FontSize="15"/>
 
-                    <DatePicker SelectedDate="{Binding StartDate}"
+                    <DatePicker SelectedDate="{Binding StartDate, Mode=OneWayToSource}"
+                                x:Name="dpStart"
                                 Width="120"
                                 Margin="0,5,0,0"
-                                materialDesign:HintAssist.Hint="Chọn ngày"/>
+                                materialDesign:HintAssist.Hint="{Binding HintStartDate}"
+                                materialDesign:HintAssist.HintOpacity="{Binding HintOpacity}"/>
                 </StackPanel>
                 
                 <!--End Date-->
@@ -281,10 +283,13 @@
                     <TextBlock Text="Ngày ngừng chiếu"
                                FontWeight="Bold"
                                FontSize="15"/>
-                    <DatePicker SelectedDate="{Binding EndDate}"
+                    <DatePicker SelectedDate="{Binding EndDate, Mode=OneWayToSource}"
+                                x:Name="dpEnd"
                                 Width="120"
                                 Margin="0,5,0,0"
-                                materialDesign:HintAssist.Hint="Chọn ngày"/>
+                                materialDesign:HintAssist.Hint="{Binding HintEndDate}"
+                                materialDesign:HintAssist.HintOpacity="{Binding HintOpacity}">
+                    </DatePicker>
                 </StackPanel>
                 
                 <!--Movie Poster Border-->
@@ -351,7 +356,8 @@
                               Width="100"
                               x:Name="GenreComboBox"
                               ItemsSource="{Binding GenreList}"
-                              SelectedItem="{Binding SelectedGenre}">
+                              SelectedItem="{Binding SelectedGenre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              IsSynchronizedWithCurrentItem="True">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Title}"/>
@@ -390,7 +396,7 @@
                 
                 <!--Done Button-->
 
-                <Button Command="{Binding AddMovieCommand}"
+                <Button Command="{Binding AddOrEditMovieCommand}"
                         DockPanel.Dock="Right"
                         Content="Xong"
                         Width="80"

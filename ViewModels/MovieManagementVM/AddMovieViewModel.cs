@@ -16,9 +16,10 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 {
     public partial class MovieManagementViewModel
     {
+        
 
         #region Commands
-        public ICommand AddMovieCommand { get; }
+        public ICommand AddOrEditMovieCommand { get; }
         public ICommand UploadPosterCommand { get; }
 
         #endregion
@@ -26,7 +27,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         #region Commands execution
 
         // Add movie
-        public void ExecuteAddMovieCommand(object parameter)
+        public void ExecuteAddOrEditMovieCommand(object parameter)
         {
             MovieDTO movie = new MovieDTO();
             movie.Title = Title;
@@ -48,12 +49,14 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             }
             File.Copy(MoviePoster.UriSource.LocalPath, Path.Combine(applicationFolder, movie.Poster), true);
             MovieDA movieDA = new MovieDA();
-            movieDA.AddMovie(movie);
+            if (WindowTitle == "Thêm phim") movieDA.AddMovie(movie);
+            else movieDA.EditMovie(movie);
+
             MovieList = new ObservableCollection<MovieDTO>(movieDA.GetAllMovies());
 
             MessageBox.Show("Success");
         }
-        public bool CanExecuteAddMovieCommand(object parameter)
+        public bool CanExecuteAddOrEditMovieCommand(object parameter)
         {
             return (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Director) && !string.IsNullOrEmpty(Country) && !string.IsNullOrEmpty(Length));
         }

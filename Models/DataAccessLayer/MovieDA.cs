@@ -86,6 +86,48 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
             return movies;
-        } 
+        }
+
+        public void EditMovie(MovieDTO movie)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "UPDATE [MOVIES]" +
+                                        " SET Title = @title," +
+                                        " Description = @description," +
+                                        " Director = @director," +
+                                        " ReleaseYear = @releaseyear," +
+                                        " Language = @language," +
+                                        " Country = @country," +
+                                        " Length = @length," +
+                                        " Trailer = @trailer," +
+                                        " StartDate = @startdate," +
+                                        " EndDate = @enddate," +
+                                        " Genre_id = @genreid," +
+                                        " Poster = @poster" +
+                                        " WHERE id = @id";
+
+                command.Parameters.Add("@id", SqlDbType.Int).Value = movie.Id;
+                command.Parameters.Add("@title", SqlDbType.NVarChar).Value = movie.Title;
+                command.Parameters.Add("@description", SqlDbType.NVarChar).Value = movie.Description;
+                command.Parameters.Add("@director", SqlDbType.NVarChar).Value = movie.Director;
+                command.Parameters.Add("@releaseyear", SqlDbType.Int).Value = movie.ReleaseYear;
+                command.Parameters.Add("@language", SqlDbType.NVarChar).Value = movie.Language;
+                command.Parameters.Add("@country", SqlDbType.NVarChar).Value = movie.Country;
+                command.Parameters.Add("@length", SqlDbType.Int).Value = movie.Length;
+                command.Parameters.Add("@trailer", SqlDbType.NVarChar).Value = movie.Trailer;
+                DateTime date;
+                date = DateTime.ParseExact(movie.StartDate, "M/d/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
+                command.Parameters.Add("@startdate", SqlDbType.SmallDateTime).Value = date;
+                date = DateTime.ParseExact(movie.EndDate, "M/d/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
+                command.Parameters.Add("@enddate", SqlDbType.SmallDateTime).Value = date;
+                command.Parameters.Add("@genreid", SqlDbType.Int).Value = movie.Genre;
+                command.Parameters.Add("@poster", SqlDbType.NVarChar).Value = movie.Poster;
+                var rows_affected = command.ExecuteNonQuery();
+            }
+        }
     }
 }
