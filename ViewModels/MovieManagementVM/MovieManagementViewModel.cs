@@ -107,6 +107,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         public ICommand RemoveMovieCommand { get; }
         public ICommand ButtonEditMovieCommand { get; }
         public ICommand DeleteMovieCommand { get; }
+        public ICommand ViewDetailCommand { get; }
 
         #endregion
 
@@ -120,6 +121,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             ButtonEditMovieCommand = new ViewModelCommand(ExecuteButtonEditMovieCommand);
             UploadPosterCommand = new ViewModelCommand(ExecuteUploadPosterCommand);
             DeleteMovieCommand = new ViewModelCommand(ExecuteDeleteMovieCommand);
+            ViewDetailCommand = new ViewModelCommand(ExecuteViewDetailCommand);
         }
 
         private async Task LoadCollection()
@@ -141,6 +143,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
         #region Commands execution
 
+        // add button click
         public void ExecuteButtonAddMovieCommand(object obj)
         {
             WindowTitle = "Thêm phim";
@@ -165,6 +168,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             addMoviePopup.ShowDialog();
         }
 
+        // edit button click
         public void ExecuteButtonEditMovieCommand(object obj)
         {
             WindowTitle = "Chỉnh sửa phim";
@@ -201,6 +205,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             
         }
 
+        // Delete
         public void ExecuteDeleteMovieCommand(object obj)
         {
             MovieDA movieDA = new MovieDA();
@@ -215,6 +220,27 @@ namespace CineMajestic.ViewModels.MovieManagementVM
                     break;
                 }
             }
+        }
+
+        // View Details 
+        public void ExecuteViewDetailCommand(object obj)
+        {
+            Id = SelectedItem.Id;
+            Title = SelectedItem.Title;
+            Description = SelectedItem.Description;
+            Country = SelectedItem.Country;
+            Language = SelectedItem.Language;
+            StartDate = SelectedItem.StartDate;
+            EndDate = SelectedItem.EndDate;
+            Trailer = SelectedItem.Trailer;
+            Director = SelectedItem.Director;
+            ReleaseYear = SelectedItem.ReleaseYear;
+            Length = SelectedItem.Length;
+            MoviePoster = new BitmapImage(new Uri(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", SelectedItem.Title, "Poster", SelectedItem.Poster)));
+
+            MovieDetailView movieDetailPopup = new MovieDetailView();
+            movieDetailPopup.DataContext = this;
+            movieDetailPopup.ShowDialog();
         }
 
         #endregion
