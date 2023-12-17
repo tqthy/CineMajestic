@@ -1,23 +1,25 @@
-﻿<UserControl x:Class="CineMajestic.Views.VoucherManagement.VoucherManagementView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CineMajestic.Views.VoucherManagement"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             mc:Ignorable="d"              
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-             TextElement.FontWeight="Regular"
-             TextElement.FontSize="13"
-             TextOptions.TextFormattingMode="Ideal"
-             TextOptions.TextRenderingMode="Auto"
-             FontFamily="{DynamicResource MaterialDesignFont}"
-             d:DesignHeight="648" d:DesignWidth="1000">
+﻿<UserControl
+    x:Class="CineMajestic.Views.VoucherManagement.VoucherManagementView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:CineMajestic.Views.VoucherManagement"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="648"
+    d:DesignWidth="1000"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    mc:Ignorable="d">
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
 
         <!--  Phần textbox tìm kiếm  -->
@@ -33,23 +35,23 @@
                     AllowDrop="True"
                     BorderThickness="0,0,0,1"
                     FontFamily="Arial"
-                    FontSize="25"
-                    Foreground="#DD000000"/>
+                    FontSize="24"
+                    Foreground="#DD000000" />
                 <!--  Nút thêm  -->
                 <StackPanel
                     Margin="30,0,0,0"
                     VerticalAlignment="Bottom"
                     Orientation="Horizontal">
                     <Button
-                        Width="230"
+                        Width="200"
                         Height="35"
                         Padding="0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
                         materialDesign:ButtonAssist.CornerRadius="8"
+                        Command="{Binding ShowWDVoucherCommand}"
                         FontFamily="arial"
-                        FontSize="24"
-                        Command="{Binding ShowWDVoucherCommand}">
+                        FontSize="24">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon
@@ -58,7 +60,7 @@
                                     Margin="0,0,0,0"
                                     VerticalAlignment="Center"
                                     Kind="PlusCircleOutline" />
-                                <TextBlock  Margin="5,0,0,0" Text="Nhập mã voucher"/>
+                                <TextBlock Margin="5,0,0,0" Text="Thêm voucher" />
                             </StackPanel>
                         </Button.Content>
                     </Button>
@@ -66,30 +68,78 @@
             </StackPanel>
         </Grid>
 
-        <!--Danh sách voucher-->
+        <!--  Danh sách voucher  -->
         <Grid Grid.Row="1">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="lvVoucher" ItemsSource="{Binding DSVC}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="Mã voucher" DisplayMemberBinding="{Binding Code}"/>
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="Tên voucher" DisplayMemberBinding="{Binding Name}"/>
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="Thông tin voucher" DisplayMemberBinding="{Binding VoucherDetail}"/>
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="Loại vouchcer" DisplayMemberBinding="{Binding Type}"/>
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="Ngày bắt đầu" DisplayMemberBinding="{Binding StartDate}"/>
-                            <GridViewColumn
-                                Width="Auto"
-                                Header="Ngày kết thúc" DisplayMemberBinding="{Binding FinDate}"/>
+                            <GridViewColumn Width="Auto" Header="Mã voucher">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,2,0,0"
+                                            FontSize="18"
+                                            Text="{Binding Code}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" Header="Tên voucher">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,2,0,0"
+                                            FontSize="18"
+                                            Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" Header="Thông tin voucher">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,2,0,0"
+                                            FontSize="18"
+                                            Text="{Binding VoucherDetail}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" Header="Loại vouchcer">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,2,0,0"
+                                            FontSize="18"
+                                            Text="{Binding Type}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" Header="Ngày bắt đầu">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,2,0,0"
+                                            FontSize="18"
+                                            Text="{Binding StartDate}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="Auto" Header="Ngày kết thúc">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
+                                            Margin="16,2,0,0"
+                                            FontSize="18"
+                                            Text="{Binding FinDate}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
                             <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
                             <GridViewColumn>
                                 <GridViewColumn.CellTemplate>
@@ -113,7 +163,7 @@
                                                 <materialDesign:PackIcon
                                                     Width="30"
                                                     Height="30"
-                                                    Kind="AccountEdit" />
+                                                    Kind="Pencil" />
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                                         <i:InvokeCommandAction Command="{Binding DataContext.showWdEditVoucherCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
