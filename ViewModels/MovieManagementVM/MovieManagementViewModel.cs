@@ -88,6 +88,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         public ICommand ButtonAddMovieCommand { get; }
         public ICommand RemoveMovieCommand { get; }
         public ICommand ButtonEditMovieCommand { get; }
+        public ICommand DeleteMovieCommand { get; }
 
         #endregion
 
@@ -99,6 +100,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             AddMovieCommand = new ViewModelCommand(ExecuteAddMovieCommand, CanExecuteAddMovieCommand);
             ButtonAddMovieCommand = new ViewModelCommand(ExecuteButtonAddMovieCommand);
             UploadPosterCommand = new ViewModelCommand(ExecuteUploadPosterCommand);
+            DeleteMovieCommand = new ViewModelCommand(ExecuteDeleteMovieCommand);
         }
 
         private async Task LoadCollection()
@@ -126,6 +128,22 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             MoviePoster = null;
             addMoviePopup.DataContext = this;
             addMoviePopup.ShowDialog();
+        }
+
+        public void ExecuteDeleteMovieCommand(object obj)
+        {
+            MovieDA movieDA = new MovieDA();
+            MovieDTO selectedMovie = SelectedItem as MovieDTO;
+            movieDA.DeleteMovie(selectedMovie);
+            MessageBox.Show("Successfully deleted!");
+            for (int i = 0; i < MovieList.Count; i++)
+            {
+                if (MovieList[i].Id == SelectedItem?.Id)
+                {
+                    MovieList.Remove(MovieList[i]);
+                    break;
+                }
+            }
         }
 
         #endregion

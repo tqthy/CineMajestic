@@ -20,6 +20,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         #region Commands
         public ICommand AddMovieCommand { get; }
         public ICommand UploadPosterCommand { get; }
+
         #endregion
 
         #region Commands execution

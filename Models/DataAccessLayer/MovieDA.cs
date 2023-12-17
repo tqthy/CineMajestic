@@ -30,12 +30,25 @@ namespace CineMajestic.Models.DataAccessLayer
                 command.Parameters.Add("@length", SqlDbType.Int).Value = movie.Length;
                 command.Parameters.Add("@trailer", SqlDbType.NVarChar).Value = movie.Trailer;
                 DateTime date;
-                date = DateTime.ParseExact(movie.StartDate, "MM/dd/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
+                date = DateTime.ParseExact(movie.StartDate, "M/d/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
                 command.Parameters.Add("@startdate", SqlDbType.SmallDateTime).Value = date;
-                date = DateTime.ParseExact(movie.EndDate, "MM/dd/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
+                date = DateTime.ParseExact(movie.EndDate, "M/d/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
                 command.Parameters.Add("@enddate", SqlDbType.SmallDateTime).Value = date;
                 command.Parameters.Add("@genreid", SqlDbType.Int).Value = movie.Genre;
                 command.Parameters.Add("@poster", SqlDbType.NVarChar).Value = movie.Poster;
+                var rows_affected = command.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteMovie(MovieDTO movie)
+        {
+            using (var connection = GetConnection())
+            using (var command = new SqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "DELETE FROM [MOVIES] WHERE id = @id";
+                command.Parameters.Add("@id", SqlDbType.Int).Value = movie.Id;
                 var rows_affected = command.ExecuteNonQuery();
             }
         }
@@ -65,7 +78,8 @@ namespace CineMajestic.Models.DataAccessLayer
                             Trailer = reader[8].ToString(),
                             StartDate = reader[9].ToString(),
                             EndDate = reader[10].ToString(),
-                            Genre = "Funny"
+                            Genre = reader[11].ToString(),
+                            Poster = reader[12].ToString()
                         };
                         movies.Add(movie);
                     }

@@ -162,6 +162,9 @@
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal"
                                                 Margin="0,10,0,0">
+                                        
+                                        <!--Edit Movie-->
+                                        
                                         <Border BorderBrush="Black"
                                                 BorderThickness="0"
                                                 CornerRadius="5"
@@ -180,8 +183,8 @@
 
 
                                             <materialDesign:PackIcon Kind="MovieEditOutline"
-                                                                        Width="30"
-                                                                        Height="30"/>
+                                                                    Width="30"
+                                                                    Height="30"/>
 
 
                                         </Border>
@@ -190,6 +193,9 @@
                                                 CornerRadius="5"
                                                 Margin="10,0,0,0"
                                                 Cursor="Hand">
+                                            
+                                            <!--Delete Movie-->
+                                            
                                             <Border.Style>
                                                 <Style TargetType="Border">
                                                     <Style.Triggers>
@@ -203,12 +209,12 @@
                                             </Border.Style>
                                             
                                             <materialDesign:PackIcon Kind="GarbageCanEmpty"
-                                                                            Width="30"
-                                                                            Height="30">
+                                                                    Width="30"
+                                                                    Height="30">
                                             </materialDesign:PackIcon>
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseLeftButtonUp">
-                                                    <i:InvokeCommandAction Command="{Binding ElementName=MovieListView, Path=DataContext.LoadDeleteMovieCM}" />
+                                                    <i:InvokeCommandAction Command="{Binding ElementName=lvMovies, Path=DataContext.DeleteMovieCommand}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
 
