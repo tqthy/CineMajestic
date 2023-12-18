@@ -35,6 +35,7 @@ namespace CineMajestic.ViewModels.CustomerManagement
         {
             CustomerDA customerDA = new CustomerDA();
             DSCTM = customerDA.getDSCustomer();
+            searchCTM();
         }
     }
 }

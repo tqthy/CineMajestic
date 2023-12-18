@@ -37,7 +37,8 @@
                 BorderThickness="0,0,0,1"
                 FontFamily="Arial"
                 FontSize="20"
-                Foreground="#DD000000" />
+                Foreground="#DD000000" 
+                Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
 
             <!--  ComboBox lựa chọn tìm kiếm theo sđt hay tên khách hàng  -->
             <ComboBox
@@ -46,7 +47,9 @@
                 Margin="10,0,0,0"
                 VerticalAlignment="Bottom"
                 VerticalContentAlignment="Center"
-                FontSize="15">
+                FontSize="15"
+                SelectedValue="{Binding cboLuaChonTimKiem}"
+                SelectedValuePath="Content">
                 <ComboBoxItem>Tên khách hàng</ComboBoxItem>
                 <ComboBoxItem>Số điện thoại</ComboBoxItem>
             </ComboBox>
@@ -55,7 +58,7 @@
 
         <Grid Grid.Row="1">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <ListView x:Name="lvCustomer" ItemsSource="{Binding DSCTM}">
+                <ListView x:Name="lvCustomer" ItemsSource="{Binding FilterDSCTM}">
                     <ListView.View>
                         <GridView>
                             <!--  Danh sách cần cột hiển thị trong listview  -->
