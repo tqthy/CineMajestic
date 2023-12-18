@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Views;
+using CineMajestic.Views.Password;
 using System.Configuration;
 using System.Data;
 using System.Windows;
@@ -23,6 +24,12 @@ namespace CineMajestic
                     loginView.Close();
                 }
             };
+        }
+
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+           ForgetPasswordView forgetPasswordView = new ForgetPasswordView();
+            forgetPasswordView.Show();
         }
     }
 

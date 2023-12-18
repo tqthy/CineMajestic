@@ -79,5 +79,25 @@ namespace CineMajestic.Models.DataAccessLayer
         {
             throw new NotImplementedException();
         }
+
+
+        //phương thức phục vụ phần quên pass
+        public void changePassword(string username, string passwordNew)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string update =
+                    "update Accounts\n"
+                    +
+                    "set Password=" + "'" + passwordNew + "'\n"
+                    +
+                    "where Username=" + "'" + username + "'";
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

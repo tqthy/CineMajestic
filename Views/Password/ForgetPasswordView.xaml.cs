@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels.ForgotPassword;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,8 @@ namespace CineMajestic.Views.Password
         public ForgetPasswordView()
         {
             InitializeComponent();
+            ForgotPasswordViewModel forgotPasswordViewModel = new ForgotPasswordViewModel();
+            this.DataContext= forgotPasswordViewModel;
         }
     }
 }
