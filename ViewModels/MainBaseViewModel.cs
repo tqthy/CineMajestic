@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Views;
+using CineMajestic.Views.InformationManagement;
 using CineMajestic.Views.MovieManagement;
 using CineMajestic.Views.StaffManagement;
 using System;
@@ -37,6 +38,10 @@ namespace CineMajestic.ViewModels
 
                 case "Staff": // Quản lí nhân viên
                     CurrentView = new StaffManagementView();
+                    break;
+
+                case "Setting": // Cài đặt
+                    CurrentView = new InformationView();
                     break;
             }
         }
