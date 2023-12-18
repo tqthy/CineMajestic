@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.Models.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace CineMajestic.Models.DTOs.StaffManagement
     public class StaffDTO
     {
         public int Id { get; set; }
+        public string IdFormat {  get; set; }
         public string FullName { get; set; }
         public string Birth { get; set; }
         public string Gender {  get; set; }
@@ -28,6 +30,7 @@ namespace CineMajestic.Models.DTOs.StaffManagement
             Salary=salary;
             Role=role;
             NgayVaoLam=ngayVL;
+            IdFormat = StaffDA.formatID(Id);
         }
 
 

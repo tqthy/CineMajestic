@@ -11,6 +11,7 @@ namespace CineMajestic.Models.DataAccessLayer
 {
     public class StaffDA:DataAccess
     {
+        private static int soLuongChuSo;
         public ObservableCollection<StaffDTO> getDSNV()
         {
             ObservableCollection<StaffDTO>list = new ObservableCollection<StaffDTO>();
@@ -22,6 +23,8 @@ namespace CineMajestic.Models.DataAccessLayer
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
+                        soLuongChuSo = identCurrent().ToString().Length;//phục vụ format id
+
                         while (reader.Read())
                         {
                             int id = reader.GetInt32(reader.GetOrdinal("Id"));
@@ -161,6 +164,36 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
             return identCurrent;
+        }
+
+        public static string formatID(int id, string type = "NV")
+        {
+            string format = "";
+            if (soLuongChuSo < 4)
+            {
+                format = "000";
+            }
+            else
+            {
+                for (int k = 0; k < soLuongChuSo; k++)
+                {
+                    format += "0";
+                }
+            }
+            string ID = id.ToString();
+
+            int i = format.Length - 1;
+            int j = ID.Length - 1;
+            char[] s1 = format.ToCharArray();
+            char[] s2 = ID.ToCharArray();
+            while (i >= 0 && j >= 0)
+            {
+                s1[i--] = s2[j--];
+            }
+
+            format = new string(s1);
+            format = type + format;
+            return format;
         }
     }
 }
