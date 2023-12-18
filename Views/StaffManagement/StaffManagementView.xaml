@@ -74,7 +74,8 @@
 
         <!--  List view nhân sự  -->
         <Grid Grid.Row="1">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="lvStaff" ItemsSource="{Binding FilterDSNV}">
                     <ListView.View>
                         <GridView>
@@ -83,8 +84,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
-                                            FontSize="14"
+                                            Margin="16,5.5,0,0"
+                                            FontSize="17"
                                             Text="{Binding IdFormat}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -94,8 +95,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
-                                            FontSize="14"
+                                            Margin="16,5.5,0,0"
+                                            FontSize="17"
                                             Text="{Binding FullName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -105,8 +106,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
-                                            FontSize="14"
+                                            Margin="16,5.5,0,0"
+                                            FontSize="17"
                                             Text="{Binding Birth}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -116,8 +117,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
-                                            FontSize="14"
+                                            Margin="16,5.5,0,0"
+                                            FontSize="17"
                                             Text="{Binding Gender}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -127,8 +128,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
-                                            FontSize="14"
+                                            Margin="16,5.5,0,0"
+                                            FontSize="17"
                                             Text="{Binding PhoneNumber}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -138,8 +139,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
-                                            FontSize="14"
+                                            Margin="16,5.5,0,0"
+                                            FontSize="17"
                                             Text="{Binding Email}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -149,8 +150,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
-                                            FontSize="14"
+                                            Margin="16,5.5,0,0"
+                                            FontSize="17"
                                             Text="{Binding Role}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -160,8 +161,8 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
-                                            FontSize="14"
+                                            Margin="16,5.5,0,0"
+                                            FontSize="17"
                                             Text="{Binding Salary}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
