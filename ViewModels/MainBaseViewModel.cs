@@ -40,7 +40,7 @@ namespace CineMajestic.ViewModels
                     CurrentView = new StaffManagementView();
                     break;
 
-                case "Setting": // Cài đặt
+                case "Personal": // Cài đặt
                     CurrentView = new InformationView();
                     break;
             }

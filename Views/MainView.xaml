@@ -194,7 +194,7 @@
                         Background="Transparent"
                         BorderThickness="0"
                         Command="{Binding SwitchViewCommand}"
-                        CommandParameter="Setting"
+                        CommandParameter="Personal"
                         FontWeight="Medium"
                         Foreground="Black">
                         <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
@@ -202,12 +202,12 @@
                                 Width="20"
                                 Height="20"
                                 VerticalAlignment="Center"
-                                Kind="Wrench" />
+                                Kind="AccountBox" />
                             <TextBlock
                                 Margin="10,0,0,0"
                                 VerticalAlignment="Bottom"
                                 FontSize="17"
-                                Text="Cài đặt" />
+                                Text="Cá nhân" />
                         </StackPanel>
                     </Button>
 
