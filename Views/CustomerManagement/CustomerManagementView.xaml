@@ -68,7 +68,7 @@
                                         <TextBlock
                                             Margin="16,0,0,0"
                                             FontSize="18"
-                                            Text="{Binding Id}" />
+                                            Text="{Binding IdFormat}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

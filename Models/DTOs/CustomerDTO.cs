@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.Models.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace CineMajestic.Models.DTOs
     public class CustomerDTO
     {
         public int Id { get; set; }
+        public string IdFormat { get; set; }
         public string FullName { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
@@ -32,6 +34,7 @@ namespace CineMajestic.Models.DTOs
             Birth = birth;
             RegDate = regDate;
             Gender = gender;
+            IdFormat = CustomerDA.formatID(Id);
         }
         //Phục vụ edit
         public CustomerDTO(int id,string fullName, string phoneNumber, string email, string regDate, int point)
