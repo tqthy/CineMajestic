@@ -66,7 +66,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
+                                            Margin="16,4.5,0,0"
                                             FontSize="18"
                                             Text="{Binding IdFormat}" />
                                     </DataTemplate>
@@ -77,7 +77,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
+                                            Margin="16,4.5,0,0"
                                             FontSize="18"
                                             Text="{Binding FullName}" />
                                     </DataTemplate>
@@ -88,7 +88,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
+                                            Margin="16,4.5,0,0"
                                             FontSize="18"
                                             Text="{Binding PhoneNumber}" />
                                     </DataTemplate>
@@ -99,7 +99,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
+                                            Margin="16,4.5,0,0"
                                             FontSize="18"
                                             Text="{Binding Email}" />
                                     </DataTemplate>
@@ -109,7 +109,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
+                                            Margin="16,4.5,0,0"
                                             FontSize="18"
                                             Text="{Binding RegDate}" />
                                     </DataTemplate>
@@ -120,7 +120,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,0,0,0"
+                                            Margin="16,4.5,0,0"
                                             FontSize="18"
                                             Text="{Binding Point}" />
                                     </DataTemplate>
