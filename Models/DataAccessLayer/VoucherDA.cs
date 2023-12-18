@@ -107,5 +107,34 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+
+        //lấy danh sách code đang có
+        public List<string> listCode()
+        {
+            List<string> list = new List<string>();
+
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string truyvan =
+                    "select Code\n"
+                    +
+                    "from Voucher";
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string code = reader.GetString(reader.GetOrdinal("CODE"));
+                            list.Add(code);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
     }
 }

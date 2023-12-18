@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.Models.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,18 +13,41 @@ namespace CineMajestic.ViewModels.VoucherManagement
         //hàm tạo voucher
         public static string createCode()
         {
-            Random random = new Random();
+            string codeNew = "";
+            
+            VoucherDA voucherDA = new VoucherDA();
+            List<string> listVoucher=voucherDA.listCode();
 
-
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            StringBuilder stringBuilder = new StringBuilder(10);
-
-            for (int i = 0; i < 10; i++)
+            while (true)
             {
-                stringBuilder.Append(chars[random.Next(chars.Length)]);
-            }
+                bool check = true;
+                Random random = new Random();
 
-            return stringBuilder.ToString();
+                const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                StringBuilder stringBuilder = new StringBuilder(10);
+
+                for (int i = 0; i < 10; i++)
+                {
+                    stringBuilder.Append(chars[random.Next(chars.Length)]);
+                }
+                codeNew = stringBuilder.ToString();
+
+                foreach(string s in listVoucher)
+                {
+                    if (codeNew == s)
+                    {
+                        check = false;
+                        break;
+                    }
+                }
+
+                if (check == true)
+                {
+                    break;
+                }
+
+            }
+            return codeNew;
         }
     }
 }
