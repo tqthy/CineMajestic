@@ -36,6 +36,7 @@ namespace CineMajestic.ViewModels.VoucherManagement
         {
             VoucherDA voucherDA = new VoucherDA();
             DSVC = voucherDA.getDSVC();
+            searchVoucher();
         }
     }
 }
