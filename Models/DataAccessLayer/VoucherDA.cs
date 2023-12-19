@@ -17,6 +17,10 @@ namespace CineMajestic.Models.DataAccessLayer
         //lấy data từ bảng Voucher
         public ObservableCollection<VoucherDTO> getDSVC()
         {
+
+            //xóa voucher hết hạn đã
+            deleteVoucherExpiry();
+
             ObservableCollection<VoucherDTO> list = new ObservableCollection<VoucherDTO>();
             using (SqlConnection connection = GetConnection())
             {
@@ -135,6 +139,24 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
             return list;
+        }
+
+
+        //câu lệnh tự xóa voucher hết hạn
+        public void deleteVoucherExpiry()
+        {
+            using(SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string deleteVoucherExpiry =
+                    "delete Voucher\n"
+                    +
+                    "where FINDATE<GETDATE()";
+                using(SqlCommand command=new SqlCommand(deleteVoucherExpiry, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
