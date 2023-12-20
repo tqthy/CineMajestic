@@ -68,18 +68,18 @@
                         </Button.Content>
                     </Button>
                 </StackPanel>
-                
-                <!--Nút xuất file excel-->
+
+                <!--  Nút xuất file excel  -->
                 <Button
                     Width="auto"
                     Height="40"
                     Margin="160,0,0,0"
                     VerticalAlignment="Bottom"
                     materialDesign:ButtonAssist.CornerRadius="10"
+                    Command="{Binding ExportExcelCommand}"
                     FontFamily="Arial"
                     FontSize="15"
-                    Foreground="AntiqueWhite"
-                    Command="{Binding ExportExcelCommand}">
+                    Foreground="AntiqueWhite">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon
@@ -99,6 +99,13 @@
         <Grid Grid.Row="1">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="lvStaff" ItemsSource="{Binding FilterDSNV}">
+                    <!--  Event trigger phục vụ show StaffDetail  -->
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding DataContext.StaffDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding ElementName=lvStaff, Path=SelectedItem}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
                     <ListView.View>
                         <GridView>
                             <!--  Danh sách cần cột hiển thị trong listview  -->

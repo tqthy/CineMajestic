@@ -38,6 +38,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             delete();
             editStaff();
             exportExcel();
+            staffDetail();
             this.staffManagementView = staffManagementView;
         }
 

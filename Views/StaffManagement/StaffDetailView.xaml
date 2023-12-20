@@ -94,7 +94,8 @@
                         Cursor="Hand"
                         FontFamily="Montserrat"
                         FontSize="12"
-                        Foreground="#fffaf5">
+                        Foreground="#fffaf5"
+                        Command="{Binding exitCommand}">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#3f2305" />
@@ -158,7 +159,7 @@
                     FontWeight="Bold"
                     IsReadOnly="True"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="Hồ Tiến Vũ Bình" />
+                    Text="{Binding FullName}" />
                     
                     <!--  Chỗ binding ngày sinh  -->
                     <TextBox
@@ -172,7 +173,7 @@
                     FontWeight="Bold"
                     IsReadOnly="True"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="17/07/2004" />
+                    Text="{Binding Birth}" />
                     <!--  Chỗ binding ngày vào làm  -->
                     <TextBox
                     Grid.Row="2"
@@ -185,7 +186,7 @@
                     FontWeight="Bold"
                     IsReadOnly="True"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="17/07/2024" />
+                    Text="{Binding NgayVaoLam}" />
                     <!--  Chỗ binding chức vụ  -->
                     <TextBox
                     Grid.Row="3"
@@ -198,7 +199,7 @@
                     FontWeight="Bold"
                     IsReadOnly="True"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="Quản lí" />
+                    Text="{Binding Role}" />
                 </Grid>
 
                 <Grid Grid.Column="3">
@@ -220,7 +221,7 @@
                     FontWeight="Bold"
                     IsReadOnly="True"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="Nam" />
+                    Text="{Binding Gender}" />
 
                     <!--  Chỗ binding email  -->
                     <TextBox
@@ -234,7 +235,7 @@
                     FontWeight="Bold"
                     IsReadOnly="True"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="vubinh.2004.17.7@gmail.com" />
+                    Text="{Binding Email}" />
 
                     <!--  Chỗ binding SĐT  -->
                     <TextBox
@@ -248,7 +249,7 @@
                     FontWeight="Bold"
                     IsReadOnly="True"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="0393712562" />
+                    Text="{Binding PhoneNumber}" />
                     <!--  Chỗ binding lương  -->
                     <TextBox
                     Grid.Row="3"
@@ -261,7 +262,7 @@
                     FontWeight="Bold"
                     IsReadOnly="True"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="20000000" />
+                    Text="{Binding Salary}" />
                 </Grid>
                 
                 
