@@ -27,7 +27,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />
-                <RowDefinition/>
+                <RowDefinition />
             </Grid.RowDefinitions>
 
             <!--  Vùng nút thoát và minimize  -->
@@ -51,51 +51,19 @@
                         Foreground="#3F2305"
                         Text="Thông tin" />
 
-                    <!--  Nút minimize  -->
-                    <Button
-                        x:Name="btnMinimize"
-                        Grid.Column="1"
-                        BorderThickness="0"
-                        Content="-"
-                        Cursor="Hand"
-                        FontFamily="Montserrat"
-                        FontSize="16"
-                        Foreground="#623b00">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#F2EAD3" />
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#E4D4C5" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
 
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border
-                                    Width="18"
-                                    Height="18"
-                                    Background="{TemplateBinding Background}"
-                                    CornerRadius="9">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
 
                     <!--  Nút exit  -->
                     <Button
                         x:Name="btnClose"
                         Grid.Column="2"
                         BorderThickness="0"
+                        Command="{Binding exitCommand}"
                         Content="X"
                         Cursor="Hand"
                         FontFamily="Montserrat"
                         FontSize="12"
-                        Foreground="#fffaf5"
-                        Command="{Binding exitCommand}">
+                        Foreground="#fffaf5">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#3f2305" />
@@ -127,12 +95,12 @@
 
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150" />
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                
-                <!--Ảnh đại diện-->
+
+                <!--  Ảnh đại diện  -->
                 <Border
                     Width="120"
                     Height="120"
@@ -140,137 +108,148 @@
                     BorderBrush="Black"
                     BorderThickness="2"
                     CornerRadius="70" />
-                
+                <TextBox
+                    Width="80"
+                    Height="50"
+                    Margin="15,52,0,0"
+                    HorizontalAlignment="Center"
+                    BorderThickness="0"
+                    FontSize="17"
+                    FontWeight="Bold"
+                    IsReadOnly="True"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                    Text="NV0001"/>
+
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <!--  Chỗ binding họ và tên  -->
                     <TextBox
-                    Width="250"
-                    Height="50"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    materialDesign:HintAssist.Hint="Họ và tên"
-                    FontSize="17"
-                    FontWeight="Bold"
-                    IsReadOnly="True"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="{Binding FullName}" />
-                    
+                        Width="250"
+                        Height="50"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Left"
+                        materialDesign:HintAssist.Hint="Họ và tên"
+                        FontSize="17"
+                        FontWeight="Bold"
+                        IsReadOnly="True"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding FullName}" />
+
                     <!--  Chỗ binding ngày sinh  -->
                     <TextBox
-                    Grid.Row="1"
-                    Width="250"
-                    Height="50"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    materialDesign:HintAssist.Hint="Ngày sinh"
-                    FontSize="17"
-                    FontWeight="Bold"
-                    IsReadOnly="True"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="{Binding Birth}" />
+                        Grid.Row="1"
+                        Width="250"
+                        Height="50"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Left"
+                        materialDesign:HintAssist.Hint="Ngày sinh"
+                        FontSize="17"
+                        FontWeight="Bold"
+                        IsReadOnly="True"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Birth}" />
                     <!--  Chỗ binding ngày vào làm  -->
                     <TextBox
-                    Grid.Row="2"
-                    Width="250"
-                    Height="50"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    materialDesign:HintAssist.Hint="Ngày vào làm"
-                    FontSize="17"
-                    FontWeight="Bold"
-                    IsReadOnly="True"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="{Binding NgayVaoLam}" />
+                        Grid.Row="2"
+                        Width="250"
+                        Height="50"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Left"
+                        materialDesign:HintAssist.Hint="Ngày vào làm"
+                        FontSize="17"
+                        FontWeight="Bold"
+                        IsReadOnly="True"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding NgayVaoLam}" />
                     <!--  Chỗ binding chức vụ  -->
                     <TextBox
-                    Grid.Row="3"
-                    Width="250"
-                    Height="50"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    materialDesign:HintAssist.Hint="Chức vụ"
-                    FontSize="17"
-                    FontWeight="Bold"
-                    IsReadOnly="True"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="{Binding Role}" />
+                        Grid.Row="3"
+                        Width="250"
+                        Height="50"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Left"
+                        materialDesign:HintAssist.Hint="Chức vụ"
+                        FontSize="17"
+                        FontWeight="Bold"
+                        IsReadOnly="True"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Role}" />
                 </Grid>
 
                 <Grid Grid.Column="3">
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
-                    
+
                     <!--  Chỗ binding giới tính  -->
                     <TextBox
-                    Width="250"
-                    Height="50"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    materialDesign:HintAssist.Hint="Giới tính"
-                    FontSize="17"
-                    FontWeight="Bold"
-                    IsReadOnly="True"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="{Binding Gender}" />
+                        Width="250"
+                        Height="50"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Left"
+                        materialDesign:HintAssist.Hint="Giới tính"
+                        FontSize="17"
+                        FontWeight="Bold"
+                        IsReadOnly="True"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Gender}" />
 
                     <!--  Chỗ binding email  -->
                     <TextBox
-                    Grid.Row="1"
-                    Width="250"
-                    Height="50"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    materialDesign:HintAssist.Hint="Email"
-                    FontSize="17"
-                    FontWeight="Bold"
-                    IsReadOnly="True"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="{Binding Email}" />
+                        Grid.Row="1"
+                        Width="250"
+                        Height="50"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Left"
+                        materialDesign:HintAssist.Hint="Email"
+                        FontSize="17"
+                        FontWeight="Bold"
+                        IsReadOnly="True"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Email}" />
 
                     <!--  Chỗ binding SĐT  -->
                     <TextBox
-                    Grid.Row="2"
-                    Width="250"
-                    Height="50"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    materialDesign:HintAssist.Hint="Số điện thoại"
-                    FontSize="17"
-                    FontWeight="Bold"
-                    IsReadOnly="True"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="{Binding PhoneNumber}" />
+                        Grid.Row="2"
+                        Width="250"
+                        Height="50"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Left"
+                        materialDesign:HintAssist.Hint="Số điện thoại"
+                        FontSize="17"
+                        FontWeight="Bold"
+                        IsReadOnly="True"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding PhoneNumber}" />
                     <!--  Chỗ binding lương  -->
                     <TextBox
-                    Grid.Row="3"
-                    Width="250"
-                    Height="50"
-                    Margin="20,0,0,0"
-                    HorizontalAlignment="Left"
-                    materialDesign:HintAssist.Hint="Lương"
-                    FontSize="17"
-                    FontWeight="Bold"
-                    IsReadOnly="True"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                    Text="{Binding Salary}" />
+                        Grid.Row="3"
+                        Width="250"
+                        Height="50"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Left"
+                        materialDesign:HintAssist.Hint="Lương"
+                        FontSize="17"
+                        FontWeight="Bold"
+                        IsReadOnly="True"
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Salary}" />
                 </Grid>
-                
-                
+
+
             </Grid>
 
 
 
-                
+
 
         </Grid>
     </Border>
