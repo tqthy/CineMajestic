@@ -107,7 +107,11 @@
                     Margin="0,0,0,120"
                     BorderBrush="Black"
                     BorderThickness="2"
-                    CornerRadius="70" />
+                    CornerRadius="70" >
+                    <Border.Background>
+                        <ImageBrush ImageSource="pack://application:,,,/Images/StaffManagement/Default.jpg"></ImageBrush>
+                    </Border.Background>
+                </Border>
                 <TextBox
                     Width="80"
                     Height="50"
