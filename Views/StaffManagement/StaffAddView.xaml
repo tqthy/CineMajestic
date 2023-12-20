@@ -75,22 +75,28 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Họ và tên" />
-                <TextBox
-                    x:Name="txtHovaTen"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15" 
-                    Text="{Binding FullName}"/>
+                <StackPanel Grid.Column="1">
+                    <TextBox
+                        x:Name="txtHovaTen"
+                        Width="350"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15"
+                        Text="{Binding FullName}" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="8.5"
+                        Foreground="red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Giới tính  -->
@@ -100,28 +106,34 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Giới tính" />
 
-                <ComboBox
-                    x:Name="cbGioiTinh"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15"
-                    SelectedValue="{Binding Gender}"
-                    SelectedValuePath="Content"
-                    >
-                    <ComboBoxItem Content="Nam" />
-                    <ComboBoxItem Content="Nữ" />
-                </ComboBox>
+                <StackPanel Grid.Column="1">
+                    <ComboBox
+                        x:Name="cbGioiTinh"
+                        Grid.Column="1"
+                        Width="350"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="14"
+                        SelectedValue="{Binding Gender}"
+                        SelectedValuePath="Content">
+                        <ComboBoxItem Content="Nam" />
+                        <ComboBoxItem Content="Nữ" />
+                    </ComboBox>
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="8.5"
+                        Foreground="red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Ngày sinh  -->
@@ -132,22 +144,28 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Ngày sinh" />
 
-                <DatePicker
-                    x:Name="dpNgaySinh"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="30"
-                    Margin="0,0,90,0"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center" 
-                    SelectedDate="{Binding Birth}"
-                    />
+                <StackPanel Grid.Column="1">
+                    <DatePicker
+                        x:Name="dpNgaySinh"
+                        Grid.Column="1"
+                        Width="350"
+                        Height="30"
+                        Margin="0,0,90,0"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        SelectedDate="{Binding Birth}" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="8.5"
+                        Foreground="red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Email  -->
@@ -158,22 +176,29 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Email" />
-                <TextBox
-                    x:Name="txtEmail"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15" 
-                    Text="{Binding Email}"/>
+                <StackPanel Grid.Column="1">
+                    <TextBox
+                        x:Name="txtEmail"
+                        Grid.Column="1"
+                        Width="350"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15"
+                        Text="{Binding Email}" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="8.5"
+                        Foreground="red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  SĐT  -->
@@ -184,22 +209,28 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Số điện thoại" />
-                <TextBox
-                    x:Name="txtSDT"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15" 
-                    Text="{Binding PhoneNumber}"/>
+                <StackPanel Grid.Column="1">
+                    <TextBox
+                        x:Name="txtSDT"
+                        Width="350"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15"
+                        Text="{Binding PhoneNumber}" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="8.5"
+                        Foreground="red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Chức vụ  -->
@@ -210,26 +241,32 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Chức vụ" />
-                <ComboBox
-                    x:Name="cbChucVu"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15"
-                    SelectedValue="{Binding Role}"
-                    SelectedValuePath="Content">
-                    <ComboBoxItem Content="Quản lý" />
-                    <ComboBoxItem Content="Nhân viên"/>
-                </ComboBox>
+                <StackPanel Grid.Column="1">
+                    <ComboBox
+                        x:Name="cbChucVu"
+                        Width="350"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15"
+                        SelectedValue="{Binding Role}"
+                        SelectedValuePath="Content">
+                        <ComboBoxItem Content="Quản lý" />
+                        <ComboBoxItem Content="Nhân viên" />
+                    </ComboBox>
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="8.5"
+                        Foreground="red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Ngày vào làm  -->
@@ -240,21 +277,28 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Ngày vào làm" />
 
-                <DatePicker
-                    x:Name="dpNgayVaoLam"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="30"
-                    Margin="0,0,90,0"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center" 
-                    SelectedDate="{Binding NgayVL}"/>
+                <StackPanel Grid.Column="1">
+                    <DatePicker
+                        x:Name="dpNgayVaoLam"
+                        Grid.Column="1"
+                        Width="350"
+                        Height="30"
+                        Margin="0,0,90,0"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        SelectedDate="{Binding NgayVL}" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="8.5"
+                        Foreground="red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Lương  -->
@@ -265,22 +309,28 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Lương" />
-                <TextBox
-                    x:Name="txtLuong"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15" 
-                    Text="{Binding Salary}"/>
+                <StackPanel Grid.Column="1">
+                    <TextBox
+                        x:Name="txtLuong"
+                        Width="350"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15"
+                        Text="{Binding Salary}" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="8.5"
+                        Foreground="red" />
+                </StackPanel>
+
 
             </Grid>
 
@@ -303,22 +353,28 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Tên tài khoản" />
-                <TextBox
-                    x:Name="txtUserName"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15" 
-                    Text="{Binding Username}"/>
+                <StackPanel Grid.Column="1">
+                    <TextBox
+                        x:Name="txtUserName"
+                        Width="350"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15"
+                        Text="{Binding Username}" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="8.5"
+                        Foreground="red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Password  -->
@@ -329,21 +385,28 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Mật khẩu" />
-                <PasswordBox
-                    x:Name="txtMatKhau"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15" />
+                <StackPanel Grid.Column="1">
+                    <PasswordBox
+                        x:Name="txtMatKhau"
+                        Grid.Column="1"
+                        Width="350"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="8.5"
+                        Foreground="red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Nhập lại Password  -->
@@ -354,21 +417,28 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Xác nhận lại" />
-                <PasswordBox
-                    x:Name="txtNhapLaiMatKhau"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15" />
+                <StackPanel Grid.Column="1">
+                    <PasswordBox
+                        x:Name="txtNhapLaiMatKhau"
+                        Grid.Column="1"
+                        Width="350"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="8.5"
+                        Foreground="red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Nút hủy và xác hoàn tất  -->
