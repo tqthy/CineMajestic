@@ -76,11 +76,12 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="18"
-                        Text="{Binding FullName}" />
+                        Text="{Binding FullName,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="5,0,0,0"
-                        FontSize="9"
-                        Foreground="Red" />
+                        FontSize="8.5"
+                        Foreground="Red" 
+                        Text="{Binding FullNameError}"/>
                 </StackPanel>
 
             </Grid>
@@ -110,11 +111,12 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="18"
-                        Text="{Binding PhoneNumber}" />
+                        Text="{Binding PhoneNumber,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="5,0,0,0"
-                        FontSize="9"
-                        Foreground="Red" />
+                        FontSize="8.5"
+                        Foreground="Red" 
+                        Text="{Binding PhoneNumberError}"/>
                 </StackPanel>
 
             </Grid>
@@ -143,12 +145,12 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="18"
-                        Text="{Binding Email}" />
+                        Text="{Binding Email,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="5,0,0,0"
-                        FontSize="9"
+                        FontSize="8.5"
                         Foreground="Red"
-                        />
+                        Text="{Binding EmailError}"/>
                 </StackPanel>
 
             </Grid>
@@ -176,11 +178,12 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="18"
-                        SelectedDate="{Binding RegDate}" />
+                        SelectedDate="{Binding RegDate,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="5,0,0,0"
-                        FontSize="9"
-                        Foreground="Red" />
+                        FontSize="8.5"
+                        Foreground="Red" 
+                        Text="{Binding RegDateError}"/>
                 </StackPanel>
             </Grid>
 
@@ -208,11 +211,12 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="18"
-                        Text="{Binding Point}" />
+                        Text="{Binding Point,UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="5,0,0,0"
-                        FontSize="9"
-                        Foreground="Red" />
+                        FontSize="8.5"
+                        Foreground="Red" 
+                        Text="{Binding PointError}"/>
                 </StackPanel>
             </Grid>
 
