@@ -130,7 +130,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn
+                            <!--<GridViewColumn
                                 x:Name="clBirth"
                                 Width="Auto"
                                 Header="Ngày sinh">
@@ -142,7 +142,7 @@
                                             Text="{Binding Birth}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                            </GridViewColumn>-->
 
                             <GridViewColumn
                                 x:Name="clGender"
@@ -200,7 +200,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn
+                            <!--<GridViewColumn
                                 x:Name="clSalary"
                                 Width="Auto"
                                 Header="Lương">
@@ -212,7 +212,7 @@
                                             Text="{Binding Salary}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                            </GridViewColumn>-->
 
 
                             <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
