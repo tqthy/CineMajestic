@@ -7,14 +7,14 @@
     xmlns:local="clr-namespace:CineMajestic.Views.ProductManagement"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-    TextElement.FontWeight="Regular"
-    TextElement.FontSize="13"
-    TextOptions.TextFormattingMode="Ideal"
-    TextOptions.TextRenderingMode="Auto"
-    FontFamily="{DynamicResource MaterialDesignFont}"
     d:DesignHeight="648"
     d:DesignWidth="1000"
+    FontFamily="{DynamicResource MaterialDesignFont}"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
     <Grid Background="#f5f5f5">
         <Grid.RowDefinitions>
@@ -25,21 +25,19 @@
         <!--  Phần dành cho tính năng tìm kiếm, thêm ,phân loại sản phẩm  -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="500" />
+                <ColumnDefinition Width="350" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
             <!--  Tìm kiếm  -->
             <Grid Grid.Column="0">
                 <TextBox
+                    Name="filterBySearch"
                     Margin="20,0,0,0"
                     VerticalAlignment="Bottom"
-                    FontSize="20"
                     materialDesign:HintAssist.Hint="Tìm kiếm"
-                    Name="filterBySearch"
-                    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
-                    >
-                </TextBox>
+                    FontSize="20"
+                    Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
             </Grid>
 
             <!--  Thêm  -->
@@ -74,11 +72,11 @@
                 <ComboBox
                     Name="cboPhanLoai"
                     Width="150"
-                    Height="40" 
+                    Height="45"
+                    Margin="0,0,15,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
                     VerticalContentAlignment="Center"
-                    Margin="0,0,15,0"
                     FontFamily="Arial"
                     FontSize="20"
                     SelectedIndex="{Binding SelectedItemIndex}">
@@ -106,10 +104,10 @@
                             <Grid
                                 Width="170"
                                 Height="195"
-                                Margin="10"
+                                Margin="7"
                                 Background="#f5f5f5">
                                 <Border
-                                    Background="#EEEEEE"
+                                    Background="White"
                                     BorderBrush="LightGray"
                                     CornerRadius="10">
                                     <Grid>
@@ -132,7 +130,7 @@
                                             Width="30"
                                             Height="30"
                                             Margin="135,7,5,158"
-                                            Command="{Binding DataContext.showWDEditProductCommand,RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                            Command="{Binding DataContext.showWDEditProductCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                                             CommandParameter="{Binding}">
                                             <Button.Background>
                                                 <ImageBrush ImageSource="pack://application:,,,/Icon/pen.png" />
