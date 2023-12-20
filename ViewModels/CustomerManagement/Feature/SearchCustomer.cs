@@ -61,7 +61,7 @@ namespace CineMajestic.ViewModels.CustomerManagement
                     FilterDSCTM = new ObservableCollection<CustomerDTO>(
                         DSCTM.Where(s => s.FullName.ToLower().Contains(SearchText.ToLower())));
                 }
-                else
+                else if(cboLuaChonTimKiem=="Số điện thoại")
                 {
                     FilterDSCTM = new ObservableCollection<CustomerDTO>(
                         DSCTM.Where(s => s.PhoneNumber.ToLower().Contains(SearchText.ToLower())));
