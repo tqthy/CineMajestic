@@ -42,6 +42,8 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         public string StartDate { get => startDate; set { startDate = value; OnPropertyChanged(nameof(StartDate)); } }
         private string endDate;
         public string EndDate { get => endDate; set { endDate = value; OnPropertyChanged(nameof(EndDate)); } }
+        private string genre;
+        public string Genre { get => genre; set { genre = value; OnPropertyChanged(nameof(Genre)); } }
 
         // Add or Edit Window
 
@@ -230,14 +232,17 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             Description = SelectedItem.Description;
             Country = SelectedItem.Country;
             Language = SelectedItem.Language;
-            StartDate = SelectedItem.StartDate;
-            EndDate = SelectedItem.EndDate;
+            string[] temp = SelectedItem.StartDate.Split(' ');
+            StartDate = temp[0];
+            temp = SelectedItem.EndDate.Split(' ');
+            EndDate = temp[0];
             Trailer = SelectedItem.Trailer;
             Director = SelectedItem.Director;
             ReleaseYear = SelectedItem.ReleaseYear;
             Length = SelectedItem.Length;
+            GenreDA genreDA = new GenreDA();
+            Genre = genreDA.GetGenreByID(SelectedItem.Genre).Title;
             MoviePoster = new BitmapImage(new Uri(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", SelectedItem.Title, "Poster", SelectedItem.Poster)));
-
             MovieDetailView movieDetailPopup = new MovieDetailView();
             movieDetailPopup.DataContext = this;
             movieDetailPopup.ShowDialog();
