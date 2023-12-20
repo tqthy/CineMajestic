@@ -63,7 +63,7 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 connection.Open();
                 string insert=
-                    "insert into Staff\n"
+                    "insert into Staff(FullName,Birth,Gender,Email,PhoneNumber,Salary,Role,NgayVaolam)\n"
                     +
                     "values("
                     +
