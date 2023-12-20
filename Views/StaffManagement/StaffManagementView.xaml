@@ -28,7 +28,7 @@
             <StackPanel Margin="30,0,0,0" Orientation="Horizontal">
 
                 <TextBox
-                    Width="500"
+                    Width="480"
                     Height="30"
                     Padding="0"
                     VerticalAlignment="Bottom"
@@ -36,10 +36,9 @@
                     AllowDrop="True"
                     BorderThickness="0,0,0,1"
                     FontFamily="Arial"
-                    FontSize="25"
+                    FontSize="20"
                     Foreground="#DD000000"
                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
-
 
                 <!--  Nút thêm  -->
                 <StackPanel
@@ -52,7 +51,7 @@
                         Padding="0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
-                        materialDesign:ButtonAssist.CornerRadius="8"
+                        materialDesign:ButtonAssist.CornerRadius="10"
                         Command="{Binding showWdAddStaffCommand}"
                         FontFamily="arial"
                         FontSize="25">
@@ -69,18 +68,41 @@
                         </Button.Content>
                     </Button>
                 </StackPanel>
+                <Button
+                    Width="auto"
+                    Height="40"
+                    Margin="160,0,0,0"
+                    VerticalAlignment="Bottom"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    FontFamily="Arial"
+                    FontSize="15"
+                    Foreground="AntiqueWhite">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                Margin="0,0,0,0"
+                                VerticalAlignment="Center"
+                                Kind="File" />
+                            <TextBlock Margin="5,6,0,0" Text="Xuất file excel" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
             </StackPanel>
         </Grid>
 
         <!--  List view nhân sự  -->
         <Grid Grid.Row="1">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                          VerticalScrollBarVisibility="Auto">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="lvStaff" ItemsSource="{Binding FilterDSNV}">
                     <ListView.View>
                         <GridView>
                             <!--  Danh sách cần cột hiển thị trong listview  -->
-                            <GridViewColumn x:Name="clId" Width="Auto" Header="ID">
+                            <GridViewColumn
+                                x:Name="clId"
+                                Width="Auto"
+                                Header="ID">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -91,7 +113,10 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clFullName" Width="Auto" Header="Họ và tên">
+                            <GridViewColumn
+                                x:Name="clFullName"
+                                Width="Auto"
+                                Header="Họ và tên">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -102,7 +127,10 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clBirth" Width="Auto" Header="Ngày sinh">
+                            <GridViewColumn
+                                x:Name="clBirth"
+                                Width="Auto"
+                                Header="Ngày sinh">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -113,7 +141,10 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clGender" Width="Auto" Header="Giới tính">
+                            <GridViewColumn
+                                x:Name="clGender"
+                                Width="Auto"
+                                Header="Giới tính">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -124,7 +155,10 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clPhoneNumber" Width="Auto" Header="SĐT">
+                            <GridViewColumn
+                                x:Name="clPhoneNumber"
+                                Width="Auto"
+                                Header="SĐT">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -135,7 +169,10 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clEmail" Width="Auto" Header="Email">
+                            <GridViewColumn
+                                x:Name="clEmail"
+                                Width="Auto"
+                                Header="Email">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -146,7 +183,10 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clRole" Width="Auto" Header="Chức vụ">
+                            <GridViewColumn
+                                x:Name="clRole"
+                                Width="Auto"
+                                Header="Chức vụ">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -157,7 +197,10 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clSalary" Width="Auto" Header="Lương">
+                            <GridViewColumn
+                                x:Name="clSalary"
+                                Width="Auto"
+                                Header="Lương">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
