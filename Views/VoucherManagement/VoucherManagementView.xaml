@@ -36,7 +36,7 @@
                     BorderThickness="0,0,0,1"
                     FontFamily="Arial"
                     FontSize="24"
-                    Foreground="#DD000000" 
+                    Foreground="#DD000000"
                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
                 <!--  Nút thêm  -->
                 <StackPanel
@@ -65,6 +65,29 @@
                             </StackPanel>
                         </Button.Content>
                     </Button>
+
+                    <!--  Nút xuất file exel  -->
+                    <Button
+                        Width="auto"
+                        Height="40"
+                        Margin="220,0,0,0"
+                        VerticalAlignment="Bottom"
+                        Command="{Binding ExportExcelCommand}"
+                        FontFamily="Arial"
+                        FontSize="15"
+                        Foreground="AntiqueWhite">
+                        <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon
+                                    Width="25"
+                                    Height="25"
+                                    Margin="0,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Kind="File" />
+                                <TextBlock Margin="5,6,0,0" Text="Xuất file excel" />
+                            </StackPanel>
+                        </Button.Content>
+                    </Button>
                 </StackPanel>
             </StackPanel>
         </Grid>
@@ -86,7 +109,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Tên voucher">
+                            <GridViewColumn Width="Auto" Header="Tên">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -97,7 +120,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Thông tin voucher">
+                            <GridViewColumn Width="Auto" Header="Thông tin">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -108,7 +131,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Loại vouchcer">
+                            <GridViewColumn Width="90" Header="Loại">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
