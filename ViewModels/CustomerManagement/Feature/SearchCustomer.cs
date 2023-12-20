@@ -14,7 +14,7 @@ namespace CineMajestic.ViewModels.CustomerManagement
 
         void searchCTM()
         {
-            cboLuaChonTimKiem = "Tên khách hàng";
+            cboLuaChonTimKiem = "";
             FilterDSCTM = new ObservableCollection<CustomerDTO>(DSCTM);
         }
 
