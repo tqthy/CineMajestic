@@ -32,6 +32,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 
     public class StaffDetailViewModel
     {
+        public string Id {  get; set; }
         public string FullName { get; set; }
         public string Birth { get; set; }
         public string Gender { get; set; }
@@ -45,6 +46,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         StaffDetailView wd;
         public StaffDetailViewModel(StaffDTO staff,StaffDetailView wd)
         {
+            Id = staff.IdFormat;
             FullName= staff.FullName;
             Birth= staff.Birth;
             Gender= staff.Gender;

@@ -118,7 +118,7 @@
                     FontWeight="Bold"
                     IsReadOnly="True"
                     Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                    Text="NV0001"/>
+                    Text="{Binding Id}"/>
 
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
