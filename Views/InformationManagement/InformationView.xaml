@@ -215,17 +215,26 @@
                     VerticalAlignment="Center"
                     FontSize="20"
                     Text="Mật khẩu cũ" />
-                <PasswordBox
-                    x:Name="txtMKCu"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="35"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    materialDesign:HintAssist.Hint="Mật khẩu cũ"
-                    FontSize="20" />
+                <StackPanel Grid.Column="1">
+                    <PasswordBox
+                        x:Name="txtMKCu"
+                        Grid.Column="1"
+                        Width="350"
+                        Height="35"
+                        Margin="5,23,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        materialDesign:HintAssist.Hint="Mật khẩu cũ"
+                        FontSize="20" />
+                   
+                    <!--In ra lỗi-->
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="15"
+                        Foreground="Red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Mật khẩu mới  -->
@@ -241,17 +250,25 @@
                     FontSize="20"
                     Text="Mật khẩu mới" />
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <PasswordBox
-                        x:Name="txtMKMoi"
-                        Grid.Column="1"
-                        Width="350"
-                        Height="35"
-                        Margin="5,0,0,0"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        VerticalContentAlignment="Center"
-                        materialDesign:HintAssist.Hint="Mật khẩu mới"
-                        FontSize="20" />
+                    <StackPanel>
+                        <PasswordBox
+                            x:Name="txtMKMoi"
+                            Width="350"
+                            Height="35"
+                            Margin="5,23,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            materialDesign:HintAssist.Hint="Mật khẩu mới"
+                            FontSize="20" />
+                        
+                        <!--In ra lỗi-->
+                        <TextBlock
+                            Margin="10,0,0,0"
+                            FontSize="15"
+                            Foreground="Red" />
+                    </StackPanel>
+
                     <Button
                         Margin="120,0,0,0"
                         Content="Đổi mật khẩu"
@@ -272,17 +289,26 @@
                     VerticalAlignment="Center"
                     FontSize="20"
                     Text="Nhập lại mật khẩu" />
-                <PasswordBox
-                    x:Name="txtXacNhanMKMoi"
-                    Grid.Column="1"
-                    Width="350"
-                    Height="35"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    materialDesign:HintAssist.Hint="Mật khẩu mới"
-                    FontSize="20" />
+                <StackPanel Grid.Column="1">
+                    <PasswordBox
+                        x:Name="txtXacNhanMKMoi"
+                        Grid.Column="1"
+                        Width="350"
+                        Height="35"
+                        Margin="5,23,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        materialDesign:HintAssist.Hint="Mật khẩu mới"
+                        FontSize="20" />
+                    
+                    <!--In ra lỗi-->
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="15"
+                        Foreground="Red" />
+                </StackPanel>
+
             </Grid>
         </Grid>
 
