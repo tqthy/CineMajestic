@@ -29,6 +29,7 @@ namespace CineMajestic.ViewModels.CustomerManagement
         {
             loadData();
             editCustomer();
+            exportExcel();
         }
 
         void loadData()
