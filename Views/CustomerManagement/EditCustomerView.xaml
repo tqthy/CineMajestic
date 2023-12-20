@@ -28,11 +28,11 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
@@ -60,22 +60,29 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="18"
                     Text="Họ và tên" />
-                <TextBox
-                    x:Name="txtHovaTen"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="18"
-                    Text="{Binding FullName}" />
+                <StackPanel Grid.Column="1">
+                    <TextBox
+                        x:Name="txtHovaTen"
+                        Grid.Column="1"
+                        Width="300"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        Text="{Binding FullName}" />
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        FontSize="9"
+                        Foreground="Red" />
+                </StackPanel>
+
             </Grid>
 
 
@@ -87,22 +94,29 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="18"
                     Text="Số điện thoại" />
-                <TextBox
-                    x:Name="txtSĐT"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="18"
-                    Text="{Binding PhoneNumber}" />
+                <StackPanel Grid.Column="1">
+                    <TextBox
+                        x:Name="txtSĐT"
+                        Grid.Column="1"
+                        Width="300"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        Text="{Binding PhoneNumber}" />
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        FontSize="9"
+                        Foreground="Red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Email  -->
@@ -113,22 +127,30 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="18"
                     Text="Email" />
-                <TextBox
-                    x:Name="txtEmail"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="18"
-                    Text="{Binding Email}" />
+                <StackPanel Grid.Column="1">
+                    <TextBox
+                        x:Name="txtEmail"
+                        Grid.Column="1"
+                        Width="300"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        Text="{Binding Email}" />
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        FontSize="9"
+                        Foreground="Red"
+                        />
+                </StackPanel>
+
             </Grid>
             <!--  Ngày đăng kí  -->
             <Grid Grid.Row="4">
@@ -138,22 +160,28 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="18"
                     Text="Ngày đăng kí" />
-                <DatePicker
-                    x:Name="txtNgayDangKi"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="18"
-                    SelectedDate="{Binding RegDate}" />
+                <StackPanel Grid.Column="1">
+                    <DatePicker
+                        x:Name="txtNgayDangKi"
+                        Grid.Column="1"
+                        Width="300"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        SelectedDate="{Binding RegDate}" />
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        FontSize="9"
+                        Foreground="Red" />
+                </StackPanel>
             </Grid>
 
             <!--  Điểm  -->
@@ -164,22 +192,28 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="18"
                     Text="Điểm" />
-                <TextBox
-                    x:Name="txtDiem"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="18"
-                    Text="{Binding Point}" />
+                <StackPanel Grid.Column="1">
+                    <TextBox
+                        x:Name="txtDiem"
+                        Grid.Column="1"
+                        Width="300"
+                        Height="30"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="18"
+                        Text="{Binding Point}" />
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        FontSize="9"
+                        Foreground="Red" />
+                </StackPanel>
             </Grid>
 
             <!--  Nút hủy và xác hoàn tất  -->
@@ -190,17 +224,17 @@
                     Margin="110,0,0,0"
                     materialDesign:ButtonAssist.CornerRadius="20"
                     Background="Red"
-                    FontSize="16"
                     Command="{Binding quitCommand}"
-                    Content="Hủy" />
+                    Content="Hủy"
+                    FontSize="16" />
                 <Button
                     Name="btnXacNhan"
                     Width="96"
                     Margin="330,0,10,0"
-                    FontSize="15"
                     materialDesign:ButtonAssist.CornerRadius="20"
                     Command="{Binding acceptCommand}"
-                    Content="Xác nhận" />
+                    Content="Xác nhận"
+                    FontSize="15" />
 
 
             </Grid>
