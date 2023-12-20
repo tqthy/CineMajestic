@@ -7,11 +7,11 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="AddVouvher"
-    Width="600"
-    Height="600"
+    Width="550"
+    Height="450"
     AllowsTransparency="True"
     Background="Transparent"
-    FontFamily="{DynamicResource MaterialDesignFont}"
+    FontFamily="Segoe UI"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -45,7 +45,6 @@
                 <TextBlock
                     Margin="20,0,0,0"
                     VerticalAlignment="Center"
-                    FontFamily="Arial"
                     FontSize="25"
                     FontWeight="Bold"
                     Text="Thêm voucher" />
@@ -65,17 +64,25 @@
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Tên voucher" />
-                <TextBox
-                    x:Name="txtTen"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15" 
-                    Text="{Binding Name}"/>
+                <StackPanel Grid.Column="1">
+                    <TextBox
+                        x:Name="txtTen"
+                        Width="300"
+                        Height="30"
+                        Margin="5,16,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15"
+                        Text="{Binding Name}" />
+
+                    <!--  Lỗi tại đây  -->
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="10"
+                        Foreground="Red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Thông tin voucher  -->
@@ -91,17 +98,25 @@
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Thông tin voucher" />
-                <TextBox
-                    x:Name="txtThongTin"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15" 
-                    Text="{Binding VoucherDetail}"/>
+                <StackPanel Grid.Column="1">
+                    <TextBox
+                        x:Name="txtThongTin"
+                        Grid.Column="1"
+                        Width="300"
+                        Height="30"
+                        Margin="5,16,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15"
+                        Text="{Binding VoucherDetail}" />
+                    <!--  Lỗi tại đây  -->
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="10"
+                        Foreground="Red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Loại voucher  -->
@@ -116,24 +131,30 @@
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
-                    Text="Loại voucher" />
-                <ComboBox
-                    x:Name="cbLoaiVC"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15"
-                    SelectedValue="{Binding Type}"
-                    SelectedValuePath="Content">
-                    <ComboBoxItem Content="Vip 1" />
-                    <ComboBoxItem Content="Vip 2" />
-                    <ComboBoxItem Content="Vip 3" />
+                    Text="Loại" />
+                <StackPanel Grid.Column="1">
+                    <ComboBox
+                        x:Name="cbLoaiVC"
+                        Width="300"
+                        Height="30"
+                        Margin="5,16,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15"
+                        SelectedValue="{Binding Type}"
+                        SelectedValuePath="Content">
+                        <ComboBoxItem Content="Vip 1" />
+                        <ComboBoxItem Content="Vip 2" />
+                        <ComboBoxItem Content="Vip 3" />
+                    </ComboBox>
+                    <!--  Lỗi tại đây  -->
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="10"
+                        Foreground="Red" />
+                </StackPanel>
 
-                </ComboBox>
             </Grid>
             <!--  Ngày bắt đầu dùng voucher  -->
             <Grid Grid.Row="4">
@@ -148,17 +169,24 @@
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Ngày bắt đầu" />
-                <DatePicker
-                    x:Name="txtNgayBD"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15" 
-                    SelectedDate="{Binding StartDate}"/>
+                <StackPanel Grid.Column="1">
+                    <DatePicker
+                        x:Name="txtNgayBD"
+                        Width="300"
+                        Height="30"
+                        Margin="5,16,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15"
+                        SelectedDate="{Binding StartDate}" />
+                    <!--  Lỗi tại đây  -->
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="10"
+                        Foreground="Red" />
+                </StackPanel>
+
             </Grid>
             <!--  Ngày bắt đầu dùng voucher  -->
             <Grid Grid.Row="5">
@@ -173,17 +201,23 @@
                     VerticalAlignment="Center"
                     FontSize="15"
                     Text="Ngày kết thúc" />
-                <DatePicker
-                    x:Name="txtNgayKT"
-                    Grid.Column="1"
-                    Width="300"
-                    Height="30"
-                    Margin="5,0,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    FontSize="15" 
-                    SelectedDate="{Binding FinDate}"/>
+                <StackPanel Grid.Column="1">
+                    <DatePicker
+                        x:Name="txtNgayKT"
+                        Width="300"
+                        Height="30"
+                        Margin="5,16,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        FontSize="15"
+                        SelectedDate="{Binding FinDate}" />
+                    <TextBlock
+                        Margin="10,0,0,0"
+                        FontSize="10"
+                        Foreground="Red" />
+                </StackPanel>
+
             </Grid>
 
             <!--  Nút hủy và xác hoàn tất  -->

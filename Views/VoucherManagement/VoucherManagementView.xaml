@@ -29,13 +29,12 @@
                 <TextBox
                     Width="300"
                     Height="30"
-                    Padding="0"
                     VerticalAlignment="Bottom"
                     materialDesign:HintAssist.Hint="Tìm kiếm"
                     AllowDrop="True"
                     BorderThickness="0,0,0,1"
                     FontFamily="Arial"
-                    FontSize="24"
+                    FontSize="20"
                     Foreground="#DD000000"
                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
                 <!--  Nút thêm  -->
@@ -44,34 +43,33 @@
                     VerticalAlignment="Bottom"
                     Orientation="Horizontal">
                     <Button
-                        Width="200"
+                        Width="158"
                         Height="35"
                         Padding="0"
                         HorizontalAlignment="Center"
-                        VerticalAlignment="Top"
+                        VerticalAlignment="Bottom"
                         materialDesign:ButtonAssist.CornerRadius="8"
                         Command="{Binding ShowWDVoucherCommand}"
                         FontFamily="arial"
-                        FontSize="24">
+                        FontSize="20">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon
-                                    Width="25"
-                                    Height="25"
-                                    Margin="0,0,0,0"
+                                    Width="20"
+                                    Height="20"
                                     VerticalAlignment="Center"
                                     Kind="PlusCircleOutline" />
-                                <TextBlock Margin="5,0,0,0" Text="Thêm voucher" />
+                                <TextBlock Margin="2,0,0,0" Text="Thêm voucher" />
                             </StackPanel>
                         </Button.Content>
                     </Button>
 
                     <!--  Nút xuất file exel  -->
                     <Button
-                        Width="auto"
-                        Height="40"
-                        Margin="220,0,0,0"
-                        VerticalAlignment="Bottom"
+                        Width="Auto"
+                        Height="35"
+                        Margin="280,0,0,0"
+                        VerticalAlignment="Top"
                         Command="{Binding ExportExcelCommand}"
                         FontFamily="Arial"
                         FontSize="15"
