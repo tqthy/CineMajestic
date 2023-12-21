@@ -231,12 +231,36 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         }
 
 
-       
-
-        //error nhập lại mật khẩu 
 
 
+        //error nhập mật khẩu 
+        private string password1Error;
+        public string Password1Error
+        {
+            get => password1Error;
+            set
+            {
+                password1Error= value;
+                OnPropertyChanged(nameof(Password1Error));
+            }
+        }
 
+
+        //error nhập lại mật khẩu
+        private string password2Error;
+        public string Password2Error
+        {
+            get => password2Error;
+            set
+            {
+                password2Error = value;
+                OnPropertyChanged(nameof(Password2Error));
+            }
+        }
+
+
+
+        private bool[] _canAccept=new bool[7];//phục vụ việc có cho nhấn button accept k
 
         public ICommand CancelCommand { get; set; }
         public ICommand acceptAddCommand { get; set; }//đồng ý thêm
@@ -246,7 +270,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         {
             this.wd = wd;
             CancelCommand = new ViewModelCommand(cancel);
-            acceptAddCommand = new ViewModelCommand(accpetAdd);
+            acceptAddCommand = new ViewModelCommand(acceptAdd,canAcceptAdd);
 
             Gender = "Nam";
             Role = "Quản lý";
@@ -259,16 +283,15 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         }
 
         //đồng ý thêm 
-        private void accpetAdd(object obj)
+        private void acceptAdd(object obj)
         {
-           
-            if (wd.txtMatKhau.Password != wd.txtNhapLaiMatKhau.Password)
+
+            if (!ValidatePassword1())
             {
-                MessageBox.Show("2 mật khẩu không trùng nhau");
                 return;
             }
+            if (!ValidatePassword2()) { return; }
 
-            //cách đẹp nhất là truy vấn bảng account rồi xét
 
             //add vào bảng Staff
             StaffDA staffDA = new StaffDA();
@@ -283,7 +306,10 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 
         }
 
-
+        private bool canAcceptAdd(object obj)
+        {
+            return _canAccept[0] && _canAccept[1] && _canAccept[2] && _canAccept[3] && _canAccept[4] && _canAccept[5] && _canAccept[6];
+        }
 
         //Các hàm Validate
         private void ValidateFullName()
@@ -291,10 +317,12 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (string.IsNullOrWhiteSpace(FullName))
             {
                 FullNameError = "Họ và tên không được để trống!";
+                _canAccept[0] = false;
             }
             else
             {
                 FullNameError = "";
+                _canAccept[0] = true;
             }
         }
 
@@ -304,10 +332,12 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (Birth>DateTime.UtcNow)
             {
                 BirthError = "Ngày sinh không hợp lệ!";
+                _canAccept[1] = false;
             }
             else
             {
                 BirthError = "";
+                _canAccept[1] = true;
             }
         }
 
@@ -316,14 +346,17 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (string.IsNullOrWhiteSpace(Email))
             {
                 EmailError = "Email không được để trống!";
+                _canAccept[2]=false;
             }
             else if (!Email.Contains("@"))
             {
                 EmailError = "Email không hợp lệ!";
+                _canAccept[2] = false;
             }
             else
             {
                 EmailError = "";
+                _canAccept[2] = true;
             }
         }
 
@@ -332,14 +365,17 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (string.IsNullOrWhiteSpace(PhoneNumber))
             {
                 PhoneNumberError = "SĐT không được để trống!";
+                _canAccept[3]=false;
             }
             else if (!PhoneNumber.All(char.IsDigit))
             {
                 PhoneNumberError = "Số điện thoại chỉ được chứa chữ số!";
+                _canAccept[3] = false;
             }
             else
             {
                 PhoneNumberError = "";
+                _canAccept[3] = true;
             }
         }
 
@@ -349,10 +385,12 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (NgayVL < Birth)
             {
                 NgayVLError = "Ngày đăng ký phải lớn hơn ngày sinh!";
+                _canAccept[4]=false;
             }
             else
             {
                 NgayVLError = "";
+                _canAccept[4] = true;
             }
         }
 
@@ -362,18 +400,22 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (string.IsNullOrWhiteSpace(Salary))
             {
                 SalaryError = "Lương không hợp lệ!";
+                _canAccept[5]=false;
             }
             else if (!Salary.All(char.IsDigit))
             {
                 SalaryError = "Lương không hợp lệ!";
+                _canAccept[5] = false;
             }
             else if (int.Parse(Salary) < 0)
             {
                 SalaryError = "Lương không hợp lệ!";
+                _canAccept[5] = false;
             }
             else
             {
                 SalaryError = "";
+                _canAccept[5] = true;
             }
         }
 
@@ -383,37 +425,73 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (string.IsNullOrWhiteSpace(Username))
             {
                 UsernameError = "Username không được để trống!";
+                _canAccept[6]=false;
             }
             else if(Username.Contains(" "))
             {
                 UsernameError = "Username không hợp lệ!";
+                _canAccept[6] = false;
             }
             else if (Username.Length < 6)
             {
                 UsernameError = "Username phải lớn hơn 6 kí tự!";
+                _canAccept[6] = false;
             }
             else if (!MotSoPTBoTro.uniqueUsername(Username))
             {
                 UsernameError = "Username đã tồn tại!";
+                _canAccept[6] = false;
             }
             else
             {
                 UsernameError = "";
+                _canAccept[6] = true;
             }
         }
 
 
-
-        //mật khẩu
-        private void ValidatePassword1()
+        //2 cái validate password này chỉ báo lỗi pass word rỗng th
+        private bool ValidatePassword1()
         {
-
+            if (string.IsNullOrWhiteSpace(wd.txtMatKhau.Password))
+            {
+                Password1Error = "Không được để trống!";
+                return false;
+            }
+            else if (wd.txtMatKhau.Password.Length < 5)
+            {
+                Password1Error = "Mật khẩu phải lớn hơn 5 kí tự!";
+                return false;
+            }
+            else if(wd.txtMatKhau.Password.Contains(" "))
+            {
+                Password1Error = "Mật khẩu không được chứa khoảng trắng!";
+                return false;
+            }
+            else
+            {
+                Password1Error = "";
+                return true;
+            }
         }
 
-        //nhập lại mật khẩu
-        private void ValidatePassword2()
+        private bool ValidatePassword2()
         {
-
+            if (string.IsNullOrWhiteSpace(wd.txtNhapLaiMatKhau.Password))
+            {
+                Password2Error = "Không được để trống!";
+                return false;
+            }
+            else if (wd.txtMatKhau.Password != wd.txtNhapLaiMatKhau.Password)
+            {
+                Password2Error = "Mật khẩu không khớp,vui lòng nhập lại!";
+                return false;
+            }
+            else
+            {
+                Password2Error = "";
+                return true;
+            }
         }
     }
 }

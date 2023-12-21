@@ -93,7 +93,7 @@
                         Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="9"
+                        FontSize="8.5"
                         Foreground="red"
                         Text="{Binding FullNameError}" />
                 </StackPanel>
@@ -131,7 +131,7 @@
                     </ComboBox>
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="9"
+                        FontSize="8.5"
                         Foreground="red" />
                 </StackPanel>
 
@@ -164,7 +164,7 @@
                         SelectedDate="{Binding Birth, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="9"
+                        FontSize="8.5"
                         Foreground="red"
                         Text="{Binding BirthError}" />
                 </StackPanel>
@@ -198,7 +198,7 @@
                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="9"
+                        FontSize="8.5"
                         Foreground="red"
                         Text="{Binding EmailError}" />
                 </StackPanel>
@@ -231,7 +231,7 @@
                         Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="9"
+                        FontSize="8.5"
                         Foreground="red"
                         Text="{Binding PhoneNumberError}" />
                 </StackPanel>
@@ -268,7 +268,7 @@
                     </ComboBox>
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="9"
+                        FontSize="8.5"
                         Foreground="red" />
                 </StackPanel>
 
@@ -301,7 +301,7 @@
                         SelectedDate="{Binding NgayVL, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="9"
+                        FontSize="8.5"
                         Foreground="red"
                         Text="{Binding NgayVLError}" />
                 </StackPanel>
@@ -334,7 +334,7 @@
                         Text="{Binding Salary, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="9"
+                        FontSize="8.5"
                         Foreground="red"
                         Text="{Binding SalaryError}" />
                 </StackPanel>
@@ -379,7 +379,7 @@
                         Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="9"
+                        FontSize="8.5"
                         Foreground="red"
                         Text="{Binding UsernameError}" />
                 </StackPanel>
@@ -412,8 +412,9 @@
                         FontSize="15" />
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="9"
-                        Foreground="red" />
+                        FontSize="8.5"
+                        Foreground="red" 
+                        Text="{Binding Password1Error}"/>
                 </StackPanel>
 
             </Grid>
@@ -444,8 +445,9 @@
                         FontSize="15" />
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="9"
-                        Foreground="red" />
+                        FontSize="8.5"
+                        Foreground="red" 
+                        Text="{Binding Password2Error}"/>
                 </StackPanel>
 
             </Grid>
