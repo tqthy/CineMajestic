@@ -7,10 +7,10 @@
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Width="600"
-    Height="625"
+    Height="420"
     AllowsTransparency="True"
     Background="Transparent"
-    FontFamily="{DynamicResource MaterialDesignFont}"
+    FontFamily="Segoe UI"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -27,16 +27,16 @@
         <Grid>
             <!--  Chia layout  -->
             <Grid.RowDefinitions>
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
                 <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition Height="90" />
             </Grid.RowDefinitions>
             <!--  Tiêu đề  -->
             <Border
@@ -62,7 +62,7 @@
 
                 <TextBlock
                     Height="auto"
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
@@ -73,7 +73,7 @@
                         Grid.Column="1"
                         Width="350"
                         Height="30"
-                        Margin="5,15,0,0"
+                        Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
@@ -94,7 +94,7 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
@@ -106,7 +106,7 @@
                         Grid.Column="1"
                         Width="350"
                         Height="30"
-                        Margin="5,15,0,0"
+                        Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
@@ -133,7 +133,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
@@ -145,10 +145,10 @@
                         Grid.Column="1"
                         Width="350"
                         Height="30"
-                        Margin="0,15,90,0"
-                        FontSize="15"
+                        Margin="5,0,90,0"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
+                        FontSize="15"
                         SelectedDate="{Binding Birth}" />
                     <TextBlock
                         Margin="10,0,0,0"
@@ -166,7 +166,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
@@ -176,7 +176,7 @@
                         x:Name="txtEmail"
                         Width="350"
                         Height="30"
-                        Margin="5,15,0,0"
+                        Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
@@ -198,7 +198,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
@@ -209,7 +209,7 @@
                         Grid.Column="1"
                         Width="350"
                         Height="30"
-                        Margin="5,15,0,0"
+                        Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
@@ -231,7 +231,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
@@ -242,7 +242,7 @@
                         Grid.Column="1"
                         Width="350"
                         Height="30"
-                        Margin="5,15,0,0"
+                        Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
@@ -254,7 +254,7 @@
                     </ComboBox>
                     <TextBlock
                         Margin="10,0,0,0"
-                        FontSize="8.5"
+                        FontSize="9"
                         Foreground="red" />
                 </StackPanel>
 
@@ -268,7 +268,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
@@ -279,10 +279,10 @@
                         Grid.Column="1"
                         Width="350"
                         Height="30"
-                        FontSize="15"
-                        Margin="0,15,90,0"
+                        Margin="5,0,90,0"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
+                        FontSize="15"
                         SelectedDate="{Binding NgayVL}" />
                     <TextBlock
                         Margin="10,0,0,0"
@@ -299,7 +299,7 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock
-                    Margin="0,0,5,0"
+                    Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="15"
@@ -309,7 +309,7 @@
                         x:Name="txtLuong"
                         Width="350"
                         Height="30"
-                        Margin="5,15,0,0"
+                        Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
@@ -318,7 +318,7 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="9"
-                        Foreground="red"/>
+                        Foreground="red" />
                 </StackPanel>
 
 

@@ -10,7 +10,7 @@
     Height="300"
     AllowsTransparency="True"
     Background="Transparent"
-    FontFamily="{materialDesign:MaterialDesignFont}"
+    FontFamily="Segoe UI"
     FontSize="18"
     ResizeMode="NoResize"
     TextElement.FontSize="10"
@@ -45,7 +45,6 @@
                         Grid.Column="0"
                         Margin="10,0,0,0"
                         VerticalAlignment="Center"
-                        FontFamily="Candara"
                         FontSize="20"
                         FontWeight="SemiBold"
                         Foreground="#3F2305"
@@ -61,7 +60,6 @@
                         Command="{Binding exitCommand}"
                         Content="X"
                         Cursor="Hand"
-                        FontFamily="Montserrat"
                         FontSize="12"
                         Foreground="#fffaf5">
                         <Button.Style>
@@ -107,9 +105,9 @@
                     Margin="0,0,0,120"
                     BorderBrush="Black"
                     BorderThickness="2"
-                    CornerRadius="70" >
+                    CornerRadius="70">
                     <Border.Background>
-                        <ImageBrush ImageSource="pack://application:,,,/Images/StaffManagement/Default.jpg"></ImageBrush>
+                        <ImageBrush ImageSource="pack://application:,,,/Images/StaffManagement/Default.jpg" />
                     </Border.Background>
                 </Border>
                 <TextBox
@@ -121,8 +119,8 @@
                     FontSize="17"
                     FontWeight="Bold"
                     IsReadOnly="True"
-                    Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                    Text="{Binding Id}"/>
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Text="{Binding Id}" />
 
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
