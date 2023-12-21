@@ -14,32 +14,37 @@ namespace CineMajestic.ViewModels.ForgotPassword
 
         public static void sendMail(string username,string mailReceive)
         {
-            string fromMail = "UITIT008CineMajestic@gmail.com";
-            string fromPassWord = "ribrkocvhzhpuima";
-
-            MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress(fromMail);
-            mailMessage.Subject = "Khôi phục mật khẩu";
-            mailMessage.To.Add(new MailAddress(mailReceive));
-
-
-            string noidung = "Mật khẩu mới của bạn là: ";
-            string passwordNew = RandomPasswordNew();
-            mailMessage.Body = "<html><body>" + noidung + passwordNew + "</body></html>";
-            mailMessage.IsBodyHtml = true;
-
-            var smtpClient = new SmtpClient("smtp.gmail.com")
+            try
             {
-                Port = 587,
-                Credentials = new NetworkCredential(fromMail, fromPassWord),
-                EnableSsl = true
-            };
-            smtpClient.Send(mailMessage);
+                string fromMail = "UITIT008CineMajestic@gmail.com";
+                string fromPassWord = "ribrkocvhzhpuima";
+
+                MailMessage mailMessage = new MailMessage();
+                mailMessage.From = new MailAddress(fromMail);
+                mailMessage.Subject = "Khôi phục mật khẩu";
+                mailMessage.To.Add(new MailAddress(mailReceive));
 
 
-            //sửa lại password trong bảng account theo username
-            UserDA userDA = new UserDA();
-            userDA.changePassword(username, passwordNew);
+                string noidung = "Mật khẩu mới của bạn là: ";
+                string passwordNew = RandomPasswordNew();
+                mailMessage.Body = "<html><body>" + noidung + passwordNew + "</body></html>";
+                mailMessage.IsBodyHtml = true;
+
+                var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential(fromMail, fromPassWord),
+                    EnableSsl = true
+                };
+                smtpClient.Send(mailMessage);
+
+
+                //sửa lại password trong bảng account theo username
+                //nhớ sau này làm xong cái  mã hóa thì phải ép từ đây
+                UserDA userDA = new UserDA();
+                userDA.changePassword(username, passwordNew);
+            }
+            catch{ }
         }
 
 

@@ -1,4 +1,5 @@
-﻿using CineMajestic.Views.Password;
+﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Views.Password;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ using System.Windows.Input;
 
 namespace CineMajestic.ViewModels.ForgotPassword
 {
-    public class ForgotPasswordViewModel:MainBaseViewModel
+    public class ForgotPasswordViewModel : MainBaseViewModel
     {
-        public string Username {  get; set; }
-        public string Email {  get; set; }
+        public string Username { get; set; } = "";
+        public string Email { get; set; } = "";
 
         private string notification;
         public string Notification
@@ -20,7 +21,7 @@ namespace CineMajestic.ViewModels.ForgotPassword
             get => notification;
             set
             {
-                if(notification != value)
+                if (notification != value)
                 {
                     notification = value;
                     OnPropertyChanged(nameof(Notification));
@@ -30,22 +31,53 @@ namespace CineMajestic.ViewModels.ForgotPassword
 
         private ForgetPasswordView wd;
         public ICommand AcceptCommand { get; set; }
-        public ICommand backCommand {  get; set; }
+        public ICommand backCommand { get; set; }
         public ForgotPasswordViewModel(ForgetPasswordView wd)
         {
             this.wd = wd;
-            AcceptCommand = new ViewModelCommand(accept);
+            AcceptCommand = new ViewModelCommand(accept,canexecuteAccept);
             backCommand = new ViewModelCommand(back);
         }
         private void accept(object obj)
         {
+            Notification = "";
+            if (!notify())
+            {
+                Notification = "Tên tài khoản hoặc Email không tồn tại!";
+                return;
+            }
+
             MotSoPTBoTro.sendMail(Username, Email);//sau này nhớ xử lý lỗi tài khoản có tồn tại k
             Notification = "Mật khẩu đã được gửi tới email liên kết!";
+        }
+
+        private bool canexecuteAccept(object obj)
+        {
+            if (Username == "" || Email == "")
+            {
+                return false;
+            }
+            return true; 
         }
 
         private void back(object obj)
         {
             wd.Close();
+        }
+
+
+        private bool notify()
+        {
+            UserDA userDA = new UserDA();
+            List<Tuple<string, string>> result = userDA.selectUserAndMail();
+            foreach (var item in result)
+            {
+                if (item.Item1 == Username && item.Item2 == Email)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -99,5 +99,38 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+        //phục vụ thông báo username hay mail k hợp lệ ở phần forgotpass
+        public List<Tuple<string, string>> selectUserAndMail()
+        {
+            List<Tuple<string, string>> result = new List<Tuple<string, string>>();
+
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string select =
+                    "select Username,Email\n" 
+                    +
+                    "from Accounts\n"
+                    +
+                    "join Staff on Accounts.Staff_Id=Staff.Id";
+                using(SqlCommand command = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while(reader.Read())
+                        {
+                            string Username = reader.GetString(reader.GetOrdinal("Username"));
+                            string Email = reader.GetString(reader.GetOrdinal("Email"));
+                            result.Add(Tuple.Create(Username, Email));
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
     }
 }
