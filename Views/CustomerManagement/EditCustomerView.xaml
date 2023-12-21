@@ -45,7 +45,7 @@
                 <TextBlock
                     Margin="20,0,0,0"
                     VerticalAlignment="Center"
-                    FontFamily="Arial"
+                    FontFamily="Segoe UI"
                     FontSize="25"
                     FontWeight="Bold"
                     Text="Sửa thông tin khách hàng" />
@@ -63,6 +63,7 @@
                     Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
+                    FontFamily="Segoe UI"
                     FontSize="18"
                     Text="Họ và tên" />
                 <StackPanel Grid.Column="1">
@@ -75,13 +76,14 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
+                        FontFamily="Segoe UI"
                         FontSize="18"
-                        Text="{Binding FullName,UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="5,0,0,0"
                         FontSize="8.5"
-                        Foreground="Red" 
-                        Text="{Binding FullNameError}"/>
+                        Foreground="Red"
+                        Text="{Binding FullNameError}" />
                 </StackPanel>
 
             </Grid>
@@ -98,6 +100,7 @@
                     Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
+                    FontFamily="Segoe UI"
                     FontSize="18"
                     Text="Số điện thoại" />
                 <StackPanel Grid.Column="1">
@@ -110,13 +113,14 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
+                        FontFamily="Segoe UI"
                         FontSize="18"
-                        Text="{Binding PhoneNumber,UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="5,0,0,0"
                         FontSize="8.5"
-                        Foreground="Red" 
-                        Text="{Binding PhoneNumberError}"/>
+                        Foreground="Red"
+                        Text="{Binding PhoneNumberError}" />
                 </StackPanel>
 
             </Grid>
@@ -132,6 +136,7 @@
                     Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
+                    FontFamily="Segoe UI"
                     FontSize="18"
                     Text="Email" />
                 <StackPanel Grid.Column="1">
@@ -144,13 +149,14 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
+                        FontFamily="Segoe UI"
                         FontSize="18"
-                        Text="{Binding Email,UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="5,0,0,0"
                         FontSize="8.5"
                         Foreground="Red"
-                        Text="{Binding EmailError}"/>
+                        Text="{Binding EmailError}" />
                 </StackPanel>
 
             </Grid>
@@ -165,6 +171,7 @@
                     Margin="0,0,5,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
+                    FontFamily="Segoe UI"
                     FontSize="18"
                     Text="Ngày đăng kí" />
                 <StackPanel Grid.Column="1">
@@ -177,13 +184,14 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
+                        FontFamily="Segoe UI"
                         FontSize="18"
-                        SelectedDate="{Binding RegDate,UpdateSourceTrigger=PropertyChanged}" />
+                        SelectedDate="{Binding RegDate, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="5,0,0,0"
                         FontSize="8.5"
-                        Foreground="Red" 
-                        Text="{Binding RegDateError}"/>
+                        Foreground="Red"
+                        Text="{Binding RegDateError}" />
                 </StackPanel>
             </Grid>
 
@@ -210,13 +218,15 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
+                        FontFamily="Segoe UI"
                         FontSize="18"
-                        Text="{Binding Point,UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding Point, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="5,0,0,0"
+                        FontFamily="Segoe UI"
                         FontSize="8.5"
-                        Foreground="Red" 
-                        Text="{Binding PointError}"/>
+                        Foreground="Red"
+                        Text="{Binding PointError}" />
                 </StackPanel>
             </Grid>
 

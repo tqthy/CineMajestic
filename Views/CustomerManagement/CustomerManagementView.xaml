@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="648"
     d:DesignWidth="1000"
-    FontFamily="{DynamicResource MaterialDesignFont}"
+    FontFamily="Segoe UI"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -35,7 +35,6 @@
                 materialDesign:HintAssist.Hint="Tìm kiếm"
                 AllowDrop="True"
                 BorderThickness="0,0,0,1"
-                FontFamily="Arial"
                 FontSize="20"
                 Foreground="#DD000000"
                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
@@ -65,7 +64,7 @@
                 Margin="160,0,0,0"
                 VerticalAlignment="Bottom"
                 materialDesign:ButtonAssist.CornerRadius="10"
-                FontFamily="Arial"
+                FontFamily="Segoe UI"
                 FontSize="15"
                 Foreground="AntiqueWhite"
                 Command="{Binding ExportExcelCommand}">
