@@ -8,12 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="648"
     d:DesignWidth="1000"
-    FontFamily="{DynamicResource MaterialDesignFont}"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
+    FontFamily="Segoe UI"
     mc:Ignorable="d">
     <Grid Background="White">
         <Grid.RowDefinitions>
