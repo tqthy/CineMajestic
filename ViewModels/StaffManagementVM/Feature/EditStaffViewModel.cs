@@ -31,22 +31,13 @@ namespace CineMajestic.ViewModels.StaffManagementVM
     }
 
 
-    public class EditStaffViewModel
+    public class EditStaffViewModel :MainBaseViewModel
     {
         private StaffEditView wd;//phục vụ button hủy
         public ICommand quitCommand { get; set; }//hủy k edit nữa
         public ICommand acceptCommand { get; set; }//xác nhận edit
 
         public StaffDTO staffDTO { get; set; }//phục vụ việc hiển thị staff hiện tại khi nhấn vào edit
-        public string FullName {  get; set; }
-        public string Gender { get; set; }
-        public DateTime? Birth { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Role { get; set; }
-        public DateTime? NgayVL { get; set; }
-        public int Salary { get; set; }
-
 
         public EditStaffViewModel(StaffEditView wd)
         {
@@ -70,7 +61,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             string[]ngayvl=staffDTO.NgayVaoLam.Split("/");
             NgayVL=new DateTime(int.Parse(ngayvl[2]), int.Parse(ngayvl[1]), int.Parse(ngayvl[0]));
 
-            Salary=staffDTO.Salary;
+            Salary=staffDTO.Salary.ToString();
         }
         private void quit(object obj)
         {
@@ -80,9 +71,234 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         private void accept(object obj)
         {
             StaffDA staffDA = new StaffDA();
-            staffDA.updateStaff(new StaffDTO(staffDTO.Id, FullName, Birth.Value.ToString("yyyy-MM-dd"), Gender, Email, PhoneNumber, Salary, Role, NgayVL.Value.ToString("yyyy-MM-dd")));
+            staffDA.updateStaff(new StaffDTO(staffDTO.Id, FullName, Birth.Value.ToString("yyyy-MM-dd"), Gender, Email, PhoneNumber, int.Parse(Salary), Role, NgayVL.Value.ToString("yyyy-MM-dd")));
             MessageBox.Show("Sửa nhân viên thành công");
             wd.Close();
+        }
+
+        //Họ và tên
+        private string fullName;
+        public string FullName
+        {
+            get => fullName;
+            set
+            {
+                fullName = value;
+                ValidateFullName();
+            }
+        }
+
+        private string fullNameError;
+        public string FullNameError
+        {
+            get => fullNameError;
+            set
+            {
+                fullNameError = value;
+                OnPropertyChanged(nameof(FullNameError));
+            }
+        }
+
+        //Giới tính
+        public string Gender { get; set; }
+
+        ////Ngày sinh(làm kiểu bắt lỗi cho ngày nhỏ hơn ngày hiện tại)
+        private DateTime? birth;
+        public DateTime? Birth
+        {
+            get => birth;
+            set
+            {
+                birth = value;
+                ValidateBirth();
+            }
+        }
+
+        private string birthError;
+        public string BirthError
+        {
+            get => birthError;
+            set
+            {
+                birthError = value;
+                OnPropertyChanged(nameof(BirthError));
+            }
+        }
+
+        //Email
+        private string email;
+        public string Email
+        {
+            get => email;
+            set
+            {
+                email = value;
+                ValidateEmail();
+            }
+        }
+        private string emailError;
+        public string EmailError
+        {
+            get => emailError;
+            set
+            {
+                emailError = value;
+                OnPropertyChanged(nameof(EmailError));
+            }
+        }
+
+        //SĐT
+        private string phoneNumber;
+        public string PhoneNumber
+        {
+            get => phoneNumber;
+            set
+            {
+                phoneNumber = value;
+                ValidatePhoneNumber();
+            }
+        }
+
+        private string phoneNumberError;
+        public string PhoneNumberError
+        {
+            get => phoneNumberError;
+            set
+            {
+                phoneNumberError = value;
+                OnPropertyChanged(nameof(PhoneNumberError));
+            }
+        }
+        public string Role { get; set; }
+
+
+        //ngày vào làm
+        private DateTime? ngayVL;
+        public DateTime? NgayVL
+        {
+            get => ngayVL;
+            set
+            {
+                ngayVL = value;
+                ValidateNgayVL();
+            }
+        }
+
+        private string ngayVLError;
+        public string NgayVLError
+        {
+            get => ngayVLError;
+            set
+            {
+                ngayVLError = value;
+                OnPropertyChanged(nameof(NgayVLError));
+            }
+        }
+
+        //Lương
+        private string salary;
+        public string Salary
+        {
+            get => salary;
+            set
+            {
+                salary = value;
+                ValidateSalary();
+            }
+        }
+        private string salaryError;
+        public string SalaryError
+        {
+            get => salaryError;
+            set
+            {
+                salaryError = value;
+                OnPropertyChanged(nameof(SalaryError));
+            }
+        }
+
+        //Các hàm Validate
+        private void ValidateFullName()
+        {
+            if (string.IsNullOrWhiteSpace(FullName))
+            {
+                FullNameError = "Họ và tên không được để trống!";
+            }
+            else
+            {
+                FullNameError = "";
+            }
+        }
+        private void ValidateBirth()
+        {
+            if (Birth > DateTime.UtcNow)
+            {
+                BirthError = "Ngày sinh không hợp lệ!";
+            }
+            else
+            {
+                BirthError = "";
+            }
+        }
+        private void ValidateEmail()
+        {
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+                EmailError = "Email không được để trống!";
+            }
+            else if (!Email.Contains("@"))
+            {
+                EmailError = "Email không hợp lệ!";
+            }
+            else
+            {
+                EmailError = "";
+            }
+        }
+        private void ValidatePhoneNumber()
+        {
+            if (string.IsNullOrWhiteSpace(PhoneNumber))
+            {
+                PhoneNumberError = "SĐT không được để trống!";
+            }
+            else if (!PhoneNumber.All(char.IsDigit))
+            {
+                PhoneNumberError = "Số điện thoại chỉ được chứa chữ số!";
+            }
+            else
+            {
+                PhoneNumberError = "";
+            }
+        }
+        private void ValidateNgayVL()
+        {
+            if (NgayVL < Birth)
+            {
+                NgayVLError = "Ngày vào làm phải lớn hơn ngày sinh!";
+            }
+            else
+            {
+                NgayVLError = "";
+            }
+        }
+        private void ValidateSalary()
+        {
+            if (string.IsNullOrWhiteSpace(Salary))
+            {
+                SalaryError = "Lương không được để trống!";
+            }
+            else if (!Salary.All(char.IsDigit))
+            {
+                SalaryError = "Lương không hợp lệ!";
+            }
+            else if (int.Parse(Salary) < 0)
+            {
+                SalaryError = "Lương không hợp lệ!";
+            }
+            else
+            {
+                SalaryError = "";
+            }
         }
     }
 }
