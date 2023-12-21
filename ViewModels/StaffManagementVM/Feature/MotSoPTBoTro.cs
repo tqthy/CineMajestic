@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.Models.DataAccessLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,21 @@ namespace CineMajestic.ViewModels.StaffManagementVM
                 password[i] = chars[random.Next(chars.Length)];
             }
             return new string(password);
+        }
+
+
+        //phục vụ ValidateUsername ở add staff
+        public static bool uniqueUsername(string username)
+        {
+            UserDA userDA = new UserDA();
+            foreach(var item in userDA.selectUsername())
+            {
+                if (username == item)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

@@ -261,34 +261,13 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         //đồng ý thêm 
         private void accpetAdd(object obj)
         {
-            ////sau này nhớ xử lý lỗi người dùng k nhập gì,nhập sai
-            if (Gender == null)
-            {
-                MessageBox.Show("Vui lòng chọn giới tính");
-                return;
-            }
-            if (Role == null)
-            {
-                MessageBox.Show("Vui lòng chọn chức vụ");
-                return;
-            }
-            if (Birth == null)
-            {
-                MessageBox.Show("Vui lòng chọn ngày sinh");
-                return;
-            }
-            if (NgayVL == null)
-            {
-                MessageBox.Show("Vui lòng chọn ngày vào làm");
-                return;
-            }
+           
             if (wd.txtMatKhau.Password != wd.txtNhapLaiMatKhau.Password)
             {
                 MessageBox.Show("2 mật khẩu không trùng nhau");
                 return;
             }
 
-            //nhớ xử lý ràng buộc unique account rồi mới add staff
             //cách đẹp nhất là truy vấn bảng account rồi xét
 
             //add vào bảng Staff
@@ -411,7 +390,11 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             }
             else if (Username.Length < 6)
             {
-                UsernameError = "Username phải lớn hơn 5 kí tự!";
+                UsernameError = "Username phải lớn hơn 6 kí tự!";
+            }
+            else if (!MotSoPTBoTro.uniqueUsername(Username))
+            {
+                UsernameError = "Username đã tồn tại!";
             }
             else
             {

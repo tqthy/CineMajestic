@@ -122,5 +122,33 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+        //truy vấn lấy danh sách username của bảng account
+        public List<string> selectUsername()
+        {
+            List<string> result = new List<string>();
+            using(SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string truyvan =
+                    "select Username\n"
+                    +
+                    "from Accounts";
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string username = reader.GetString(reader.GetOrdinal("Username"));
+                            result.Add(username);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
     }
 }
