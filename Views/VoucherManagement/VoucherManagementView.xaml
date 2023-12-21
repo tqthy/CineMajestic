@@ -118,7 +118,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Thông tin">
+                            <!--<GridViewColumn Width="Auto" Header="Thông tin">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -127,7 +127,7 @@
                                             Text="{Binding VoucherDetail}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                            </GridViewColumn>-->
 
                             <GridViewColumn Width="90" Header="Loại">
                                 <GridViewColumn.CellTemplate>
