@@ -23,7 +23,7 @@ namespace CineMajestic.Views.Password
         public ForgetPasswordView()
         {
             InitializeComponent();
-            ForgotPasswordViewModel forgotPasswordViewModel = new ForgotPasswordViewModel();
+            ForgotPasswordViewModel forgotPasswordViewModel = new ForgotPasswordViewModel(this);
             this.DataContext= forgotPasswordViewModel;
         }
     }
