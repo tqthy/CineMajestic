@@ -105,9 +105,11 @@
                 <TextBlock
                     Grid.Column="1"
                     HorizontalAlignment="Left"
+                    Margin="5,0,0,0"
                     VerticalAlignment="Center"
                     FontSize="20"
-                    Text="Bạn được giảm giá 10% "
+                    FontWeight="DemiBold"
+                    Text="{Binding VoucherDetail}"
                     TextWrapping="WrapWithOverflow" />
             </Grid>
 

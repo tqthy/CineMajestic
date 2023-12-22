@@ -23,4 +23,26 @@ namespace CineMajestic.ViewModels.VoucherManagement
             voucherDetailView.ShowDialog();
         }
     }
+    public class VoucherDetailViewModel : MainBaseViewModel
+    {
+        private VoucherDetailView wd;
+
+        //Nút thoát
+        public ICommand exitCommand { get; set; }
+
+        public string VoucherDetail {  get; set; }
+        
+
+        public VoucherDetailViewModel(VoucherDTO voucher,VoucherDetailView wd)
+        {
+            this.wd = wd;
+            exitCommand = new ViewModelCommand(exit);
+            VoucherDetail = voucher.VoucherDetail;
+        }
+
+        private void exit(object obj)
+        {
+            wd.Close();
+        }
+    }
 }

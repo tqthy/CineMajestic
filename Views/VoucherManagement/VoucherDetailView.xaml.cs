@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels.VoucherManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace CineMajestic.Views.VoucherManagement
         public VoucherDetailView(VoucherDTO voucherDTO)
         {
             InitializeComponent();
+            VoucherDetailViewModel model = new VoucherDetailViewModel(voucherDTO,this);
+            this.DataContext = model;
         }
     }
 }
