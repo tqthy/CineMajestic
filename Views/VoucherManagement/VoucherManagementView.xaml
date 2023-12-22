@@ -92,16 +92,20 @@
 
         <!--  Danh sách voucher  -->
         <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*" />
+                <RowDefinition Height="0.5*" />
+            </Grid.RowDefinitions>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="lvVoucher" ItemsSource="{Binding FilterDSVC}">
-                    
+
                     <!--  Event trigger phục vụ show VoucherDetail  -->
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding DataContext.VoucherDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding ElementName=lvVoucher, Path=SelectedItem}" />
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
-                    
+
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="Auto" Header="Mã voucher">
@@ -229,6 +233,16 @@
                     </ListView.View>
                 </ListView>
             </ScrollViewer>
+
+            <!--  textblock thành công  -->
+            <TextBlock
+                Grid.Row="1"
+                Margin="0,0,70,0"
+                HorizontalAlignment="Right"
+                FontSize="17"
+                FontWeight="DemiBold"
+                Foreground="Brown"
+                Text="Thành công" />
         </Grid>
 
     </Grid>
