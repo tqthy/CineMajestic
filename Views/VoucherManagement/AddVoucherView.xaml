@@ -74,13 +74,14 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="15"
-                        Text="{Binding Name}" />
+                        Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
 
                     <!--  Lỗi tại đây  -->
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="10"
-                        Foreground="Red" />
+                        Foreground="Red"
+                        Text="{Binding NameError}" />
                 </StackPanel>
 
             </Grid>
@@ -109,12 +110,13 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="15"
-                        Text="{Binding VoucherDetail}" />
+                        Text="{Binding VoucherDetail, UpdateSourceTrigger=PropertyChanged}" />
                     <!--  Lỗi tại đây  -->
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="10"
-                        Foreground="Red" />
+                        Foreground="Red"
+                        Text="{Binding VoucherDetailError}" />
                 </StackPanel>
 
             </Grid>
@@ -179,12 +181,13 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="15"
-                        SelectedDate="{Binding StartDate}" />
+                        SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" />
                     <!--  Lỗi tại đây  -->
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="10"
-                        Foreground="Red" />
+                        Foreground="Red"
+                        Text="{Binding StartDateError}" />
                 </StackPanel>
 
             </Grid>
@@ -211,11 +214,12 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="15"
-                        SelectedDate="{Binding FinDate}" />
+                        SelectedDate="{Binding FinDate, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="10"
-                        Foreground="Red" />
+                        Foreground="Red"
+                        Text="{Binding FinDateError}" />
                 </StackPanel>
 
             </Grid>
