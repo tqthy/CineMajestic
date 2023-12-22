@@ -52,7 +52,11 @@
                     Margin="0,30,0,0"
                     BorderBrush="Black"
                     BorderThickness="2"
-                    CornerRadius="70" />
+                    CornerRadius="70" >
+                    <Border.Background>
+                        <ImageBrush ImageSource="{Binding ImageSource}"></ImageBrush>
+                    </Border.Background>
+                </Border>
                 <Button
                     Grid.Row="1"
                     Width="120"
@@ -84,7 +88,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Text="{Binding FullName}"/>
                     <TextBox
                         Grid.Column="1"
                         Width="300"
@@ -94,7 +99,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Text="{Binding Gender}"/>
                 </Grid>
 
                 <!--  Ngày sinh và số điện thoại  -->
@@ -111,7 +117,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Text="{Binding Birth}"/>
                     <TextBox
                         Grid.Column="1"
                         Width="300"
@@ -121,7 +128,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Text="{Binding PhoneNumber}"/>
                 </Grid>
 
                 <!--  Ngày vào làm và lương  -->
@@ -138,7 +146,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Text="{Binding NgayVL}"/>
                     <TextBox
                         Grid.Column="1"
                         Width="300"
@@ -148,10 +157,11 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Text="{Binding Salary}"/>
                 </Grid>
 
-                <!--  Lương  -->
+                <!--  Chức vụ và Email  -->
                 <Grid Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="47*" />
@@ -168,7 +178,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Text="{Binding Role}"/>
                     <TextBox
                         Grid.Column="2"
                         Width="300"
@@ -179,7 +190,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                        Text="{Binding Email}"/>
                 </Grid>
             </Grid>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels.InformationManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace CineMajestic.Views.InformationManagement
         public InformationView()
         {
             InitializeComponent();
+            InformationViewModel informationViewModel = new InformationViewModel();
+            this.DataContext = informationViewModel;
         }
     }
 }
