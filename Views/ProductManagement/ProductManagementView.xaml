@@ -112,17 +112,24 @@
                                     CornerRadius="10">
                                     <Grid>
                                         <!--  Ảnh sản phẩm  -->
-                                        <Border
+
+                                        <!--Chuyển ảnh sang thành button để phục vụ việc thêm sản phẩm vào hóa đơn sau này-->
+                                        <Button
                                             Width="125"
                                             Height="125"
                                             Margin="5,5,40,65"
-                                            BorderBrush="LightGray"
-                                            CornerRadius="5">
-                                            <Border.Background>
+                                            BorderBrush="LightGray">
+                                            <Button.Background>
                                                 <ImageBrush ImageSource="{Binding ImageSource}" Stretch="Fill" />
-                                            </Border.Background>
-                                        </Border>
-
+                                            </Button.Background>
+                                            <Button.Template>
+                                                <ControlTemplate TargetType="Button">
+                                                    <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </Button.Template>
+                                        </Button>
 
                                         <!--  Button sửa 1 sản phẩm  -->
                                         <Button
