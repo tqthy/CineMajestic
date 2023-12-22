@@ -117,7 +117,16 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         #region Constructor
         public MovieManagementViewModel()
         {
-            _ = LoadCollection();
+            try
+            {
+                _ = LoadCollection();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Co loi khi ket noi voi co so du lieu!");
+            }
+            
             AddOrEditMovieCommand = new ViewModelCommand(ExecuteAddOrEditMovieCommand, CanExecuteAddOrEditMovieCommand);
             ButtonAddMovieCommand = new ViewModelCommand(ExecuteButtonAddMovieCommand);
             ButtonEditMovieCommand = new ViewModelCommand(ExecuteButtonEditMovieCommand);
@@ -189,7 +198,16 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             Director = SelectedItem.Director;
             ReleaseYear = SelectedItem.ReleaseYear;
             Length = SelectedItem.Length;
-            SelectedGenre = genreDA.GetGenreByID(SelectedItem.Genre);
+            try
+            {
+                SelectedGenre = genreDA.GetGenreByID(SelectedItem.Genre);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Co loi xay ra khi ket noi voi CSDL!");
+                return;
+            }
             MoviePoster = new BitmapImage(new Uri(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", SelectedItem.Title, "Poster", SelectedItem.Poster)));
             AddMovieView editMoviePopup = new AddMovieView();
             editMoviePopup.DataContext = this;
@@ -212,7 +230,16 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         {
             MovieDA movieDA = new MovieDA();
             MovieDTO selectedMovie = SelectedItem as MovieDTO;
-            movieDA.DeleteMovie(selectedMovie);
+            try
+            {
+                movieDA.DeleteMovie(selectedMovie);
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Co loi xay ra!");
+                return;
+            }
             MessageBox.Show("Successfully deleted!");
             for (int i = 0; i < MovieList.Count; i++)
             {
@@ -241,10 +268,21 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             ReleaseYear = SelectedItem.ReleaseYear;
             Length = SelectedItem.Length;
             GenreDA genreDA = new GenreDA();
-            Genre = genreDA.GetGenreByID(SelectedItem.Genre).Title;
+            try
+            {
+                Genre = genreDA.GetGenreByID(SelectedItem.Genre).Title;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MessageBox.Show("Co loi xay ra!");
+                return;
+            }
             MoviePoster = new BitmapImage(new Uri(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", SelectedItem.Title, "Poster", SelectedItem.Poster)));
-            MovieDetailView movieDetailPopup = new MovieDetailView();
-            movieDetailPopup.DataContext = this;
+            MovieDetailView movieDetailPopup = new()
+            {
+                DataContext = this
+            };
             movieDetailPopup.ShowDialog();
         }
 

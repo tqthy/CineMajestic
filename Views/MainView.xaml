@@ -13,7 +13,7 @@
         Background="Transparent"
         Deactivated="Window_Deactivated"
         Activated="Window_Activated"
-        FontFamily="Roboto"
+        FontFamily="Segoe UI"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="MainView" Height="675" Width="1200">
 
@@ -51,8 +51,9 @@
                     <TextBlock Grid.Column="0"
                                Text="CineMajestic"
                                Foreground="#3F2305"
-                               FontSize="20"
+                               FontSize="19"
                                Margin="40,0,0,0"
+                               Padding="0,0,0,4"
                                VerticalAlignment="Center" 
                                FontWeight="SemiBold"/>
                     <Button x:Name="btnMinimize"
@@ -134,28 +135,32 @@
                     Background="White" 
                     Grid.RowSpan="3"
                     CornerRadius="0,20,20,20">
-                <StackPanel>
-
+                <StackPanel Orientation="Vertical">
                     <Button Foreground="Black"
                             FontWeight="Medium"
                             Command="{Binding SwitchViewCommand}"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             CommandParameter="Movies"
                             Margin="0,20,0,10"
-                            BorderThickness="0"
-                            Background="Transparent"
-                            HorizontalAlignment="Left">
+                            Background="#f5f5f5"
+                            HorizontalAlignment="Center"
+                            materialDesign:ButtonAssist.CornerRadius="20">
+                        
                         <StackPanel Orientation="Horizontal"
-                                    VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="MovieCog"
+                                VerticalAlignment="Center">
+                            <materialDesign:PackIcon Kind="MovieCogOutline"
                                                      Height="25"
                                                      Width="25"
                                                      VerticalAlignment="Center"/>
                             <TextBlock Text="Quản Lý Phim"
-                                       VerticalAlignment="Bottom"
+                                       VerticalAlignment="Center"
                                        Margin="10,0,0,0"
-                                       FontSize="18"/>
+                                       FontSize="15"
+                                       FontWeight="SemiBold"/>
                         </StackPanel>
                     </Button>
+                 
+
                     
                     
                     

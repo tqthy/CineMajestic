@@ -14,48 +14,62 @@ namespace CineMajestic.Models.DataAccessLayer
         public List<GenreDTO> GetAllGenres()
         {
             List<GenreDTO> genres = new List<GenreDTO>();
-            using (var connection = GetConnection())
-            using (var command = new SqlCommand())
+            try
             {
-                connection.Open();
-                command.Connection = connection;
-                command.CommandText = "SELECT * FROM [GENRES]";
-                using (var reader = command.ExecuteReader())
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT * FROM [GENRES]";
+                    using (var reader = command.ExecuteReader())
                     {
-                        GenreDTO genre = new GenreDTO()
+                        while (reader.Read())
                         {
-                            Id = reader[0].ToString(),
-                            Title = reader[1].ToString(),
-                        };
-                        genres.Add(genre);
+                            GenreDTO genre = new GenreDTO()
+                            {
+                                Id = reader[0].ToString(),
+                                Title = reader[1].ToString(),
+                            };
+                            genres.Add(genre);
+                        }
                     }
                 }
+            } catch(Exception ex)
+            {
+                throw ex;
             }
             return genres;
         }
         public GenreDTO GetGenreByID(string id)
         {
             GenreDTO result = new GenreDTO();
-            using (var connection = GetConnection())
-            using (var command = new SqlCommand())
+            try
             {
-                connection.Open();
-                command.Connection = connection;
-                command.CommandText = "SELECT * FROM [GENRES] WHERE id = @id";
-                command.Parameters.Add("@id", SqlDbType.Int).Value = id;
-                using (var reader = command.ExecuteReader())
+
+
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
                 {
-                    if (reader.Read())
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT * FROM [GENRES] WHERE id = @id";
+                    command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    using (var reader = command.ExecuteReader())
                     {
-                        result = new GenreDTO()
+                        if (reader.Read())
                         {
-                            Id = reader[0].ToString(),
-                            Title = reader[1].ToString()
-                        };
+                            result = new GenreDTO()
+                            {
+                                Id = reader[0].ToString(),
+                                Title = reader[1].ToString()
+                            };
+                        }
                     }
                 }
+            } catch (Exception ex)
+            {
+                throw ex;
             }
             return result;
         }

@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
-             FontFamily="Roboto"
+             FontFamily="Segoe UI"
              d:DesignHeight="648" d:DesignWidth="1000"
              x:Name="mainUC">
 
@@ -41,7 +41,8 @@
                     Grid.Column="1"
                     Orientation="Horizontal"
                     Margin="30,0,0,0">
-            <TextBox materialDesign:HintAssist.Hint="Tìm kiếm"
+            <TextBox materialDesign:HintAssist.Hint="Tìm kiếm phim"
+                     FontFamily="Roboto"
                      FontSize="25"
                      Foreground="#DD000000"
                      AllowDrop="True"
@@ -58,7 +59,7 @@
                         VerticalAlignment="Bottom">
                 <Button VerticalAlignment="Top"
                         HorizontalAlignment="Center"
-                        Width="120"
+                        Width="200"
                         Height="40"
                         FontSize="25"
                         Padding="0"
@@ -71,7 +72,7 @@
                                                      Height="25"
                                                      VerticalAlignment="Center"
                                                      Margin="0,0,0,0" />
-                            <TextBlock Text="Thêm"
+                            <TextBlock Text="Thêm phim"
                                        Margin="5,0,0,0" />
                         </StackPanel>
                     </Button.Content>
@@ -93,7 +94,6 @@
                   Margin="30,15,0,0"
                   FontWeight="Regular"
                   x:Name="FilterComboBox"
-                  Foreground="Black"
                   SelectionChanged="FilterComboBox_SelectionChanged">
             <ComboBoxItem IsSelected="True">Trống</ComboBoxItem>
             <ComboBoxItem>Đang chiếu</ComboBoxItem>

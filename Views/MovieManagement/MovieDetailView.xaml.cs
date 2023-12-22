@@ -24,11 +24,6 @@ namespace CineMajestic.Views.MovieManagement
         {
             InitializeComponent();
         }
-        public MovieDetailView(MovieDTO movie)
-        {
-            InitializeComponent();
-            DataContext = movie;
-        }
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
@@ -37,6 +32,11 @@ namespace CineMajestic.Views.MovieManagement
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void wdDetail_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            this.DragMove();
         }
     }
 }

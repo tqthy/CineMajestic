@@ -58,7 +58,9 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         }
         public bool CanExecuteAddOrEditMovieCommand(object parameter)
         {
-            return (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Director) && !string.IsNullOrEmpty(Country) && !string.IsNullOrEmpty(Length));
+            return (!string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Director) && !string.IsNullOrEmpty(Country) && !string.IsNullOrEmpty(Length) && !string.IsNullOrEmpty(ReleaseYear) &&
+                    !string.IsNullOrEmpty(Description) && !string.IsNullOrEmpty(StartDate) && !string.IsNullOrEmpty(EndDate) && !string.IsNullOrEmpty(Language) && !string.IsNullOrEmpty(Trailer) &&
+                    SelectedGenre != null && MoviePoster != null);
         }
 
         // Upload Poster

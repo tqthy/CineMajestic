@@ -45,5 +45,6 @@ namespace CineMajestic.Views
             this.blurPanel.Visibility = Visibility.Hidden;
             this.blurPanel.Opacity = 0;
         }
+
     }
 }
