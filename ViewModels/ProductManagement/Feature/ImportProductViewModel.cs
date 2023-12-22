@@ -26,7 +26,6 @@ namespace CineMajestic.ViewModels.ProductManagement
         {
             ImportProduct importProduct = new ImportProduct(obj as ProductDTO);
             importProduct.ShowDialog();
-
             loadData();
         }
     }
@@ -35,14 +34,25 @@ namespace CineMajestic.ViewModels.ProductManagement
     public class ImportProductViewModel:MainBaseViewModel
     {
 
-        private int quantity;
-        public int Quantity
+        //Quantity
+        private string quantity;
+        public string Quantity
         {
-            get { return quantity; }
+            get => quantity;
             set
             {
-                quantity= value;
-                OnPropertyChanged(nameof(Quantity));
+                quantity = value;
+                ValidateQuantity();
+            }
+        }
+        private string  quantityError;
+        public string QuantityError
+        {
+            get => quantityError;
+            set
+            {
+                quantityError = value;
+                OnPropertyChanged(nameof(QuantityError));
             }
         }
 
@@ -54,8 +64,10 @@ namespace CineMajestic.ViewModels.ProductManagement
         {
             this.wd = wd;
             this.product = product;
+            Quantity = product.Quantity.ToString();
+            Quantity = "";
             quitCommand=new ViewModelCommand(quit);
-            acceptImportCommand=new ViewModelCommand(acceptImport);
+            acceptImportCommand=new ViewModelCommand(acceptImport,canAccept);
         }
 
         private void quit(object obj)
@@ -68,10 +80,40 @@ namespace CineMajestic.ViewModels.ProductManagement
             //xử lý lỗi nhập người dùng đã nhé
 
             ProductDA productDA = new ProductDA();
-            productDA.importSL(product, Quantity);
+            productDA.importSL(product,int.Parse(Quantity));
 
             MessageBox.Show("Nhập thành công");
             wd.Close();
+        }
+
+        //hàm Validate
+        private bool _canAccept;
+        private bool canAccept(object obj)
+        {
+            return _canAccept;
+        }
+        private void ValidateQuantity()
+        {
+            if (string.IsNullOrWhiteSpace(Quantity))
+            {
+                QuantityError = "Số lượng không để trống";
+                _canAccept = false;
+            }
+            else if (!Quantity.All(char.IsDigit))
+            {
+                QuantityError = "Số lượng không hợp lệ";
+                _canAccept = false;
+            }
+            else if (int.Parse(Quantity) < 0) 
+            {
+                QuantityError = "Số lượng không hợp lệ";
+                _canAccept = false;
+            }
+            else
+            {
+                QuantityError = "";
+                _canAccept = true;
+            }
         }
     }
 }

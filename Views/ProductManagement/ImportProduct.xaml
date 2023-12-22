@@ -66,12 +66,13 @@
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
                         FontSize="15"
-                        Text="{Binding Quantity}"/>
+                        Text="{Binding Quantity,UpdateSourceTrigger=PropertyChanged}"/>
                     
                     <!--Báo lỗi-->
                     <TextBlock Margin="10,0,0,0"
                                FontSize="9"
-                               Foreground="Red"/>
+                               Foreground="Red"
+                               Text="{Binding QuantityError}"/>
                 </StackPanel>
 
             </Grid>
