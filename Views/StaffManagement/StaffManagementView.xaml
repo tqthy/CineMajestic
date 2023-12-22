@@ -267,8 +267,9 @@
                        FontSize="17"
                        Text="Thành công"
                        HorizontalAlignment="Right"
+                       FontWeight="DemiBold"
                        Margin="0,0,70,0"
-                       Foreground="Firebrick"/>
+                       Foreground="Brown"/>
         </Grid>
     </Grid>
 </UserControl>
