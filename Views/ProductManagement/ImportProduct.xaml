@@ -65,7 +65,8 @@
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
                         VerticalContentAlignment="Center"
-                        FontSize="15"/>
+                        FontSize="15"
+                        Text="{Binding Quantity}"/>
                     
                     <!--Báo lỗi-->
                     <TextBlock Margin="10,0,0,0"

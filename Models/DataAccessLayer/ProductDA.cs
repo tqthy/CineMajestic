@@ -121,6 +121,29 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+        //import số lượng product
+        public void importSL(ProductDTO product,int sl)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                int slnew = sl + product.Quantity;
+                connection.Open();
+                string update =
+                    "update Product\n"
+                    +
+                    "set Quantity=" + slnew
+                    +
+                    "where ID=" + product.Id;
+
+
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
 
