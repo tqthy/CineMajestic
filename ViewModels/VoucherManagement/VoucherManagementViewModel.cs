@@ -31,6 +31,7 @@ namespace CineMajestic.ViewModels.VoucherManagement
             AddVoucher();
             editVoucher();
             exportExcel();
+            VoucherDetail();
         }
 
         void loadData()

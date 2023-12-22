@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.Models.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace CineMajestic.Views.VoucherManagement
     /// </summary>
     public partial class VoucherDetailView : Window
     {
-        public VoucherDetailView()
+        public VoucherDetailView(VoucherDTO voucherDTO)
         {
             InitializeComponent();
         }
