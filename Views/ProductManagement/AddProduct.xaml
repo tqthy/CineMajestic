@@ -81,11 +81,12 @@
                             VerticalContentAlignment="Center"
                             FontFamily="Arial"
                             FontSize="15"
-                            Text="{Binding Name}" />
+                            Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock
                             Margin="10,0,0,0"
                             FontSize="10"
-                            Foreground="Red" />
+                            Foreground="Red"
+                            Text="{Binding NameError}" />
                     </StackPanel>
 
                 </Grid>
@@ -116,11 +117,12 @@
                             VerticalContentAlignment="Center"
                             FontFamily="Arial"
                             FontSize="15"
-                            Text="{Binding Price}" />
+                            Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock
                             Margin="10,0,0,0"
                             FontSize="10"
-                            Foreground="Red" />
+                            Foreground="Red"
+                            Text="{Binding PriceError}" />
                     </StackPanel>
 
                 </Grid>
@@ -149,11 +151,12 @@
                             VerticalContentAlignment="Center"
                             FontFamily="Arial"
                             FontSize="15"
-                            Text="{Binding Quantity}" />
+                            Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock
                             Margin="10,0,0,0"
                             FontSize="10"
-                            Foreground="Red" />
+                            Foreground="Red"
+                            Text="{Binding QuantityError}" />
                     </StackPanel>
 
                 </Grid>

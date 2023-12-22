@@ -37,7 +37,27 @@ namespace CineMajestic.ViewModels.ProductManagement
 
     public class AddProductViewModel : INotifyPropertyChanged
     {
-        public string Name {  get; set; }
+        //Tên sản phẩm
+        private string name;
+        public string Name
+        {
+            get => name;
+            set
+            {
+                name = value;
+                ValidateName();
+            }
+        }
+        private string nameError;
+        public string NameError
+        {
+            get => nameError;
+            set
+            {
+                nameError = value;
+                OnPropertyChanged(nameof(NameError));
+            }
+        }
 
         private string imageSource;
         public string? ImageSource
@@ -52,8 +72,49 @@ namespace CineMajestic.ViewModels.ProductManagement
                 }
             }
         }
-        public int Quantity {  get; set; }
-        public int Price {  get; set; }
+        //Quantity
+        private string quantity;
+        public string Quantity
+        {
+            get => quantity;
+            set
+            {
+                quantity = value;
+                ValidateQuantity();
+            }
+        }
+        private string quantityError;
+        public string QuantityError
+        {
+            get => quantityError;
+            set
+            {
+                quantityError = value;
+                OnPropertyChanged(nameof(QuantityError));
+            }
+        }
+
+        //Price
+        private string price;
+        public string Price
+        {
+            get => price;
+            set
+            {
+                price = value;
+                ValidatePrice();
+            }
+        }
+        private string priceError;
+        public string PriceError
+        {
+            get => priceError;
+            set
+            {
+                priceError = value;
+                OnPropertyChanged(nameof(PriceError));
+            }
+        }
         public int Type {  get; set; }
 
         AddProduct wd;//phục vụ việc đóng window
@@ -63,10 +124,9 @@ namespace CineMajestic.ViewModels.ProductManagement
 
         public AddProductViewModel(AddProduct wd)
         {
-            Type = Type - 1;
-
+            Type =0;
             quitCommand = new ViewModelCommand(quit);
-            acceptCommand = new ViewModelCommand(accept);
+            acceptCommand = new ViewModelCommand(accept,canAccept);
             addImageCommand = new ViewModelCommand(addImage);
             this.wd = wd;
         }
@@ -85,7 +145,7 @@ namespace CineMajestic.ViewModels.ProductManagement
             ImageSource = Path.GetFileName(ImageSource);
             Type += 1;
             ProductDA productDA = new ProductDA();
-            productDA.addProduct(new ProductDTO(Name, Quantity, Price, Type, ImageSource));
+            productDA.addProduct(new ProductDTO(Name, int.Parse(Quantity), int.Parse(Price), Type, ImageSource));
             MessageBox.Show("Thêm thành công");
             wd.Close();
         }
@@ -123,6 +183,74 @@ namespace CineMajestic.ViewModels.ProductManagement
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+        
+        //Các hàm Validate để báo lỗi
 
+        private bool[] _canAccept = new bool[3];
+
+        private bool canAccept(object obj)
+        {
+            return _canAccept[0] && _canAccept[1] && _canAccept[2];
+        }
+        private void ValidateName()
+        {
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                NameError = "Tên sản phẩm không được trống!";
+                _canAccept[0] = false;
+            }
+            else
+            {
+                NameError = "";
+                _canAccept[0] = true;
+            }
+        }
+
+        private void ValidateQuantity()
+        {
+            if (string.IsNullOrWhiteSpace(Quantity))
+            {
+                QuantityError = "Số lượng không để trống";
+                _canAccept[1] = false;
+            }
+            else if (!Quantity.All(char.IsDigit))
+            {
+                QuantityError = "Số lượng không hợp lệ";
+                _canAccept[1] = false;
+            }
+            else if (int.Parse(Quantity) < 0)
+            {
+                QuantityError = "Số lượng không hợp lệ";
+                _canAccept[1] = false;
+            }
+            else
+            {
+                QuantityError = "";
+                _canAccept[1] = true;
+            }
+        }
+        private void ValidatePrice()
+        {
+            if (string.IsNullOrWhiteSpace(Price))
+            {
+                PriceError = "Giá không để trống";
+                _canAccept[2] = false;
+            }
+            else if (!Price.All(char.IsDigit))
+            {
+                PriceError = "Giá không hợp lệ";
+                _canAccept[2] = false;
+            }
+            else if (int.Parse(Price) < 0)
+            {
+                PriceError = "Giá không hợp lệ";
+                _canAccept[2] = false;
+            }
+            else
+            {
+                PriceError = "";
+                _canAccept[2] = true;
+            }
+        }
     }
 }
