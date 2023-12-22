@@ -26,6 +26,7 @@ namespace CineMajestic.ViewModels.ProductManagement
             addProduct();
             delete();
             editProduct();
+            import();
         }
 
     }

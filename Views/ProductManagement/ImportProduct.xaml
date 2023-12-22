@@ -80,7 +80,7 @@
                     Width="78"
                     Margin="300,4,12,4"
                     materialDesign:ButtonAssist.CornerRadius="20"
-                    Command="{Binding acceptEditCommand}"
+                    Command="{Binding acceptImportCommand}"
                     Content="Đồng ý" />
 
                 <Button

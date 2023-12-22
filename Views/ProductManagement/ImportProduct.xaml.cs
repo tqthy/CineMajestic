@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CineMajestic.Models.DTOs.ProductManagement;
+using CineMajestic.ViewModels.ProductManagement;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,11 @@ namespace CineMajestic.Views.ProductManagement
     /// </summary>
     public partial class ImportProduct : Window
     {
-        public ImportProduct()
+        public ImportProduct(ProductDTO product)
         {
             InitializeComponent();
+            ImportProductViewModel importProductViewModel = new ImportProductViewModel(this,product);
+            this.DataContext = importProductViewModel;
         }
     }
 }
