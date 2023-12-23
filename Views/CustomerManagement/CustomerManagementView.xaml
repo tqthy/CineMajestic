@@ -57,17 +57,17 @@
                 <ComboBoxItem>Số điện thoại</ComboBoxItem>
             </ComboBox>
 
-            <!--Nút xuất file exel-->
+            <!--  Nút xuất file exel  -->
             <Button
                 Width="auto"
                 Height="40"
                 Margin="160,0,0,0"
                 VerticalAlignment="Bottom"
                 materialDesign:ButtonAssist.CornerRadius="10"
+                Command="{Binding ExportExcelCommand}"
                 FontFamily="Segoe UI"
                 FontSize="15"
-                Foreground="AntiqueWhite"
-                Command="{Binding ExportExcelCommand}">
+                Foreground="AntiqueWhite">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon
@@ -84,6 +84,10 @@
         </StackPanel>
 
         <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*" />
+                <RowDefinition Height="0.5*" />
+            </Grid.RowDefinitions>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="lvCustomer" ItemsSource="{Binding FilterDSCTM}">
                     <ListView.View>
@@ -213,6 +217,14 @@
                     </ListView.View>
                 </ListView>
             </ScrollViewer>
+            <TextBlock
+                Grid.Row="1"
+                Margin="0,0,70,0"
+                HorizontalAlignment="Right"
+                FontSize="17"
+                FontWeight="DemiBold"
+                Foreground="Brown"
+                Text="{Binding Notify}" />
         </Grid>
 
     </Grid>

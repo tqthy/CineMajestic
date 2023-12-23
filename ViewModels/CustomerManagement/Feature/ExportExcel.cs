@@ -14,12 +14,23 @@ namespace CineMajestic.ViewModels.CustomerManagement
 {
     public partial class CustomerManagementViewModel
     {
+        //phục vụ thông báo export thành công 
+        private string notify;
+        public string Notify
+        {
+            get { return notify; }
+            set
+            {
+                notify = value;
+                OnPropertyChanged(nameof(Notify));
+            }
+        }
         public ICommand ExportExcelCommand { get; set; }
         void exportExcel()
         {
             ExportExcelCommand = new ViewModelCommand(ExportExcel);
         }
-        private void ExportExcel(object obj)
+        private async void ExportExcel(object obj)
         {
 
             //chọn folder lưu file export
@@ -71,25 +82,30 @@ namespace CineMajestic.ViewModels.CustomerManagement
 
 
             //tiến hành export
-            try
+            Task.Run(async () =>
             {
-                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-                using (var package = new ExcelPackage())
+                try
                 {
-                    var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+                    ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                    using (var package = new ExcelPackage())
+                    {
+                        var worksheet = package.Workbook.Worksheets.Add("Sheet1");
 
-                    worksheet.Cells.LoadFromDataTable(table, true);
+                        worksheet.Cells.LoadFromDataTable(table, true);
 
-                    worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+                        worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
-                    File.WriteAllBytes(pathFile, package.GetAsByteArray());
+                        File.WriteAllBytes(pathFile, package.GetAsByteArray());
+                    }
+                    Notify = "Xuất ra danh sách khách hàng thành công!";
                 }
-                MessageBox.Show("Thành công");
-            }
-            catch
-            {
-                MessageBox.Show("Có lỗi xảy ra, vui lòng thử lại!");
-            }
+                catch
+                {
+                    Notify = "Có lỗi xảy ra trong quá trình xuất";
+                }
+                await Task.Delay(2000);
+                Notify = "";
+            });
         }
     }
 }
