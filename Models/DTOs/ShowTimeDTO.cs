@@ -11,6 +11,6 @@ namespace CineMajestic.Models.DTOs
         public string? Id { get; set; }
         public string? Movie_Id { get; set; }
         public string? Auditorium_Id { get; set; }
-        public string? StartTime { get; set; }
+        public ICollection<DateTime>? StartTime { get; set; }
     }
 }
