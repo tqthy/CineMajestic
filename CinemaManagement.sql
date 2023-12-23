@@ -61,3 +61,17 @@ INSERT INTO MOVIES VALUES(N'Bố Già',
 GO              
 INSERT INTO GENRES VALUES (N'Gia Đình'), (N'Hài');
 GO
+
+CREATE TABLE ERROR
+(
+    INT ID IDENTITY(1,1) PRIMARY KEY,
+    Detail NTEXT NOT NULL,
+    Name NVARCHAR(50) NOT NULL,
+    Status NVARCHAR(30) NOT NULL,
+    Cost INT,
+    Staff_Id INT NOT NULL,
+    DateStartFix smalldatetime,
+    DateFinsihFix smalldatetime,
+    STAFF_ID INT NOT NULL,
+    CONSTRAINT FK_STAFFID  FOREIGN KEY(STAFF_ID)  REFERENCES STAFF(ID)
+)
