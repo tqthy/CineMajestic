@@ -48,6 +48,8 @@ namespace CineMajestic.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            btnQLPhim.Background = Brushes.Transparent;
+            btnQLSuatChieu.Background = Brushes.Transparent;
             Button button = (Button)sender;
             button.Background = new SolidColorBrush(Color.FromRgb(245, 245, 245));
         }

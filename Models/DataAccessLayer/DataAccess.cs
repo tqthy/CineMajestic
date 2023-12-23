@@ -12,8 +12,8 @@ namespace CineMajestic.Models.DataAccessLayer
         private readonly string _connectionString;
         public DataAccess()
         {
-            _connectionString = "Server=tcp:192.168.0.199,1433;Database=CinemaManagement;User ID=sa;Password=Password.1";
-            //_connectionString = "Server=tcp:192.168.5.98,1433;Database=CinemaManagement;User ID=sa;Password=Password.1";
+            _connectionString = "server=tcp:192.168.0.199,1433;database=CinemaManagement;user id=sa;password=Password.1";
+            //_connectionString = "Server=tcp:172.16.0.71,1433;Database=CinemaManagement;User ID=sa;Password=Password.1";
 
         }
         protected SqlConnection GetConnection()

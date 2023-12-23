@@ -141,14 +141,16 @@
                             Command="{Binding SwitchViewCommand}"
                             CommandParameter="Movies"
                             Style="{StaticResource MaterialDesignFlatButton}"
-                            Margin="0,20,0,10"
-                            HorizontalAlignment="Center"
+                            Margin="5,20,0,10"
+                            Width="190"
+                            HorizontalAlignment="Left"
                             materialDesign:ButtonAssist.CornerRadius="15"
                             x:Name="btnQLPhim"
                             Click="Button_Click">
                         
                         <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Center">
+                                    VerticalAlignment="Center"
+                                    Margin="-45,0,0,0">
                             <materialDesign:PackIcon Kind="MovieCogOutline"
                                                      Height="25"
                                                      Width="25"
@@ -160,11 +162,36 @@
                                        FontWeight="SemiBold"/>
                         </StackPanel>
                     </Button>
-                 
+                    
+                    <Button Foreground="Black"
+                            FontWeight="Medium"
+                            Command="{Binding SwitchViewCommand}"
+                            CommandParameter="ShowTime"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Margin="5,0,0,10"
+                            HorizontalAlignment="Left"
+                            materialDesign:ButtonAssist.CornerRadius="15"
+                            x:Name="btnQLSuatChieu"
+                            Click="Button_Click">
 
-                    
-                    
-                    
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    Margin="-10,0,0,0">
+                            <materialDesign:PackIcon Kind="StoreClockOutline"
+                                                     Height="25"
+                                                     Width="25"
+                                                     VerticalAlignment="Center"/>
+                            <TextBlock Text="Quản Lý Suất Chiếu"
+                                       VerticalAlignment="Center"
+                                       Margin="10,0,0,0"
+                                       FontSize="15"
+                                       FontWeight="SemiBold"/>
+                        </StackPanel>
+                    </Button>
+
+
+
+
                 </StackPanel>                
             </Border>
                 
