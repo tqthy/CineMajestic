@@ -16,7 +16,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 {
     public partial class StaffManageVM
     {
-        public ICommand showWdAddStaffCommand {  get; set; }
+        public ICommand showWdAddStaffCommand { get; set; }
         void addStaff()
         {
             showWdAddStaffCommand = new ViewModelCommand(showWdAddStaff);
@@ -240,7 +240,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             get => password1Error;
             set
             {
-                password1Error= value;
+                password1Error = value;
                 OnPropertyChanged(nameof(Password1Error));
             }
         }
@@ -260,7 +260,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 
 
 
-        private bool[] _canAccept=new bool[7];//phục vụ việc có cho nhấn button accept k
+        private bool[] _canAccept = new bool[7];//phục vụ việc có cho nhấn button accept k
 
         public ICommand CancelCommand { get; set; }
         public ICommand acceptAddCommand { get; set; }//đồng ý thêm
@@ -270,7 +270,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         {
             this.wd = wd;
             CancelCommand = new ViewModelCommand(cancel);
-            acceptAddCommand = new ViewModelCommand(acceptAdd,canAcceptAdd);
+            acceptAddCommand = new ViewModelCommand(acceptAdd, canAcceptAdd);
 
             Gender = "Nam";
             Role = "Quản lý";
@@ -308,7 +308,12 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 
         private bool canAcceptAdd(object obj)
         {
-            return _canAccept[0] && _canAccept[1] && _canAccept[2] && _canAccept[3] && _canAccept[4] && _canAccept[5] && _canAccept[6];
+            bool check= _canAccept[0] && _canAccept[1] && _canAccept[2] && _canAccept[3] && _canAccept[4] && _canAccept[5] && _canAccept[6];
+            if(check==false || wd.txtMatKhau.Password == "" || wd.txtNhapLaiMatKhau.Password == "")
+            {
+                return false;
+            }
+            return true;
         }
 
         //Các hàm Validate
@@ -329,7 +334,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 
         private void ValidateBirth()
         {
-            if (Birth>DateTime.UtcNow)
+            if (Birth > DateTime.UtcNow)
             {
                 BirthError = "Ngày sinh không hợp lệ!";
                 _canAccept[1] = false;
@@ -346,7 +351,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (string.IsNullOrWhiteSpace(Email))
             {
                 EmailError = "Email không được để trống!";
-                _canAccept[2]=false;
+                _canAccept[2] = false;
             }
             else if (!Email.Contains("@"))
             {
@@ -365,7 +370,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (string.IsNullOrWhiteSpace(PhoneNumber))
             {
                 PhoneNumberError = "SĐT không được để trống!";
-                _canAccept[3]=false;
+                _canAccept[3] = false;
             }
             else if (!PhoneNumber.All(char.IsDigit))
             {
@@ -385,7 +390,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (NgayVL < Birth)
             {
                 NgayVLError = "Ngày đăng ký phải lớn hơn ngày sinh!";
-                _canAccept[4]=false;
+                _canAccept[4] = false;
             }
             else
             {
@@ -400,7 +405,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (string.IsNullOrWhiteSpace(Salary))
             {
                 SalaryError = "Lương không hợp lệ!";
-                _canAccept[5]=false;
+                _canAccept[5] = false;
             }
             else if (!Salary.All(char.IsDigit))
             {
@@ -425,9 +430,9 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             if (string.IsNullOrWhiteSpace(Username))
             {
                 UsernameError = "Username không được để trống!";
-                _canAccept[6]=false;
+                _canAccept[6] = false;
             }
-            else if(Username.Contains(" "))
+            else if (Username.Contains(" "))
             {
                 UsernameError = "Username không hợp lệ!";
                 _canAccept[6] = false;
@@ -463,7 +468,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
                 Password1Error = "Mật khẩu phải lớn hơn 5 kí tự!";
                 return false;
             }
-            else if(wd.txtMatKhau.Password.Contains(" "))
+            else if (wd.txtMatKhau.Password.Contains(" "))
             {
                 Password1Error = "Mật khẩu không được chứa khoảng trắng!";
                 return false;
@@ -477,12 +482,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 
         private bool ValidatePassword2()
         {
-            if (string.IsNullOrWhiteSpace(wd.txtNhapLaiMatKhau.Password))
-            {
-                Password2Error = "Không được để trống!";
-                return false;
-            }
-            else if (wd.txtMatKhau.Password != wd.txtNhapLaiMatKhau.Password)
+            if (wd.txtMatKhau.Password != wd.txtNhapLaiMatKhau.Password)
             {
                 Password2Error = "Mật khẩu không khớp,vui lòng nhập lại!";
                 return false;
