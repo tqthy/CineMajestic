@@ -28,7 +28,6 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />
                 <RowDefinition />
-                <RowDefinition Height="40" />
             </Grid.RowDefinitions>
             <Border
                 Grid.Row="0"
@@ -98,6 +97,7 @@
                 <Image
                     Width="60"
                     Height="70"
+                    Margin="0,0,0,12"
                     Source="/Images/Voucher/LogoVoucher.png"
                     Stretch="UniformToFill" />
 
@@ -111,17 +111,6 @@
                     FontWeight="DemiBold"
                     Text="{Binding VoucherDetail}"
                     TextWrapping="WrapWithOverflow" />
-            </Grid>
-
-            <!--  Nút gửi qua mail  -->
-            <Grid Grid.Row="2">
-                <Button
-                    Name="btnXacNhan"
-                    Width="90"
-                    Margin="220,0,10,0"
-                    materialDesign:ButtonAssist.CornerRadius="20"
-                    Command="{Binding acceptCommand}"
-                    Content="Gửi mail" />
             </Grid>
         </Grid>
 
