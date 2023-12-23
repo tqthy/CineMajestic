@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Views;
+using CineMajestic.Views.ErrorManagement;
 using CineMajestic.Views.MovieManagement;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,9 @@ namespace CineMajestic.ViewModels
             {
                 case "Movies":
                     CurrentView = new MovieManagementView();
+                    break;
+                case "Error":
+                    CurrentView = new ErrorManagementView();
                     break;
             }
         }
