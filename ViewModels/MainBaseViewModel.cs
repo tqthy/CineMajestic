@@ -1,6 +1,7 @@
 ﻿using CineMajestic.Views;
 using CineMajestic.Views.CustomerManagement;
 using CineMajestic.Views.MovieManagement;
+using CineMajestic.Views.VoucherManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Windows.Input;
 
 namespace CineMajestic.ViewModels
 {
-    public abstract class MainBaseViewModel : BaseViewModel
+    public abstract class MainBaseViewModel :BaseViewModel
     {
         private object currentView;
         public object CurrentView
@@ -36,6 +37,9 @@ namespace CineMajestic.ViewModels
                     break;
                 case "Customer":
                     CurrentView = new CustomerManagementView();
+                    break;
+                case "Vouchers":
+                    CurrentView = new VoucherManagementView();
                     break;
             }
         }

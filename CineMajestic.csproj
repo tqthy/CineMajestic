@@ -12,13 +12,15 @@
     <None Remove="Images\background.jpg" />
     <None Remove="Images\logo.png" />
     <None Remove="Images\logo1.png" />
+    <None Remove="Images\Voucher\LogoVoucher.png" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="EPPlus" Version="7.0.4" />
     <PackageReference Include="MaterialDesignColors" Version="2.1.4" />
     <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
-    <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.5" />
+	  <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.5" />
+	  <PackageReference Include="QRCoder" Version="1.4.3" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
@@ -26,6 +28,7 @@
     <Resource Include="Images\background.jpg" />
     <Resource Include="Images\logo.png" />
     <Resource Include="Images\logo1.png" />
+    <Resource Include="Images\Voucher\LogoVoucher.png" />
   </ItemGroup>
 
 </Project>
