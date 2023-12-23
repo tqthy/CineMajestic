@@ -111,7 +111,9 @@
 
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Width="Auto" Header="Mã voucher">
+                            <GridViewColumn Width="Auto" 
+                                            Header="Mã voucher" 
+                                            x:Name="clCode">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -122,7 +124,9 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Tên">
+                            <GridViewColumn Width="Auto" 
+                                            Header="Tên" 
+                                            x:Name="clName">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -133,18 +137,9 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <!--<GridViewColumn Width="Auto" Header="Thông tin">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            Margin="16,2,0,0"
-                                            FontSize="18"
-                                            Text="{Binding VoucherDetail}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>-->
-
-                            <GridViewColumn Width="90" Header="Loại">
+                            <GridViewColumn Width="90" 
+                                            Header="Loại" 
+                                            x:Name="clType">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -155,7 +150,9 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Ngày bắt đầu">
+                            <GridViewColumn Width="Auto" 
+                                            Header="Ngày bắt đầu" 
+                                            x:Name="clStartDate">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -166,7 +163,9 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Ngày kết thúc">
+                            <GridViewColumn Width="Auto" 
+                                            Header="Ngày kết thúc"
+                                            x:Name="clFinDate">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock

@@ -24,7 +24,7 @@ namespace CineMajestic.Views.VoucherManagement
         public VoucherManagementView()
         {
             InitializeComponent();
-            VoucherManagementViewModel viewModel = new VoucherManagementViewModel();
+            VoucherManagementViewModel viewModel = new VoucherManagementViewModel(this);
             this.DataContext= viewModel;
         }
     }
