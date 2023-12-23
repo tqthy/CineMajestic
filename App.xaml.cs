@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Views;
+using CineMajestic.Views.Password;
 using System.Configuration;
 using System.Data;
 using System.Windows;
