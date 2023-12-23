@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Navigation;
 using CineMajestic.Models.DTOs.StaffManagement;
 using CineMajestic.ViewModels.InformationManagement;
+using Microsoft.Extensions.Primitives;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CineMajestic.Models.DataAccessLayer
@@ -206,7 +207,7 @@ namespace CineMajestic.Models.DataAccessLayer
         public StaffDTO Staffstaff_Id(int Staff_Id)
         {
             StaffDTO staffDTO = null;
-      
+
             using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
@@ -243,9 +244,9 @@ namespace CineMajestic.Models.DataAccessLayer
                             DateTime NgayVL = reader.GetDateTime(reader.GetOrdinal("NgayVaolam"));
                             string ngayVL = NgayVL.ToString("dd/MM/yyyy");
 
-                            string imageSource= reader.GetString(reader.GetOrdinal("ImageSource"));
+                            string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
 
-                            staffDTO = new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL,MotSoPTBoTro.pathProject() + @"Images\StaffManagement\" + imageSource);
+                            staffDTO = new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL, MotSoPTBoTro.pathProject() + @"Images\StaffManagement\" + imageSource);
                         }
                     }
                 }
@@ -254,5 +255,54 @@ namespace CineMajestic.Models.DataAccessLayer
         }
 
 
+
+        //update image
+        public void updateImageStaff(int id, string imageSource)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string update =
+                    "update Staff\n"
+                    +
+                    "set ImageSource=" + "'" + imageSource + "'\n"
+
+                    +
+                    "where Id=" + id;
+
+
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        //lấy toàn bộ imageSource phục vụ việc xóa ảnh
+        public List<string> listImageSource()
+        {
+            List<string> list = new List<string>();
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string truyvan =
+                    "select ImageSource from Staff";
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                            list.Add(imageSource);
+                        }
+                    }
+                }
+            }
+
+
+            return list;
+        }
     }
 }

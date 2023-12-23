@@ -72,7 +72,8 @@
                     Width="120"
                     VerticalAlignment="Top"
                     Content="Thay đổi ảnh"
-                    FontSize="15" />
+                    FontSize="15" 
+                    Command="{Binding editImageCommand}"/>
             </Grid>
 
             <!--  Phần hiển thị thông tin  -->

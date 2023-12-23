@@ -3,14 +3,17 @@ using CineMajestic.Models.DTOs;
 using CineMajestic.Models.DTOs.StaffManagement;
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Packaging;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CineMajestic.ViewModels.InformationManagement
 {
-    public class InformationViewModel:MainBaseViewModel
+    public partial class InformationViewModel : MainBaseViewModel
     {
         public string Id { get; set; }
         public string FullName { get; set; }
@@ -39,6 +42,8 @@ namespace CineMajestic.ViewModels.InformationManagement
         {
             this.Staff_Id = Staff_Id;
             loadData();
+            EditImage();
+            deleteImage();
         }
 
         private void loadData()
@@ -61,7 +66,7 @@ namespace CineMajestic.ViewModels.InformationManagement
             }
             else
             {
-                Id = staffDTO.IdFormat ;
+                Id = staffDTO.IdFormat;
                 FullName = staffDTO.FullName;
                 Gender = staffDTO.Gender;
                 Birth = staffDTO.Birth;
@@ -72,6 +77,46 @@ namespace CineMajestic.ViewModels.InformationManagement
                 Salary = staffDTO.Salary;
                 ImageSource = staffDTO.ImageSource;
             }
+        }
+
+
+        //xóa image không dùng
+        private void deleteImage()
+        {
+            StaffDA staffDA = new StaffDA();
+            List<string> DSIM = new List<string>(staffDA.listImageSource());
+            List<string> listFileDelete = new List<string>();
+            Task.Run(() =>
+            {
+                try
+                {
+                    string s = "";
+                    DirectoryInfo dir = new DirectoryInfo(MotSoPTBoTro.pathProject() + @"Images\StaffManagement");
+                    FileInfo[] files = dir.GetFiles("*.*", SearchOption.AllDirectories);
+                    foreach (FileInfo file in files)
+                    {
+
+                        if (!DSIM.Contains(file.Name))
+                        {
+                            if (file.Name != "Default.jpg")
+                            {
+                                listFileDelete.Add(file.Name);
+                            }
+                        }
+
+                    }
+                    foreach (string item in listFileDelete)
+                    {
+                        try
+                        {
+                            File.Delete(MotSoPTBoTro.pathProject() + @"Images\StaffManagement\" + item);
+                        }
+                        catch { }
+                    }
+
+                }
+                catch { }
+            });
         }
     }
 }
