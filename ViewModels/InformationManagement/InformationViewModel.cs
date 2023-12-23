@@ -1,4 +1,6 @@
-﻿using CineMajestic.Models.DTOs;
+﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs;
+using CineMajestic.Models.DTOs.StaffManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,24 +33,45 @@ namespace CineMajestic.ViewModels.InformationManagement
             }
         }
 
-        public InformationViewModel(UserDTO userDTO)
+
+        private int Staff_Id;
+        public InformationViewModel(int Staff_Id)
         {
+            this.Staff_Id = Staff_Id;
             loadData();
         }
 
         private void loadData()
         {
-            //tạm thời dùng dữ liệu mẫu vì chưa xử cái login
-            Id = "NV001";
-            FullName = "Nguyễn Văn a";
-            Gender = "Nam";
-            Birth = "10/10/1999";
-            Email = "a@gmail.com";
-            PhoneNumber= "1234567890";
-            Role="Quản lý";
-            NgayVL = "12/12/2023";
-            Salary = 9999999;
-            ImageSource = "pack://application:,,,/Images/InformationManagement/Default.jpg";
+            StaffDA staffDA = new StaffDA();
+            StaffDTO staffDTO = staffDA.Staffstaff_Id(Staff_Id);
+
+            if (staffDTO == null)//lỗi connect vs sql thì xài mặc định
+            {
+                Id = "NV001";
+                FullName = "Nguyễn Văn a";
+                Gender = "Nam";
+                Birth = "10/10/1999";
+                Email = "a@gmail.com";
+                PhoneNumber = "1234567890";
+                Role = "Quản lý";
+                NgayVL = "12/12/2023";
+                Salary = 9999999;
+                ImageSource = "pack://application:,,,/Images/InformationManagement/Default.jpg";
+            }
+            else
+            {
+                Id = staffDTO.IdFormat ;
+                FullName = staffDTO.FullName;
+                Gender = staffDTO.Gender;
+                Birth = staffDTO.Birth;
+                Email = staffDTO.Email;
+                PhoneNumber = staffDTO.PhoneNumber;
+                Role = staffDTO.Role;
+                NgayVL = staffDTO.NgayVaoLam;
+                Salary = staffDTO.Salary;
+                ImageSource = staffDTO.ImageSource;
+            }
         }
     }
 }

@@ -22,10 +22,10 @@ namespace CineMajestic.Views.InformationManagement
     /// </summary>
     public partial class InformationView : UserControl
     {
-        public InformationView(UserDTO userDTO)
+        public InformationView(int Staff_Id)
         {
             InitializeComponent();
-            InformationViewModel informationViewModel = new InformationViewModel(userDTO);
+            InformationViewModel informationViewModel = new InformationViewModel(Staff_Id);
             this.DataContext = informationViewModel;
         }
     }

@@ -21,10 +21,10 @@ namespace CineMajestic.Views
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView(UserDTO userDTO)
+        public MainView(int Staff_Id)
         {
             InitializeComponent();
-            MainViewModel mainViewModel = new MainViewModel(userDTO);
+            MainViewModel mainViewModel = new MainViewModel(Staff_Id);
             this.DataContext= mainViewModel;
         }
         private void btnMinimize_Click(object sender, RoutedEventArgs e)

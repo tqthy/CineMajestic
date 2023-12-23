@@ -13,7 +13,7 @@ namespace CineMajestic.ViewModels
 {
     public class MainViewModel : MainBaseViewModel
     {
-        public MainViewModel(UserDTO userDTO):base(userDTO)
+        public MainViewModel(int Staff_Id) : base(Staff_Id)
         {
             
         }

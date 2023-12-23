@@ -27,12 +27,12 @@ namespace CineMajestic.ViewModels
             SwitchViewCommand = new ViewModelCommand(SwitchView);
         }
 
-        private UserDTO account;
+        private int Staff_Id;
 
-        public MainBaseViewModel(UserDTO userDTO)
+        public MainBaseViewModel(int Staff_Id)
         {
             SwitchViewCommand = new ViewModelCommand(SwitchView);
-            this.account = userDTO;
+            this.Staff_Id = Staff_Id;
         }
 
         private void SwitchView(object userControlName)
@@ -49,7 +49,7 @@ namespace CineMajestic.ViewModels
                     break;
 
                 case "Personal": // Cài đặt
-                    CurrentView = new InformationView(account);
+                    CurrentView = new InformationView(Staff_Id);
                     break;
             }
         }

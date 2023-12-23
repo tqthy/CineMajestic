@@ -1,29 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 using CineMajestic.Models.DTOs.StaffManagement;
+using CineMajestic.ViewModels.InformationManagement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
-    public class StaffDA:DataAccess
+    public class StaffDA : DataAccess
     {
         private static int soLuongChuSo;
         public ObservableCollection<StaffDTO> getDSNV()
         {
-            ObservableCollection<StaffDTO>list = new ObservableCollection<StaffDTO>();
-            using(SqlConnection connection=GetConnection())
+            ObservableCollection<StaffDTO> list = new ObservableCollection<StaffDTO>();
+            using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
                 string truyvan = "select * from Staff";
-                using(SqlCommand command=new SqlCommand(truyvan, connection))
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
                 {
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        soLuongChuSo = identCurrent().ToString().Length;//phục vụ format id
+                        soLuongChuSo = identCurrent().ToString().Length;//phục vụ format id,này là khi vào quản lý nv
 
                         while (reader.Read())
                         {
@@ -59,31 +63,31 @@ namespace CineMajestic.Models.DataAccessLayer
         //insert
         public void addStaff(StaffDTO staff)
         {
-            using(SqlConnection connection = GetConnection())
+            using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
-                string insert=
+                string insert =
                     "insert into Staff(FullName,Birth,Gender,Email,PhoneNumber,Salary,Role,NgayVaolam)\n"
                     +
                     "values("
                     +
-                    "N'"+staff.FullName+"',"
+                    "N'" + staff.FullName + "',"
                     +
-                    "'"+staff.Birth+"',"
+                    "'" + staff.Birth + "',"
                     +
-                    "N'"+staff.Gender+"',"
+                    "N'" + staff.Gender + "',"
                     +
-                    "'"+staff.Email+"',"
+                    "'" + staff.Email + "',"
                     +
-                    "'"+staff.PhoneNumber+"',"
+                    "'" + staff.PhoneNumber + "',"
                     +
-                    staff.Salary+","
+                    staff.Salary + ","
                     +
-                    "N'"+staff.Role+"',"
+                    "N'" + staff.Role + "',"
                     +
-                    "'"+staff.NgayVaoLam+"')";
+                    "'" + staff.NgayVaoLam + "')";
 
-                using(SqlCommand command=new SqlCommand(insert, connection))
+                using (SqlCommand command = new SqlCommand(insert, connection))
                 {
                     command.ExecuteNonQuery();
                 }
@@ -94,7 +98,7 @@ namespace CineMajestic.Models.DataAccessLayer
         //xóa 1 staff
         public void deleteStaff(StaffDTO staff)
         {
-            using(SqlConnection connection = GetConnection())
+            using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
                 string delete =
@@ -112,7 +116,7 @@ namespace CineMajestic.Models.DataAccessLayer
         //update
         public void updateStaff(StaffDTO staff)
         {
-            using(SqlConnection connection = GetConnection())
+            using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
                 string update =
@@ -195,5 +199,60 @@ namespace CineMajestic.Models.DataAccessLayer
             format = type + format;
             return format;
         }
+
+
+
+        //lấy nhân viên có id là staff_id
+        public StaffDTO Staffstaff_Id(int Staff_Id)
+        {
+            StaffDTO staffDTO = null;
+      
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string truyvan =
+                    "select * from Staff\n"
+                    +
+                    "where Id=" + Staff_Id;
+
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        soLuongChuSo = identCurrent().ToString().Length;//phục vụ format id,này là khi vào cá nhân
+
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("Id"));
+
+                            string fullname = reader.GetString(reader.GetOrdinal("FullName"));
+
+                            DateTime birthDate = reader.GetDateTime(reader.GetOrdinal("Birth"));
+                            string birth = birthDate.ToString("dd/MM/yyyy");
+
+                            string gender = reader.GetString(reader.GetOrdinal("Gender"));
+
+                            string email = reader.GetString(reader.GetOrdinal("Email"));
+
+                            string phoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+
+                            int salary = reader.GetInt32(reader.GetOrdinal("Salary"));
+
+                            string role = reader.GetString(reader.GetOrdinal("Role"));
+
+                            DateTime NgayVL = reader.GetDateTime(reader.GetOrdinal("NgayVaolam"));
+                            string ngayVL = NgayVL.ToString("dd/MM/yyyy");
+
+                            string imageSource= reader.GetString(reader.GetOrdinal("ImageSource"));
+
+                            staffDTO = new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL,MotSoPTBoTro.pathProject() + @"Images\StaffManagement\" + imageSource);
+                        }
+                    }
+                }
+            }
+            return staffDTO;
+        }
+
+
     }
 }

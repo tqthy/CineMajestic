@@ -19,6 +19,7 @@ namespace CineMajestic.Models.DTOs.StaffManagement
         public int Salary { get; set; }
         public string Role { get; set; }
         public string NgayVaoLam {  get; set; }
+        public string ImageSource {  get; set; }
         public StaffDTO(int id,string fullName,string birth,string gender,string email,string phoneNumber,int salary,string role,string ngayVL)
         {
             Id=id;
@@ -45,6 +46,23 @@ namespace CineMajestic.Models.DTOs.StaffManagement
             Salary = salary;
             Role = role;
             NgayVaoLam = ngayVL;
+        }
+
+
+        //phục vụ phần information
+        public StaffDTO(int id, string fullName, string birth, string gender, string email, string phoneNumber, int salary, string role, string ngayVL,string imageSource)
+        {
+            Id = id;
+            FullName = fullName;
+            Birth = birth;
+            Gender = gender;
+            Email = email;
+            PhoneNumber = phoneNumber;
+            Salary = salary;
+            Role = role;
+            NgayVaoLam = ngayVL;
+            IdFormat = StaffDA.formatID(Id);
+            ImageSource = imageSource;
         }
     }
 }

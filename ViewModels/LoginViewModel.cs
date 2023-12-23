@@ -101,7 +101,7 @@ namespace CineMajestic.ViewModels
                 if (user.Username == Username && user.Password == wd.txtPassword.Password)
                 {
                     check = true;
-                    MainView mainView = new MainView(user);
+                    MainView mainView = new MainView(user.Staff_Id);
                     mainView.Show();
                     break;
                 }
