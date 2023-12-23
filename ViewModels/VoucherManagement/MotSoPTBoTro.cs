@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
@@ -93,16 +95,99 @@ namespace CineMajestic.ViewModels.VoucherManagement
 
 
         //hàm gửi voucher bằng mail cho 1 khách hàng
-        public static void sendVoucherByMail(string fullName,VoucherDTO voucherDTO)
+        public static void sendVoucherByMail(string fullName, VoucherDTO voucherDTO, MailMessage mailMessage, string fromMail, string fromPassword,CustomerDTO customerDTO,string LoaiVoucher)
         {
             string noidung =
-                "Cinema UIT trân trọng gửi đến quý khách hàng: " + fullName + ".\n"
-                +"Voucher ngày: " + voucherDTO.StartDate + ".\n"
-                +"Tên voucher: " + voucherDTO.Name + ".\n" 
-                +"Thông tin Voucher: " + voucherDTO.VoucherDetail + ".\n"
-                +"Ngày hết hạn: " + voucherDTO.FinDate + ".\n";
+               "Cinema UIT trân trọng gửi đến quý khách hàng: " + fullName + ".<br>"
+                +
+                "Ngày bắt đầu: " + voucherDTO.StartDate + ".<br>"
+                +
+                "Tên voucher: " + voucherDTO.Name + ".<br>"
+                +
+                "Thông tin Voucher: " + voucherDTO.VoucherDetail + ".<br>"
+                +
+                "Code: " + voucherDTO.Code + ".<br>"
+                +
+                "Ngày hết hạn: " + voucherDTO.FinDate + ".<br>"
+                +
+                "Cảm ơn quý khách đã ủng hộ, sự hài lòng của bạn chính là thành công của chúng tôi!";
 
-            //tạm thời như này : khi merge vào Custom thì làm tiếp
+
+            mailMessage.Body = "<html><body>" + noidung + "</body></html>";
+            mailMessage.IsBodyHtml = true;
+
+
+            string noidungQR =
+                "Code: " + voucherDTO.Code + ".\n"
+                +
+                "Tên voucher: " + voucherDTO.Name + ".\n"
+                +
+                "Ngày bắt đầu: " + voucherDTO.StartDate + ".\n"
+                +
+                "Ngày kết thúc: " + voucherDTO.FinDate + ".\n"
+                +
+                "Thông tin Voucher: " + voucherDTO.VoucherDetail + ".\n";
+
+
+            //bắt đầu gửi qr và nội dung
+            if (memoryImage(noidungQR).Length > 0)//tạo memory thành công
+            {
+                try
+                {
+                    using (var memory = memoryImage(noidungQR))
+                    {
+                        memory.Position = 0;
+                        Attachment qrAttachment = new Attachment(memory, "qrcode.png", "image/png");
+
+                        mailMessage.Attachments.Add(qrAttachment);
+
+                        try
+                        {
+                            var smtpClient = new SmtpClient("smtp.gmail.com")
+                            {
+                                Port = 587,
+                                Credentials = new NetworkCredential(fromMail, fromPassword),
+                                EnableSsl = true
+                            };
+
+
+                            try
+                            {
+                                smtpClient.Send(mailMessage);
+
+                                //cập nhật lại điểm
+                                CustomerDA customerDA = new CustomerDA();
+                                customerDA.updatePoint(customerDTO, LoaiVoucher);
+                            }
+                            catch { }
+                        }
+                        catch { }
+                    }
+                }
+                catch { }
+            }
+            else//không có qr thì gửi nội dung thôi
+            {
+                try
+                {
+                    var smtpClient = new SmtpClient("smtp.gmail.com")
+                    {
+                        Port = 587,
+                        Credentials = new NetworkCredential(fromMail, fromPassword),
+                        EnableSsl = true
+                    };
+                    try
+                    {
+                        smtpClient.Send(mailMessage);
+
+                        //cập nhật lại điểm
+                        CustomerDA customerDA = new CustomerDA();
+                        customerDA.updatePoint(customerDTO, LoaiVoucher);
+                    }
+                    catch { }
+                }
+                catch { }
+            }
         }
     }
 }
