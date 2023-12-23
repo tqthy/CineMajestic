@@ -25,7 +25,7 @@ namespace CineMajestic.Views.InformationManagement
         public InformationView(int Staff_Id)
         {
             InitializeComponent();
-            InformationViewModel informationViewModel = new InformationViewModel(Staff_Id);
+            InformationViewModel informationViewModel = new InformationViewModel(Staff_Id,this);
             this.DataContext = informationViewModel;
         }
     }

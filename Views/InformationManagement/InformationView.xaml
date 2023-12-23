@@ -255,7 +255,8 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="15"
-                        Foreground="Red" />
+                        Foreground="Red" 
+                        Text="{Binding Password1Error}"/>
                 </StackPanel>
 
             </Grid>
@@ -289,13 +290,15 @@
                         <TextBlock
                             Margin="10,0,0,0"
                             FontSize="15"
-                            Foreground="Red" />
+                            Foreground="Red" 
+                            Text="{Binding Password2Error}"/>
                     </StackPanel>
 
                     <Button
                         Margin="120,0,0,0"
                         Content="Đổi mật khẩu"
-                        FontSize="20" />
+                        FontSize="20" 
+                        Command="{Binding changePasswordCommand}"/>
                 </StackPanel>
 
             </Grid>
@@ -329,7 +332,8 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="15"
-                        Foreground="Red" />
+                        Foreground="Red" 
+                        Text="{Binding Password3Error}"/>
                 </StackPanel>
 
             </Grid>

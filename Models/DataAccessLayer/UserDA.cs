@@ -151,7 +151,7 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
-        //phương thức phục vụ phần quên pass
+        //phương thức phục vụ phần quên pass(ở forgot) 
         public void changePassword(string username, string passwordNew)
         {
             using (SqlConnection connection = GetConnection())
@@ -222,6 +222,56 @@ namespace CineMajestic.Models.DataAccessLayer
                         {
                             string username = reader.GetString(reader.GetOrdinal("Username"));
                             result.Add(username);
+                        }
+                    }
+                }
+            }
+
+            return result;
+        }
+
+
+        //phương thức phục vụ phần đổi pass ở Information
+        public void changePassword(int Staff_Id,string passwordNew)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string update =
+                    "update Accounts\n"
+                    +
+                    "set Password=" + "'" + passwordNew + "'\n"
+                    +
+                    "where Staff_Id=" + "'" + Staff_Id + "'";
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+        //truy vấn lấy password ứng với id là staffID(phục vụ phần changepassword ở information)
+        public string passwordStaff_Id(int Staff_Id)
+        {
+            string result = ""; 
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string truyvan =
+                    "select Password\n"
+                    +
+                    "from Accounts\n"
+                    +
+                    "where Staff_Id=" + Staff_Id;
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string password = reader.GetString(reader.GetOrdinal("Password"));
+                            result = password;
                         }
                     }
                 }

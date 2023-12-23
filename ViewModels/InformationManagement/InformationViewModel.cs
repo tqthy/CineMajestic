@@ -1,6 +1,7 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
 using CineMajestic.Models.DTOs.StaffManagement;
+using CineMajestic.Views.InformationManagement;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -38,12 +39,15 @@ namespace CineMajestic.ViewModels.InformationManagement
 
 
         private int Staff_Id;
-        public InformationViewModel(int Staff_Id)
+        private InformationView informationView;
+        public InformationViewModel(int Staff_Id,InformationView informationView)
         {
             this.Staff_Id = Staff_Id;
             loadData();
             EditImage();
             deleteImage();
+            this.informationView = informationView;
+            ChangePassword();
         }
 
         private void loadData()
