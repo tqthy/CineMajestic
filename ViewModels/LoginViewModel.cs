@@ -102,7 +102,9 @@ namespace CineMajestic.ViewModels
                 {
                     check = true;
                     MainView mainView = new MainView(user.Staff_Id);
-                    mainView.Show();
+                    wd.Hide();
+                    mainView.ShowDialog();
+                    //dùng app.shutdow nên k phải thoát login khi thoát mainview
                     break;
                 }
             }
