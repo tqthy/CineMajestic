@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="648"
     d:DesignWidth="1000"
-    FontFamily="{DynamicResource MaterialDesignFont}"
+    FontFamily="Segoe UI"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -28,18 +28,16 @@
             <StackPanel Margin="30,0,0,0" Orientation="Horizontal">
 
                 <TextBox
-                    Width="500"
+                    Width="380"
                     Height="30"
                     Padding="0"
                     VerticalAlignment="Bottom"
                     materialDesign:HintAssist.Hint="Tìm kiếm"
                     AllowDrop="True"
                     BorderThickness="0,0,0,1"
-                    FontFamily="Arial"
-                    FontSize="25"
+                    FontSize="20"
                     Foreground="#DD000000"
                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
-
 
                 <!--  Nút thêm  -->
                 <StackPanel
@@ -47,20 +45,19 @@
                     VerticalAlignment="Bottom"
                     Orientation="Horizontal">
                     <Button
-                        Width="120"
+                        Width="100"
                         Height="40"
                         Padding="0"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Top"
-                        materialDesign:ButtonAssist.CornerRadius="8"
+                        materialDesign:ButtonAssist.CornerRadius="10"
                         Command="{Binding showWdAddStaffCommand}"
-                        FontFamily="arial"
-                        FontSize="25">
+                        FontSize="20">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon
-                                    Width="25"
-                                    Height="25"
+                                    Width="20"
+                                    Height="20"
                                     Margin="0,0,0,0"
                                     VerticalAlignment="Center"
                                     Kind="PlusCircleOutline" />
@@ -69,104 +66,135 @@
                         </Button.Content>
                     </Button>
                 </StackPanel>
+
+                <!--  Nút xuất file excel  -->
+                <Button
+                    Width="auto"
+                    Height="40"
+                    Margin="290,0,0,0"
+                    VerticalAlignment="Bottom"
+                    materialDesign:ButtonAssist.CornerRadius="10"
+                    Command="{Binding ExportExcelCommand}"
+                    FontSize="15"
+                    Foreground="AntiqueWhite">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                Margin="0,0,0,0"
+                                VerticalAlignment="Center"
+                                Kind="File" />
+                            <TextBlock Margin="5,6,0,0" Text="Xuất file excel" />
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
             </StackPanel>
         </Grid>
 
         <!--  List view nhân sự  -->
         <Grid Grid.Row="1">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto"
-                          VerticalScrollBarVisibility="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="lvStaff" ItemsSource="{Binding FilterDSNV}">
+                    <!--  Event trigger phục vụ show StaffDetail  -->
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding DataContext.StaffDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding ElementName=lvStaff, Path=SelectedItem}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
                     <ListView.View>
                         <GridView>
                             <!--  Danh sách cần cột hiển thị trong listview  -->
-                            <GridViewColumn x:Name="clId" Width="Auto" Header="ID">
+                            <GridViewColumn
+                                    x:Name="clId"
+                                    Width="Auto"
+                                    Header="ID">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,5.5,0,0"
-                                            FontSize="17"
-                                            Text="{Binding IdFormat}" />
+                                                Margin="16,5.5,0,0"
+                                                FontSize="17"
+                                                Text="{Binding IdFormat}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clFullName" Width="Auto" Header="Họ và tên">
+                            <GridViewColumn
+                                    x:Name="clFullName"
+                                    Width="Auto"
+                                    Header="Họ và tên">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,5.5,0,0"
-                                            FontSize="17"
-                                            Text="{Binding FullName}" />
+                                                Margin="16,5.5,0,0"
+                                                FontSize="17"
+                                                Text="{Binding FullName}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clBirth" Width="Auto" Header="Ngày sinh">
+                            <GridViewColumn
+                                    x:Name="clGender"
+                                    Width="Auto"
+                                    Header="Giới tính">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,5.5,0,0"
-                                            FontSize="17"
-                                            Text="{Binding Birth}" />
+                                                Margin="16,5.5,0,0"
+                                                FontSize="17"
+                                                Text="{Binding Gender}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clGender" Width="Auto" Header="Giới tính">
+                            <GridViewColumn
+                                    x:Name="clPhoneNumber"
+                                    Width="Auto"
+                                    Header="SĐT">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,5.5,0,0"
-                                            FontSize="17"
-                                            Text="{Binding Gender}" />
+                                                Margin="16,5.5,0,0"
+                                                FontSize="17"
+                                                Text="{Binding PhoneNumber}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clPhoneNumber" Width="Auto" Header="SĐT">
+                            <GridViewColumn
+                                    x:Name="clEmail"
+                                    Width="Auto"
+                                    Header="Email">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,5.5,0,0"
-                                            FontSize="17"
-                                            Text="{Binding PhoneNumber}" />
+                                                Margin="16,5.5,0,0"
+                                                FontSize="17"
+                                                Text="{Binding Email}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clEmail" Width="Auto" Header="Email">
+                            <GridViewColumn
+                                    x:Name="clRole"
+                                    Width="Auto"
+                                    Header="Chức vụ">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="16,5.5,0,0"
-                                            FontSize="17"
-                                            Text="{Binding Email}" />
+                                                Margin="16,5.5,0,0"
+                                                FontSize="17"
+                                                Text="{Binding Role}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn x:Name="clRole" Width="Auto" Header="Chức vụ">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            Margin="16,5.5,0,0"
-                                            FontSize="17"
-                                            Text="{Binding Role}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
 
-                            <GridViewColumn x:Name="clSalary" Width="Auto" Header="Lương">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            Margin="16,5.5,0,0"
-                                            FontSize="17"
-                                            Text="{Binding Salary}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
 
 
                             <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
@@ -176,10 +204,10 @@
                                         <!--  Nút sửa  -->
                                         <StackPanel Orientation="Horizontal">
                                             <Border
-                                                BorderBrush="Black"
-                                                BorderThickness="0.5"
-                                                CornerRadius="5"
-                                                Cursor="Hand">
+                                                    BorderBrush="Black"
+                                                    BorderThickness="0.5"
+                                                    CornerRadius="5"
+                                                    Cursor="Hand">
                                                 <Border.Style>
                                                     <Style TargetType="Border">
                                                         <Style.Triggers>
@@ -190,9 +218,9 @@
                                                     </Style>
                                                 </Border.Style>
                                                 <materialDesign:PackIcon
-                                                    Width="30"
-                                                    Height="30"
-                                                    Kind="AccountEdit" />
+                                                        Width="30"
+                                                        Height="30"
+                                                        Kind="AccountEdit" />
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                                         <i:InvokeCommandAction Command="{Binding DataContext.showWdEditStaffCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
@@ -201,11 +229,11 @@
                                             </Border>
                                             <!--  Nút xóa  -->
                                             <Border
-                                                Margin="10,0,0,0"
-                                                BorderBrush="Black"
-                                                BorderThickness="0.5"
-                                                CornerRadius="5"
-                                                Cursor="Hand">
+                                                    Margin="10,0,0,0"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="0.5"
+                                                    CornerRadius="5"
+                                                    Cursor="Hand">
                                                 <Border.Style>
                                                     <Style TargetType="Border">
                                                         <Style.Triggers>
@@ -216,9 +244,9 @@
                                                     </Style>
                                                 </Border.Style>
                                                 <materialDesign:PackIcon
-                                                    Width="30"
-                                                    Height="30"
-                                                    Kind="Delete" />
+                                                        Width="30"
+                                                        Height="30"
+                                                        Kind="Delete" />
                                                 <i:Interaction.Triggers>
                                                     <i:EventTrigger EventName="MouseLeftButtonDown">
                                                         <i:InvokeCommandAction Command="{Binding DataContext.deleteStaffCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
@@ -234,6 +262,14 @@
                 </ListView>
 
             </ScrollViewer>
+
+            <TextBlock Grid.Row="1"
+                       FontSize="17"
+                       Text="{Binding Notify}"
+                       HorizontalAlignment="Right"
+                       FontWeight="DemiBold"
+                       Margin="0,0,70,0"
+                       Foreground="Brown"/>
         </Grid>
     </Grid>
 </UserControl>

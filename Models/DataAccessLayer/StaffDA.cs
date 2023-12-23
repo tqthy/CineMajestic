@@ -45,7 +45,7 @@ namespace CineMajestic.Models.DataAccessLayer
                             string role = reader.GetString(reader.GetOrdinal("Role"));
 
                             DateTime NgayVL = reader.GetDateTime(reader.GetOrdinal("NgayVaolam"));
-                            string ngayVL = birthDate.ToString("dd/MM/yyyy");
+                            string ngayVL = NgayVL.ToString("dd/MM/yyyy");
 
                             list.Add(new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL));
                         }
@@ -63,7 +63,7 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 connection.Open();
                 string insert=
-                    "insert into Staff\n"
+                    "insert into Staff(FullName,Birth,Gender,Email,PhoneNumber,Salary,Role,NgayVaolam)\n"
                     +
                     "values("
                     +

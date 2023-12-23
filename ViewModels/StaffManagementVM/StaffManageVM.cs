@@ -37,6 +37,8 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             addStaff();
             delete();
             editStaff();
+            exportExcel();
+            staffDetail();
             this.staffManagementView = staffManagementView;
         }
 
@@ -58,8 +60,8 @@ namespace CineMajestic.ViewModels.StaffManagementVM
                 staffManagementView.clFullName.Width = 0;
                 staffManagementView.clFullName.Width = double.NaN;
 
-                staffManagementView.clBirth.Width = 0;
-                staffManagementView.clBirth.Width = double.NaN;
+                //staffManagementView.clBirth.Width = 0;
+                //staffManagementView.clBirth.Width = double.NaN;
 
                 staffManagementView.clGender.Width = 0;
                 staffManagementView.clGender.Width = double.NaN;
@@ -70,8 +72,8 @@ namespace CineMajestic.ViewModels.StaffManagementVM
                 staffManagementView.clPhoneNumber.Width = 0;
                 staffManagementView.clPhoneNumber.Width = double.NaN;
 
-                staffManagementView.clSalary.Width = 0;
-                staffManagementView.clSalary.Width = double.NaN;
+                //staffManagementView.clSalary.Width = 0;
+                //staffManagementView.clSalary.Width = double.NaN;
 
                 staffManagementView.clRole.Width = 0;
                 staffManagementView.clRole.Width = double.NaN;

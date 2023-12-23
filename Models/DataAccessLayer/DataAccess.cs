@@ -14,7 +14,7 @@ namespace CineMajestic.Models.DataAccessLayer
         {
             //  _connectionString = @"Data Source=LAPTOP-J7OECDJF\SQLEXPRESS;Initial Catalog=CinemaManagement;Integrated Security=True";
             //test ở local
-            _connectionString = @"Data Source=DESKTOP-34OSP4G\SQLEXPRESS;Initial Catalog=QL_RapChieuPhim;Integrated Security=True";
+           _connectionString = @"Data Source=DESKTOP-34OSP4G\SQLEXPRESS;Initial Catalog=QL_RapChieuPhim;Integrated Security=True";
         }
         protected SqlConnection GetConnection()
         {

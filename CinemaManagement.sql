@@ -83,6 +83,7 @@ create table Staff
 	Salary int not null,
 	Role nvarchar(30) not null,
 	NgayVaolam smalldatetime not null,
+	ImageSource varchar(50) default 'Default.jpg'
 )
 go
 
