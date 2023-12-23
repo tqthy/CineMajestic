@@ -19,6 +19,10 @@ CREATE TABLE EMPLOYEES(
     Salary MONEY,
     Account_id INT,
     CONSTRAINT FK_Account FOREIGN KEY (Account_id) REFERENCES ACCOUNTS(id)
+
+
+
+
 );
 
 
@@ -34,27 +38,3 @@ create table Product
 	Type int not null,
 )
 go
-
---insert dữ liệu cho bảng Product
-
-insert into Product(Name,ImageSource,Quantity,Price,Type)
-values(N'Coca','1.jpg',19,10000,2)
-
-insert into Product(Name,ImageSource,Quantity,Price,Type)
-values(N'Pepsi','2.jpg',27,10000,2)
-
-insert into Product(Name,ImageSource,Quantity,Price,Type)
-values(N'Gà khô','3.jpg',25,50000,1)
-
-insert into Product(Name,ImageSource,Quantity,Price,Type)
-values(N'Bò khô','4.jpg',11,200000,1)
-
-insert into Product(Name,ImageSource,Quantity,Price,Type)
-values(N'Sting','5.jpg',19,10000,2)
-
-insert into Product(Name,ImageSource,Quantity,Price,Type)
-values(N'Hướng dương','6.jpg',8,30000,1)
-
-insert into Product(Name,ImageSource,Quantity,Price,Type)
-values(N'Bắp rang bơ','7.jpg',59,15000,1)
-
