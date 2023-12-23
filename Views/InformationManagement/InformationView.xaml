@@ -8,12 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="648"
     d:DesignWidth="1000"
+    FontFamily="Segoe UI"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    FontFamily="Segoe UI"
     mc:Ignorable="d">
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -52,15 +52,25 @@
                     Margin="0,30,0,0"
                     BorderBrush="Black"
                     BorderThickness="2"
-                    CornerRadius="70" >
+                    CornerRadius="70">
                     <Border.Background>
-                        <ImageBrush ImageSource="{Binding ImageSource}"></ImageBrush>
+                        <ImageBrush ImageSource="{Binding ImageSource}" />
                     </Border.Background>
                 </Border>
+                <TextBlock
+                    Height="25"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    FontSize="17"
+                    FontWeight="Bold"
+                    Text="{Binding Id}" />
+
+                <!--  Nút đổi ảnh đại diện  -->
                 <Button
                     Grid.Row="1"
                     Width="120"
-                    Margin="0,4,0,0"
+                    VerticalAlignment="Top"
                     Content="Thay đổi ảnh"
                     FontSize="15" />
             </Grid>
@@ -88,8 +98,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                        Text="{Binding FullName}"/>
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding FullName}" />
                     <TextBox
                         Grid.Column="1"
                         Width="300"
@@ -99,8 +109,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                        Text="{Binding Gender}"/>
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Gender}" />
                 </Grid>
 
                 <!--  Ngày sinh và số điện thoại  -->
@@ -117,8 +127,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                        Text="{Binding Birth}"/>
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Birth}" />
                     <TextBox
                         Grid.Column="1"
                         Width="300"
@@ -128,8 +138,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                        Text="{Binding PhoneNumber}"/>
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding PhoneNumber}" />
                 </Grid>
 
                 <!--  Ngày vào làm và lương  -->
@@ -146,8 +156,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                        Text="{Binding NgayVL}"/>
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding NgayVL}" />
                     <TextBox
                         Grid.Column="1"
                         Width="300"
@@ -157,8 +167,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                        Text="{Binding Salary}"/>
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Salary}" />
                 </Grid>
 
                 <!--  Chức vụ và Email  -->
@@ -178,8 +188,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                        Text="{Binding Role}"/>
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Role}" />
                     <TextBox
                         Grid.Column="2"
                         Width="300"
@@ -190,8 +200,8 @@
                         FontSize="17"
                         FontWeight="Bold"
                         IsReadOnly="True"
-                        Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                        Text="{Binding Email}"/>
+                        Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                        Text="{Binding Email}" />
                 </Grid>
             </Grid>
 
@@ -239,8 +249,8 @@
                         VerticalContentAlignment="Center"
                         materialDesign:HintAssist.Hint="Mật khẩu cũ"
                         FontSize="20" />
-                   
-                    <!--In ra lỗi-->
+
+                    <!--  In ra lỗi  -->
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="15"
@@ -273,8 +283,8 @@
                             VerticalContentAlignment="Center"
                             materialDesign:HintAssist.Hint="Mật khẩu mới"
                             FontSize="20" />
-                        
-                        <!--In ra lỗi-->
+
+                        <!--  In ra lỗi  -->
                         <TextBlock
                             Margin="10,0,0,0"
                             FontSize="15"
@@ -313,8 +323,8 @@
                         VerticalContentAlignment="Center"
                         materialDesign:HintAssist.Hint="Mật khẩu mới"
                         FontSize="20" />
-                    
-                    <!--In ra lỗi-->
+
+                    <!--  In ra lỗi  -->
                     <TextBlock
                         Margin="10,0,0,0"
                         FontSize="15"

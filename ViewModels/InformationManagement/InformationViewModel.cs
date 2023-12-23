@@ -9,6 +9,7 @@ namespace CineMajestic.ViewModels.InformationManagement
 {
     public class InformationViewModel:MainBaseViewModel
     {
+        public string Id { get; set; }
         public string FullName { get; set; }
         public string Gender { get; set; }
         public string Birth { get; set; }
@@ -36,6 +37,7 @@ namespace CineMajestic.ViewModels.InformationManagement
         private void loadData()
         {
             //tạm thời dùng dữ liệu mẫu vì chưa xử cái login
+            Id = "NV001";
             FullName = "Nguyễn Văn a";
             Gender = "Nam";
             Birth = "10/10/1999";
