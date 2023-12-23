@@ -89,11 +89,17 @@
                 <RowDefinition Height="0.5*" />
             </Grid.RowDefinitions>
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <ListView x:Name="lvCustomer" ItemsSource="{Binding FilterDSCTM}">
+                <ListView
+                    x:Name="lvCustomer"
+                    d:ItemsSource="{d:SampleData ItemCount=5}"
+                    ItemsSource="{Binding FilterDSCTM}">
                     <ListView.View>
                         <GridView>
                             <!--  Danh sách cần cột hiển thị trong listview  -->
-                            <GridViewColumn Width="Auto" Header="ID">
+                            <GridViewColumn
+                                x:Name="clID"
+                                Width="Auto"
+                                Header="ID">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -104,7 +110,10 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Họ và tên">
+                            <GridViewColumn
+                                x:Name="clFullName"
+                                Width="Auto"
+                                Header="Họ và tên">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -115,7 +124,10 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="SĐT">
+                            <GridViewColumn
+                                x:Name="clSDT"
+                                Width="Auto"
+                                Header="SĐT">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -126,7 +138,10 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Email">
+                            <GridViewColumn
+                                x:Name="clEmail"
+                                Width="Auto"
+                                Header="Email">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -136,7 +151,11 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Width="Auto" Header="Ngày đăng kí">
+
+                            <GridViewColumn
+                                x:Name="clNgayDangKi"
+                                Width="Auto"
+                                Header="Ngày đăng kí">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -147,7 +166,10 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
-                            <GridViewColumn Width="Auto" Header="Điểm">
+                            <GridViewColumn
+                                x:Name="clDiem"
+                                Width="Auto"
+                                Header="Điểm">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -217,6 +239,8 @@
                     </ListView.View>
                 </ListView>
             </ScrollViewer>
+
+            <!--  Phần hiển thị đồng bộ  -->
             <TextBlock
                 Grid.Row="1"
                 Margin="0,0,70,0"

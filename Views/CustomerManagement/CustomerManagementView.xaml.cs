@@ -24,7 +24,7 @@ namespace CineMajestic.Views.CustomerManagement
         public CustomerManagementView()
         {
             InitializeComponent();
-            CustomerManagementViewModel viewModel = new CustomerManagementViewModel();
+            CustomerManagementViewModel viewModel = new CustomerManagementViewModel(this);
             this.DataContext = viewModel;
         }
     }
