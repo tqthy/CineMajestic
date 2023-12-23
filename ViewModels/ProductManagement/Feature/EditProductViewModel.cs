@@ -203,21 +203,24 @@ namespace CineMajestic.ViewModels.ProductManagement
 
         private void deleteImageEdit()
         {
-            try
+            Task.Run(() =>
             {
-                string s = "";
-                DirectoryInfo dir = new DirectoryInfo(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
-                FileInfo[] files = dir.GetFiles("*.*", SearchOption.AllDirectories);
-                foreach (FileInfo file in files)
+                try
                 {
-                    try
+                    string s = "";
+                    DirectoryInfo dir = new DirectoryInfo(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
+                    FileInfo[] files = dir.GetFiles("*.*", SearchOption.AllDirectories);
+                    foreach (FileInfo file in files)
                     {
-                        File.Delete(file.FullName);
+                        try
+                        {
+                            File.Delete(file.FullName);
+                        }
+                        catch { }
                     }
-                    catch { }
                 }
-            }
-            catch { }
+                catch { }
+            });
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
