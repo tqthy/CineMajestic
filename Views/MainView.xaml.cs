@@ -46,5 +46,10 @@ namespace CineMajestic.Views
             this.blurPanel.Opacity = 0;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            button.Background = new SolidColorBrush(Color.FromRgb(245, 245, 245));
+        }
     }
 }

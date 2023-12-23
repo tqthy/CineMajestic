@@ -142,9 +142,9 @@
                             Style="{StaticResource MaterialDesignFlatButton}"
                             CommandParameter="Movies"
                             Margin="0,20,0,10"
-                            Background="#f5f5f5"
                             HorizontalAlignment="Center"
-                            materialDesign:ButtonAssist.CornerRadius="20">
+                            materialDesign:ButtonAssist.CornerRadius="15"
+                            Click="Button_Click">
                         
                         <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center">
