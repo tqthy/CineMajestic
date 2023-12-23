@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows;
 using System.Reflection.Metadata;
+using System.IO;
 
 namespace CineMajestic.ViewModels.ProductManagement
 {

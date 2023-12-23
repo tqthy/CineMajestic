@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace CineMajestic.ViewModels.ProductManagement
         private void ShowWDEditProduct(object obj)
         {
             //truyền ID để phục vụ update
-            ProductDTO product=obj as ProductDTO;
+            ProductDTO product = obj as ProductDTO;
             EditProduct editProduct = new EditProduct(product);
 
 
@@ -36,9 +37,9 @@ namespace CineMajestic.ViewModels.ProductManagement
         }
     }
 
-    public class EditProductViewModel:INotifyPropertyChanged
+    public class EditProductViewModel : INotifyPropertyChanged
     {
-        public ProductDTO productEdit {  get; set; }
+        public ProductDTO productEdit { get; set; }
 
         //Tên sản phẩm
         private string name;
@@ -57,8 +58,8 @@ namespace CineMajestic.ViewModels.ProductManagement
             get => nameError;
             set
             {
-               nameError = value;
-               OnPropertyChanged(nameof(NameError));
+                nameError = value;
+                OnPropertyChanged(nameof(NameError));
             }
         }
 
@@ -125,27 +126,26 @@ namespace CineMajestic.ViewModels.ProductManagement
         EditProduct wd;//phục vụ việc đóng wd
 
         public ICommand quitCommand { get; set; }//thoát k sửa product nữa
-        public ICommand addImageCommand {  get; set; }//đồng ý edit
+        public ICommand addImageCommand { get; set; }//đồng ý edit
         public ICommand acceptEditCommand { get; set; }//đồng ý edit
         public ICommand WindowClosingCommand { get; set; }
 
         public EditProductViewModel(EditProduct wd)
         {
-            quitCommand = new ViewModelCommand(quit);  
-            addImageCommand=new ViewModelCommand(addImage);
-            acceptEditCommand = new ViewModelCommand(acceptEdit,canAccept);
+            quitCommand = new ViewModelCommand(quit);
+            addImageCommand = new ViewModelCommand(addImage);
+            acceptEditCommand = new ViewModelCommand(acceptEdit, canAccept);
             WindowClosingCommand = new ViewModelCommand(windowClosing);
             this.wd = wd;
-            deleteImageEdit();
         }
 
         public void khoitao()
         {
             Name = productEdit.Name;
-            Quantity=productEdit.Quantity.ToString();
+            Quantity = productEdit.Quantity.ToString();
             Price = productEdit.Price.ToString();
             Type = productEdit.Type - 1;
-            ImageSource= productEdit.ImageSource;
+            ImageSource = productEdit.ImageSource;
         }
 
         //thoát(hủy k edit nữa)
@@ -160,11 +160,11 @@ namespace CineMajestic.ViewModels.ProductManagement
         {
             string nameNew = Name;
             int quantityNew = int.Parse(Quantity);
-            int priceNew= int.Parse(Price);
+            int priceNew = int.Parse(Price);
             int typeNew = Type + 1;
             string imageSourceNew = Path.GetFileName(ImageSource);
             ProductDA productDA = new ProductDA();
-            productDA.editProduct(new ProductDTO(productEdit.Id,nameNew, quantityNew, priceNew, typeNew, imageSourceNew));
+            productDA.editProduct(new ProductDTO(productEdit.Id, nameNew, quantityNew, priceNew, typeNew, imageSourceNew));
             MessageBox.Show("Sửa thành công");
             wd.Close();
         }
@@ -180,18 +180,39 @@ namespace CineMajestic.ViewModels.ProductManagement
 
             if (result == true)
             {
-                string selectedImagePath = openFileDialog.FileName;
-                string fileName = Path.GetFileName(selectedImagePath);
                 try
                 {
-                    MotSoPhuongThucBoTro.copyFile(selectedImagePath, MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
-                    ImageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + fileName;
+                    string selectedImagePath = openFileDialog.FileName;
+                    string folder = Path.GetDirectoryName(selectedImagePath);
+                    string fileName = Path.GetFileName(selectedImagePath);
+                    string extension = Path.GetExtension(fileName);//đuôi mở rộng của file
+
+
+                    string fileOld1 = selectedImagePath;
+
+                    string pathfileOld2 = selectedImagePath;
+
+                    while (File.Exists(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + fileName))
+                    {
+                        fileName = MotSoPhuongThucBoTro.RandomFileName() + extension;
+                        File.Move(fileOld1, folder + @"\" + fileName);
+                        pathfileOld2= folder + @"\" + fileName;
+                    }
+
+                    try
+                    {
+                        MotSoPhuongThucBoTro.copyFile(pathfileOld2, MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
+                        ImageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + fileName;
+
+
+                        //đổi lại tên file người dùng chọn
+                        File.Move(pathfileOld2, selectedImagePath);
+                    }
+                    catch { }
+
+
                 }
-                catch
-                {
-                    MessageBox.Show("Vui lòng đổi lại tên ảnh,file ảnh bạn chọn có tên trùng với nơi lưu trữ dữ liệu!");
-                    wd.Close();
-                }
+                catch { }
             }
         }
 
@@ -199,29 +220,9 @@ namespace CineMajestic.ViewModels.ProductManagement
         {
 
         }
-        
 
-        private void deleteImageEdit()
-        {
-            Task.Run(() =>
-            {
-                try
-                {
-                    string s = "";
-                    DirectoryInfo dir = new DirectoryInfo(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
-                    FileInfo[] files = dir.GetFiles("*.*", SearchOption.AllDirectories);
-                    foreach (FileInfo file in files)
-                    {
-                        try
-                        {
-                            File.Delete(file.FullName);
-                        }
-                        catch { }
-                    }
-                }
-                catch { }
-            });
-        }
+
+      
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -233,8 +234,8 @@ namespace CineMajestic.ViewModels.ProductManagement
 
         //Các hàm Validate để báo lỗi
 
-        private bool [] _canAccept = new bool[3];
-        
+        private bool[] _canAccept = new bool[3];
+
         private bool canAccept(object obj)
         {
             return _canAccept[0] && _canAccept[1] && _canAccept[2];

@@ -35,7 +35,7 @@ namespace CineMajestic.ViewModels.ProductManagement
     }
 
 
-    public class AddProductViewModel : INotifyPropertyChanged
+    public class AddProductViewModel : MainBaseViewModel
     {
         //Tên sản phẩm
         private string name;
@@ -129,6 +129,7 @@ namespace CineMajestic.ViewModels.ProductManagement
             acceptCommand = new ViewModelCommand(accept,canAccept);
             addImageCommand = new ViewModelCommand(addImage);
             this.wd = wd;
+            deleteImage();
         }
 
         private void quit(object obj)
@@ -161,29 +162,67 @@ namespace CineMajestic.ViewModels.ProductManagement
 
             if (result == true)
             {
-                string selectedImagePath = openFileDialog.FileName;
-                string fileName=Path.GetFileName(selectedImagePath);
                 try
                 {
-                    MotSoPhuongThucBoTro.copyFile(selectedImagePath, MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
-                    ImageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + fileName;
+                    string selectedImagePath = openFileDialog.FileName;
+                    string folder = Path.GetDirectoryName(selectedImagePath);
+                    string fileName = Path.GetFileName(selectedImagePath);
+                    string extension = Path.GetExtension(fileName);//đuôi mở rộng của file
+
+
+                    string fileOld1 = selectedImagePath;
+
+                    string pathfileOld2 = selectedImagePath;
+
+                    while (File.Exists(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + fileName))
+                    {
+                        fileName = MotSoPhuongThucBoTro.RandomFileName() + extension;
+                        File.Move(fileOld1, folder + @"\" + fileName);
+                        pathfileOld2 = folder + @"\" + fileName;
+                    }
+
+                    try
+                    {
+                        MotSoPhuongThucBoTro.copyFile(pathfileOld2, MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
+                        ImageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + fileName;
+
+
+                        //đổi lại tên file người dùng chọn
+                        File.Move(pathfileOld2, selectedImagePath);
+                    }
+                    catch { }
+
+
                 }
-                catch
-                {
-                    MessageBox.Show("Vui lòng đổi lại tên ảnh,file ảnh bạn chọn có tên trùng với nơi lưu trữ dữ liệu!");
-                    wd.Close();
-                }
+                catch { }
             }
         }
 
 
-        public event PropertyChangedEventHandler? PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        //cái này là phục vụ cho cái deleteproduct,editproduct,thêm product
+        private void deleteImage()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            Task.Run(() =>
+            {
+                try
+                {
+                    string s = "";
+                    DirectoryInfo dir = new DirectoryInfo(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
+                    FileInfo[] files = dir.GetFiles("*.*", SearchOption.AllDirectories);
+                    foreach (FileInfo file in files)
+                    {
+                        try
+                        {
+                            File.Delete(file.FullName);
+                        }
+                        catch { }
+                    }
+                }
+                catch { }
+            });
         }
-        
+
         //Các hàm Validate để báo lỗi
 
         private bool[] _canAccept = new bool[3];

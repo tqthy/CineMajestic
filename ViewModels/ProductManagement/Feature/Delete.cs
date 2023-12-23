@@ -19,7 +19,6 @@ namespace CineMajestic.ViewModels.ProductManagement
         void delete()
         {
             deleteProductCommand = new ViewModelCommand(deleteProduct);
-            deleteImages();
         }
         private void deleteProduct(object obj)
         {
@@ -39,34 +38,6 @@ namespace CineMajestic.ViewModels.ProductManagement
                     }
                 }
             }
-        }
-
-
-        //phục vụ việc xóa ảnh của sản phẩm,khi sản phẩm này k còn
-        private void deleteImages()
-        {
-            using (FileStream fStream = new FileStream("deleteAnh.txt", FileMode.OpenOrCreate, FileAccess.Read))
-            {
-                using (StreamReader sr = new StreamReader(fStream))
-                {
-                    string line;
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        try
-                        {
-                            File.Delete(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\"+line);
-                        }
-                        catch { }
-                    }
-                }
-            }
-
-
-            try
-            {
-                File.Delete("deleteAnh.txt");
-            }
-            catch{ }
         }
     }
 }
