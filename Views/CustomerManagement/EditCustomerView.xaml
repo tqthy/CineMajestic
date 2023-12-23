@@ -28,11 +28,11 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
+                <RowDefinition Height="42" />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
@@ -71,7 +71,7 @@
                         x:Name="txtHovaTen"
                         Grid.Column="1"
                         Width="300"
-                        Height="30"
+                        Height="32"
                         Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
@@ -108,7 +108,7 @@
                         x:Name="txtSĐT"
                         Grid.Column="1"
                         Width="300"
-                        Height="30"
+                        Height="32"
                         Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
@@ -144,7 +144,7 @@
                         x:Name="txtEmail"
                         Grid.Column="1"
                         Width="300"
-                        Height="30"
+                        Height="32"
                         Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
@@ -179,7 +179,7 @@
                         x:Name="txtNgayDangKi"
                         Grid.Column="1"
                         Width="300"
-                        Height="30"
+                        Height="32"
                         Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
@@ -213,7 +213,7 @@
                         x:Name="txtDiem"
                         Grid.Column="1"
                         Width="300"
-                        Height="30"
+                        Height="32"
                         Margin="5,0,0,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
