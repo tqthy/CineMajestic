@@ -25,31 +25,61 @@
         </Grid.RowDefinitions>
 
         <Grid>
-            <!--  Lọc theo tình trạng xử lí  -->
-            <ComboBox
-                Width="160"
-                Margin="40,0,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Bottom"
-                VerticalContentAlignment="Center"
-                materialDesign:HintAssist.Hint="Tình trạng"
-                Background="#f5f5f5"
-                FontSize="15"
-                FontWeight="Bold"
-                Foreground="Black"
-                Style="{StaticResource MaterialDesignFilledComboBox}">
-                <ComboBoxItem Content="Toàn bộ" />
-                <ComboBoxItem Content="Chờ xử lí" />
-                <ComboBoxItem Content="Đã xử lí" />
-                <ComboBoxItem Content="Đang xử lí" />
-                <ComboBoxItem Content="Đã hủy" />
-            </ComboBox>
+            <StackPanel Orientation="Horizontal">
+                <!--  Lọc theo tình trạng xử lí  -->
+                <ComboBox
+                    Width="160"
+                    Margin="40,10,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Bottom"
+                    VerticalContentAlignment="Center"
+                    materialDesign:HintAssist.Hint="Tình trạng"
+                    Background="#f5f5f5"
+                    FontSize="15"
+                    FontWeight="Bold"
+                    Foreground="Black"
+                    Style="{StaticResource MaterialDesignFilledComboBox}">
+                    <ComboBoxItem Content="Toàn bộ" />
+                    <ComboBoxItem Content="Chờ xử lí" />
+                    <ComboBoxItem Content="Đã xử lí" />
+                    <ComboBoxItem Content="Đang xử lí" />
+                    <ComboBoxItem Content="Đã hủy" />
+                </ComboBox>
+
+                <!--  Nút báo cáo sự cố  -->
+                <Button
+                    Width="130"
+                    Height="40"
+                    Margin="650,0,20,5"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    materialDesign:ButtonAssist.CornerRadius="5"
+                    Background="Red">
+                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                        <materialDesign:PackIcon
+                            Width="25"
+                            Height="25"
+                            VerticalAlignment="Center"
+                            Kind="AlertCircleOutline" />
+                        <TextBlock
+                            Margin="3,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Text="Báo cáo" />
+
+                    </StackPanel>
+
+
+                </Button>
+            </StackPanel>
         </Grid>
 
         <!--  Danh sách các sự cố  -->
         <Grid Grid.Row="1">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <ListView>
+                <ListView d:ItemsSource="{d:SampleData ItemCount=5}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="Auto" Header="Sự cố">

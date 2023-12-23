@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace CineMajestic.Views.ErrorManagement
 {
     /// <summary>
-    /// Interaction logic for ErrorCheckView.xaml
+    /// Interaction logic for ErrorWaitView.xaml
     /// </summary>
-    public partial class ErrorCheckView : Window
+    public partial class ErrorWaitView : Window
     {
-        public ErrorCheckView()
+        public ErrorWaitView()
         {
             InitializeComponent();
         }
