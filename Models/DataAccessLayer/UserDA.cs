@@ -170,5 +170,6 @@ namespace CineMajestic.Models.DataAccessLayer
             }
 
             return result;
-
         }
+    }
+}
