@@ -1,4 +1,5 @@
-﻿using CineMajestic.ViewModels.InformationManagement;
+﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels.InformationManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +22,10 @@ namespace CineMajestic.Views.InformationManagement
     /// </summary>
     public partial class InformationView : UserControl
     {
-        public InformationView()
+        public InformationView(UserDTO userDTO)
         {
             InitializeComponent();
-            InformationViewModel informationViewModel = new InformationViewModel();
+            InformationViewModel informationViewModel = new InformationViewModel(userDTO);
             this.DataContext = informationViewModel;
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security;
@@ -20,9 +21,14 @@ namespace CineMajestic.Views
     /// </summary>
     public partial class LoginView : Window
     {
+        public bool isClosed;
         public LoginView()
         {
+            isClosed = false;
             InitializeComponent();
+
+            LoginViewModel loginViewModel = new LoginViewModel(this);
+            this.DataContext= loginViewModel;
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -39,16 +45,17 @@ namespace CineMajestic.Views
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            isClosed = true;
             Application.Current.Shutdown();
         }
 
-        private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
-        {
-            if (this.DataContext != null)
-            { 
-                ((dynamic)this.DataContext).Password = ((PasswordBox)sender).SecurePassword; 
-            }
+        //private void txtPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        //{
+        //    if (this.DataContext != null)
+        //    {
+        //        ((dynamic)this.DataContext).Password = ((PasswordBox)sender).SecurePassword;
+        //    }
 
-        }
+        //}
     }
 }

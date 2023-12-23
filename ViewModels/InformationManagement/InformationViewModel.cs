@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.Models.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -29,7 +30,8 @@ namespace CineMajestic.ViewModels.InformationManagement
                 OnPropertyChanged(nameof(ImageSource));
             }
         }
-        public InformationViewModel()
+
+        public InformationViewModel(UserDTO userDTO)
         {
             loadData();
         }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,11 @@ namespace CineMajestic.Views
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView()
+        public MainView(UserDTO userDTO)
         {
             InitializeComponent();
+            MainViewModel mainViewModel = new MainViewModel(userDTO);
+            this.DataContext= mainViewModel;
         }
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {

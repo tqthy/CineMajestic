@@ -1,4 +1,5 @@
-﻿using CineMajestic.Views;
+﻿using CineMajestic.Models.DTOs;
+using CineMajestic.Views;
 using CineMajestic.Views.InformationManagement;
 using CineMajestic.Views.MovieManagement;
 using CineMajestic.Views.StaffManagement;
@@ -21,10 +22,17 @@ namespace CineMajestic.ViewModels
         }
 
         public ICommand SwitchViewCommand { get; private set; }
-
         public MainBaseViewModel()
         {
             SwitchViewCommand = new ViewModelCommand(SwitchView);
+        }
+
+        private UserDTO account;
+
+        public MainBaseViewModel(UserDTO userDTO)
+        {
+            SwitchViewCommand = new ViewModelCommand(SwitchView);
+            this.account = userDTO;
         }
 
         private void SwitchView(object userControlName)
@@ -41,7 +49,7 @@ namespace CineMajestic.ViewModels
                     break;
 
                 case "Personal": // Cài đặt
-                    CurrentView = new InformationView();
+                    CurrentView = new InformationView(account);
                     break;
             }
         }

@@ -17,9 +17,9 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <vm:MainViewModel />
-    </Window.DataContext>
+    </Window.DataContext>-->  <!--gọi ở behind-->
 
     <Border Background="#F5f5f5" CornerRadius="12">
         <Grid>

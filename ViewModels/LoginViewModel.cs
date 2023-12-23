@@ -10,26 +10,30 @@ using System.Windows.Input;
 using System.Windows.Controls;
 using System.Windows;
 using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs;
+using CineMajestic.Views;
 
 namespace CineMajestic.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
         private string _userName;
-        private SecureString _password;
+        //private SecureString _password;
         private string _errorMessage;
         private bool _isViewVisible = true;
         private UserDA userDA;
-        
+
 
         public string Username
         {
             get => _userName; set { _userName = value; OnPropertyChanged(nameof(Username)); }
         }
-        public SecureString Password
-        {
-            private get => _password; set { _password = value; OnPropertyChanged(nameof(Password)); }
-        }
+        //public SecureString Password
+        //{
+        //    private get => _password; set { _password = value; OnPropertyChanged(nameof(Password)); }
+        //}
+
+
         public string ErrorMessage
         {
             get => _errorMessage; set { _errorMessage = value; OnPropertyChanged(nameof(ErrorMessage)); }
@@ -47,13 +51,20 @@ namespace CineMajestic.ViewModels
 
         // Constructors
 
-        public LoginViewModel()
+        //public LoginViewModel()
+        //{
+        //    userDA = new UserDA();
+        //    LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+        //    RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPasswordCommand("", ""));
+        //}
+
+        private LoginView wd;
+        public LoginViewModel(LoginView wd)
         {
-            userDA = new UserDA();
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPasswordCommand("", ""));
+            this.wd = wd;
         }
-
         private void ExecuteRecoverPasswordCommand(string username, string email)
         {
             throw new NotImplementedException();
@@ -64,29 +75,56 @@ namespace CineMajestic.ViewModels
             return ValidAccount();
         }
 
+        //private void ExecuteLoginCommand(object obj)
+        //{
+        //    var isValidUser = userDA.AuthenticateUser(new NetworkCredential(Username, Password));
+
+        //    if (isValidUser)
+        //    {
+        //        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
+        //        IsViewVisible = false;
+        //    }
+        //    else
+        //    {
+        //        ErrorMessage = "* Invalid username or password";
+        //    }
+        //}
+
+
         private void ExecuteLoginCommand(object obj)
         {
-            var isValidUser = userDA.AuthenticateUser(new NetworkCredential(Username, Password));
-
-            if (isValidUser)
+            UserDA userDA = new UserDA();
+            List<UserDTO> getAccounts = userDA.getAccounts();
+            bool check = false;
+            foreach (UserDTO user in getAccounts)
             {
-                Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
-                IsViewVisible = false;
+                if (user.Username == Username && user.Password == wd.txtPassword.Password)
+                {
+                    check = true;
+                    MainView mainView = new MainView(user);
+                    mainView.Show();
+                    break;
+                }
             }
-            else
+
+            if (!check)
             {
                 ErrorMessage = "* Invalid username or password";
             }
-        }
 
+        }
 
 
         // Utility methods
+        //private bool ValidAccount()
+        //{
+        //    if (string.IsNullOrWhiteSpace(Username) || Password == null) return false;
+        //    return true;
+        //}
         private bool ValidAccount()
         {
-            if (string.IsNullOrWhiteSpace(Username) || Password == null) return false;
+            if (string.IsNullOrWhiteSpace(Username) || wd.txtPassword.Password == "") return false;
             return true;
         }
-
     }
 }

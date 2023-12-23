@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using CineMajestic.Models.DTOs;
 using System.Collections;
 using CineMajestic.Models.DTOs.StaffManagement;
+using MS.WindowsAPICodePack.Internal;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -19,20 +20,49 @@ namespace CineMajestic.Models.DataAccessLayer
             throw new NotImplementedException();
         }
 
-        public bool AuthenticateUser(NetworkCredential credential)
+        //public bool AuthenticateUser(NetworkCredential credential)
+        //{
+        //    bool validUser;
+        //    using (var connection = GetConnection())
+        //    using (var command = new SqlCommand())
+        //    {
+        //        connection.Open();
+        //        command.Connection = connection;
+        //        command.CommandText = "SELECT * FROM [ACCOUNTS] WHERE username=@username AND [password]=@password";
+        //        command.Parameters.Add("@username", SqlDbType.VarChar).Value = credential.UserName;
+        //        command.Parameters.Add("@password", SqlDbType.VarChar).Value = credential.Password;
+        //        validUser = command.ExecuteScalar() == null ? false : true;
+        //    }
+        //    return validUser;
+        //}
+
+
+
+        //lấy dữ liệu bảng accounts
+        public List<UserDTO> getAccounts()
         {
-            bool validUser;
-            using (var connection = GetConnection())
-            using (var command = new SqlCommand())
+            List<UserDTO>list= new List<UserDTO>();
+
+            using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
-                command.Connection = connection;
-                command.CommandText = "SELECT * FROM [ACCOUNTS] WHERE username=@username AND [password]=@password";
-                command.Parameters.Add("@username", SqlDbType.VarChar).Value = credential.UserName;
-                command.Parameters.Add("@password", SqlDbType.VarChar).Value = credential.Password;
-                validUser = command.ExecuteScalar() == null ? false : true;
+                string select = "select * from Accounts";
+                using (SqlCommand command = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string Username = reader.GetString(reader.GetOrdinal("Username"));
+                            string Password = reader.GetString(reader.GetOrdinal("Password"));
+                            int Staff_Id  = reader.GetInt32(reader.GetOrdinal("Staff_Id"));
+                            list.Add(new UserDTO(Username, Password, Staff_Id));
+                        }
+                    }
+                }
             }
-            return validUser;
+
+            return list;
         }
 
         public void Edit(UserDTO userModel)

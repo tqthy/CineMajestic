@@ -14,9 +14,9 @@
         MouseDown="Window_MouseDown"
         Title="LoginView" Height="550" Width="800"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
-    <Window.DataContext>
-        <vm:LoginViewModel/>
-    </Window.DataContext>
+    <!--<Window.DataContext>
+        <vm:LoginViewModel/> 
+    </Window.DataContext>--> <!--gọi ở behind-->
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
@@ -200,8 +200,7 @@
                                      BorderBrush="#DBC4AD"
                                      BorderThickness="0,0,0,1"
                                      Height="28"
-                                     VerticalContentAlignment="Center"
-                                     PasswordChanged="txtPassword_PasswordChanged">
+                                     VerticalContentAlignment="Center">
                         </PasswordBox>
                     </DockPanel>
                     
