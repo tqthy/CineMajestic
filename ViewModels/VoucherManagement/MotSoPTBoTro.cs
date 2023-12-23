@@ -1,9 +1,13 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
+using QRCoder;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.ViewModels.VoucherManagement
 {
@@ -14,9 +18,9 @@ namespace CineMajestic.ViewModels.VoucherManagement
         public static string createCode()
         {
             string codeNew = "";
-            
+
             VoucherDA voucherDA = new VoucherDA();
-            List<string> listVoucher=voucherDA.listCode();
+            List<string> listVoucher = voucherDA.listCode();
 
             while (true)
             {
@@ -32,7 +36,7 @@ namespace CineMajestic.ViewModels.VoucherManagement
                 }
                 codeNew = stringBuilder.ToString();
 
-                foreach(string s in listVoucher)
+                foreach (string s in listVoucher)
                 {
                     if (codeNew == s)
                     {
@@ -64,6 +68,26 @@ namespace CineMajestic.ViewModels.VoucherManagement
                 password[i] = chars[random.Next(chars.Length)];
             }
             return new string(password);
+        }
+
+
+
+        //hàm tạo QRCode
+        private MemoryStream memoryImage(string noidungQR)
+        {
+            QRCodeGenerator QG = new QRCodeGenerator();
+            var myData = QG.CreateQrCode(noidungQR, QRCodeGenerator.ECCLevel.H);
+            var code = new QRCode(myData);
+            using (var bitmap = code.GetGraphic(50))
+            {
+                var memory = new MemoryStream();
+                try
+                {
+                    bitmap.Save(memory, ImageFormat.Png);
+                }
+                catch { }
+                return memory;
+            }
         }
     }
 }
