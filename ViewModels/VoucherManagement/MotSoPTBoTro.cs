@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs;
 using QRCoder;
 using System;
 using System.Collections.Generic;
@@ -73,7 +74,7 @@ namespace CineMajestic.ViewModels.VoucherManagement
 
 
         //hàm tạo QRCode
-        private MemoryStream memoryImage(string noidungQR)
+        private static MemoryStream memoryImage(string noidungQR)
         {
             QRCodeGenerator QG = new QRCodeGenerator();
             var myData = QG.CreateQrCode(noidungQR, QRCodeGenerator.ECCLevel.H);
@@ -88,6 +89,20 @@ namespace CineMajestic.ViewModels.VoucherManagement
                 catch { }
                 return memory;
             }
+        }
+
+
+        //hàm gửi voucher bằng mail cho 1 khách hàng
+        public static void sendVoucherByMail(string fullName,VoucherDTO voucherDTO)
+        {
+            string noidung =
+                "Cinema UIT trân trọng gửi đến quý khách hàng: " + fullName + ".\n"
+                +"Voucher ngày: " + voucherDTO.StartDate + ".\n"
+                +"Tên voucher: " + voucherDTO.Name + ".\n" 
+                +"Thông tin Voucher: " + voucherDTO.VoucherDetail + ".\n"
+                +"Ngày hết hạn: " + voucherDTO.FinDate + ".\n";
+
+            //tạm thời như này : khi merge vào Custom thì làm tiếp
         }
     }
 }

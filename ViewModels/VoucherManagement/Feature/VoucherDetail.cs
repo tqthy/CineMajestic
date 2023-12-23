@@ -30,7 +30,14 @@ namespace CineMajestic.ViewModels.VoucherManagement
         //Nút thoát
         public ICommand exitCommand { get; set; }
 
+        //accept
+        public ICommand acceptCommand {  get; set; }
+
+        //phục vụ nội dung voucher
+        private VoucherDTO getVoucher {  get; set; }
+
         public string VoucherDetail {  get; set; }
+
         
 
         public VoucherDetailViewModel(VoucherDTO voucher,VoucherDetailView wd)
@@ -38,11 +45,19 @@ namespace CineMajestic.ViewModels.VoucherManagement
             this.wd = wd;
             exitCommand = new ViewModelCommand(exit);
             VoucherDetail = voucher.VoucherDetail;
+            this.getVoucher = voucher;
         }
 
         private void exit(object obj)
         {
             wd.Close();
+        }
+
+
+
+        private void accept(object obj)
+        {
+
         }
     }
 }
