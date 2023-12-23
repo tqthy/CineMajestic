@@ -139,11 +139,12 @@
                     <Button Foreground="Black"
                             FontWeight="Medium"
                             Command="{Binding SwitchViewCommand}"
-                            Style="{StaticResource MaterialDesignFlatButton}"
                             CommandParameter="Movies"
+                            Style="{StaticResource MaterialDesignFlatButton}"
                             Margin="0,20,0,10"
                             HorizontalAlignment="Center"
                             materialDesign:ButtonAssist.CornerRadius="15"
+                            x:Name="btnQLPhim"
                             Click="Button_Click">
                         
                         <StackPanel Orientation="Horizontal"
