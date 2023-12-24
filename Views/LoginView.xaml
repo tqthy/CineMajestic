@@ -238,7 +238,8 @@
                         Content="Quên mật khẩu?"
                         FontSize="12"
                         FontWeight="DemiBold"
-                        Foreground="#623b00" />
+                        Foreground="#623b00" 
+                        Command="{Binding ForgotPasswordCommand}"/>
 
 
 

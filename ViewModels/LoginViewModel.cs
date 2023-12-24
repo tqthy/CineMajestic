@@ -12,6 +12,7 @@ using System.Windows;
 using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
 using CineMajestic.Views;
+using CineMajestic.Views.Password;
 
 namespace CineMajestic.ViewModels
 {
@@ -45,10 +46,10 @@ namespace CineMajestic.ViewModels
 
         // -> Commands
         public ICommand LoginCommand { get; }
-        public ICommand RecoverPasswordCommand { get; }
-        public ICommand ShowPasswordCommand { get; }
-        public ICommand RememberPasswordCommand { get; }
-
+       // public ICommand RecoverPasswordCommand { get; }
+      //  public ICommand ShowPasswordCommand { get; }
+      //  public ICommand RememberPasswordCommand { get; }
+        public ICommand ForgotPasswordCommand {  get; }
         // Constructors
 
         //public LoginViewModel()
@@ -62,7 +63,8 @@ namespace CineMajestic.ViewModels
         public LoginViewModel(LoginView wd)
         {
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
-            RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPasswordCommand("", ""));
+            //  RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPasswordCommand("", ""));
+            ForgotPasswordCommand = new ViewModelCommand(ForgotPassword);
             this.wd = wd;
         }
         private void ExecuteRecoverPasswordCommand(string username, string email)
@@ -127,6 +129,13 @@ namespace CineMajestic.ViewModels
         {
             if (string.IsNullOrWhiteSpace(Username) || wd.txtPassword.Password == "") return false;
             return true;
+        }
+
+
+        private void ForgotPassword(object obj)
+        {
+            ForgetPasswordView forgetPasswordView = new ForgetPasswordView();
+            forgetPasswordView.ShowDialog();
         }
     }
 }
