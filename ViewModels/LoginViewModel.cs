@@ -111,7 +111,7 @@ namespace CineMajestic.ViewModels
 
             if (!check)
             {
-                ErrorMessage = "* Invalid username or password";
+                ErrorMessage = "* Tên đăng nhập hoặc mật khẩu không đúng";
             }
 
         }
