@@ -69,6 +69,9 @@ namespace CineMajestic.ViewModels.InformationManagement
             UserDA userDA = new UserDA();
             userDA.changePassword(Staff_Id, informationView.txtMKMoi.Password);
             MessageBox.Show("Đổi mật khẩu thành công!");
+            informationView.txtMKCu.Password = "";
+            informationView.txtMKMoi.Password = "";
+            informationView.txtXacNhanMKMoi.Password = "";
         }
 
         private bool canChangePassword(object obj)
@@ -103,12 +106,17 @@ namespace CineMajestic.ViewModels.InformationManagement
         {
             if (informationView.txtMKMoi.Password.Length < 5)
             {
-                Password2Error = "Mật khẩu mới phải lớn hơn 5 kí tự!";
+                Password2Error = "Mật khẩu phải lớn hơn 5 kí tự!";
                 return false;
             }
             else if (informationView.txtMKMoi.Password.Contains(" "))
             {
                 Password2Error = "Mật khẩu không được chứa khoảng trắng!";
+                return false;
+            }
+            else if (PTChung.ContainsUnicodeCharacter(informationView.txtMKMoi.Password))
+            {
+                Password2Error = "Mật khẩu không được có dấu!";
                 return false;
             }
             else

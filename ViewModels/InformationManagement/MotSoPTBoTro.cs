@@ -46,6 +46,6 @@ namespace CineMajestic.ViewModels.InformationManagement
                 name[i] = chars[random.Next(chars.Length)];
             }
             return new string(name);
-        }
+        }     
     }
 }

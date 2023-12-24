@@ -455,15 +455,10 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         }
 
 
-        //2 cái validate password này chỉ báo lỗi pass word rỗng th
+        
         private bool ValidatePassword1()
         {
-            if (string.IsNullOrWhiteSpace(wd.txtMatKhau.Password))
-            {
-                Password1Error = "Không được để trống!";
-                return false;
-            }
-            else if (wd.txtMatKhau.Password.Length < 5)
+            if (wd.txtMatKhau.Password.Length < 5)
             {
                 Password1Error = "Mật khẩu phải lớn hơn 5 kí tự!";
                 return false;
@@ -471,6 +466,11 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             else if (wd.txtMatKhau.Password.Contains(" "))
             {
                 Password1Error = "Mật khẩu không được chứa khoảng trắng!";
+                return false;
+            }
+            else if (PTChung.ContainsUnicodeCharacter(wd.txtMatKhau.Password))
+            {
+                Password1Error = "Mật khẩu không được có dấu!";
                 return false;
             }
             else
