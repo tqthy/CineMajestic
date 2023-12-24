@@ -66,7 +66,7 @@
                         FontSize="13"
                         FontWeight="Regular"
                         Foreground="#623b00"
-                        Text="LOG IN" />
+                        Text="Đăng nhập" />
 
                     <Button
                         x:Name="btnMinimize"
@@ -237,7 +237,8 @@
                         BorderThickness="0"
                         Content="Quên mật khẩu?"
                         FontSize="12"
-                        Foreground="SaddleBrown" />
+                        Foreground="#623b00"
+                        FontWeight="DemiBold"/>
 
 
 
@@ -246,7 +247,7 @@
                         Margin="0,25,0,0"
                         BorderThickness="0"
                         Command="{Binding LoginCommand}"
-                        Content="LOG IN"
+                        Content="Đăng nhập"
                         Cursor="Hand"
                         FontFamily="Montserrat"
                         FontSize="12"
