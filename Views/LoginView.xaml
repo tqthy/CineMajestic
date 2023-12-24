@@ -237,8 +237,8 @@
                         BorderThickness="0"
                         Content="Quên mật khẩu?"
                         FontSize="12"
-                        Foreground="#623b00"
-                        FontWeight="DemiBold"/>
+                        FontWeight="DemiBold"
+                        Foreground="#623b00" />
 
 
 
@@ -251,15 +251,11 @@
                         Cursor="Hand"
                         FontFamily="Montserrat"
                         FontSize="12"
+                        FontWeight="DemiBold"
                         Foreground="#fffaf5">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#c6b49b" />
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#623b00" />
-                                    </Trigger>
-                                </Style.Triggers>
+                                <Setter Property="Background" Value="#623b00" />
                             </Style>
                         </Button.Style>
 
@@ -271,6 +267,7 @@
                                     Background="{TemplateBinding Background}"
                                     CornerRadius="20">
                                     <ContentPresenter
+                                        
                                         Margin="0,1,0,0"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center" />

@@ -12,6 +12,7 @@
     
     <None Remove="Icon\DauCong.png" />
     <None Remove="Icon\delete.png" />
+    <None Remove="Icon\logout.png" />
     <None Remove="Icon\money.png" />
     <None Remove="Icon\Open.png" />
     <None Remove="Icon\pen.png" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <Resource Include="Icon\DauCong.png" />
     <Resource Include="Icon\delete.png" />
+    <Resource Include="Icon\logout.png" />
     <Resource Include="Icon\money.png" />
     <Resource Include="Icon\Open.png" />
     <Resource Include="Icon\pen.png" />

@@ -12,6 +12,7 @@
     Height="675"
     AllowsTransparency="True"
     Background="Transparent"
+    FontFamily="Sogue UI"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
@@ -144,8 +145,8 @@
                     <!--  Quản lý phim  -->
                     <Button
                         x:Name="btnQLPhim"
-                        Width="190"
-                        Margin="5,20,0,10"
+                        Width="199"
+                        Margin="0,20,0,0"
                         HorizontalAlignment="Left"
                         materialDesign:ButtonAssist.CornerRadius="15"
                         Click="Button_Click"
@@ -156,12 +157,13 @@
                         Style="{StaticResource MaterialDesignFlatButton}">
 
                         <StackPanel
-                            Margin="-45,0,0,0"
+                            Margin="-50,0,0,0"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <materialDesign:PackIcon
                                 Width="25"
                                 Height="25"
+                                Margin="-2,0,0,0"
                                 VerticalAlignment="Center"
                                 Kind="MovieCogOutline" />
                             <TextBlock
@@ -178,7 +180,8 @@
                     <!--  Quản lý suất chiếu  -->
                     <Button
                         x:Name="btnQLSuatChieu"
-                        Margin="5,0,0,10"
+                        Width="199"
+                        Margin="0,10,0,0"
                         HorizontalAlignment="Left"
                         materialDesign:ButtonAssist.CornerRadius="15"
                         Click="Button_Click"
@@ -189,16 +192,17 @@
                         Style="{StaticResource MaterialDesignFlatButton}">
 
                         <StackPanel
-                            Margin="-10,0,0,0"
+                            Margin="-12,0,0,0"
                             VerticalAlignment="Center"
                             Orientation="Horizontal">
                             <materialDesign:PackIcon
                                 Width="25"
                                 Height="25"
+                                Margin="1,0,0,0"
                                 VerticalAlignment="Center"
                                 Kind="StoreClockOutline" />
                             <TextBlock
-                                Margin="10,0,0,0"
+                                Margin="9,0,0,0"
                                 VerticalAlignment="Center"
                                 FontSize="15"
                                 FontWeight="SemiBold"
@@ -208,7 +212,8 @@
 
                     <!--  Quản lí nhân sự  -->
                     <Button
-                        Margin="0,20,0,10"
+                        Width="199"
+                        Margin="0,10,0,0"
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"
@@ -216,16 +221,19 @@
                         CommandParameter="Staff"
                         FontWeight="Medium"
                         Foreground="Black">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <StackPanel
+                            Margin="-27,0,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
                             <materialDesign:PackIcon
-                                Width="20"
-                                Height="20"
+                                Width="25"
+                                Height="25"
                                 VerticalAlignment="Center"
                                 Kind="Account" />
                             <TextBlock
                                 Margin="10,0,0,0"
                                 VerticalAlignment="Bottom"
-                                FontSize="17"
+                                FontSize="15"
                                 Text="Quản Lý Nhân Sự" />
                         </StackPanel>
                     </Button>
@@ -233,7 +241,8 @@
 
                     <!--  Quản lý khách hàng  -->
                     <Button
-                        Margin="0,20,0,10"
+                        Width="199"
+                        Margin="0,10,0,0"
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"
@@ -241,16 +250,19 @@
                         CommandParameter="Customer"
                         FontWeight="Medium"
                         Foreground="Black">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <StackPanel
+                            Margin="-7,0,-3,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
                             <materialDesign:PackIcon
-                                Width="20"
-                                Height="20"
+                                Width="25"
+                                Height="25"
                                 VerticalAlignment="Center"
                                 Kind="AccountGroup" />
                             <TextBlock
                                 Margin="10,0,0,0"
                                 VerticalAlignment="Bottom"
-                                FontSize="14"
+                                FontSize="15"
                                 Text="Quản Lý Khách Hàng" />
                         </StackPanel>
                     </Button>
@@ -259,6 +271,8 @@
                     <!--  quản lý sản phẩm  -->
 
                     <Button
+                        Width="199"
+                        Margin="0,10,0,0"
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"
@@ -266,25 +280,29 @@
                         CommandParameter="QLSP"
                         FontWeight="Medium"
                         Foreground="Black">
-                        <StackPanel Orientation="Horizontal">
-                            <Grid Width="20" Height="20">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <Grid
+                                Width="25"
+                                Height="25"
+                                Margin="-18,0,0,0">
                                 <Grid.Background>
                                     <ImageBrush ImageSource="pack://application:,,,/Icon/QLProduct.png" />
                                 </Grid.Background>
                             </Grid>
 
                             <TextBlock
-                                Margin="5,0,0,0"
+                                Margin="9,0,0,0"
                                 VerticalAlignment="Bottom"
-                                FontSize="17"
-                                Text="Quản lý sản phẩm" />
+                                FontSize="15"
+                                Text="Quản Lý Sản Phẩm" />
                         </StackPanel>
 
                     </Button>
 
                     <!--  Voucher  -->
                     <Button
-                        Margin="0,20,0,10"
+                        Width="199"
+                        Margin="0,10,0,0"
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"
@@ -292,16 +310,19 @@
                         CommandParameter="Vouchers"
                         FontWeight="Medium"
                         Foreground="Black">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <StackPanel
+                            Margin="-27,0,62,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
                             <materialDesign:PackIcon
                                 Width="25"
                                 Height="25"
                                 VerticalAlignment="Center"
                                 Kind="TicketPercent" />
                             <TextBlock
-                                Margin="10,0,0,0"
+                                Margin="10,0,0,2"
                                 VerticalAlignment="Bottom"
-                                FontSize="18"
+                                FontSize="15"
                                 Text="Voucher" />
                         </StackPanel>
                     </Button>
@@ -309,7 +330,8 @@
 
                     <!--  Cá nhân  -->
                     <Button
-                        Margin="0,20,0,10"
+                        Width="199"
+                        Margin="0,10,0,0"
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"
@@ -317,20 +339,53 @@
                         CommandParameter="Personal"
                         FontWeight="Medium"
                         Foreground="Black">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                        <StackPanel
+                            Margin="-27,0,62,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
                             <materialDesign:PackIcon
-                                Width="20"
-                                Height="20"
+                                Width="25"
+                                Height="25"
                                 VerticalAlignment="Center"
                                 Kind="AccountBox" />
                             <TextBlock
-                                Margin="10,0,0,0"
+                                Margin="10,0,0,2"
                                 VerticalAlignment="Bottom"
-                                FontSize="17"
+                                FontSize="15"
                                 Text="Cá nhân" />
                         </StackPanel>
                     </Button>
 
+                    <!--  Log out  -->
+                    <Button
+                        Width="199"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="Personal"
+                        FontWeight="Medium"
+                        Foreground="Black">
+                        <StackPanel
+                            Margin="-55,0,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Grid
+                                Width="25"
+                                Height="25"
+                                Margin="-21,0,0,0">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="/Icon/logout.png" />
+                                </Grid.Background>
+                            </Grid>
+                            <TextBlock
+                                Margin="10,0,0,2"
+                                VerticalAlignment="Bottom"
+                                FontSize="15"
+                                Text="Đăng xuất" />
+                        </StackPanel>
+                    </Button>
 
                 </StackPanel>
             </Border>
