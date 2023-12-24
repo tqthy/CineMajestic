@@ -4,6 +4,7 @@ using CineMajestic.Views.InformationManagement;
 using CineMajestic.Views.MovieManagement;
 using CineMajestic.Views.VoucherManagement;
 using CineMajestic.Views.StaffManagement;
+using CineMajestic.Views.ShowTimeManagement;
 
 using System;
 using System.Collections.Generic;
@@ -47,12 +48,11 @@ namespace CineMajestic.ViewModels
                 case "Movies":
                     CurrentView = new MovieManagementView();
                     break;
+                case "ShowTime":
+                    CurrentView = new ShowTimeManagementView();
+                    break;
                 case "Staff": // Quản lí nhân viên
                     CurrentView = new StaffManagementView();
-                    break;
-
-                case "Personal": // Cài đặt
-                    CurrentView = new InformationView(Staff_Id);
                     break;
                 case "QLSP"://quản lý sản phẩm    
                     CurrentView = new ProductManagementView();
@@ -62,6 +62,9 @@ namespace CineMajestic.ViewModels
                     break;
                 case "Vouchers":
                     CurrentView = new VoucherManagementView();
+                    break;
+                case "Personal": // Cài đặt
+                    CurrentView = new InformationView(Staff_Id);
                     break;
             }
         }

@@ -36,5 +36,26 @@ namespace CineMajestic.Views
         {
             Application.Current.Shutdown();
         }
+
+        
+        private void Window_Deactivated(object sender, EventArgs e)
+        {
+            this.blurPanel.Opacity = 0.2;
+            this.blurPanel.Visibility = Visibility.Visible;
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            this.blurPanel.Visibility = Visibility.Hidden;
+            this.blurPanel.Opacity = 0;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            btnQLPhim.Background = Brushes.Transparent;
+            btnQLSuatChieu.Background = Brushes.Transparent;
+            Button button = (Button)sender;
+            button.Background = new SolidColorBrush(Color.FromRgb(245, 245, 245));
+        }
     }
 }
