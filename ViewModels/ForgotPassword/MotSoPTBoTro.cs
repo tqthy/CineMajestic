@@ -12,7 +12,7 @@ namespace CineMajestic.ViewModels.ForgotPassword
     public class MotSoPTBoTro
     {
 
-        public static void sendMail(string username,string mailReceive)
+        public static bool sendMail(string username,string mailReceive)
         {
             try
             {
@@ -42,8 +42,9 @@ namespace CineMajestic.ViewModels.ForgotPassword
                 //sửa lại password trong bảng account theo username
                 UserDA userDA = new UserDA();
                 userDA.changePassword(username,PTChung.EncryptMD5(passwordNew));
+                return true;
             }
-            catch{ }
+            catch{ return false; }
         }
 
 

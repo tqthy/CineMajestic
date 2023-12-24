@@ -40,15 +40,28 @@ namespace CineMajestic.ViewModels.ForgotPassword
         }
         private void accept(object obj)
         {
-            Notification = "";
-            if (!notify())
+            Task.Run(async () =>
             {
-                Notification = "Tên tài khoản hoặc Email không tồn tại!";
-                return;
-            }
+                Notification = "";
+                if (!notify())
+                {
+                    Notification = "Tên tài khoản hoặc Email không tồn tại!";
+                    return;
+                }
 
-            MotSoPTBoTro.sendMail(Username, Email);
-            Notification = "Mật khẩu đã được gửi tới email liên kết!";
+                if (MotSoPTBoTro.sendMail(Username, Email))
+                {
+                    Notification = "Mật khẩu đã được gửi tới Email liên kết!";
+                }
+                else
+                {
+                    Notification = "Có lỗi trong quá trình tới Email liên kết!";
+                }
+
+
+                await Task.Delay(3000);
+                Notification = "";
+            });
         }
 
         private bool canexecuteAccept(object obj)
