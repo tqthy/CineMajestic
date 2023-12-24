@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using CineMajestic.Views.ProductManagement;
+using CineMajestic.Views.CustomerManagement;
 
 namespace CineMajestic.ViewModels
 {
