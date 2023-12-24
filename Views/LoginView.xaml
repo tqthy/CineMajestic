@@ -256,6 +256,11 @@
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="Background" Value="#623b00" />
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Background" Value="#a67c52 " />
+                                    </Trigger>
+                                </Style.Triggers>
                             </Style>
                         </Button.Style>
 
@@ -267,7 +272,6 @@
                                     Background="{TemplateBinding Background}"
                                     CornerRadius="20">
                                     <ContentPresenter
-                                        
                                         Margin="0,1,0,0"
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Center" />
