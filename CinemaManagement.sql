@@ -1,31 +1,18 @@
 ﻿CREATE DATABASE CinemaManagement;
 GO
 USE CinemaManagement;
-GO
-CREATE TABLE ACCOUNTS(
-    id INT PRIMARY KEY IDENTITY(1, 1),
-    Username VARCHAR(40),
-    Password VARCHAR(40),
-    Account_Type INT
-);
-GO
-CREATE TABLE EMPLOYEES(
-    id INT PRIMARY KEY IDENTITY(1, 1),
-    FullName NVARCHAR(50),
-    DateOfBirth DATE,
-    Gender NVARCHAR(20),
-    PhoneNumber VARCHAR(20),
-    Email VARCHAR(50),
-    Salary MONEY,
-    Role NVARCHAR(20),
-    Account_id INT,
-    CONSTRAINT FK_Account FOREIGN KEY (Account_id) REFERENCES ACCOUNTS(id)
 
-
-
-
-);
-
+--bảng ACCOUNT
+go
+create table ACCOUNTS
+(
+	id INT PRIMARY KEY IDENTITY(1, 1),
+    Username VARCHAR(40) not null unique,
+    Password VARCHAR(40) not null,
+	Staff_Id int not null,
+	Constraint FK_StaffId foreign key(Staff_Id) references Staff(Id)
+)
+go
 
 --tạo bảng product
 go
@@ -54,13 +41,7 @@ INSERT INTO GENRES VALUES (N'Gia Đình'), (N'Hài');
 GO
 
 
---xóa bảng employees
-drop table EMPLOYEES
-
---xóa bảng accounts
-drop table ACCOUNTS
-
---thêm bảng staff
+--bảng staff
 go
 create table Staff
 (
@@ -77,17 +58,7 @@ create table Staff
 )
 go
 
---thêm bảng ACCOUNTS
-go
-create table ACCOUNTS
-(
-	id INT PRIMARY KEY IDENTITY(1, 1),
-    Username VARCHAR(40) not null unique,
-    Password VARCHAR(40) not null,
-	Staff_Id int not null,
-	Constraint FK_StaffId foreign key(Staff_Id) references Staff(Id)
-)
-go
+
 
 --bảng voucher
 CREATE TABLE VOUCHER
