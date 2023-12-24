@@ -1,4 +1,4 @@
-CREATE DATABASE CinemaManagement;
+﻿CREATE DATABASE CinemaManagement;
 GO
 USE CinemaManagement;
 GO
@@ -20,33 +20,23 @@ CREATE TABLE EMPLOYEES(
     Role NVARCHAR(20),
     Account_id INT,
     CONSTRAINT FK_Account FOREIGN KEY (Account_id) REFERENCES ACCOUNTS(id)
+
+
+
+
 );
-GO
-INSERT INTO ACCOUNTS VALUES('admin', 'Admin@123', 1);
-GO
-CREATE TABLE MOVIES(
-    id INT PRIMARY KEY IDENTITY(1, 1),
-    Title NVARCHAR(100),
-    Description NVARCHAR(500),
-    Director NVARCHAR(50),
-    ReleaseDate DATE,
-    Language NVARCHAR(20),
-    Country NVARCHAR(20),
-    Length INT,
-    Trailer NVARCHAR(200),
-    StartDate SMALLDATETIME,
-    EndDate SMALLDATETIME,
-);
-GO
-CREATE TABLE GENRES(
-    id INT PRIMARY KEY IDENTITY(1, 1),
-    Title NVARCHAR(50)
-);
-GO
-CREATE TABLE MOVIES_GENRES(
-    id INT PRIMARY KEY IDENTITY(1, 1),
-    Movie_id INT REFERENCES MOVIES(id),
-    Genre_id INT REFERENCES GENRES(id)
+
+
+--tạo bảng product
+go
+create table Product
+(
+	ID int identity(1,1) primary key,
+	Name nvarchar(100) not null,
+	ImageSource varchar(200) not null,
+	Quantity int not null,
+	Price int not null,
+	Type int not null,
 )
 GO
 INSERT INTO MOVIES VALUES(N'Bố Già', 
@@ -98,3 +88,4 @@ create table ACCOUNTS
 	Constraint FK_StaffId foreign key(Staff_Id) references Staff(Id)
 )
 go
+

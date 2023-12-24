@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using CineMajestic.Views.ProductManagement;
 
 namespace CineMajestic.ViewModels
 {
@@ -50,6 +51,9 @@ namespace CineMajestic.ViewModels
 
                 case "Personal": // Cài đặt
                     CurrentView = new InformationView(Staff_Id);
+                    break;
+                case "QLSP"://quản lý sản phẩm    
+                    CurrentView = new ProductManagementView();
                     break;
             }
         }

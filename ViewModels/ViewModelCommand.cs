@@ -44,5 +44,6 @@ namespace CineMajestic.ViewModels
         {
             _executeAction(parameter);
         }
+
     }
 }
