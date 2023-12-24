@@ -17,7 +17,5 @@ namespace CineMajestic
             LoginView loginView = new LoginView();
             loginView.Show();
         }
-
     }
-
 }

@@ -43,7 +43,8 @@ namespace CineMajestic.Models.DataAccessLayer
                     command.Parameters.Add("@poster", SqlDbType.NVarChar).Value = movie.Poster;
                     var rows_affected = command.ExecuteNonQuery();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -102,7 +103,8 @@ namespace CineMajestic.Models.DataAccessLayer
                     command.Parameters.Add("@id", SqlDbType.Int).Value = movie.Id;
                     var rows_affected = command.ExecuteNonQuery();
                 }
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 throw e;
             }
@@ -142,7 +144,7 @@ namespace CineMajestic.Models.DataAccessLayer
                         }
                     }
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 throw ex;
@@ -192,7 +194,8 @@ namespace CineMajestic.Models.DataAccessLayer
                     command.Parameters.Add("@poster", SqlDbType.NVarChar).Value = movie.Poster;
                     var rows_affected = command.ExecuteNonQuery();
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }

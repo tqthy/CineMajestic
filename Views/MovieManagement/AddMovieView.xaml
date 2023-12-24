@@ -1,80 +1,82 @@
-﻿<Window x:Class="CineMajestic.Views.MovieManagement.AddMovieView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CineMajestic.Views.MovieManagement"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-        Background="Transparent"
-        TextElement.FontWeight="Medium"
-        TextElement.FontSize="10"
-        FontFamily="{materialDesign:MaterialDesignFont}"
-        WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize"
-        WindowStyle="None"
-        AllowsTransparency="True"
-        mc:Ignorable="d"
-        FontSize="18"
-        Title="{Binding WindowTitle}" Height="500" Width="800">
-    <Border CornerRadius="12"
-            Background="White">
+﻿<Window
+    x:Class="CineMajestic.Views.MovieManagement.AddMovieView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CineMajestic.Views.MovieManagement"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="{Binding WindowTitle}"
+    Width="800"
+    Height="500"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="{materialDesign:MaterialDesignFont}"
+    FontSize="18"
+    ResizeMode="NoResize"
+    TextElement.FontSize="10"
+    TextElement.FontWeight="Medium"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Border Background="White" CornerRadius="12">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="5"/>
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="5" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="27"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="70"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="5"/>
+                <RowDefinition Height="27" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="70" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="5" />
             </Grid.RowDefinitions>
 
-            <!--Top bar-->
-            
-            <Border CornerRadius="12,12,0,0"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    Background="#DFD7BF">
+            <!--  Top bar  -->
+
+            <Border
+                Grid.Row="0"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                Background="#DFD7BF"
+                CornerRadius="12,12,0,0">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="750"/>
-                        <ColumnDefinition Width="25"/>
-                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="750" />
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="25" />
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Text="{Binding WindowTitle}"
-                               Foreground="#3F2305"
-                               FontSize="20"
-                               Margin="20,0,0,0"
-                               VerticalAlignment="Center" 
-                               FontFamily="Candara" 
-                               FontWeight="SemiBold"/>
-                    <Button x:Name="btnMinimize"
-                            BorderThickness="0"
-                            Content="-"
-                            Foreground="#623b00"
-                            FontSize="16"
-                            FontFamily="Montserrat"
-                            Cursor="Hand"
-                            Grid.Column="1"
-                            Click="btnMinimize_Click"
-                            Visibility="Hidden">
+                    <TextBlock
+                        Grid.Column="0"
+                        Margin="20,0,0,0"
+                        VerticalAlignment="Center"
+                        FontFamily="Candara"
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Foreground="#3F2305"
+                        Text="{Binding WindowTitle}" />
+                    <Button
+                        x:Name="btnMinimize"
+                        Grid.Column="1"
+                        BorderThickness="0"
+                        Click="btnMinimize_Click"
+                        Content="-"
+                        Cursor="Hand"
+                        FontFamily="Montserrat"
+                        FontSize="16"
+                        Foreground="#623b00"
+                        Visibility="Hidden">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" 
-                            Value="#F2EAD3"/>
+                                <Setter Property="Background" Value="#F2EAD3" />
                                 <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" 
-                                 Value="True">
-                                        <Setter Property="Background"
-                                    Value="#E4D4C5"/>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#E4D4C5" />
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -82,32 +84,33 @@
 
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Width="18" Height="18"
-                            CornerRadius="9"
-                            Background="{TemplateBinding Background}">
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                          VerticalAlignment="Center"/>
+                                <Border
+                                    Width="18"
+                                    Height="18"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="9">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
 
-                    <Button x:Name="btnClose"
-                        BorderThickness="0"
-                        Content="X"
-                        Foreground="#fffaf5"
-                        FontSize="12"
-                        FontFamily="Montserrat"
-                        Cursor="Hand"
+                    <Button
+                        x:Name="btnClose"
                         Grid.Column="2"
-                        Click="btnClose_Click">
+                        BorderThickness="0"
+                        Click="btnClose_Click"
+                        Content="X"
+                        Cursor="Hand"
+                        FontFamily="Montserrat"
+                        FontSize="12"
+                        Foreground="#fffaf5">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#3f2305"/>
+                                <Setter Property="Background" Value="#3f2305" />
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background"
-                                                Value="#8B580B"/>
+                                        <Setter Property="Background" Value="#8B580B" />
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -115,12 +118,15 @@
 
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Width="18" Height="18"
-                                        CornerRadius="9"
-                                        Background="{TemplateBinding Background}">      
-                                    <ContentPresenter HorizontalAlignment="Center"
-                                                      VerticalAlignment="Center"
-                                                      Margin="0, 1, 0, 0"/>
+                                <Border
+                                    Width="18"
+                                    Height="18"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="9">
+                                    <ContentPresenter
+                                        Margin="0,1,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center" />
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
@@ -130,178 +136,197 @@
             </Border>
 
 
-            <!--Content-->
-            
+            <!--  Content  -->
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal">
-                <StackPanel Orientation="Vertical"
-                            Margin="15,15,0,0">
-                    
-                    <!--Title-->
-                    
-                    <TextBlock Text="Tên phim"
-                               FontWeight="Bold"
-                               FontSize="15"/>
-                    
-                    <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="350"
-                             Margin="0,5,0,0"
-                             HorizontalAlignment="Left"/>
-                    
+
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="1"
+                Orientation="Horizontal">
+                <StackPanel Margin="15,15,0,0" Orientation="Vertical">
+
+                    <!--  Title  -->
+
+                    <TextBlock
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Text="Tên phim" />
+
+                    <TextBox
+                        Width="350"
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+
                 </StackPanel>
-                
-                <StackPanel Orientation="Vertical"
-                        Margin="30,15,0,0">
-                    
-                    <!--Director-->
-                    
-                    <TextBlock Text="Đạo diễn"
-                               FontWeight="Bold"
-                               FontSize="15"/>
-                    
-                    <TextBox Text="{Binding Director, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="200"
-                             Margin="0,5,0,0"
-                             HorizontalAlignment="Left"/>
-                    
+
+                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+
+                    <!--  Director  -->
+
+                    <TextBlock
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Text="Đạo diễn" />
+
+                    <TextBox
+                        Width="200"
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Director, UpdateSourceTrigger=PropertyChanged}" />
+
                 </StackPanel>
-                
-                <StackPanel Orientation="Vertical"
-                            Margin="30,15,0,0">
-                    
-                    <!--Length-->
-                    
-                    <TextBlock FontWeight="Bold" FontSize="15">Thời lượng <Span FontSize="12" FontWeight="Medium">(phút)</Span>
+
+                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+
+                    <!--  Length  -->
+
+                    <TextBlock FontSize="15" FontWeight="Bold">
+                        Thời lượng<Span FontSize="12" FontWeight="Medium">(phút)</Span>
                     </TextBlock>
-                    
-                    <TextBox Text="{Binding Length, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="120"
-                             HorizontalAlignment="Left"
-                             Margin="0,5,0,0"/>
-                    
+
+                    <TextBox
+                        Width="120"
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Length, UpdateSourceTrigger=PropertyChanged}" />
+
                 </StackPanel>
-                
+
             </StackPanel>
 
-            <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <StackPanel
+                Grid.Row="2"
+                Grid.Column="1"
+                Orientation="Horizontal">
 
-                <StackPanel Orientation="Vertical"
-                        Margin="15,15,0,0">
-                    
-                    <!--Country-->
-                    
-                    <TextBlock Text="Quốc gia"
-                               FontWeight="Bold"
-                               FontSize="15"/>
+                <StackPanel Margin="15,15,0,0" Orientation="Vertical">
 
-                    <TextBox Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="200"
-                             HorizontalAlignment="Left"
-                             Margin="0,5,0,0"/>
-                    
+                    <!--  Country  -->
+
+                    <TextBlock
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Text="Quốc gia" />
+
+                    <TextBox
+                        Width="200"
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}" />
+
                 </StackPanel>
-                
-                <StackPanel Orientation="Vertical"
-                            Margin="30,15,0,0">
-                    
-                    <!--Language-->
-                    
-                    <TextBlock FontWeight="Bold"
-                               FontSize="15"
-                               Text="Ngôn ngữ"/>
-                    
-                    <TextBox Text="{Binding Language, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="180"
-                             HorizontalAlignment="Left"
-                             Margin="0,5,0,0"/>
-                    
+
+                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+
+                    <!--  Language  -->
+
+                    <TextBlock
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Text="Ngôn ngữ" />
+
+                    <TextBox
+                        Width="180"
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Language, UpdateSourceTrigger=PropertyChanged}" />
+
                 </StackPanel>
-                
-                <StackPanel Orientation="Horizontal"
-                            Margin="30,15,0,0">
 
-                    <!--Upload poster-->
+                <StackPanel Margin="30,15,0,0" Orientation="Horizontal">
 
-                    <TextBlock FontWeight="Bold"
-                               FontSize="15"
-                               Height="auto"
-                               Text="Poster phim"/>
+                    <!--  Upload poster  -->
 
-                    <Button Margin="20,-40,0,0"
-                            Width="130"
-                            Command="{Binding UploadPosterCommand}">
+                    <TextBlock
+                        Height="auto"
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Text="Poster phim" />
+
+                    <Button
+                        Width="130"
+                        Margin="20,-40,0,0"
+                        Command="{Binding UploadPosterCommand}">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
-                                <materialDesign:PackIcon Kind="FolderImage" 
-                                                         Margin="-2,0,0,0"/>
-                                <TextBlock Text="Chọn ảnh"
-                                           Margin="5,0,0,0"/>
+                                <materialDesign:PackIcon Margin="-2,0,0,0" Kind="FolderImage" />
+                                <TextBlock Margin="5,0,0,0" Text="Chọn ảnh" />
                             </StackPanel>
 
                         </Button.Content>
                     </Button>
-                    
+
                 </StackPanel>
-                
+
             </StackPanel>
 
-            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal"
-                        Grid.RowSpan="3">
-                
-                <!--Release Year-->
-                
-                <StackPanel Orientation="Vertical"
-                            Margin="15,15,0,0">
-                    <TextBlock Text="Năm phát hành"
-                               FontWeight="Bold"
-                               FontSize="15"/>
-                    <TextBox Text="{Binding ReleaseYear, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="110"
-                             HorizontalAlignment="Left"
-                             Margin="0,5,0,0"/>
-                </StackPanel>
-                
-                <!--Start Date-->
-                
-                <StackPanel Orientation="Vertical"
-                            Margin="30,15,0,0">
-                    <TextBlock Text="Ngày khởi chiếu"
-                               FontWeight="Bold"
-                               FontSize="15"/>
+            <StackPanel
+                Grid.Row="3"
+                Grid.RowSpan="3"
+                Grid.Column="1"
+                Orientation="Horizontal">
 
-                    <DatePicker SelectedDate="{Binding StartDate, Mode=OneWayToSource}"
-                                x:Name="dpStart"
-                                Width="120"
-                                Margin="0,5,0,0"
-                                materialDesign:HintAssist.Hint="{Binding HintStartDate}"
-                                materialDesign:HintAssist.HintOpacity="{Binding HintOpacity}"/>
+                <!--  Release Year  -->
+
+                <StackPanel Margin="15,15,0,0" Orientation="Vertical">
+                    <TextBlock
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Text="Năm phát hành" />
+                    <TextBox
+                        Width="110"
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Left"
+                        Text="{Binding ReleaseYear, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
-                
-                <!--End Date-->
-                
-                <StackPanel Orientation="Vertical"
-                            Margin="30,15,0,0">
-                    <TextBlock Text="Ngày ngừng chiếu"
-                               FontWeight="Bold"
-                               FontSize="15"/>
-                    <DatePicker SelectedDate="{Binding EndDate, Mode=OneWayToSource}"
-                                x:Name="dpEnd"
-                                Width="120"
-                                Margin="0,5,0,0"
-                                materialDesign:HintAssist.Hint="{Binding HintEndDate}"
-                                materialDesign:HintAssist.HintOpacity="{Binding HintOpacity}">
-                    </DatePicker>
+
+                <!--  Start Date  -->
+
+                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+                    <TextBlock
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Text="Ngày khởi chiếu" />
+
+                    <DatePicker
+                        x:Name="dpStart"
+                        Width="120"
+                        Margin="0,5,0,0"
+                        materialDesign:HintAssist.Hint="{Binding HintStartDate}"
+                        materialDesign:HintAssist.HintOpacity="{Binding HintOpacity}"
+                        SelectedDate="{Binding StartDate, Mode=OneWayToSource}" />
                 </StackPanel>
-                
-                <!--Movie Poster Border-->
-                
-                <Border Height="330"
-                        Width="230"
-                        Margin="30,-30,0,0"
-                        BorderThickness="0.5"
-                        CornerRadius="5">
+
+                <!--  End Date  -->
+
+                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+                    <TextBlock
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Text="Ngày ngừng chiếu" />
+                    <DatePicker
+                        x:Name="dpEnd"
+                        Width="120"
+                        Margin="0,5,0,0"
+                        materialDesign:HintAssist.Hint="{Binding HintEndDate}"
+                        materialDesign:HintAssist.HintOpacity="{Binding HintOpacity}"
+                        SelectedDate="{Binding EndDate, Mode=OneWayToSource}" />
+                </StackPanel>
+
+                <!--  Movie Poster Border  -->
+
+                <Border
+                    Width="230"
+                    Height="330"
+                    Margin="30,-30,0,0"
+                    BorderThickness="0.5"
+                    CornerRadius="5">
                     <Border.BorderBrush>
-                        <DrawingBrush Viewport="0,0,8,8" ViewportUnits="Absolute" TileMode="Tile">
+                        <DrawingBrush
+                            TileMode="Tile"
+                            Viewport="0,0,8,8"
+                            ViewportUnits="Absolute">
                             <DrawingBrush.Drawing>
                                 <DrawingGroup>
                                     <GeometryDrawing Brush="Gray">
@@ -316,94 +341,100 @@
                             </DrawingBrush.Drawing>
                         </DrawingBrush>
                     </Border.BorderBrush>
-                    <Image Source="{Binding MoviePoster}"
-                           x:Name="PosterImage"
-                           Stretch="Fill"/>
+                    <Image
+                        x:Name="PosterImage"
+                        Source="{Binding MoviePoster}"
+                        Stretch="Fill" />
                 </Border>
-                
+
             </StackPanel>
 
 
-            <StackPanel Orientation="Horizontal"
-                        Grid.Row="4"
-                        Grid.Column="1"
-                        Margin="15,15,0,0">
-                
+            <StackPanel
+                Grid.Row="4"
+                Grid.Column="1"
+                Margin="15,15,0,0"
+                Orientation="Horizontal">
+
                 <StackPanel Orientation="Vertical">
 
-                    <!--Trailer-->
+                    <!--  Trailer  -->
 
-                    <TextBlock Text="Trailer"
-                               FontWeight="Bold"
-                               FontSize="15"/>
-                    
-                    <TextBox Text="{Binding Trailer, UpdateSourceTrigger=PropertyChanged}" 
-                             Width="280"
-                             HorizontalAlignment="Left"
-                             Margin="0,5,0,0"/>
+                    <TextBlock
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Text="Trailer" />
+
+                    <TextBox
+                        Width="280"
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Left"
+                        Text="{Binding Trailer, UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
 
-                <StackPanel Orientation="Vertical"
-                            Margin="30,0,0,0">
-                    
-                    <!--Genre-->
-                    
-                    <TextBlock Text="Thể loại"
-                               FontWeight="Bold"
-                               FontSize="15"/>
-                    
-                    <ComboBox Margin="0,5,0,0"
-                              Width="100"
-                              x:Name="GenreComboBox"
-                              ItemsSource="{Binding GenreList}"
-                              SelectedItem="{Binding SelectedGenre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                              IsSynchronizedWithCurrentItem="True">
+                <StackPanel Margin="30,0,0,0" Orientation="Vertical">
+
+                    <!--  Genre  -->
+
+                    <TextBlock
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Text="Thể loại" />
+
+                    <ComboBox
+                        x:Name="GenreComboBox"
+                        Width="100"
+                        Margin="0,5,0,0"
+                        IsSynchronizedWithCurrentItem="True"
+                        ItemsSource="{Binding GenreList}"
+                        SelectedItem="{Binding SelectedGenre, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Title}"/>
+                                <TextBlock Text="{Binding Title}" />
                             </DataTemplate>
                         </ComboBox.ItemTemplate>
                     </ComboBox>
-                    
+
                 </StackPanel>
-                
+
             </StackPanel>
-            
 
-            <DockPanel Grid.Row="5"
-                       Grid.Column="1">
-                
-                <!--Description-->
-                
-                <TextBox Text="{Binding Description}"
-                         DockPanel.Dock="Left"
-                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                         VerticalAlignment="Top"        
-                         HorizontalAlignment="Left"
-                         AcceptsReturn="True"
-                         TextWrapping="Wrap"
-                         VerticalScrollBarVisibility="Auto"
-                         HorizontalScrollBarVisibility="Disabled"
-                         materialDesign:HintAssist.Hint="Giới thiệu phim"
-                         FontSize="15"
-                         FontWeight="Light"
-                         Height="158"
-                         Width="420"
-                         Margin="15,15,0,0"
-                         Foreground="Black"
-                         BorderBrush="Black"
-                         materialDesign:ValidationAssist.Background="White"/>
-                
-                <!--Done Button-->
 
-                <Button Command="{Binding AddOrEditMovieCommand}"
-                        DockPanel.Dock="Right"
-                        Content="Xong"
-                        Width="80"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Bottom"
-                        Margin="0,0,10,10"/>
+            <DockPanel Grid.Row="5" Grid.Column="1">
+
+                <!--  Description  -->
+
+                <TextBox
+                    Width="420"
+                    Height="158"
+                    Margin="15,15,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    materialDesign:HintAssist.Hint="Giới thiệu phim"
+                    materialDesign:ValidationAssist.Background="White"
+                    AcceptsReturn="True"
+                    BorderBrush="Black"
+                    DockPanel.Dock="Left"
+                    FontSize="15"
+                    FontWeight="Light"
+                    Foreground="Black"
+                    HorizontalScrollBarVisibility="Disabled"
+                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                    Text="{Binding Description}"
+                    TextWrapping="Wrap"
+                    VerticalScrollBarVisibility="Auto" />
+
+                <!--  Done Button  -->
+
+                <Button
+                    Width="80"
+                    Margin="0,0,10,10"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Command="{Binding AddOrEditMovieCommand}"
+                    Content="Xong"
+                    DockPanel.Dock="Right" />
 
             </DockPanel>
 
