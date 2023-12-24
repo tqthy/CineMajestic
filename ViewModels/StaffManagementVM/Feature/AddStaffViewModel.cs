@@ -297,9 +297,9 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             StaffDA staffDA = new StaffDA();
             staffDA.addStaff(new StaffDTO(FullName, Birth.Value.ToString("yyyy-MM-dd"), Gender, Email, PhoneNumber, int.Parse(Salary), Role, NgayVL.Value.ToString("yyyy-MM-dd")));
 
-            //add vào bảng Account,sau này nhớ mã hóa pass ở đây luôn
+            //add vào bảng Account
             UserDA userDA = new UserDA();
-            userDA.addAccount(new UserDTO(Username, wd.txtMatKhau.Password, staffDA.identCurrent()));
+            userDA.addAccount(new UserDTO(Username, PTChung.EncryptMD5(wd.txtMatKhau.Password), staffDA.identCurrent()));
 
             MessageBox.Show("Thêm nhân viên thành công");
             wd.Close();

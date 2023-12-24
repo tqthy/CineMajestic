@@ -65,9 +65,8 @@ namespace CineMajestic.ViewModels.InformationManagement
             if (!ValidatePassword2()) { return; }
             if (!ValidatePassword3()) { return; }
 
-            //sau này nhớ mã hóa
             UserDA userDA = new UserDA();
-            userDA.changePassword(Staff_Id, informationView.txtMKMoi.Password);
+            userDA.changePassword(Staff_Id,PTChung.EncryptMD5(informationView.txtMKMoi.Password));
             MessageBox.Show("Đổi mật khẩu thành công!");
             informationView.txtMKCu.Password = "";
             informationView.txtMKMoi.Password = "";
