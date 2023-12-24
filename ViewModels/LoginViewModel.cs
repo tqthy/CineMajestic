@@ -103,7 +103,7 @@ namespace CineMajestic.ViewModels
                 if (user.Username == Username && user.Password == PTChung.EncryptMD5(wd.txtPassword.Password))
                 {
                     check = true;
-                    MainView mainView = new MainView(user.Staff_Id);
+                    MainView mainView = new MainView(user.Staff_Id,wd);
                     wd.Hide();
                     mainView.ShowDialog();
                     //dùng app.shutdow nên k phải thoát login khi thoát mainview

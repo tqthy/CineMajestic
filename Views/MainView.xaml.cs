@@ -21,11 +21,13 @@ namespace CineMajestic.Views
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView(int Staff_Id)
+        LoginView loginView;
+        public MainView(int Staff_Id,LoginView loginView)
         {
             InitializeComponent();
             MainViewModel mainViewModel = new MainViewModel(Staff_Id);
             this.DataContext= mainViewModel;
+            this.loginView = loginView;
         }
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
@@ -56,6 +58,12 @@ namespace CineMajestic.Views
             btnQLSuatChieu.Background = Brushes.Transparent;
             Button button = (Button)sender;
             button.Background = new SolidColorBrush(Color.FromRgb(245, 245, 245));
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+            loginView.Show();
         }
     }
 }

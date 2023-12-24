@@ -363,8 +363,8 @@
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"
-                        Command="{Binding SwitchViewCommand}"
-                        CommandParameter="LogOut"
+                        Name="btnLogout"
+                        Click="btnLogout_Click"
                         FontWeight="Medium"
                         Foreground="Black">
                         <StackPanel

@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using CineMajestic.Views.ProductManagement;
 using CineMajestic.Views.CustomerManagement;
+using OfficeOpenXml.Packaging.Ionic.Zip;
 
 namespace CineMajestic.ViewModels
 {
