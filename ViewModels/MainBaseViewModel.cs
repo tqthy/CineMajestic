@@ -2,7 +2,9 @@
 using CineMajestic.Views;
 using CineMajestic.Views.InformationManagement;
 using CineMajestic.Views.MovieManagement;
+using CineMajestic.Views.VoucherManagement;
 using CineMajestic.Views.StaffManagement;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ using CineMajestic.Views.ProductManagement;
 
 namespace CineMajestic.ViewModels
 {
-    public abstract class MainBaseViewModel : BaseViewModel
+    public abstract class MainBaseViewModel :BaseViewModel
     {
         private object currentView;
         public object CurrentView
@@ -44,7 +46,6 @@ namespace CineMajestic.ViewModels
                 case "Movies":
                     CurrentView = new MovieManagementView();
                     break;
-
                 case "Staff": // Quản lí nhân viên
                     CurrentView = new StaffManagementView();
                     break;
@@ -54,6 +55,12 @@ namespace CineMajestic.ViewModels
                     break;
                 case "QLSP"://quản lý sản phẩm    
                     CurrentView = new ProductManagementView();
+                    break;
+                case "Customer":
+                    CurrentView = new CustomerManagementView();
+                    break;
+                case "Vouchers":
+                    CurrentView = new VoucherManagementView();
                     break;
             }
         }

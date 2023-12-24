@@ -89,3 +89,29 @@ create table ACCOUNTS
 )
 go
 
+--bảng voucher
+CREATE TABLE VOUCHER
+(   
+    ID INT IDENTITY (1,1) PRIMARY KEY,
+    NAME NVARCHAR(50) NOT NULL,
+    CODE VARCHAR(10) NOT NULL UNIQUE,
+    VOUCHERDETAIL NTEXT NOT NULL,
+    TYPE varchar(10) NOT NULL,
+    STARTDATE SMALLDATETIME NOT NULL,
+    FINDATE SMALLDATETIME NOT NULL
+)
+
+
+--bảng custom
+CREATE TABLE CUSTOMER
+(
+    Id int identity(1,1) primary key ,
+    FullName nvarchar(50) not null,
+    PhoneNumber varchar(10) not null unique,
+    Email varchar(50) not null,
+    Point int not null,
+    Birth smalldatetime not null,
+    RegDate smalldatetime not null,
+    Gender nvarchar(20) not null,
+)   
+
