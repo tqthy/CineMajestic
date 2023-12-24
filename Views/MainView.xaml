@@ -19,7 +19,8 @@
 
     <!--<Window.DataContext>
         <vm:MainViewModel />
-    </Window.DataContext>-->  <!--gọi ở behind-->
+    </Window.DataContext>-->
+    <!--  gọi ở behind  -->
 
     <Border Background="#F5f5f5" CornerRadius="12">
         <Grid>
@@ -140,107 +141,107 @@
                 CornerRadius="0,20,20,20">
                 <StackPanel>
 
-                    <Button Foreground="Black"
-                            FontWeight="Medium"
-                            Command="{Binding SwitchViewCommand}"
-                            CommandParameter="Movies"
-                            Margin="0,20,0,10"
-                            BorderThickness="0"
-                            Background="Transparent"
-                            HorizontalAlignment="Left">
-                        <StackPanel Orientation="Horizontal"
-                                    VerticalAlignment="Center">
-                            <materialDesign:PackIcon Kind="MovieCog"
-                                                     Height="25"
-                                                     Width="25"
-                                                     VerticalAlignment="Center"/>
-                            <TextBlock Text="Quản Lý Phim"
-                                       VerticalAlignment="Bottom"
-                                       Margin="10,0,0,0"
-                                       FontSize="18"/>
+                    <!--  Quản lý phim  -->
+                    <Button
+                        Margin="0,20,0,10"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="Movies"
+                        FontWeight="Medium"
+                        Foreground="Black">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                VerticalAlignment="Center"
+                                Kind="MovieCog" />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Bottom"
+                                FontSize="18"
+                                Text="Quản Lý Phim" />
                         </StackPanel>
                     </Button>
-                     <!--  Quản lí nhân sự  -->
- <Button
-     Margin="0,20,0,10"
-     HorizontalAlignment="Left"
-     Background="Transparent"
-     BorderThickness="0"
-     Command="{Binding SwitchViewCommand}"
-     CommandParameter="Staff"
-     FontWeight="Medium"
-     Foreground="Black">
-     <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-         <materialDesign:PackIcon
-             Width="20"
-             Height="20"
-             VerticalAlignment="Center"
-             Kind="Account" />
-         <TextBlock
-             Margin="10,0,0,0"
-             VerticalAlignment="Bottom"
-             FontSize="17"
-             Text="Quản Lý Nhân Sự" />
-     </StackPanel>
- </Button>
-                        <!--  Button điều hướng đến Quản lý sản phẩm  -->
-    <Button
-        HorizontalAlignment="Left"
-        Background="Transparent"
-        BorderThickness="0"
-        FontWeight="Medium"
-        Foreground="Black"
-        Command="{Binding SwitchViewCommand}"
-        CommandParameter="QLSP">
-        <StackPanel Orientation="Horizontal">
-            <Grid
-                Width="20"
-                Height="20"
-                >
-                <Grid.Background>
-                    <ImageBrush ImageSource="pack://application:,,,/Icon/QLProduct.png"></ImageBrush>
-                </Grid.Background>
-            </Grid>
 
-            <TextBlock
-                Margin="5,0,0,0"
-                VerticalAlignment="Bottom"
-                FontSize="17"
-                Text="Quản lý sản phẩm"></TextBlock>
-        </StackPanel>
+                    <!--  Quản lí nhân sự  -->
 
-    </Button>
-</StackPanel>
+                    <Button
+                        Margin="0,20,0,10"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="Staff"
+                        FontWeight="Medium"
+                        Foreground="Black">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Kind="Account" />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Bottom"
+                                FontSize="17"
+                                Text="Quản Lý Nhân Sự" />
+                        </StackPanel>
+                    </Button>
 
-                    
+
+                    <!--  Button điều hướng đến Quản lý sản phẩm  -->
+
+                    <Button
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="QLSP"
+                        FontWeight="Medium"
+                        Foreground="Black">
+                        <StackPanel Orientation="Horizontal">
+                            <Grid Width="20" Height="20">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Icon/QLProduct.png" />
+                                </Grid.Background>
+                            </Grid>
+
+                            <TextBlock
+                                Margin="5,0,0,0"
+                                VerticalAlignment="Bottom"
+                                FontSize="17"
+                                Text="Quản lý sản phẩm" />
+                        </StackPanel>
+
+                    </Button>
+
                     <!--  Thông tin cá nhân  -->
-<Button
-    Margin="0,20,0,10"
-    HorizontalAlignment="Left"
-    Background="Transparent"
-    BorderThickness="0"
-    Command="{Binding SwitchViewCommand}"
-    CommandParameter="Personal"
-    FontWeight="Medium"
-    Foreground="Black">
-    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-        <materialDesign:PackIcon
-            Width="20"
-            Height="20"
-            VerticalAlignment="Center"
-            Kind="AccountBox" />
-        <TextBlock
-            Margin="10,0,0,0"
-            VerticalAlignment="Bottom"
-            FontSize="17"
-            Text="Cá nhân" />
-    </StackPanel>
-</Button>
-                    
-                    
-                    
-                    
-                </StackPanel>                
+                    <Button
+                        Margin="0,20,0,10"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="Personal"
+                        FontWeight="Medium"
+                        Foreground="Black">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="20"
+                                Height="20"
+                                VerticalAlignment="Center"
+                                Kind="AccountBox" />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Bottom"
+                                FontSize="17"
+                                Text="Cá nhân" />
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
             </Border>
 
             <!--<DockPanel Grid.Column="0"/>-->
