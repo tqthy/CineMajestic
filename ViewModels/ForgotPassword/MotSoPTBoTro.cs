@@ -40,9 +40,8 @@ namespace CineMajestic.ViewModels.ForgotPassword
 
 
                 //sửa lại password trong bảng account theo username
-                //nhớ sau này làm xong cái  mã hóa thì phải ép từ đây
                 UserDA userDA = new UserDA();
-                userDA.changePassword(username, passwordNew);
+                userDA.changePassword(username,PTChung.EncryptMD5(passwordNew));
             }
             catch{ }
         }

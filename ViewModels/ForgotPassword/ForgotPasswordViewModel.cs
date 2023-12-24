@@ -47,7 +47,7 @@ namespace CineMajestic.ViewModels.ForgotPassword
                 return;
             }
 
-            MotSoPTBoTro.sendMail(Username, Email);//sau này nhớ xử lý lỗi tài khoản có tồn tại k
+            MotSoPTBoTro.sendMail(Username, Email);
             Notification = "Mật khẩu đã được gửi tới email liên kết!";
         }
 
