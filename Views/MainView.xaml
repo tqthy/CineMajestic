@@ -364,7 +364,7 @@
                         Background="Transparent"
                         BorderThickness="0"
                         Command="{Binding SwitchViewCommand}"
-                        CommandParameter="Personal"
+                        CommandParameter="LogOut"
                         FontWeight="Medium"
                         Foreground="Black">
                         <StackPanel
@@ -376,7 +376,7 @@
                                 Height="25"
                                 Margin="-21,0,0,0">
                                 <Grid.Background>
-                                    <ImageBrush ImageSource="/Icon/logout.png" />
+                                    <ImageBrush ImageSource="pack://application:,,,/Icon/logout.png" />
                                 </Grid.Background>
                             </Grid>
                             <TextBlock
