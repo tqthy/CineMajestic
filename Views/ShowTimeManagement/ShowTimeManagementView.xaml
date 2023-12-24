@@ -118,7 +118,7 @@
                         <GridViewColumn Header="Giờ chiếu">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ListBox ItemsSource="{Binding StartTimeList}">
+                                    <ListBox ItemsSource="{Binding StartTime}">
                                         <ListBox.ItemContainerStyle>
                                             <Style TargetType="ListBoxItem">
                                                 <Setter Property="Margin"
@@ -136,9 +136,9 @@
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
-                                                    <Button Content="{Binding StartTime}"
+                                                    <Button Content="{Binding}"
                                                             FontSize="18"
-                                                            Width="120"
+                                                            Width="130"
                                                             Background="#f2ead3"
                                                             Foreground="Black">
                                                     </Button>

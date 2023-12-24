@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net;
 using System.Globalization;
+using System.Diagnostics.Metrics;
+using System.IO;
+using System.Reflection;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -44,6 +47,46 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 throw ex;
             }
+        }
+
+        public MovieDTO GetMovieById(string movie_id)
+        {
+            MovieDTO movie = new MovieDTO();
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT * FROM [MOVIES] WHERE id=@movie_id";
+                    command.Parameters.Add("@movie_id", SqlDbType.Int).Value = movie_id;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            movie.Id = reader[0].ToString();
+                            movie.Title = reader[1].ToString();
+                            movie.Description = reader[2].ToString();
+                            movie.Director = reader[3].ToString();
+                            movie.ReleaseYear = reader[4].ToString();
+                            movie.Language = reader[5].ToString();
+                            movie.Country = reader[6].ToString();
+                            movie.Length = reader[7].ToString();
+                            movie.Trailer = reader[8].ToString();
+                            movie.StartDate = reader[9].ToString();
+                            movie.EndDate = reader[10].ToString();
+                            movie.Genre = reader[11].ToString();
+                            movie.Poster = reader[12].ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return movie;
         }
 
         public void DeleteMovie(MovieDTO movie)
@@ -99,7 +142,8 @@ namespace CineMajestic.Models.DataAccessLayer
                         }
                     }
                 }
-            } catch (Exception ex)
+            } 
+            catch (Exception ex)
             {
                 throw ex;
             }

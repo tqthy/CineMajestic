@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels.ShowTimeManagementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,8 @@ namespace CineMajestic.Views.ShowTimeManagement
         {
             InitializeComponent();
             dtpNgayChieu.Text = DateTime.Now.ToString();
-            // test
-            ShowTimeDA test = new();
-            List<ShowTimeDTO> res = test.GetAllShowTimeByDate((DateTime)dtpNgayChieu.SelectedDate);
+            ShowTimeManagementViewModel vm = new ShowTimeManagementViewModel();
+            DataContext = vm;
         }
     }
 }
