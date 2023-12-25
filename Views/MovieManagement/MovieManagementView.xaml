@@ -56,8 +56,7 @@
                 BorderThickness="0,0,0,1"
                 FontFamily="Roboto"
                 FontSize="25"
-                Foreground="#DD000000"
-                />
+                Foreground="#DD000000" />
             <StackPanel
                 Margin="30,0,0,0"
                 VerticalAlignment="Bottom"
@@ -87,29 +86,27 @@
         </StackPanel>
 
 
-
+        <!--  Bộ lọc  -->
         <ComboBox
             x:Name="FilterComboBox"
             Grid.Row="1"
             Grid.Column="1"
-            Width="100"
+            Width="140"
             Margin="30,15,0,0"
             HorizontalAlignment="Left"
-            materialDesign:HintAssist.FloatingOffset="0.1,-16"
-            materialDesign:HintAssist.FloatingScale="1"
             materialDesign:HintAssist.Hint="Bộ lọc"
-            FontSize="10"
-            FontWeight="Regular"
+            FontSize="15"
+            FontWeight="DemiBold"
             Style="{DynamicResource MaterialDesignFloatingHintComboBox}">
-            <ComboBoxItem IsSelected="True">Trống</ComboBoxItem>
             <ComboBoxItem>Đang chiếu</ComboBoxItem>
-            <ComboBoxItem>Dừng chiếu</ComboBoxItem>
-            <ComboBoxItem>Sắp chiếu</ComboBoxItem>
+            <ComboBoxItem>Được phép chiếu</ComboBoxItem>
         </ComboBox>
 
+        <!--  Thông tin phim  -->
         <Grid Grid.Row="2" Grid.Column="1">
             <ListView
                 Name="lvMovies"
+                d:ItemsSource="{d:SampleData ItemCount=5}"
                 Focusable="True"
                 ItemsSource="{Binding DSPhim}"
                 SelectedItem="{Binding SelectedItem}"
@@ -119,50 +116,64 @@
                         <i:InvokeCommandAction Command="{Binding ViewDetailCommand}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <ListView.Resources>
-                </ListView.Resources>
+                <ListView.Resources />
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Width="380" Header="Tên phim">
+
+                        <!--  Tên phim  -->
+                        <GridViewColumn Width="Auto" Header="Tên phim">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
-                                        Margin="20,20,0,0"
-                                        FontSize="20"
+                                        Margin="17,3,0,0"
+                                        FontSize="17"
                                         Text="{Binding Title}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="170" Header="Thời lượng (phút)">
+                        <!--  Tình trạng  -->
+                        <GridViewColumn Width="Auto" Header="Tình trạng">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
-                                        Margin="20,20,0,0"
-                                        FontSize="20"
+                                        Margin="17,3,0,0"
+                                        FontSize="17"
+                                        Text="{Binding Status}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <!--  Thời lượng  -->
+                        <GridViewColumn Width="Auto" Header="Thời lượng (phút)">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        Margin="17,3,0,0"
+                                        FontSize="17"
                                         Text="{Binding Length}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="120" Header="Quốc gia">
+                        <GridViewColumn Width="Auto" Header="Quốc gia">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
-                                        Margin="20,20,0,0"
-                                        FontSize="20"
+                                        Margin="17,3,0,0"
+                                        FontSize="17"
                                         Text="{Binding Country}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
 
-                        <GridViewColumn Width="200" Header="Đạo diễn">
+                        <GridViewColumn Width="Auto" Header="Đạo diễn">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
-                                        Margin="20,20,0,0"
-                                        FontSize="20"
+                                        Margin="17,3,0,0"
+                                        FontSize="17"
                                         Text="{Binding Director}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -171,10 +182,9 @@
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                    <StackPanel Orientation="Horizontal">
 
-                                        <!--  Edit Movie  -->
-
+                                        <!--  Nút edit  -->
                                         <Border
                                             BorderBrush="Black"
                                             BorderThickness="0"
@@ -189,8 +199,6 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Border.Style>
-
-
                                             <materialDesign:PackIcon
                                                 Width="30"
                                                 Height="30"
@@ -200,17 +208,15 @@
                                                     <i:InvokeCommandAction Command="{Binding ElementName=lvMovies, Path=DataContext.ButtonEditMovieCommand}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
-
                                         </Border>
+
+                                        <!--  Nút xóa movie  -->
                                         <Border
                                             Margin="10,0,0,0"
                                             BorderBrush="Black"
                                             BorderThickness="0"
                                             CornerRadius="5"
                                             Cursor="Hand">
-
-                                            <!--  Delete Movie  -->
-
                                             <Border.Style>
                                                 <Style TargetType="Border">
                                                     <Style.Triggers>
@@ -220,7 +226,6 @@
                                                     </Style.Triggers>
                                                 </Style>
                                             </Border.Style>
-
                                             <materialDesign:PackIcon
                                                 Width="30"
                                                 Height="30"
