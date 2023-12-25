@@ -63,8 +63,8 @@
                         Margin="10,0,0,0"
                         VerticalAlignment="Center"
                         FontFamily="Montserrat"
-                        FontSize="13"
-                        FontWeight="Regular"
+                        FontSize="15"
+                        FontWeight="DemiBold"
                         Foreground="#623b00"
                         Text="Đăng nhập" />
 
@@ -235,11 +235,11 @@
                         Margin="220,0,0,0"
                         Background="Transparent"
                         BorderThickness="0"
+                        Command="{Binding ForgotPasswordCommand}"
                         Content="Quên mật khẩu?"
                         FontSize="12"
                         FontWeight="DemiBold"
-                        Foreground="#623b00" 
-                        Command="{Binding ForgotPasswordCommand}"/>
+                        Foreground="#623b00" />
 
 
 
