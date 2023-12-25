@@ -11,33 +11,19 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 {
     public partial class MovieManagementViewModel:MainBaseViewModel
     {
-        private ObservableCollection<MovieDTO> dSPhim;
-        public ObservableCollection<MovieDTO> DSPhim
-        {
-            get=> dSPhim;
-            set
-            {
-                dSPhim = value;
-                OnPropertyChanged(nameof(DSPhim));
-            }
-        }
+        private ObservableCollection<MovieDTO> DSPhim_All;
+        private ObservableCollection<MovieDTO> DSPhim_DPH;//đang phát hành
+        private ObservableCollection<MovieDTO> DSPhim_NPH;//ngưng phát hành
 
 
         public MovieManagementViewModel()
         {
             AddMovie();
             // SearchMovie(); gọi ở loaddata r
-            loadData();
             Delete();
             MovieDetail();
+            Filter();
         }
 
-
-        private void loadData()
-        {
-            MovieDA movieDA = new MovieDA();
-            DSPhim = movieDA.getAllMovie();
-            SearchMovie();
-        }
     }
 }

@@ -56,8 +56,8 @@
                 BorderThickness="0,0,0,1"
                 FontFamily="Roboto"
                 FontSize="25"
-                Foreground="#DD000000" 
-                Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
+                Foreground="#DD000000"
+                Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" />
             <StackPanel
                 Margin="30,0,0,0"
                 VerticalAlignment="Bottom"
@@ -98,7 +98,14 @@
             materialDesign:HintAssist.Hint="Bộ lọc"
             FontSize="15"
             FontWeight="DemiBold"
+            SelectedIndex="{Binding SelectedItemIndex}"
             Style="{DynamicResource MaterialDesignFloatingHintComboBox}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding cboSelectionChangedCommand}" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ComboBoxItem>Tất cả</ComboBoxItem>
             <ComboBoxItem>Đang phát hành</ComboBoxItem>
             <ComboBoxItem>Ngưng phát hành</ComboBoxItem>
         </ComboBox>

@@ -42,7 +42,18 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
         void SearchMovie()
         {
-            FilterDSPhim = new ObservableCollection<MovieDTO>(DSPhim);//ban đầu thì không cần lọc
+            if (SelectedItemIndex == 1)
+            {
+                FilterDSPhim = new ObservableCollection<MovieDTO>(DSPhim_DPH);
+            }
+            else if(SelectedItemIndex == 2)
+            {
+                FilterDSPhim = new ObservableCollection<MovieDTO>(DSPhim_NPH);
+            }
+            else
+            {
+                FilterDSPhim = new ObservableCollection<MovieDTO>(DSPhim_All);
+            }
         }
 
 
@@ -51,12 +62,34 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             // Cập nhật FilteredStaffList dựa trên SearchText
             if (string.IsNullOrWhiteSpace(SearchText))
             {
-                FilterDSPhim = new ObservableCollection<MovieDTO>(DSPhim);
+                if (SelectedItemIndex == 1)
+                {
+                    FilterDSPhim = new ObservableCollection<MovieDTO>(DSPhim_DPH);
+                }
+                else if (SelectedItemIndex == 2)
+                {
+                    FilterDSPhim = new ObservableCollection<MovieDTO>(DSPhim_NPH);
+                }
+                else
+                {
+                    FilterDSPhim = new ObservableCollection<MovieDTO>(DSPhim_All);
+                }
             }
             else
             {
-                FilterDSPhim = new ObservableCollection<MovieDTO>(
-                    DSPhim.Where(s => s.Title.ToLower().Contains(SearchText.ToLower())));
+                if (SelectedItemIndex == 1)
+                {
+                    FilterDSPhim = new ObservableCollection<MovieDTO>(
+                        DSPhim_DPH.Where(s => s.Title.ToLower().Contains(SearchText.ToLower())));
+                }
+                else if (SelectedItemIndex == 2)
+                {
+                    FilterDSPhim = new ObservableCollection<MovieDTO>(
+                        DSPhim_NPH.Where(s => s.Title.ToLower().Contains(SearchText.ToLower())));
+                }
+                else
+                    FilterDSPhim = new ObservableCollection<MovieDTO>(
+                        DSPhim_All.Where(s => s.Title.ToLower().Contains(SearchText.ToLower())));
             }
         }
 
