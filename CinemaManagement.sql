@@ -12,7 +12,7 @@ CREATE TABLE MOVIE
     Description NVARCHAR(500) not null,
     Genre nvarchar(100) not null,
     Director NVARCHAR(50) not null,
-    ReleaseDate smalldatetime not null,
+    ReleaseYear smalldatetime not null,
     Language NVARCHAR(20) not null,
     Country NVARCHAR(20) not null,
     Length INT not null,

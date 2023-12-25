@@ -27,6 +27,14 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         {
             MovieDA movieDA = new MovieDA();
             DSPhim = movieDA.getAllMovie();
+            AddMovie();
+
+        }
+
+
+        private void loadData()
+        {
+
         }
     }
 }

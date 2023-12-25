@@ -33,8 +33,8 @@ namespace CineMajestic.Models.DataAccessLayer
                             string genre = reader.GetString(reader.GetOrdinal("Genre"));
                             string director = reader.GetString(reader.GetOrdinal("Director"));
 
-                            DateTime releaseDate = reader.GetDateTime(reader.GetOrdinal("ReleaseDate"));
-                            string ReleaseDate = releaseDate.ToString("dd/MM/yyyy");
+                            DateTime releaseYear = reader.GetDateTime(reader.GetOrdinal("ReleaseYear"));
+                            string ReleaseYear = releaseYear.ToString("dd/MM/yyyy");
 
                             string language = reader.GetString(reader.GetOrdinal("Language"));
                             string country = reader.GetString(reader.GetOrdinal("Country"));
@@ -42,19 +42,61 @@ namespace CineMajestic.Models.DataAccessLayer
                             string trailer = reader.GetString(reader.GetOrdinal("Trailer"));
 
                             DateTime startDate = reader.GetDateTime(reader.GetOrdinal("StartDate"));
-                            string StartDate = releaseDate.ToString("dd/MM/yyyy");
+                            string StartDate = startDate.ToString("dd/MM/yyyy");
 
                             string status = reader.GetString(reader.GetOrdinal("Status"));
 
                             string ImageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
                             ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + ImageSource;
 
-                            list.Add(new MovieDTO(id, title, description, director, ReleaseDate, language, country, length, trailer, StartDate, genre, status, ImageSource));
+                            list.Add(new MovieDTO(id, title, description, director, ReleaseYear, language, country, length, trailer, StartDate, genre, status, ImageSource));
                         }
                     }
                 }
             }
             return list;
+        }
+
+
+        //add 1 movie
+        public void addMovie(MovieDTO movie)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string insert =
+                    "insert into MOVIE(Title,description,genre,director,releaseYear,language,country,length,trailer,startDate,status,imageSource)"
+                    +
+                    "values("
+                    +
+                    "N'" + movie.Title + "',"
+                    +
+                    "N'" + movie.Description + "',"
+                    +
+                    "N'" + movie.Genre + "',"
+                    +
+                    "N'" + movie.Director + "',"
+                    +
+                    "'" + movie.ReleaseYear + "',"
+                    +
+                    "N'" + movie.Language + "',"
+                    +
+                    "N'" + movie.Country + "',"
+                    +
+                    movie.Length + ","
+                    +
+                    "N'" + movie.Trailer + "',"
+                    +
+                    "'" + movie.StartDate + "',"
+                    +
+                    "N'" + movie.Status + "',"
+                    +
+                    "'" + movie.ImageSource + "')";
+                using (SqlCommand command = new SqlCommand(insert, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
