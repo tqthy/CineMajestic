@@ -97,5 +97,24 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+
+        //xóa 1 movie
+        public void deleteMovie(MovieDTO movie)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string delete =
+                    "delete Movie\n"
+                    +
+                    "where id=" + movie.Id;
+                using (SqlCommand command = new SqlCommand(delete, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
