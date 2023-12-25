@@ -33,8 +33,7 @@ namespace CineMajestic.Models.DataAccessLayer
                             string genre = reader.GetString(reader.GetOrdinal("Genre"));
                             string director = reader.GetString(reader.GetOrdinal("Director"));
 
-                            DateTime releaseYear = reader.GetDateTime(reader.GetOrdinal("ReleaseYear"));
-                            string ReleaseYear = releaseYear.ToString("dd/MM/yyyy");
+                            int ReleaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
 
                             string language = reader.GetString(reader.GetOrdinal("Language"));
                             string country = reader.GetString(reader.GetOrdinal("Country"));
@@ -49,7 +48,7 @@ namespace CineMajestic.Models.DataAccessLayer
                             string ImageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
                             ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + ImageSource;
 
-                            list.Add(new MovieDTO(id, title, description, director, ReleaseYear, language, country, length, trailer, StartDate, genre, status, ImageSource));
+                            list.Add(new MovieDTO(id, title, description, director, ReleaseYear.ToString(), language, country, length, trailer, StartDate, genre, status, ImageSource));
                         }
                     }
                 }
@@ -77,7 +76,7 @@ namespace CineMajestic.Models.DataAccessLayer
                     +
                     "N'" + movie.Director + "',"
                     +
-                    "'" + movie.ReleaseYear + "',"
+                     int.Parse(movie.ReleaseYear) + ","
                     +
                     "N'" + movie.Language + "',"
                     +

@@ -68,7 +68,7 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Top"
                     materialDesign:ButtonAssist.CornerRadius="8"
-                    Command="{Binding ButtonAddMovieCommand}"
+                    Command="{Binding addMovieCommand}"
                     FontSize="25">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
@@ -98,8 +98,8 @@
             FontSize="15"
             FontWeight="DemiBold"
             Style="{DynamicResource MaterialDesignFloatingHintComboBox}">
-            <ComboBoxItem>Đang chiếu</ComboBoxItem>
-            <ComboBoxItem>Được phép chiếu</ComboBoxItem>
+            <ComboBoxItem>Đang phát hành</ComboBoxItem>
+            <ComboBoxItem>Ngưng phát hành</ComboBoxItem>
         </ComboBox>
 
         <!--  Thông tin phim  -->

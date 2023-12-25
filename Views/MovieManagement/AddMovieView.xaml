@@ -248,7 +248,7 @@
                     <Button
                         Width="130"
                         Margin="20,-40,0,0"
-                        Command="{Binding UploadPosterCommand}">
+                        Command="{Binding addImageCommand}">
                         <Button.Content>
                             <StackPanel Orientation="Horizontal">
                                 <materialDesign:PackIcon Margin="-2,0,0,0" Kind="FolderImage" />
@@ -290,10 +290,14 @@
                         FontWeight="Bold"
                         Text="Tình trạng" />
 
-                    <TextBlock
-                        x:Name="dpStart"
+                    <ComboBox
                         Width="120"
-                        Margin="0,5,0,0" />
+                        Margin="0,5,0,0"
+                        SelectedValue="{Binding Status}"
+                        SelectedValuePath="Content">
+                        <ComboBoxItem Content="Ngưng phát hành" />
+                        <ComboBoxItem Content="Đang phát hành" />
+                    </ComboBox>
                 </StackPanel>
 
                 <!--  Ngày khởi chiếu  -->
@@ -308,7 +312,8 @@
                         Width="120"
                         Margin="0,5,0,0"
                         materialDesign:HintAssist.Hint="{Binding HintEndDate}"
-                        materialDesign:HintAssist.HintOpacity="{Binding HintOpacity}" />
+                        materialDesign:HintAssist.HintOpacity="{Binding HintOpacity}"
+                        SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
                 <!--  Chổ hiện Poster  -->
@@ -340,7 +345,7 @@
                     </Border.BorderBrush>
                     <Image
                         x:Name="PosterImage"
-                        Source="{Binding MoviePoster}"
+                        Source="{Binding ImageSource}"
                         Stretch="Fill" />
                 </Border>
 
@@ -419,7 +424,7 @@
                     Margin="0,0,10,10"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Bottom"
-                    Command="{Binding AddOrEditMovieCommand}"
+                    Command="{Binding acceptCommand}"
                     Content="Xong"
                     DockPanel.Dock="Right" />
 

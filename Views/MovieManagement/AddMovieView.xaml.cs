@@ -23,6 +23,8 @@ namespace CineMajestic.Views.MovieManagement
         public AddMovieView()
         {
             InitializeComponent();
+            AddMovieViewModel addMovieViewModel = new AddMovieViewModel(this);
+            this.DataContext = addMovieViewModel;
         }
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {

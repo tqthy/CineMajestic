@@ -1,8 +1,10 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
 using CineMajestic.Views.MovieManagement;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -85,8 +87,8 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
 
         //năm phát hành
-        private DateTime? releaseYear;
-        public DateTime? ReleaseYear
+        private string releaseYear;
+        public string ReleaseYear
         {
             get => releaseYear;
             set
@@ -191,27 +193,73 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         }
 
 
+        public ICommand acceptCommand {  get; set; }
+        public ICommand addImageCommand {  get; set; }
+
 
         private AddMovieView addMovieView;
-        public ICommand acceptCommand {  get; set; }
-        public ICommand quitCommand {  get; set; }
-
         public AddMovieViewModel(AddMovieView addMovieView)
         {
-            this.addMovieView= addMovieView;
             acceptCommand = new ViewModelCommand(accept);
-            quitCommand=new ViewModelCommand(quit);
+            addImageCommand = new ViewModelCommand(addImage);
+            this.addMovieView = addMovieView;
         }
         private void accept(object obj)
         {
             MovieDA movieDA = new MovieDA();
-            movieDA.addMovie(new MovieDTO(Title, Description, Director, ReleaseYear.Value.ToString("yyyy-MM-dd"), Language, Country, int.Parse(Length), Trailer, StartDate.Value.ToString("yyyy-MM-dd"), Genre, Status, ImageSource));
+            movieDA.addMovie(new MovieDTO(Title, Description, Director, ReleaseYear, Language, Country, int.Parse(Length), Trailer, StartDate.Value.ToString("yyyy-MM-dd"), Genre, Status,Path.GetFileName(ImageSource)));
             MessageBox.Show("Thêm thành công!");
-        }
-
-        private void quit(object obj)
-        {
             addMovieView.Close();
         }
+
+
+
+        //add image
+        private void addImage(object obj)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Ảnh (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+
+            bool? result = openFileDialog.ShowDialog();
+
+            if (result == true)
+            {
+                try
+                {
+                    string selectedImagePath = openFileDialog.FileName;
+                    string folder = Path.GetDirectoryName(selectedImagePath);
+                    string fileName = Path.GetFileName(selectedImagePath);
+                    string extension = Path.GetExtension(fileName);//đuôi mở rộng của file
+
+
+                    string fileOld1 = selectedImagePath;
+
+                    string pathfileOld2 = selectedImagePath;
+
+                    while (File.Exists(MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + fileName))
+                    {
+                        fileName = MotSoPTBoTro.RandomFileName() + extension;
+                        File.Move(fileOld1, folder + @"\" + fileName);
+                        pathfileOld2 = folder + @"\" + fileName;
+                    }
+
+                    try
+                    {
+                        MotSoPTBoTro.copyFile(pathfileOld2, MotSoPTBoTro.pathProject() + @"Images\MovieManagement");
+                        ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + fileName;
+
+
+                        //đổi lại tên file người dùng chọn
+                        File.Move(pathfileOld2, selectedImagePath);
+                    }
+                    catch { }
+
+
+                }
+                catch { }
+            }
+        }
+
+
     }
 }
