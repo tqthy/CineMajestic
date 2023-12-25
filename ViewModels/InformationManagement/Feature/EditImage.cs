@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Views.MessageBox;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -30,7 +31,8 @@ namespace CineMajestic.ViewModels.InformationManagement
             staffDA.updateImageStaff(Staff_Id, imageSourceNew);
             if (ImageSource != imageSourceOld)
             {
-                MessageBox.Show("Thành công");
+                YesMessageBox mb = new YesMessageBox("Thông báo", "Thành công");
+                mb.ShowDialog();
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Views.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,7 +68,8 @@ namespace CineMajestic.ViewModels.InformationManagement
 
             UserDA userDA = new UserDA();
             userDA.changePassword(Staff_Id,PTChung.EncryptMD5(informationView.txtMKMoi.Password));
-            MessageBox.Show("Đổi mật khẩu thành công!");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Đổi mật khẩu thành công");
+            mb.ShowDialog();
             informationView.txtMKCu.Password = "";
             informationView.txtMKMoi.Password = "";
             informationView.txtXacNhanMKMoi.Password = "";

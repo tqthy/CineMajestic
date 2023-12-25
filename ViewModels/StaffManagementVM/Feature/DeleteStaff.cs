@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs.StaffManagement;
+using CineMajestic.Views.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,8 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             {
                 userDA.deleteAccount(staff);//bởi vì ràng buộc khóa ngoại tham chiếu
                 staffDA.deleteStaff(staff);
-                MessageBox.Show("Xóa nhân viên thành công");
+                YesMessageBox mb = new YesMessageBox("Thông báo", "Xóa thành công");
+                mb.ShowDialog();
                 loadData();
             }
         }

@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs.StaffManagement;
+using CineMajestic.Views.MessageBox;
 using CineMajestic.Views.StaffManagement;
 using System;
 using System.Collections.Generic;
@@ -72,7 +73,8 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         {
             StaffDA staffDA = new StaffDA();
             staffDA.updateStaff(new StaffDTO(staffDTO.Id, FullName, Birth.Value.ToString("yyyy-MM-dd"), Gender, Email, PhoneNumber, int.Parse(Salary), Role, NgayVL.Value.ToString("yyyy-MM-dd")));
-            MessageBox.Show("Sửa nhân viên thành công");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Sửa nhân viên thành công");
+            mb.ShowDialog();
             wd.Close();
         }
 

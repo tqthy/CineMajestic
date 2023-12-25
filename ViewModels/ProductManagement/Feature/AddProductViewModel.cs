@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs.ProductManagement;
+using CineMajestic.Views.MessageBox;
 using CineMajestic.Views.ProductManagement;
 using MaterialDesignThemes.Wpf;
 using Microsoft.Win32;
@@ -147,7 +148,8 @@ namespace CineMajestic.ViewModels.ProductManagement
             Type += 1;
             ProductDA productDA = new ProductDA();
             productDA.addProduct(new ProductDTO(Name, int.Parse(Quantity), int.Parse(Price), Type, ImageSource));
-            MessageBox.Show("Thêm thành công");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Thành công");
+            mb.ShowDialog();
             wd.Close();
         }
 
