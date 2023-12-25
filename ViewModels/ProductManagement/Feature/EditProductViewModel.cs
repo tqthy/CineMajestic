@@ -100,25 +100,25 @@ namespace CineMajestic.ViewModels.ProductManagement
             }
         }
 
-        //Price
-        private string price;
-        public string Price
+        //purchasePrice
+        private string purchasePrice;
+        public string PurchasePrice
         {
-            get => price;
+            get => purchasePrice;
             set
             {
-                price = value;
+                purchasePrice = value;
                 ValidatePrice();
             }
         }
-        private string priceError;
-        public string PriceError
+        private string purchasePriceError;
+        public string PurchasePriceError
         {
-            get => priceError;
+            get => purchasePriceError;
             set
             {
-                priceError = value;
-                OnPropertyChanged(nameof(PriceError));
+                purchasePriceError = value;
+                OnPropertyChanged(nameof(PurchasePriceError));
             }
         }
         public int Type { get; set; }
@@ -137,13 +137,15 @@ namespace CineMajestic.ViewModels.ProductManagement
             acceptEditCommand = new ViewModelCommand(acceptEdit, canAccept);
             WindowClosingCommand = new ViewModelCommand(windowClosing);
             this.wd = wd;
+            
+          
         }
 
         public void khoitao()
         {
             Name = productEdit.Name;
             Quantity = productEdit.Quantity.ToString();
-            Price = productEdit.Price.ToString();
+            purchasePrice = productEdit.PurchasePrice.ToString();
             Type = productEdit.Type - 1;
             ImageSource = productEdit.ImageSource;
         }
@@ -160,11 +162,11 @@ namespace CineMajestic.ViewModels.ProductManagement
         {
             string nameNew = Name;
             int quantityNew = int.Parse(Quantity);
-            int priceNew = int.Parse(Price);
+            int purchasePriceNew = int.Parse(PurchasePrice);
             int typeNew = Type + 1;
             string imageSourceNew = Path.GetFileName(ImageSource);
             ProductDA productDA = new ProductDA();
-            productDA.editProduct(new ProductDTO(productEdit.Id, nameNew, quantityNew, priceNew, typeNew, imageSourceNew));
+            productDA.editProduct(new ProductDTO(productEdit.Id, nameNew, quantityNew, purchasePriceNew, typeNew, imageSourceNew));
             MessageBox.Show("Sửa thành công");
             wd.Close();
         }
@@ -234,7 +236,7 @@ namespace CineMajestic.ViewModels.ProductManagement
 
         //Các hàm Validate để báo lỗi
 
-        private bool[] _canAccept = new bool[3];
+        private bool[] _canAccept = new bool[] { true, true, true };
 
         private bool canAccept(object obj)
         {
@@ -279,24 +281,24 @@ namespace CineMajestic.ViewModels.ProductManagement
         }
         private void ValidatePrice()
         {
-            if (string.IsNullOrWhiteSpace(Price))
+            if (string.IsNullOrWhiteSpace(PurchasePrice))
             {
-                PriceError = "Giá không để trống";
+                PurchasePriceError = "Giá không để trống";
                 _canAccept[2] = false;
             }
-            else if (!Price.All(char.IsDigit))
+            else if (!PurchasePrice.All(char.IsDigit))
             {
-                PriceError = "Giá không hợp lệ";
+                PurchasePriceError = "Giá không hợp lệ";
                 _canAccept[2] = false;
             }
-            else if (int.Parse(Price) < 0)
+            else if (int.Parse(PurchasePrice) < 0)
             {
-                PriceError = "Giá không hợp lệ";
+                PurchasePriceError = "Giá không hợp lệ";
                 _canAccept[2] = false;
             }
             else
             {
-                PriceError = "";
+                PurchasePriceError = "";
                 _canAccept[2] = true;
             }
         }

@@ -94,25 +94,25 @@ namespace CineMajestic.ViewModels.ProductManagement
             }
         }
 
-        //Price
-        private string price;
-        public string Price
+        //PurchasePrice
+        private string purchasePrice;
+        public string PurchasePrice
         {
-            get => price;
+            get => purchasePrice;
             set
             {
-                price = value;
-                ValidatePrice();
+                purchasePrice = value;
+                ValidatePurchasePrice();
             }
         }
-        private string priceError;
-        public string PriceError
+        private string purchasePriceError;
+        public string PurchasePriceError
         {
-            get => priceError;
+            get => purchasePriceError;
             set
             {
-                priceError = value;
-                OnPropertyChanged(nameof(PriceError));
+                purchasePriceError = value;
+                OnPropertyChanged(nameof(PurchasePriceError));
             }
         }
         public int Type {  get; set; }
@@ -142,11 +142,10 @@ namespace CineMajestic.ViewModels.ProductManagement
         private void accept(object obj)
         {
 
-            //nhớ sau này xử lý lỗi khi người dùng chưa nhập gì
             ImageSource = Path.GetFileName(ImageSource);
             Type += 1;
             ProductDA productDA = new ProductDA();
-            productDA.addProduct(new ProductDTO(Name, int.Parse(Quantity), int.Parse(Price), Type, ImageSource));
+            productDA.addProduct(new ProductDTO(Name, int.Parse(Quantity), int.Parse(PurchasePrice), Type, ImageSource));
             MessageBox.Show("Thêm thành công");
             wd.Close();
         }
@@ -229,7 +228,7 @@ namespace CineMajestic.ViewModels.ProductManagement
 
         private bool canAccept(object obj)
         {
-            return _canAccept[0] && _canAccept[1] && _canAccept[2];
+             return _canAccept[0] && _canAccept[1] && _canAccept[2];
         }
         private void ValidateName()
         {
@@ -268,26 +267,26 @@ namespace CineMajestic.ViewModels.ProductManagement
                 _canAccept[1] = true;
             }
         }
-        private void ValidatePrice()
+        private void ValidatePurchasePrice()
         {
-            if (string.IsNullOrWhiteSpace(Price))
+            if (string.IsNullOrWhiteSpace(PurchasePrice))
             {
-                PriceError = "Giá không để trống";
+                PurchasePriceError = "Giá không để trống";
                 _canAccept[2] = false;
             }
-            else if (!Price.All(char.IsDigit))
+            else if (!PurchasePrice.All(char.IsDigit))
             {
-                PriceError = "Giá không hợp lệ";
+                PurchasePriceError = "Giá không hợp lệ";
                 _canAccept[2] = false;
             }
-            else if (int.Parse(Price) < 0)
+            else if (int.Parse(PurchasePrice) < 0)
             {
-                PriceError = "Giá không hợp lệ";
+                PurchasePriceError = "Giá không hợp lệ";
                 _canAccept[2] = false;
             }
             else
             {
-                PriceError = "";
+                PurchasePriceError = "";
                 _canAccept[2] = true;
             }
         }

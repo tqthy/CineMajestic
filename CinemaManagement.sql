@@ -14,18 +14,7 @@ create table ACCOUNTS
 )
 go
 
---tạo bảng product
-go
-create table Product
-(
-	ID int identity(1,1) primary key,
-	Name nvarchar(100) not null,
-	ImageSource varchar(200) not null,
-	Quantity int not null,
-	Price int not null,
-	Type int not null,
-)
-go
+
 
 
 --bảng staff
@@ -119,3 +108,37 @@ INSERT INTO MOVIES VALUES(N'Bố Già',
 GO              
 INSERT INTO GENRES VALUES (N'Gia Đình'), (N'Hài');
 GO
+
+
+--bảng product
+go
+create table Product
+(
+	ID int identity(1,1) primary key,
+	Name nvarchar(100) not null,
+	ImageSource varchar(200) not null,
+	Quantity int not null,
+	PurchasePrice int not null,
+	Price int null,
+	Type int not null,
+)
+go
+
+--trigger tự set giá sau mỗi lần update,insert: giá bán = giá nhập +giá nhập *20%
+go
+create trigger trg_setPrice_Product
+on Product
+for insert,update
+as
+begin
+	declare @ID int
+	declare @PurchasePrice int
+
+	select @ID=ID, @PurchasePrice=PurchasePrice
+	from inserted
+
+	update Product
+	set Price=@PurchasePrice+0.2*@PurchasePrice
+	where ID=@ID
+end
+go

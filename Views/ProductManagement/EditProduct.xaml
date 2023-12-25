@@ -114,7 +114,7 @@
                         VerticalAlignment="Center"
                         FontFamily="Arial"
                         FontSize="15"
-                        Text="Giá" />
+                        Text="Giá nhập" />
                     <StackPanel Grid.Column="1">
                         <TextBox
                             Width="150"
@@ -125,13 +125,13 @@
                             VerticalContentAlignment="Center"
                             FontFamily="Arial"
                             FontSize="15"
-                            Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
+                            Text="{Binding PurchasePrice, UpdateSourceTrigger=PropertyChanged}" />
                         <!--  Báo lỗi  -->
                         <TextBlock
                             Margin="10,0,0,0"
                             FontSize="10"
                             Foreground="Red"
-                            Text="{Binding PriceError}" />
+                            Text="{Binding PurchasePriceError}" />
                     </StackPanel>
 
                 </Grid>
