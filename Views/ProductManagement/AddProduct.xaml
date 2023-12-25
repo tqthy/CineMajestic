@@ -91,7 +91,7 @@
 
                 </Grid>
 
-                <!--  Gía sản phẩm  -->
+                <!--  Gía nhập sản phẩm  -->
                 <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="120" />
@@ -104,7 +104,7 @@
                         VerticalAlignment="Center"
                         FontFamily="Arial"
                         FontSize="15"
-                        Text="Giá" />
+                        Text="Giá nhập" />
 
                     <StackPanel Grid.Column="1">
                         <TextBox
@@ -117,12 +117,12 @@
                             VerticalContentAlignment="Center"
                             FontFamily="Arial"
                             FontSize="15"
-                            Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
+                            Text="{Binding PurchasePrice, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock
                             Margin="10,0,0,0"
                             FontSize="10"
                             Foreground="Red"
-                            Text="{Binding PriceError}" />
+                            Text="{Binding PurchasePriceError}" />
                     </StackPanel>
 
                 </Grid>

@@ -32,13 +32,14 @@ namespace CineMajestic.Models.DataAccessLayer
                             string name = reader.GetString(reader.GetOrdinal("Name"));
                             string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
                             int quantity = reader.GetInt32(reader.GetOrdinal("Quantity"));
+                            int purchasePrice = reader.GetInt32(reader.GetOrdinal("PurchasePrice"));
                             int price = reader.GetInt32(reader.GetOrdinal("Price"));
                             int type = reader.GetInt32(reader.GetOrdinal("Type"));
 
 
 
                             imageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + imageSource;
-                            DSSP.Add(new ProductDTO(id,name,quantity,price,type,imageSource));
+                            DSSP.Add(new ProductDTO(id,name,quantity,purchasePrice,price,type,imageSource));
                         }
                     }
                 }
@@ -55,14 +56,14 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 connection.Open();
                 string insert =
-                    "insert into Product(Name,ImageSource,Quantity,Price,Type)\n"
+                    "insert into Product(Name,ImageSource,Quantity,PurchasePrice,Type)\n"
                     +
                     "values("
                     +
                     "N'" + product.Name + "',"
                     + "'" + product.ImageSource + "',"
                     + product.Quantity.ToString() + ","
-                    + product.Price.ToString() + ","
+                    + product.PurchasePrice.ToString() + ","
                     + product.Type.ToString() + ")";
 
                 using(SqlCommand command=new SqlCommand(insert,connection))
@@ -106,7 +107,7 @@ namespace CineMajestic.Models.DataAccessLayer
                     +
                     "Quantity=" + product.Quantity + ","
                     +
-                    "Price=" + product.Price + ","
+                    "PurchasePrice=" + product.PurchasePrice + ","
                     +
                     "Type=" + product.Type + ","
                     +
