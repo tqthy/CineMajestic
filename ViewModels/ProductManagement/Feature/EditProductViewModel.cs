@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs.ProductManagement;
+using CineMajestic.Views.MessageBox;
 using CineMajestic.Views.ProductManagement;
 using Microsoft.Win32;
 using System;
@@ -167,7 +168,8 @@ namespace CineMajestic.ViewModels.ProductManagement
             string imageSourceNew = Path.GetFileName(ImageSource);
             ProductDA productDA = new ProductDA();
             productDA.editProduct(new ProductDTO(productEdit.Id, nameNew, quantityNew, purchasePriceNew, typeNew, imageSourceNew));
-            MessageBox.Show("Sửa thành công");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Thành công");
+            mb.ShowDialog();
             wd.Close();
         }
 

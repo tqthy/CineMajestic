@@ -9,6 +9,7 @@ using System.Windows.Input;
 using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
 using CineMajestic.Models.DTOs.StaffManagement;
+using CineMajestic.Views.MessageBox;
 using CineMajestic.Views.StaffManagement;
 using MaterialDesignThemes.Wpf;
 
@@ -301,7 +302,8 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             UserDA userDA = new UserDA();
             userDA.addAccount(new UserDTO(Username, PTChung.EncryptMD5(wd.txtMatKhau.Password), staffDA.identCurrent()));
 
-            MessageBox.Show("Thêm nhân viên thành công");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm nhân viên thành công");
+            mb.ShowDialog();
             wd.Close();
 
         }

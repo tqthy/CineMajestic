@@ -1,6 +1,7 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
 using CineMajestic.Views.CustomerManagement;
+using CineMajestic.Views.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -194,7 +195,8 @@ namespace CineMajestic.ViewModels.CustomerManagement
         {
             CustomerDA customerDA = new CustomerDA();
             customerDA.editCustomer(new CustomerDTO(customer.Id,FullName,PhoneNumber,Email, RegDate.Value.ToString("yyyy-MM-dd"),int.Parse(Point)));
-            MessageBox.Show("Sửa thành công");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Sửa thành công");
+            mb.ShowDialog();
             wd.Close();
         }
 
