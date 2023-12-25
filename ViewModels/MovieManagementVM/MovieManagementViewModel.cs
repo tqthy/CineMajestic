@@ -29,7 +29,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             // SearchMovie(); gọi ở loaddata r
             loadData();
             Delete();
-
+            MovieDetail();
         }
 
 

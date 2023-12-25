@@ -387,7 +387,8 @@
                     <TextBox
                         x:Name="GenreComboBox"
                         Width="100"
-                        Margin="2,5,0,0" />
+                        Margin="2,5,0,0" 
+                        Text="{Binding Genre}"/>
                 </StackPanel>
 
             </StackPanel>

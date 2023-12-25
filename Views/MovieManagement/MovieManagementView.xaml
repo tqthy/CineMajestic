@@ -114,7 +114,7 @@
                 ToolTip="Nháy đúp để xem chi tiết">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding ViewDetailCommand}" />
+                        <i:InvokeCommandAction Command="{Binding DataContext.MovieDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding ElementName=lvMovies, Path=SelectedItem}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
                 <ListView.Resources />
@@ -206,7 +206,7 @@
                                                 Kind="MovieEditOutline" />
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseLeftButtonUp">
-                                                    <i:InvokeCommandAction Command="{Binding ElementName=lvMovies, Path=DataContext.ButtonEditMovieCommand}" />
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.EditMovieCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </Border>

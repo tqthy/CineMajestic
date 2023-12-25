@@ -157,7 +157,7 @@
                 Grid.Column="1"
                 Margin="15"
                 CornerRadius="3">
-                <Image Source="{Binding MoviePoster}" Stretch="fill" />
+                <Image Source="{Binding ImageSource}" Stretch="Fill" />
             </Border>
 
             <Border

@@ -207,7 +207,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         private void accept(object obj)
         {
             MovieDA movieDA = new MovieDA();
-            movieDA.addMovie(new MovieDTO(Title, Description, Director, ReleaseYear, Language, Country, int.Parse(Length), Trailer, StartDate.Value.ToString("yyyy-MM-dd"), Genre, Status,Path.GetFileName(ImageSource)));
+            movieDA.addMovie(new MovieDTO(Title, Description, Director, ReleaseYear, Language, Country, int.Parse(Length), Trailer, StartDate.Value.ToString("yyyy-MM-dd"), Genre, Status, Path.GetFileName(ImageSource)));
             MessageBox.Show("Thêm thành công!");
             addMovieView.Close();
         }
