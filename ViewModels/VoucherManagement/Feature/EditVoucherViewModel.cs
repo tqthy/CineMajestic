@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
+using CineMajestic.Views.MessageBox;
 using CineMajestic.Views.VoucherManagement;
 using MaterialDesignThemes.Wpf;
 using System;
@@ -156,7 +157,8 @@ namespace CineMajestic.ViewModels.VoucherManagement
 
             //sau này nhớ xử lý lỗi người dùng
             voucherDA.editVoucher(new VoucherDTO(voucher.Id, Name, VoucherDetail, Type, StartDate.Value.ToString("yyyy-MM-dd"), FinDate.Value.ToString("yyyy-MM-dd")));
-            MessageBox.Show("Edit thành công");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm voucher thành công");
+            mb.ShowDialog();
             wd.Close();
         }
         private bool[] _canAccept = new bool[4];//phục vụ việc có cho nhấn button accept k

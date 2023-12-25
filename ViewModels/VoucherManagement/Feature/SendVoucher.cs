@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
+using CineMajestic.Views.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,8 +35,9 @@ namespace CineMajestic.ViewModels.VoucherManagement
         }
         private void sendVoucher(object obj)
         {
-            MessageBoxResult result = MessageBox.Show("Bạn có muốn gửi Voucher tới mail khách hàng không?", "Gửi voucher", MessageBoxButton.YesNo);
-            if (result == MessageBoxResult.Yes)
+            YesNoMessageBox mb = new YesNoMessageBox("Gửi voucher", "Bạn có muốn gửi voucher đến khách hàng không?");
+            mb.ShowDialog();
+            if (mb.DialogResult == true)
             {
 
                 VoucherDTO getVoucher = obj as VoucherDTO;
