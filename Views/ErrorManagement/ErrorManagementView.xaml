@@ -85,27 +85,12 @@
                             <GridViewColumn Width="Auto" Header="Sự cố">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <!--  Ảnh sự cố  -->
-                                            <Border
-                                                Width="100"
-                                                Height="100"
-                                                CornerRadius="8">
-                                                <Border.Background>
-                                                    <ImageBrush ImageSource="{Binding}" Stretch="Fill" />
-                                                </Border.Background>
-                                            </Border>
-                                            <StackPanel Margin="20,00,0,0" VerticalAlignment="Center">
-                                                <!--  Tên sự cố  -->
-                                                <TextBlock
-                                                    Width="Auto"
-                                                    FontSize="20"
-                                                    FontWeight="Bold"
-                                                    Text="{Binding}" />
-
-
-                                            </StackPanel>
-                                        </StackPanel>
+                                        <!--  Tên sự cố  -->
+                                        <TextBlock
+                                            Width="Auto"
+                                            Margin="17,0,0,0"
+                                            FontSize="17"
+                                            Text="{Binding}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -115,7 +100,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="17,39,0,0"
+                                            Margin="17,0,0,0"
                                             FontSize="17"
                                             Text="{Binding}" />
                                     </DataTemplate>
@@ -126,7 +111,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="17,39,0,0"
+                                            Margin="17,0,0,0"
                                             FontSize="17"
                                             Text="{Binding}" />
                                     </DataTemplate>
@@ -138,7 +123,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
-                                            Margin="17,39,0,0"
+                                            Margin="17,0,0,0"
                                             FontSize="17"
                                             Text="{Binding}" />
                                     </DataTemplate>
@@ -150,7 +135,7 @@
                                     <DataTemplate>
                                         <!--  Nút sửa  -->
                                         <Border
-                                            Margin="10,38,0,0"
+                                            Margin="17,0,0,0"
                                             BorderBrush="Black"
                                             BorderThickness="0.5"
                                             CornerRadius="5"

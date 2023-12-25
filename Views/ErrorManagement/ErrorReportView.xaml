@@ -166,6 +166,83 @@
 
                 </Grid>
 
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="95" />
+                    </Grid.ColumnDefinitions>
+
+                    <!--  Mô tả sự cố  -->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock
+                            Margin="20,10,0,0"
+                            FontSize="20"
+                            FontWeight="DemiBold"
+                            Text="Mô tả sự cố:" />
+
+                        <TextBox
+                            Grid.Row="1"
+                            FontSize="15"
+                            TextWrapping="Wrap"
+                            VerticalScrollBarVisibility="Auto" />
+
+                    </Grid>
+
+                    <!--  Ảnh  -->
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock
+                                Margin="20,10,0,0"
+                                FontSize="20"
+                                FontWeight="DemiBold"
+                                Text="Chọn ảnh:" />
+                            <Button
+                                HorizontalAlignment="Left"
+                                Background="Transparent"
+                                BorderThickness="0"
+                                Foreground="Black">
+                                <materialDesign:PackIcon
+                                    Width="25"
+                                    Height="25"
+                                    VerticalAlignment="Center"
+                                    Kind="FolderUpload" />
+                            </Button>
+                        </StackPanel>
+
+                        <Border
+                            Grid.Row="1"
+                            Width="300"
+                            Height="200"
+                            BorderBrush="Black"
+                            BorderThickness="2">
+                            <Border.Background>
+                                <ImageBrush ImageSource="{Binding ImageSource}" />
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+
+                    <!--  Nút xác nhận  -->
+                    <Button
+                        Name="btnXacNhan"
+                        Grid.Column="2"
+                        Width="90"
+                        Margin="0,0,0,10"
+                        VerticalAlignment="Bottom"
+                        materialDesign:ButtonAssist.CornerRadius="20"
+                        Command="{Binding acceptAddCommand}"
+                        Content="Xác nhận" />
+                </Grid>
+
+
 
             </Grid>
         </Grid>
