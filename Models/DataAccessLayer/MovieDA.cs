@@ -1,157 +1,60 @@
 ﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels.MovieManagementVM;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
-using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net;
-using System.Globalization;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
     public class MovieDA : DataAccess
     {
-        public void AddMovie(MovieDTO movie)
+        //lấy danh sách phim
+        public ObservableCollection<MovieDTO> getAllMovie()
         {
-            try
+            ObservableCollection<MovieDTO> list = new ObservableCollection<MovieDTO>();
+            using (SqlConnection connection = GetConnection())
             {
-                using (var connection = GetConnection())
-                using (var command = new SqlCommand())
+                connection.Open();
+                string truyvan = "select * from Movie";
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
                 {
-                    connection.Open();
-                    command.Connection = connection;
-                    command.CommandText = "INSERT INTO [MOVIES] VALUES(@title, @description, @director, @releaseyear, @language, @country, @length, @trailer, @startdate, @enddate, @genreid, @poster)";
-                    command.Parameters.Add("@title", SqlDbType.NVarChar).Value = movie.Title;
-                    command.Parameters.Add("@description", SqlDbType.NVarChar).Value = movie.Description;
-                    command.Parameters.Add("@director", SqlDbType.NVarChar).Value = movie.Director;
-                    command.Parameters.Add("@releaseyear", SqlDbType.Int).Value = movie.ReleaseYear;
-                    command.Parameters.Add("@language", SqlDbType.NVarChar).Value = movie.Language;
-                    command.Parameters.Add("@country", SqlDbType.NVarChar).Value = movie.Country;
-                    command.Parameters.Add("@length", SqlDbType.Int).Value = movie.Length;
-                    command.Parameters.Add("@trailer", SqlDbType.NVarChar).Value = movie.Trailer;
-                    DateTime date;
-                    date = DateTime.ParseExact(movie.StartDate, "M/d/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
-                    command.Parameters.Add("@startdate", SqlDbType.SmallDateTime).Value = date;
-                    date = DateTime.ParseExact(movie.EndDate, "M/d/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
-                    command.Parameters.Add("@enddate", SqlDbType.SmallDateTime).Value = date;
-                    command.Parameters.Add("@genreid", SqlDbType.Int).Value = movie.Genre;
-                    command.Parameters.Add("@poster", SqlDbType.NVarChar).Value = movie.Poster;
-                    var rows_affected = command.ExecuteNonQuery();
-                }
-            } catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public void DeleteMovie(MovieDTO movie)
-        {
-            try
-            {
-                using (var connection = GetConnection())
-                using (var command = new SqlCommand())
-                {
-                    connection.Open();
-                    command.Connection = connection;
-                    command.CommandText = "DELETE FROM [MOVIES] WHERE id = @id";
-                    command.Parameters.Add("@id", SqlDbType.Int).Value = movie.Id;
-                    var rows_affected = command.ExecuteNonQuery();
-                }
-            } catch (Exception e)
-            {
-                throw e;
-            }
-        }
-        public List<MovieDTO> GetAllMovies()
-        {
-            List<MovieDTO> movies = new List<MovieDTO>();
-            try
-            {
-                using (var connection = GetConnection())
-                using (var command = new SqlCommand())
-                {
-                    connection.Open();
-                    command.Connection = connection;
-                    command.CommandText = "SELECT * FROM [MOVIES]";
-                    using (var reader = command.ExecuteReader())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            MovieDTO movie = new MovieDTO()
-                            {
-                                Id = reader[0].ToString(),
-                                Title = reader[1].ToString(),
-                                Description = reader[2].ToString(),
-                                Director = reader[3].ToString(),
-                                ReleaseYear = reader[4].ToString(),
-                                Language = reader[5].ToString(),
-                                Country = reader[6].ToString(),
-                                Length = reader[7].ToString(),
-                                Trailer = reader[8].ToString(),
-                                StartDate = reader[9].ToString(),
-                                EndDate = reader[10].ToString(),
-                                Genre = reader[11].ToString(),
-                                Poster = reader[12].ToString()
-                            };
-                            movies.Add(movie);
+                            int id = reader.GetInt32(reader.GetOrdinal("id"));
+                            string title = reader.GetString(reader.GetOrdinal("Title"));
+                            string description = reader.GetString(reader.GetOrdinal("Description"));
+                            string genre = reader.GetString(reader.GetOrdinal("Genre"));
+                            string director = reader.GetString(reader.GetOrdinal("Director"));
+
+                            DateTime releaseDate = reader.GetDateTime(reader.GetOrdinal("ReleaseDate"));
+                            string ReleaseDate = releaseDate.ToString("dd/MM/yyyy");
+
+                            string language = reader.GetString(reader.GetOrdinal("Language"));
+                            string country = reader.GetString(reader.GetOrdinal("Country"));
+                            int length = reader.GetInt32(reader.GetOrdinal("Length"));
+                            string trailer = reader.GetString(reader.GetOrdinal("Trailer"));
+
+                            DateTime startDate = reader.GetDateTime(reader.GetOrdinal("StartDate"));
+                            string StartDate = releaseDate.ToString("dd/MM/yyyy");
+
+                            string status = reader.GetString(reader.GetOrdinal("Status"));
+
+                            string ImageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                            ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + ImageSource;
+
+                            list.Add(new MovieDTO(id, title, description, director, ReleaseDate, language, country, length, trailer, StartDate, genre, status, ImageSource));
                         }
                     }
                 }
-            } catch (Exception ex)
-            {
-                throw ex;
             }
-            return movies;
-        }
-
-        public void EditMovie(MovieDTO movie)
-        {
-            try
-            {
-                using (var connection = GetConnection())
-                using (var command = new SqlCommand())
-                {
-                    connection.Open();
-                    command.Connection = connection;
-                    command.CommandText = "UPDATE [MOVIES]" +
-                                            " SET Title = @title," +
-                                            " Description = @description," +
-                                            " Director = @director," +
-                                            " ReleaseYear = @releaseyear," +
-                                            " Language = @language," +
-                                            " Country = @country," +
-                                            " Length = @length," +
-                                            " Trailer = @trailer," +
-                                            " StartDate = @startdate," +
-                                            " EndDate = @enddate," +
-                                            " Genre_id = @genreid," +
-                                            " Poster = @poster" +
-                                            " WHERE id = @id";
-
-                    command.Parameters.Add("@id", SqlDbType.Int).Value = movie.Id;
-                    command.Parameters.Add("@title", SqlDbType.NVarChar).Value = movie.Title;
-                    command.Parameters.Add("@description", SqlDbType.NVarChar).Value = movie.Description;
-                    command.Parameters.Add("@director", SqlDbType.NVarChar).Value = movie.Director;
-                    command.Parameters.Add("@releaseyear", SqlDbType.Int).Value = movie.ReleaseYear;
-                    command.Parameters.Add("@language", SqlDbType.NVarChar).Value = movie.Language;
-                    command.Parameters.Add("@country", SqlDbType.NVarChar).Value = movie.Country;
-                    command.Parameters.Add("@length", SqlDbType.Int).Value = movie.Length;
-                    command.Parameters.Add("@trailer", SqlDbType.NVarChar).Value = movie.Trailer;
-                    DateTime date;
-                    date = DateTime.ParseExact(movie.StartDate, "M/d/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
-                    command.Parameters.Add("@startdate", SqlDbType.SmallDateTime).Value = date;
-                    date = DateTime.ParseExact(movie.EndDate, "M/d/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
-                    command.Parameters.Add("@enddate", SqlDbType.SmallDateTime).Value = date;
-                    command.Parameters.Add("@genreid", SqlDbType.Int).Value = movie.Genre;
-                    command.Parameters.Add("@poster", SqlDbType.NVarChar).Value = movie.Poster;
-                    var rows_affected = command.ExecuteNonQuery();
-                }
-            } catch (Exception ex)
-            {
-                throw ex;
-            }
+            return list;
         }
     }
 }
