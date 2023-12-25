@@ -88,7 +88,7 @@ namespace CineMajestic.ViewModels.InformationManagement
         private bool ValidatePassword1()
         {
             UserDA userDA = new UserDA();
-            if (informationView.txtMKCu.Password != userDA.passwordStaff_Id(Staff_Id))
+            if (PTChung.EncryptMD5(informationView.txtMKCu.Password) != userDA.passwordStaff_Id(Staff_Id))
             {
                 Password1Error = "Mật khẩu cũ không đúng,vui lòng thử lại!";
                 return false;
