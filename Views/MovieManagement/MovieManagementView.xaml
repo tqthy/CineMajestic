@@ -56,7 +56,8 @@
                 BorderThickness="0,0,0,1"
                 FontFamily="Roboto"
                 FontSize="25"
-                Foreground="#DD000000" />
+                Foreground="#DD000000" 
+                Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"/>
             <StackPanel
                 Margin="30,0,0,0"
                 VerticalAlignment="Bottom"
@@ -108,7 +109,7 @@
                 Name="lvMovies"
                 d:ItemsSource="{d:SampleData ItemCount=5}"
                 Focusable="True"
-                ItemsSource="{Binding DSPhim}"
+                ItemsSource="{Binding FilterDSPhim}"
                 SelectedItem="{Binding SelectedItem}"
                 ToolTip="Nháy đúp để xem chi tiết">
                 <i:Interaction.Triggers>

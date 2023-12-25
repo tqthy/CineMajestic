@@ -25,16 +25,18 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
         public MovieManagementViewModel()
         {
-            MovieDA movieDA = new MovieDA();
-            DSPhim = movieDA.getAllMovie();
             AddMovie();
+            // SearchMovie(); gọi ở loaddata r
+            loadData();
 
         }
 
 
         private void loadData()
         {
-
+            MovieDA movieDA = new MovieDA();
+            DSPhim = movieDA.getAllMovie();
+            SearchMovie();
         }
     }
 }
