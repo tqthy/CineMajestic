@@ -177,6 +177,17 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             }
         }
 
+        private string importPrice;
+        public string ImportPrice
+        {
+            get => importPrice;
+            set
+            {
+                importPrice= value;
+                OnPropertyChanged(nameof(ImportPrice));
+            }
+        }
+
         //poster
         private string imageSource;
         public string? ImageSource
@@ -207,7 +218,14 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         private void accept(object obj)
         {
             MovieDA movieDA = new MovieDA();
-            movieDA.addMovie(new MovieDTO(Title, Description, Director, ReleaseYear, Language, Country, int.Parse(Length), Trailer, StartDate.Value.ToString("yyyy-MM-dd"), Genre, Status, Path.GetFileName(ImageSource)));
+            movieDA.addMovie(new MovieDTO(Title, Description, Director, ReleaseYear, Language, Country, int.Parse(Length), Trailer, StartDate.Value.ToString("yyyy-MM-dd"), Genre, Status, Path.GetFileName(ImageSource), int.Parse(ImportPrice)));
+
+            //lấy ngày tháng năm hiện tại
+            DateTime dateTime = DateTime.Now;
+
+            //thêm vào bill addmovie
+            BillAddMovieDA billAddMovieDA = new BillAddMovieDA();
+            billAddMovieDA.addBill(new BillAddMovieDTO(movieDA.identCurrent(), dateTime.ToString("yyyy-MM-dd"), int.Parse(ImportPrice)));
             MessageBox.Show("Thêm thành công!");
             addMovieView.Close();
         }

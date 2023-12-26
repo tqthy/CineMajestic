@@ -19,6 +19,7 @@ namespace CineMajestic.Models.DTOs
         public string Country { get; set; }
         public int Length { get; set; }
         public string Trailer { get; set; }
+        public int ImportPrice {  get; set; }
         public string StartDate { get; set; }
         public string Genre { get; set; }
         public string Status {  get; set; }
@@ -26,7 +27,7 @@ namespace CineMajestic.Models.DTOs
 
 
         //hàm khởi tạo phục vụ get  1 movie
-        public MovieDTO(int id,string title,string decrip,string direc,string release,string language,string country,int lenght,string trailer,string startdate,string genre,string status,string imageSource)
+        public MovieDTO(int id,string title,string decrip,string direc,string release,string language,string country,int lenght,string trailer,string startdate,string genre,string status,string imageSource,int importPrice)
         {
             Id = id;
             Title = title;
@@ -41,11 +42,12 @@ namespace CineMajestic.Models.DTOs
             Genre = genre;
             Status = status;
             ImageSource = imageSource;
+            ImportPrice = importPrice;
         }
 
 
         //hàm khởi tạo phục vụ add 1 movie
-        public MovieDTO( string title, string decrip, string direc, string release, string language, string country, int lenght, string trailer, string startdate, string genre, string status, string imageSource)
+        public MovieDTO( string title, string decrip, string direc, string release, string language, string country, int lenght, string trailer, string startdate, string genre, string status, string imageSource, int importPrice)
         {
             Title = title;
             Description = decrip;
@@ -59,6 +61,7 @@ namespace CineMajestic.Models.DTOs
             Genre = genre;
             Status = status;
             ImageSource = imageSource;
+            ImportPrice = importPrice;
         }
     }
 }

@@ -48,7 +48,9 @@ namespace CineMajestic.Models.DataAccessLayer
                             string ImageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
                             ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + ImageSource;
 
-                            list.Add(new MovieDTO(id, title, description, director, ReleaseYear.ToString(), language, country, length, trailer, StartDate, genre, status, ImageSource));
+                            int importPrice = reader.GetInt32(reader.GetOrdinal("ImportPrice"));
+
+                            list.Add(new MovieDTO(id, title, description, director, ReleaseYear.ToString(), language, country, length, trailer, StartDate, genre, status, ImageSource, importPrice));
                         }
                     }
                 }
@@ -64,7 +66,7 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 connection.Open();
                 string insert =
-                    "insert into MOVIE(Title,description,genre,director,releaseYear,language,country,length,trailer,startDate,status,imageSource)"
+                    "insert into MOVIE(Title,description,genre,director,releaseYear,language,country,length,trailer,startDate,status,ImportPrice,imageSource)"
                     +
                     "values("
                     +
@@ -89,6 +91,8 @@ namespace CineMajestic.Models.DataAccessLayer
                     "'" + movie.StartDate + "',"
                     +
                     "N'" + movie.Status + "',"
+                    +
+                    movie.ImportPrice+","
                     +
                     "'" + movie.ImageSource + "')";
                 using (SqlCommand command = new SqlCommand(insert, connection))
@@ -115,6 +119,28 @@ namespace CineMajestic.Models.DataAccessLayer
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+
+        //iden curent
+        public int identCurrent()
+        {
+            int identCurrent;
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string cm =
+                    "select ident_current('Movie') as lastId";
+                using (SqlCommand command = new SqlCommand(cm, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        identCurrent = (int)reader.GetDecimal(reader.GetOrdinal("lastId"));
+                    }
+                }
+            }
+            return identCurrent;
         }
     }
 }
