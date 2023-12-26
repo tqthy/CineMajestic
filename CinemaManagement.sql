@@ -94,6 +94,7 @@ CREATE TABLE MOVIE
     Trailer NVARCHAR(200) not null,
     StartDate SMALLDATETIME not null,
     Status nvarchar(50) not null,
+	ImportPrice int not null,
     ImageSource varchar(100) not null,
 );
 GO
@@ -191,6 +192,7 @@ create table Bill
 	ShowTime_Id int,
 	BillDate smalldatetime not null,
 	QuantityTicket int not null,
+	PerSeatTicketPrice int not null,--giống bên suất chiếu,để đây cho dễ làm
 	Discount int,
 	Note nvarchar(300),
 	Total int not null,
@@ -207,8 +209,6 @@ create table Bill
 --cho biết giảm giá bn 4
 --ghi chú
 --giá trị hóa đơn
-
-
 
 
 --bảng vé
@@ -242,3 +242,43 @@ create table BillDetail
 --mỗi cthđ có 1 id riêng làm khóa chính để phân biệt với cthđ khác
 --cho biết cthđ thuộc hóa đơn nào
 --cho biết mua sản phẩm nào,số lượng bao nhiêu,đơn giá,tổng tiên
+
+
+
+
+--bill nhập 1 phim
+create table Bill_AddMovie
+(
+	Id int identity(1,1) primary key,
+	Movie_Id int,
+	BillDate smalldatetime not null,
+	Total int not null,
+	Constraint FK_Movie_Id_ByBill_AddMovie foreign key(Movie_Id) references Movie(Id),
+)
+
+
+--bill nhập 1 product
+create table Bill_AddProduct
+(
+	Id int identity(1,1) primary key,
+	Product_Id int,
+	BillDate smalldatetime not null,
+	Quantity int not null,
+	UnitPurchasePrice int not null,
+	Total as (Quantity * UnitPurchasePrice),
+	Constraint FK_ProductId_ByBill_AddProduct foreign key(Product_Id) references Product(ID)
+)
+
+
+--bill nhập thêm số lượng product
+create table Bill_ImportProduct
+(
+	Id int identity(1,1) primary key,
+	Product_Id int,
+	BillDate smalldatetime not null,
+	Quantity int not null,
+	UnitPurchasePrice int not null,
+	Total as (Quantity * UnitPurchasePrice),
+	Constraint FK_ProductId_ByBill_ImportProduct foreign key(Product_Id) references Product(ID)
+)
+
