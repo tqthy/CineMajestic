@@ -56,6 +56,11 @@ namespace CineMajestic.Views
         {
             btnQLPhim.Background = Brushes.Transparent;
             btnQLSuatChieu.Background = Brushes.Transparent;
+            btnQLKhachHang.Background = Brushes.Transparent;
+            btnQLNhanSu.Background = Brushes.Transparent;
+            btnQLSanPham.Background = Brushes.Transparent;
+            btnVoucher.Background = Brushes.Transparent;
+            btnCaNhan.Background = Brushes.Transparent;
             Button button = (Button)sender;
             button.Background = new SolidColorBrush(Color.FromRgb(245, 245, 245));
         }
