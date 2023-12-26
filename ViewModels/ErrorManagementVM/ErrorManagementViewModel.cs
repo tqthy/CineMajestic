@@ -103,6 +103,9 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                     errDA.setEndDateAndCost(ID, EndDate, Cost);
                 }
                 else errDA.setStatus(ID, ComboBoxStatusIndex);
+                // cap nhat err list
+                List<ErrorDTO> errors = errDA.GetAllErrors();
+                ErrorList = new ObservableCollection<ErrorDTO>(errors);
             } catch (Exception ex)
             {
 
