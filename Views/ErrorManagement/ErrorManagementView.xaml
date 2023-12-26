@@ -81,7 +81,8 @@
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                 <ListView x:Name="lvError"
                           Loaded="ListView_Loaded"
-                          ItemsSource="{Binding ErrorList}">
+                          ItemsSource="{Binding ErrorList}"
+                          SelectedItem="{Binding SelectedItem}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="Auto" Header="Sự cố">
@@ -157,7 +158,7 @@
                                                 Kind="Pencil" />
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                    <i:InvokeCommandAction Command="{Binding DataContext.showwdEditErrorCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.ButtonEditErrorCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </Border>

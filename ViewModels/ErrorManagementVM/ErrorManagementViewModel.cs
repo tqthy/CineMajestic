@@ -35,6 +35,12 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
 
         private ObservableCollection<ErrorDTO> errorList;
         public ObservableCollection<ErrorDTO> ErrorList { get => errorList; set { errorList = value; OnPropertyChanged(nameof(ErrorList)); } }
+
+        // Listview selected item
+
+        private ErrorDTO selectedItem;
+        public ErrorDTO SelectedItem { get => selectedItem; set { selectedItem = value; OnPropertyChanged(nameof(SelectedItem)); } }
+    
         #endregion
 
         #region ctor
@@ -57,10 +63,29 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         public ICommand ButtonReportErrorCommand { get; set; }
         public ICommand ButtonUploadImageCommand { get; set; }
         public ICommand AddErrorCommand { get; set; }
+        public ICommand ButtonEditErrorCommand { get; set; }
 
         #endregion
 
         #region Command Execution
+
+        #region edit error
+        public void ExecuteButtonEditErrorCM(object obj)
+        {
+            ErrorName = SelectedItem.Name;
+            ErrorDescription = SelectedItem.Description;
+            StaffID = SelectedItem.Staff_Id;
+            IssueDate = Convert.ToDateTime(SelectedItem.DateAdded);
+            string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
+            ErrorImage = new BitmapImage(new Uri(applicationFolder));
+
+            ErrorEditView popup = new();
+            popup.DataContext = this;
+            popup.ShowDialog();
+        }
+        #endregion
+
+        #region report error
 
         public void ExecuteButtonReportErrorCM(object obj)
         {
@@ -114,6 +139,8 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         {
             return true;
         }
+
+        #endregion
 
         #endregion
 
