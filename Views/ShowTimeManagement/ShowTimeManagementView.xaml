@@ -1,28 +1,29 @@
-﻿<UserControl x:Class="CineMajestic.Views.ShowTimeManagement.ShowTimeManagementView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:CineMajestic.Views.ShowTimeManagement"
-             mc:Ignorable="d" 
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             FontFamily="Segoe UI"
-             d:DesignHeight="648" d:DesignWidth="1000"
-             x:Name="mainUC"
-             Background="#f5f5f5">
+﻿<UserControl
+    x:Class="CineMajestic.Views.ShowTimeManagement.ShowTimeManagementView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:CineMajestic.Views.ShowTimeManagement"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="mainUC"
+    d:DesignHeight="648"
+    d:DesignWidth="1000"
+    Background="#f5f5f5"
+    FontFamily="Segoe UI"
+    mc:Ignorable="d">
 
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
                 <Storyboard>
-                    <DoubleAnimation Storyboard.TargetName="mainUC"
-                                     Storyboard.TargetProperty="Opacity"
-                                     From="0"
-                                     To="1"
-                                     Duration="0:0:0.3" />
-
-
+                    <DoubleAnimation
+                        Storyboard.TargetName="mainUC"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0"
+                        To="1"
+                        Duration="0:0:0.3" />
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
@@ -30,145 +31,207 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="9*" />
         </Grid.RowDefinitions>
 
-        <Border BorderBrush="#3f2305"
-                BorderThickness="0,0,0,0.5">
+        <Border BorderBrush="#3f2305" BorderThickness="0,0,0,0.5">
 
+            <!--  Danh sách phòng chiếu  -->
             <DockPanel Grid.Row="0">
 
-            <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
-                         IsChecked="True"
-                         Content="Toàn bộ"
-                         BorderBrush="#3f2305"
-                         x:Name="all"/>
-            <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
-                         Content="Rạp 1"
-                         BorderBrush="#3f2305"/>
-            <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
-                         Content="Rạp 2"
-                         BorderBrush="#3f2305"/>
-            <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
-                         Content="Rạp 3"
-                         BorderBrush="#3f2305"/>
-            <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
-                         Content="Rạp 4"
-                         BorderBrush="#3f2305"/>
-            <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
-                         Content="Rạp 5"
-                         BorderBrush="#3f2305"/>
-            <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
-                         Content="Rạp 6"
-                         BorderBrush="#3f2305"/>
-            <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
-                         Content="Rạp 7"
-                         BorderBrush="#3f2305"/>
-            <DatePicker DockPanel.Dock="Right"
-                        Width="100"
-                        Margin="0,0,10,0"
-                        x:Name="dtpNgayChieu"
-                        materialDesign:HintAssist.Hint="Chọn ngày"
-                        materialDesign:TextFieldAssist.HasClearButton="True"
-                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                <!--  Toàn bộ  -->
+                <Button
+                    Height="60"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Content="Toàn bộ"
+                    Foreground="Black" />
+                <!--  Phòng 1  -->
+                <Button
+                    Height="60"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Content="Phòng 1"
+                    Foreground="Black" />
 
-            <Button Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                <!--  Phòng 2  -->
+                <Button
+                    Height="60"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Content="Phòng 2"
+                    Foreground="Black" />
+
+                <!--  Phòng 3  -->
+                <Button
+                    Height="60"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Content="Phòng 3"
+                    Foreground="Black" />
+
+                <!--  Phòng 4  -->
+                <Button
+                    Height="60"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Content="Phòng 4"
+                    Foreground="Black" />
+
+                <!--  Phòng 5  -->
+                <Button
+                    Height="60"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Content="Phòng 5"
+                    Foreground="Black" />
+
+                <!--  Phòng 6  -->
+                <Button
+                    Height="60"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Content="Phòng 6"
+                    Foreground="Black" />
+
+                <!--  Phòng 7  -->
+                <Button
+                    Height="60"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Content="Phòng 7"
+                    Foreground="Black" />
+
+                <!--  Lọc theo ngày  -->
+                <DatePicker
+                    Width="100"
+                    Margin="0,0,10,0"
+                    materialDesign:HintAssist.Hint="Chọn ngày"
+                    materialDesign:TextFieldAssist.HasClearButton="True"
+                    DockPanel.Dock="Right"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+
+                <!--  Nút thêm suất chiếu  -->
+                <Button
                     Width="210"
                     Height="37"
                     Margin="0,0,0,0"
-                    Command="{Binding ButtonAddScreeningTimeCommand}">
-                <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="PlaylistPlus"
-                                             Height="20"/>
-                    <TextBlock Text="Thêm suất chiếu"
-                               Margin="10,0,0,0"/>
-                </StackPanel>
-            </Button>
-            
-        </DockPanel>
-    </Border>
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Height="20" Kind="PlaylistPlus" />
+                        <TextBlock Margin="10,0,0,0" Text="Thêm suất chiếu" />
+                    </StackPanel>
+                </Button>
 
-        <materialDesign:Card Grid.Row="1"
-                             Margin="20">
-            <ListView x:Name="lvScreening"
-                      ItemsSource="{Binding ScreeningList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                      SelectedItem="{Binding SelectedItem}"
-                      Focusable="True">
+            </DockPanel>
+        </Border>
+
+        <materialDesign:Card Grid.Row="1" Margin="20">
+            <ListView
+                x:Name="lvScreening"
+                d:ItemsSource="{d:SampleData ItemCount=5}"
+                Focusable="True">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Tên phim"
-                                        Width="390">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Title}"
-                                               FontSize="18" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Thời lượng">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Length}"
-                                               FontSize="18"
-                                               Margin="30,0,0,0" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Giờ chiếu">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ListBox ItemsSource="{Binding StartTimeList}">
-                                        <ListBox.ItemContainerStyle>
-                                            <Style TargetType="ListBoxItem">
-                                                <Setter Property="Margin"
-                                                                Value="10,2,10,0" />
-                                                <Setter Property="Padding"
-                                                        Value="0" />
-                                            </Style>
-                                        </ListBox.ItemContainerStyle>
 
-                                        <ListBox.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <UniformGrid Columns="4" />
-                                            </ItemsPanelTemplate>
-                                        </ListBox.ItemsPanel>
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Button Content="{Binding StartTime}"
-                                                            FontSize="18"
-                                                            Width="120"
-                                                            Background="#f2ead3"
-                                                            Foreground="Black">
-                                                    </Button>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
+                        <!--  Tên phim  -->
+                        <GridViewColumn Width="490" Header="Tên phim">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        Margin="19,2,0,0"
+                                        FontSize="18"
+                                        Text="{Binding Title}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
+
+                        <!--  Thời lượng  -->
+                        <GridViewColumn Width="170" Header="Thời lượng">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        Margin="19,2,0,0"
+                                        FontSize="18"
+                                        Text="{Binding Length}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <!--  Giờ chiếu  -->
+                        <GridViewColumn Width="200" Header="Giờ chiếu">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock
+                                        Margin="19,2,0,0"
+                                        FontSize="18"
+                                        Text="{Binding StartTime}" />
+
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                        <!--  Nút sửa +xóa  -->
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Border BorderThickness="0.5"
+                                    <StackPanel Orientation="Horizontal">
+
+                                        <!--  Nút edit  -->
+                                        <Border
                                             BorderBrush="Black"
-                                            Margin="0,5,0,0"
-                                            CornerRadius="5">
-                                        <StackPanel Cursor="Hand">
+                                            BorderThickness="0"
+                                            CornerRadius="5"
+                                            Cursor="Hand">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#00e5ff" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <materialDesign:PackIcon
+                                                Width="30"
+                                                Height="30"
+                                                Kind="Pencil" />
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseLeftButtonUp">
-                                                    <i:InvokeCommandAction Command="{Binding ElementName=ShowtimeListview, Path=DataContext.LoadInfor_EditShowtime}" />
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.EditMovieCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
-                                            <Image Height="30"
-                                                   Width="30"
-                                                   Source="/Resources/Icon/pencil.png" />
-                                        </StackPanel>
+                                        </Border>
 
+                                        <!--  Nút xóa movie  -->
+                                        <Border
+                                            Margin="10,0,0,0"
+                                            BorderBrush="Black"
+                                            BorderThickness="0"
+                                            CornerRadius="5"
+                                            Cursor="Hand">
+                                            <Border.Style>
+                                                <Style TargetType="Border">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="Background" Value="#ff6255" />
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                            <materialDesign:PackIcon
+                                                Width="30"
+                                                Height="30"
+                                                Kind="GarbageCanEmpty" />
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.DeleteMovieCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
 
-                                    </Border>
+                                        </Border>
+                                    </StackPanel>
 
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
@@ -179,6 +242,6 @@
         </materialDesign:Card>
 
     </Grid>
-    
+
 
 </UserControl>

@@ -25,10 +25,7 @@ namespace CineMajestic.Views.ShowTimeManagement
         public ShowTimeManagementView()
         {
             InitializeComponent();
-            dtpNgayChieu.Text = DateTime.Now.ToString();
-            // test
-            ShowTimeDA test = new();
-            List<ShowTimeDTO> res = test.GetAllShowTimeByDate((DateTime)dtpNgayChieu.SelectedDate);
+           
         }
     }
 }
