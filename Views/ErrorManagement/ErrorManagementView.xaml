@@ -79,7 +79,7 @@
         <!--  Danh sách các sự cố  -->
         <Grid Grid.Row="1">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <ListView d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListView ItemsSource="{Binding ErrorList}">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="Auto" Header="Sự cố">
@@ -90,13 +90,13 @@
                                             Width="Auto"
                                             Margin="17,0,0,0"
                                             FontSize="17"
-                                            Text="{Binding}" />
+                                            Text="{Binding Name}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
 
                             <!--  Chi phí  -->
-                            <GridViewColumn Width="Auto" Header="Phí sửa">
+                            <!--<GridViewColumn Width="Auto" Header="Phí sửa">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -105,7 +105,7 @@
                                             Text="{Binding}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                            </GridViewColumn>-->
                             <!--  Ngày nhận error  -->
                             <GridViewColumn Width="Auto" Header="Ngày tiếp nhận">
                                 <GridViewColumn.CellTemplate>
@@ -113,7 +113,7 @@
                                         <TextBlock
                                             Margin="17,0,0,0"
                                             FontSize="17"
-                                            Text="{Binding}" />
+                                            Text="{Binding DateAdded}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -125,7 +125,7 @@
                                         <TextBlock
                                             Margin="17,0,0,0"
                                             FontSize="17"
-                                            Text="{Binding}" />
+                                            Text="{Binding Status}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
