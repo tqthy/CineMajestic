@@ -12,14 +12,17 @@
     Height="675"
     AllowsTransparency="True"
     Background="Transparent"
+    FontFamily="Segoe UI"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
 
-    <Window.DataContext>
+
+    <!--<Window.DataContext>
         <vm:MainViewModel />
-    </Window.DataContext>
+    </Window.DataContext>-->
+    <!--  gọi ở behind  -->
 
     <Border Background="#F5f5f5" CornerRadius="12">
         <Grid>
@@ -51,7 +54,6 @@
                         Grid.Column="0"
                         Margin="40,0,0,0"
                         VerticalAlignment="Center"
-                        FontFamily="Candara"
                         FontSize="20"
                         FontWeight="SemiBold"
                         Foreground="#3F2305"
@@ -63,7 +65,6 @@
                         Click="btnMinimize_Click"
                         Content="-"
                         Cursor="Hand"
-                        FontFamily="Montserrat"
                         FontSize="16"
                         Foreground="#623b00">
                         <Button.Style>
@@ -97,7 +98,6 @@
                         Click="btnClose_Click"
                         Content="X"
                         Cursor="Hand"
-                        FontFamily="Montserrat"
                         FontSize="12"
                         Foreground="#fffaf5">
                         <Button.Style>
@@ -140,28 +140,6 @@
                 CornerRadius="0,20,20,20">
                 <StackPanel>
 
-                    <Button
-                        Margin="0,20,0,10"
-                        HorizontalAlignment="Left"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Command="{Binding SwitchViewCommand}"
-                        CommandParameter="Movies"
-                        FontWeight="Medium"
-                        Foreground="Black">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                            <materialDesign:PackIcon
-                                Width="25"
-                                Height="25"
-                                VerticalAlignment="Center"
-                                Kind="MovieCog" />
-                            <TextBlock
-                                Margin="10,0,0,0"
-                                VerticalAlignment="Bottom"
-                                FontSize="18"
-                                Text="Quản Lý Phim" />
-                        </StackPanel>
-                    </Button>
 
                     <!--Sự cố-->
                     <Button
@@ -184,14 +162,272 @@
                                 VerticalAlignment="Bottom"
                                 FontSize="18"
                                 Text="Sự cố" />
+                      </StackPanel>
+                    <!--  Quản lý phim  -->
+                    <Button
+                        x:Name="btnQLPhim"
+                        Width="199"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Left"
+                        materialDesign:ButtonAssist.CornerRadius="15"
+                        Click="Button_Click"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="Movies"
+                        FontWeight="Medium"
+                        Foreground="Black"
+                        Style="{StaticResource MaterialDesignFlatButton}">
+
+                        <StackPanel
+                            Margin="-50,0,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                Margin="-2,0,0,0"
+                                VerticalAlignment="Center"
+                                Kind="MovieCogOutline" />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="15"
+                                FontWeight="SemiBold"
+                                Text="Quản Lý Phim" />
                         </StackPanel>
                     </Button>
 
 
+
+                    <!--  Quản lý suất chiếu  -->
+                    <Button
+                        x:Name="btnQLSuatChieu"
+                        Width="199"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        materialDesign:ButtonAssist.CornerRadius="15"
+                        Click="Button_Click"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="ShowTime"
+                        FontWeight="Medium"
+                        Foreground="Black"
+                        Style="{StaticResource MaterialDesignFlatButton}">
+
+                        <StackPanel
+                            Margin="-12,0,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                Margin="1,0,0,0"
+                                VerticalAlignment="Center"
+                                Kind="StoreClockOutline" />
+                            <TextBlock
+                                Margin="9,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="15"
+                                FontWeight="SemiBold"
+                                Text="Quản Lý Suất Chiếu" />
+                        </StackPanel>
+                    </Button>
+
+                    <!--  Quản lí nhân sự  -->
+                    <Button x:Name="btnQLNhanSu"
+                        Width="199"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="Staff"
+                        FontWeight="Medium"
+                        Foreground="Black"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="Button_Click"
+                        materialDesign:ButtonAssist.CornerRadius="15">
+                        <StackPanel
+                            Margin="-27,0,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                VerticalAlignment="Center"
+                                Kind="Account" />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Bottom"
+                                FontSize="15"
+                                Text="Quản Lý Nhân Sự" />
+                        </StackPanel>
+                    </Button>
+
+
+                    <!--  Quản lý khách hàng  -->
+                    <Button x:Name="btnQLKhachHang"
+                        Width="199"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="Customer"
+                        FontWeight="Medium"
+                        Foreground="Black"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="Button_Click"
+                        materialDesign:ButtonAssist.CornerRadius="15">
+                        <StackPanel
+                            Margin="-7,0,-3,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                VerticalAlignment="Center"
+                                Kind="AccountGroup" />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Bottom"
+                                FontSize="15"
+                                Text="Quản Lý Khách Hàng" />
+                        </StackPanel>
+                    </Button>
+
+
+                    <!--  quản lý sản phẩm  -->
+
+                    <Button x:Name="btnQLSanPham"
+                        Width="199"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="QLSP"
+                        FontWeight="Medium"
+                        Foreground="Black"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="Button_Click"
+                        materialDesign:ButtonAssist.CornerRadius="15">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <Grid
+                                Width="25"
+                                Height="25"
+                                Margin="-18,0,0,0">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Icon/QLProduct.png" />
+                                </Grid.Background>
+                            </Grid>
+
+                            <TextBlock
+                                Margin="9,0,0,0"
+                                VerticalAlignment="Bottom"
+                                FontSize="15"
+                                Text="Quản Lý Sản Phẩm" />
+                        </StackPanel>
+
+                    </Button>
+
+                    <!--  Voucher  -->
+                    <Button x:Name="btnVoucher"
+                        Width="199"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="Vouchers"
+                        FontWeight="Medium"
+                        Foreground="Black"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="Button_Click"
+                        materialDesign:ButtonAssist.CornerRadius="15">
+                        <StackPanel
+                            Margin="-27,0,62,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                VerticalAlignment="Center"
+                                Kind="TicketPercent" />
+                            <TextBlock
+                                Margin="10,0,0,2"
+                                VerticalAlignment="Bottom"
+                                FontSize="15"
+                                Text="Voucher" />
+                        </StackPanel>
+                    </Button>
+
+
+                    <!--  Cá nhân  -->
+                    <Button x:Name="btnCaNhan"
+                        Width="199"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="Personal"
+                        FontWeight="Medium"
+                        Foreground="Black"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Click="Button_Click"
+                        materialDesign:ButtonAssist.CornerRadius="15">
+                        <StackPanel
+                            Margin="-27,0,62,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                VerticalAlignment="Center"
+                                Kind="AccountBox" />
+                            <TextBlock
+                                Margin="10,0,0,2"
+                                VerticalAlignment="Bottom"
+                                FontSize="15"
+                                Text="Cá nhân" />
+                        </StackPanel>
+                    </Button>
+
+                    <!--  Log out  -->
+                    <Button
+                        Width="199"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Name="btnLogout"
+                        Click="btnLogout_Click"
+                        FontWeight="Medium"
+                        Foreground="Black"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        materialDesign:ButtonAssist.CornerRadius="15">
+                        <StackPanel
+                            Margin="-55,0,0,0"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Grid
+                                Width="25"
+                                Height="25"
+                                Margin="-21,0,0,0">
+                                <Grid.Background>
+                                    <ImageBrush ImageSource="pack://application:,,,/Icon/logout.png" />
+                                </Grid.Background>
+                            </Grid>
+                            <TextBlock
+                                Margin="10,0,0,2"
+                                VerticalAlignment="Bottom"
+                                FontSize="15"
+                                Text="Đăng xuất" />
+                        </StackPanel>
+                    </Button>
+
                 </StackPanel>
             </Border>
 
-            <!--<DockPanel Grid.Column="0"/>-->
 
             <!--  Display current view  -->
             <ContentControl
@@ -200,6 +436,16 @@
                 Grid.Column="1"
                 Content="{Binding CurrentView}" />
 
+
+            <StackPanel
+                x:Name="blurPanel"
+                Grid.Row="0"
+                Grid.RowSpan="10"
+                Grid.Column="0"
+                Grid.ColumnSpan="10"
+                Background="Black"
+                Opacity="0"
+                Visibility="Hidden" />
         </Grid>
     </Border>
 </Window>
