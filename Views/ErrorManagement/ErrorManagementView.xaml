@@ -41,9 +41,9 @@
                         Style="{StaticResource MaterialDesignFilledComboBox}">
                     <ComboBoxItem IsSelected="True" Content="Toàn bộ" />
                     <ComboBoxItem Content="Chờ tiếp nhận" />
-                    <ComboBoxItem Content="Đang xử lí" />
-                    <ComboBoxItem Content="Đã xử lí" />
-                    <ComboBoxItem Content="Đã hủy" />
+                    <ComboBoxItem Content="Đang xử lý" />
+                    <ComboBoxItem Content="Đã xử lý" />
+                    <ComboBoxItem Content="Đã huỷ" />
                 </ComboBox>
 
                 <!--  Nút báo cáo sự cố  -->
@@ -82,7 +82,8 @@
                 <ListView x:Name="lvError"
                           Loaded="ListView_Loaded"
                           ItemsSource="{Binding ErrorList}"
-                          SelectedItem="{Binding SelectedItem}">
+                          SelectedItem="{Binding SelectedItem}"
+                          Focusable="True">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="Auto" Header="Sự cố">
@@ -157,7 +158,7 @@
                                                 Height="30"
                                                 Kind="Pencil" />
                                             <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                <i:EventTrigger EventName="MouseLeftButtonUp">
                                                     <i:InvokeCommandAction Command="{Binding DataContext.ButtonEditErrorCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>

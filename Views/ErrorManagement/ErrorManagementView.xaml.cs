@@ -44,16 +44,16 @@ namespace CineMajestic.Views.ErrorManagement
                 return error.Status == "Chờ tiếp nhận";
             }
             else
-            if (filter == "Đang xử lí")
+            if (filter == "Đang xử lý")
             {
-                return error.Status == "Đang xử lí";
+                return error.Status == "Đang xử lý";
             }
             else
-            if (filter == "Đã xử lí")
+            if (filter == "Đã xử lý")
             {
-                return error.Status == "Đã xử lí";
+                return error.Status == "Đã xử lý";
             }
-            return error.Status == "Đã hủy";
+            return error.Status == "Đã huỷ";
 
         }
         private void cbBoxFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -17,11 +17,32 @@ namespace CineMajestic.Views.ErrorManagement
     /// <summary>
     /// Interaction logic for ErrorDoneView.xaml
     /// </summary>
-    public partial class ErrorDoneView : Window
+    public partial class ErrorEditView : Window
     {
-        public ErrorDoneView()
+        public ErrorEditView()
         {
             InitializeComponent();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+            string stt = ((sender as ComboBox).SelectedItem as ComboBoxItem).Content.ToString();
+            if (stt != "Đã xử lý")
+            {
+                dtpEnd.IsEnabled = false;
+                txtCost.IsEnabled = false;
+            }
+            else
+            {
+                dtpEnd.IsEnabled = true;
+                txtCost.IsEnabled = true;
+            }
         }
     }
 }

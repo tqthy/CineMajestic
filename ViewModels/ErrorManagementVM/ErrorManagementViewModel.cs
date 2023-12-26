@@ -20,6 +20,9 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
     {
         #region Bindable property
 
+        private string id;
+        public string ID { get => id; set { id = value; OnPropertyChanged(nameof(ID)); } }
+
         private string errorName;
         public string ErrorName { get => errorName; set { errorName = value; OnPropertyChanged(nameof(ErrorName)); } }
         private string errorDescription;
@@ -30,8 +33,16 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         public DateTime IssueDate { get => issueDate; set {issueDate = value; OnPropertyChanged(nameof(IssueDate)); } }
         private BitmapImage errorImage;
         public BitmapImage ErrorImage { get => errorImage; set { errorImage = value; OnPropertyChanged(nameof(ErrorImage)); } }
+        private DateTime endDate;
+        public DateTime EndDate { get => endDate; set { endDate = value; OnPropertyChanged(nameof(EndDate)); } }
 
+        private string cost;
+        public string Cost { get => cost; set { cost = value; OnPropertyChanged(nameof(Cost)); } }
 
+        private string staffName;
+        public string StaffName { get => staffName; set { staffName = value; } }
+
+       
 
         private ObservableCollection<ErrorDTO> errorList;
         public ObservableCollection<ErrorDTO> ErrorList { get => errorList; set { errorList = value; OnPropertyChanged(nameof(ErrorList)); } }
@@ -40,7 +51,15 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
 
         private ErrorDTO selectedItem;
         public ErrorDTO SelectedItem { get => selectedItem; set { selectedItem = value; OnPropertyChanged(nameof(SelectedItem)); } }
-    
+
+
+        // combobox selected item
+        private string cbBoxSelectedItem;
+        public string CbBoxSelectedItem { get => cbBoxSelectedItem; set { cbBoxSelectedItem = value; OnPropertyChanged(nameof (CbBoxSelectedItem)); } }
+
+        private int comboBoxStatusIndex;
+        public int ComboBoxStatusIndex { get => comboBoxStatusIndex; set {comboBoxStatusIndex = value; OnPropertyChanged(nameof(ComboBoxStatusIndex)); } }
+
         #endregion
 
         #region ctor
@@ -48,9 +67,12 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         {
             StaffID = staff_Id.ToString();
             IssueDate = DateTime.Now;
+            ComboBoxStatusIndex = 1;
             ButtonReportErrorCommand = new ViewModelCommand(ExecuteButtonReportErrorCM);
             ButtonUploadImageCommand = new ViewModelCommand(ExecuteUploadImageCM);
             AddErrorCommand = new ViewModelCommand(ExecuteAddErrorCM, CanExecuteAddErrorCM);
+            ButtonEditErrorCommand = new ViewModelCommand(ExecuteButtonEditErrorCM);
+            EditErrorCommand = new ViewModelCommand(ExecuteEditErrorCommand, CanExecuteEditErrorCommand);
             ErrorDA errDA = new();
             List<ErrorDTO> errors = errDA.GetAllErrors();
             ErrorList = new ObservableCollection<ErrorDTO>(errors);
@@ -64,21 +86,53 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         public ICommand ButtonUploadImageCommand { get; set; }
         public ICommand AddErrorCommand { get; set; }
         public ICommand ButtonEditErrorCommand { get; set; }
+        public ICommand EditErrorCommand { get; set; }
 
         #endregion
 
         #region Command Execution
 
         #region edit error
+        public void ExecuteEditErrorCommand(object obj)
+        {
+            try
+            {
+                ErrorDA errDA = new();
+                if (ComboBoxStatusIndex == 2)
+                {
+                    errDA.setEndDateAndCost(ID, EndDate, Cost);
+                }
+                else errDA.setStatus(ID, ComboBoxStatusIndex);
+            } catch (Exception ex)
+            {
+
+            }
+        }
+        public bool CanExecuteEditErrorCommand(object obj) 
+        {
+            if (ComboBoxStatusIndex == 2) return !String.IsNullOrEmpty(Cost);
+            return true;
+        }
         public void ExecuteButtonEditErrorCM(object obj)
         {
+            ID = SelectedItem.Id;
+            Cost = SelectedItem.Cost;
             ErrorName = SelectedItem.Name;
             ErrorDescription = SelectedItem.Description;
-            StaffID = SelectedItem.Staff_Id;
-            IssueDate = Convert.ToDateTime(SelectedItem.DateAdded);
+            StaffDA staffDA = new();
+            StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
             string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
             ErrorImage = new BitmapImage(new Uri(applicationFolder));
-
+            if (string.IsNullOrEmpty(SelectedItem.EndDate))
+            {
+                EndDate = DateTime.Now;
+            }
+            else EndDate = DateTime.Parse(SelectedItem.EndDate);
+            string stt = SelectedItem.Status;
+            if (stt == "Chờ tiếp nhận") ComboBoxStatusIndex = 0;
+            else if (stt == "Đang xử lý") ComboBoxStatusIndex = 1;
+            else if (stt == "Đã xử lý") ComboBoxStatusIndex = 2;
+            else if (stt == "Đã huỷ") ComboBoxStatusIndex = 3;
             ErrorEditView popup = new();
             popup.DataContext = this;
             popup.ShowDialog();

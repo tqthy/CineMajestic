@@ -51,7 +51,7 @@ namespace CineMajestic.Models.DataAccessLayer
                     command.CommandText = "SELECT * FROM [ERRORS]";
                     using (var reader = command.ExecuteReader())
                     {
-                        
+
                         while (reader.Read())
                         {
                             ErrorDTO error = new ErrorDTO();
@@ -76,6 +76,55 @@ namespace CineMajestic.Models.DataAccessLayer
             }
 
             return errors;
+        }
+
+        public void setEndDateAndCost(string id, DateTime endDate, string cost)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "UPDATE [ERRORS] SET STATUS=@status, ENDDATE=@enddate, COST=@cost WHERE id=@id";
+                    command.Parameters.Add("@status", SqlDbType.NVarChar).Value = "Đã xử lý";
+                    command.Parameters.Add("@cost", SqlDbType.Money).Value = cost;
+                    //DateTime date;
+                    //date = DateTime.ParseExact(error.DateAdded, "d/M/yyyy h:m:s tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
+                    command.Parameters.Add("@enddate", SqlDbType.SmallDateTime).Value = endDate;
+                    command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    var rows = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void setStatus(string iD, int comboBoxStatusIndex)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "UPDATE [ERRORS] SET STATUS=@status WHERE id=@id";
+                    string status = "Chờ tiếp nhận";
+                    if (comboBoxStatusIndex == 1) status = "Đang xử lý";
+                    if (comboBoxStatusIndex == 3) status = "Đã huỷ";
+                    command.Parameters.Add("@status", SqlDbType.NVarChar).Value = status;
+                    command.Parameters.Add("@id", SqlDbType.Int).Value = iD;
+                    var rows = command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }
