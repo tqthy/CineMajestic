@@ -156,6 +156,7 @@
                         Width="350"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
+                        FontSize="15"
                         Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
@@ -173,6 +174,7 @@
                         Width="200"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
+                        FontSize="15"
                         Text="{Binding Director, UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
@@ -189,6 +191,7 @@
                         Width="120"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
+                        FontSize="15"
                         Text="{Binding Length, UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
@@ -213,6 +216,7 @@
                         Width="200"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
+                        FontSize="15"
                         Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
@@ -230,6 +234,7 @@
                         Width="180"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
+                        FontSize="15"
                         Text="{Binding Language, UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
@@ -279,6 +284,7 @@
                         Width="110"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
+                        FontSize="15"
                         Text="{Binding ReleaseYear, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
@@ -291,12 +297,14 @@
                         Text="Tình trạng" />
 
                     <ComboBox
-                        Width="120"
+                        Width="140"
                         Margin="0,5,0,0"
+                        FontSize="15"
                         SelectedValue="{Binding Status}"
                         SelectedValuePath="Content">
-                        <ComboBoxItem Content="Ngưng phát hành" />
                         <ComboBoxItem Content="Đang phát hành" />
+                        <ComboBoxItem Content="Ngưng phát hành" Visibility="Collapsed" />
+
                     </ComboBox>
                 </StackPanel>
 
@@ -313,6 +321,7 @@
                         Margin="0,5,0,0"
                         materialDesign:HintAssist.Hint="{Binding HintEndDate}"
                         materialDesign:HintAssist.HintOpacity="{Binding HintOpacity}"
+                        FontSize="15"
                         SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
@@ -320,8 +329,8 @@
 
                 <Border
                     Width="230"
-                    Height="330"
-                    Margin="30,-30,0,0"
+                    Height="260"
+                    Margin="30,0,0,40"
                     BorderThickness="0.5"
                     CornerRadius="5">
                     <Border.BorderBrush>
@@ -371,6 +380,7 @@
                         Width="280"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
+                        FontSize="15"
                         Text="{Binding Trailer, UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
@@ -387,8 +397,9 @@
                     <TextBox
                         x:Name="GenreComboBox"
                         Width="100"
-                        Margin="2,5,0,0" 
-                        Text="{Binding Genre}"/>
+                        Margin="2,5,0,0"
+                        FontSize="15"
+                        Text="{Binding Genre}" />
                 </StackPanel>
 
             </StackPanel>
