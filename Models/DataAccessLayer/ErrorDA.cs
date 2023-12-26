@@ -37,5 +37,45 @@ namespace CineMajestic.Models.DataAccessLayer
                 throw ex;
             }
         }
+
+        public List<ErrorDTO> GetAllErrors()
+        {
+            List<ErrorDTO> errors = new List<ErrorDTO>();
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT * FROM [ERRORS]";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        
+                        while (reader.Read())
+                        {
+                            ErrorDTO error = new ErrorDTO();
+                            error.Id = reader[0].ToString();
+                            error.Name = reader[1].ToString();
+                            error.Description = reader[2].ToString();
+                            if (reader[3] != null) error.DateAdded = reader[3].ToString();
+                            error.Status = reader[4].ToString();
+                            if (reader[5] != null) error.EndDate = reader[5].ToString();
+                            if (reader[6] != null) error.Cost = reader[6].ToString();
+                            error.Staff_Id = reader[7].ToString();
+                            error.Image = reader[8].ToString();
+
+                            errors.Add(error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return errors;
+        }
     }
 }

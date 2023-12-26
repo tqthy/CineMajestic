@@ -5,6 +5,7 @@ using Microsoft.VisualBasic.Devices;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -29,6 +30,11 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         public DateTime IssueDate { get => issueDate; set {issueDate = value; OnPropertyChanged(nameof(IssueDate)); } }
         private BitmapImage errorImage;
         public BitmapImage ErrorImage { get => errorImage; set { errorImage = value; OnPropertyChanged(nameof(ErrorImage)); } }
+
+
+
+        private ObservableCollection<ErrorDTO> errorList;
+        public ObservableCollection<ErrorDTO> ErrorList { get => errorList; set { errorList = value; OnPropertyChanged(nameof(ErrorList)); } }
         #endregion
 
         #region ctor
@@ -39,6 +45,9 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
             ButtonReportErrorCommand = new ViewModelCommand(ExecuteButtonReportErrorCM);
             ButtonUploadImageCommand = new ViewModelCommand(ExecuteUploadImageCM);
             AddErrorCommand = new ViewModelCommand(ExecuteAddErrorCM, CanExecuteAddErrorCM);
+            ErrorDA errDA = new();
+            List<ErrorDTO> errors = errDA.GetAllErrors();
+            ErrorList = new ObservableCollection<ErrorDTO>(errors);
         }
 
         #endregion
