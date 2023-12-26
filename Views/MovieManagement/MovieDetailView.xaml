@@ -52,6 +52,7 @@
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -140,7 +141,7 @@
             <!--  poster  -->
             <Border
                 Grid.Row="2"
-                Grid.RowSpan="6"
+                Grid.RowSpan="7"
                 Grid.Column="1"
                 Margin="10"
                 Background="#3f2305"
@@ -168,7 +169,7 @@
                 BorderBrush="LightGray"
                 BorderThickness="1,0,0,0" />
 
-            <!--  Row 1  -->
+            <!--  Row 0  -->
 
             <Grid
                 Grid.Row="1"
@@ -213,7 +214,7 @@
 
             </Grid>
 
-            <!--  Row 2  -->
+            <!--  Row 1  -->
 
             <Grid
                 Grid.Row="2"
@@ -254,7 +255,7 @@
 
             </Grid>
 
-            <!--  Row 3  -->
+            <!--  Row 2  -->
 
             <Grid
                 Grid.Row="3"
@@ -289,6 +290,47 @@
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         Text="{Binding Genre}" />
+                    <TextBlock VerticalAlignment="Center" Text="." />
+                </StackPanel>
+            </Grid>
+
+            <!--  Row 3  -->
+
+            <Grid
+                Grid.Row="4"
+                Grid.Column="2"
+                Margin="10,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="240" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold"
+                        Text="Năm phát hành:" />
+
+                    <!--  Bindning năm phát hành  -->
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="{Binding ReleaseYear}" />
+                    <TextBlock VerticalAlignment="Center" Text="." />
+                </StackPanel>
+
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock
+                        Margin="18,0,0,0"
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold"
+                        Text="Ngày khởi chiếu:" />
+
+                    <!--  Binding ngày khởi chiếu  -->
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="{Binding StartDate}" />
                     <TextBlock VerticalAlignment="Center" Text="." />
                 </StackPanel>
             </Grid>
@@ -334,11 +376,29 @@
                 </StackPanel>
             </Grid>
 
-
-            <!--  Row 5  -->
-
+            <!--  Row 5 - Giá nhập  -->
             <StackPanel
                 Grid.Row="5"
+                Grid.Column="2"
+                Margin="10,0,0,0"
+                Orientation="Horizontal">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontWeight="SemiBold"
+                    Text="Giá nhập:" />
+
+                <!--  Binding giá nhập ở đây  -->
+                <TextBlock
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="10000000" />
+                <TextBlock VerticalAlignment="Center" Text=" VNĐ" />
+
+            </StackPanel>
+            <!--  Row 6  -->
+
+            <StackPanel
+                Grid.Row="6"
                 Grid.Column="2"
                 Margin="10,0,0,0"
                 Orientation="Horizontal">
@@ -352,9 +412,9 @@
                     Text="{Binding Trailer}" />
             </StackPanel>
 
-            <!--  Row 6, 7: Description  -->
+            <!--  Row 7, 8: Description  -->
             <StackPanel
-                Grid.Row="6"
+                Grid.Row="7"
                 Grid.RowSpan="2"
                 Grid.Column="2"
                 Margin="10,0,0,0"
