@@ -21,6 +21,11 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         private void deleteMovie(object obj)
         {
             MovieDA movieDA= new MovieDA();
+            //trước khi xóa thì phải đưa thằng khóa ngoại tham chiếu tới nó là null
+            BillAddMovieDA billAddMovieDA = new BillAddMovieDA();
+            billAddMovieDA.updateMovie_IdNull((obj as MovieDTO).Id);
+            
+            //tiến hành xóa movie
             movieDA.deleteMovie(obj as MovieDTO);
             MessageBox.Show("Xóa thành công");
             loadData();

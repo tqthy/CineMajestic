@@ -35,6 +35,26 @@ namespace CineMajestic.Models.DataAccessLayer
 
 
 
-     
+        //bổ trợ delete 1 movie
+        public void updateMovie_IdNull(int Movie_Id)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string updateNull =
+                    "update Bill_AddMovie\n"
+                    +
+                    "set Movie_Id=null\n"
+                    +
+                    "where Movie_Id=" + Movie_Id;
+                using (SqlCommand command = new SqlCommand(updateNull, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+
+        }
+
+
     }
 }
