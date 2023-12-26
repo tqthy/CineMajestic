@@ -13,7 +13,6 @@ namespace CineMajestic.Models.DTOs
         public string Staff_Id { get; set; }
         public string DateAdded { get; set; }
         public string Status { get; set; }
-        public string StartDate { get; set; } 
         public string EndDate { get; set; }
         public string Cost { get; set; }
     }

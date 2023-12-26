@@ -11,7 +11,7 @@
     Height="500"
     AllowsTransparency="True"
     Background="Transparent"
-    FontFamily="Sogue UI"
+    FontFamily="Segoe UI"
     ResizeMode="NoResize"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
