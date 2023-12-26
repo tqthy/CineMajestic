@@ -18,6 +18,7 @@
     WindowStyle="None"
     mc:Ignorable="d">
 
+
     <!--<Window.DataContext>
         <vm:MainViewModel />
     </Window.DataContext>-->
@@ -139,6 +140,29 @@
                 CornerRadius="0,20,20,20">
                 <StackPanel>
 
+
+                    <!--Sự cố-->
+                    <Button
+                        Margin="0,20,0,10"
+                        HorizontalAlignment="Left"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Command="{Binding SwitchViewCommand}"
+                        CommandParameter="Error"
+                        FontWeight="Medium"
+                        Foreground="Black">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <materialDesign:PackIcon
+                                Width="25"
+                                Height="25"
+                                VerticalAlignment="Center"
+                                Kind="AlertCircle" />
+                            <TextBlock
+                                Margin="10,0,0,0"
+                                VerticalAlignment="Bottom"
+                                FontSize="18"
+                                Text="Sự cố" />
+                      </StackPanel>
                     <!--  Quản lý phim  -->
                     <Button
                         x:Name="btnQLPhim"
@@ -404,7 +428,6 @@
                 </StackPanel>
             </Border>
 
-            <!--<DockPanel Grid.Column="0"/>-->
 
             <!--  Display current view  -->
             <ContentControl

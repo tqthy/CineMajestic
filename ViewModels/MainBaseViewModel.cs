@@ -1,5 +1,7 @@
-﻿using CineMajestic.Models.DTOs;
+
 using CineMajestic.Views;
+using CineMajestic.Views.ErrorManagement;
+using CineMajestic.Models.DTOs;
 using CineMajestic.Views.InformationManagement;
 using CineMajestic.Views.MovieManagement;
 using CineMajestic.Views.VoucherManagement;
@@ -49,6 +51,8 @@ namespace CineMajestic.ViewModels
                 case "Movies":
                     CurrentView = new MovieManagementView();
                     break;
+                case "Error":
+                    CurrentView = new ErrorManagementView();
                 case "ShowTime":
                     CurrentView = new ShowTimeManagementView();
                     break;
