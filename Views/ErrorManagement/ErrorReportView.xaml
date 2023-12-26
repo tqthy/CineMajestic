@@ -104,7 +104,7 @@
                                        FontSize="20"
                                        Text="Mô tả sự cố:" />
                             <TextBox Width="400"
-                                     Height="280"
+                                     Height="287"
                                      Margin="0,20,0,0"
                                      materialDesign:HintAssist.Hint="Chi tiết"
                                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
@@ -127,7 +127,6 @@
                                 FontSize="20"
                                 FontWeight="DemiBold" />
 
-                            
                             <TextBlock
                                 Margin="20,20,0,0"
                                 FontSize="20"

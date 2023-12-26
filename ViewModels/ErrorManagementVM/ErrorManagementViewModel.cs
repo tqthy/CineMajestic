@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.ViewModels.ErrorManagementVM
 {
@@ -12,6 +13,16 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
     {
         #region Bindable property
 
+        private string errorName;
+        public string ErrorName { get => errorName; set { OnPropertyChanged(nameof(ErrorName))}; }
+        private string errorDescription;
+        public string ErrorDescription { get => errorDescription; set { OnPropertyChanged(nameof(ErrorDescription)); } }
+        private string staffID;
+        public string StaffID { get => staffID; set {  OnPropertyChanged(nameof(StaffID)); } }
+        private DateTime issueDate;
+        public DateTime IssueDate { get => issueDate; set { OnPropertyChanged(nameof(IssueDate)); } }
+        private BitmapImage errorImage;
+        public BitmapImage ErrorImage { get => errorImage; set { errorImage = value; OnPropertyChanged(nameof(ErrorImage)); } }
         #endregion
 
         #region ctor

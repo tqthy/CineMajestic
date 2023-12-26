@@ -29,7 +29,7 @@
                 <!--  Lọc theo tình trạng xử lí  -->
                 <ComboBox
                     Width="160"
-                    Margin="40,10,0,0"
+                    Margin="30,10,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Bottom"
                     VerticalContentAlignment="Center"
