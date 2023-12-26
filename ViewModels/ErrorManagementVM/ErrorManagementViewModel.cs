@@ -106,6 +106,7 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                 // cap nhat err list
                 List<ErrorDTO> errors = errDA.GetAllErrors();
                 ErrorList = new ObservableCollection<ErrorDTO>(errors);
+                MessageBox.Show("Chinh sua thanh cong!");
             } catch (Exception ex)
             {
 
