@@ -50,7 +50,8 @@
                             Content="X"
                             Cursor="Hand"
                             FontSize="12"
-                            Foreground="#fffaf5">
+                            Foreground="#fffaf5"
+                            Click="btnClose_Click">
                             <Button.Style>
                                 <Style TargetType="Button">
                                     <Setter Property="Background" Value="#3f2305" />

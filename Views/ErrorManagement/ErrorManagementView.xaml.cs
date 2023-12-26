@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels.ErrorManagementVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,9 @@ namespace CineMajestic.Views.ErrorManagement
     {
         public ErrorManagementView()
         {
+            ErrorManagementViewModel vm = new();
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }

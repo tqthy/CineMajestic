@@ -47,16 +47,16 @@
                 </ComboBox>
 
                 <!--  Nút báo cáo sự cố  -->
-                <Button
-                    Width="130"
-                    Height="40"
-                    Margin="650,0,20,5"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    HorizontalContentAlignment="Center"
-                    VerticalContentAlignment="Center"
-                    materialDesign:ButtonAssist.CornerRadius="5"
-                    Background="Red">
+                <Button Command="{Binding ButtonReportErrorCommand}"
+                        Width="130"
+                        Height="40"
+                        Margin="650,0,20,5"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        materialDesign:ButtonAssist.CornerRadius="5"
+                        Background="DarkRed">
                     <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                         <materialDesign:PackIcon
                             Width="25"
