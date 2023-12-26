@@ -16,7 +16,9 @@
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    Deactivated="Window_Deactivated"
+    Activated="Window_Activated">
 
 
     <!--<Window.DataContext>
@@ -142,27 +144,7 @@
 
 
                     <!--Sự cố-->
-                    <Button
-                        Margin="0,20,0,10"
-                        HorizontalAlignment="Left"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Command="{Binding SwitchViewCommand}"
-                        CommandParameter="Error"
-                        FontWeight="Medium"
-                        Foreground="Black">
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                            <materialDesign:PackIcon
-                                Width="25"
-                                Height="25"
-                                VerticalAlignment="Center"
-                                Kind="AlertCircle" />
-                            <TextBlock
-                                Margin="10,0,0,0"
-                                VerticalAlignment="Bottom"
-                                FontSize="18"
-                                Text="Sự cố" />
-                      </StackPanel>
+                    
                     <!--  Quản lý phim  -->
                     <Button
                         x:Name="btnQLPhim"
@@ -359,7 +341,33 @@
                                 Text="Voucher" />
                         </StackPanel>
                     </Button>
-
+                    <Button x:Name="btnSuCo"
+                            Width="199"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Left"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Command="{Binding SwitchViewCommand}"
+                            CommandParameter="Error"
+                            FontWeight="Medium"
+                            Foreground="Black"
+                            Style="{StaticResource MaterialDesignFlatButton}"
+                            Click="Button_Click"
+                            materialDesign:ButtonAssist.CornerRadius="15">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal"
+                                    Margin="-44,0,63,0">
+                            <materialDesign:PackIcon
+                                                        Width="25"
+                                                        Height="25"
+                                                        VerticalAlignment="Center"
+                                                        Kind="AlertCircle" />
+                            <TextBlock
+                                        Margin="10,0,0,0"
+                                        VerticalAlignment="Bottom"
+                                        FontSize="15"
+                                        Text="Sự cố" />
+                        </StackPanel>
+                    </Button>
 
                     <!--  Cá nhân  -->
                     <Button x:Name="btnCaNhan"

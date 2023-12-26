@@ -18,10 +18,10 @@ namespace CineMajestic
             loginView.Show();
         }
         //test
-        private void Application_Startup(object sender, StartupEventArgs e)
-        {
-            MainView mainView = new MainView();
-            mainView.Show();
-        }
+        //private void Application_Startup(object sender, StartupEventArgs e)
+        //{
+        //    MainView mainView = new MainView();
+        //    mainView.Show();
+        //}
     }
 }

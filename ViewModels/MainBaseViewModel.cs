@@ -53,6 +53,7 @@ namespace CineMajestic.ViewModels
                     break;
                 case "Error":
                     CurrentView = new ErrorManagementView();
+                    break;
                 case "ShowTime":
                     CurrentView = new ShowTimeManagementView();
                     break;
