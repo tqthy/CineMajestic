@@ -1,9 +1,15 @@
-﻿using CineMajestic.Views.ErrorManagement;
+﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs;
+using CineMajestic.Views.ErrorManagement;
+using Microsoft.VisualBasic.Devices;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
@@ -31,6 +37,8 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
             StaffID = staff_Id.ToString();
             IssueDate = DateTime.Now;
             ButtonReportErrorCommand = new ViewModelCommand(ExecuteButtonReportErrorCM);
+            ButtonUploadImageCommand = new ViewModelCommand(ExecuteUploadImageCM);
+            AddErrorCommand = new ViewModelCommand(ExecuteAddErrorCM, CanExecuteAddErrorCM);
         }
 
         #endregion
@@ -38,6 +46,8 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         #region Command
 
         public ICommand ButtonReportErrorCommand { get; set; }
+        public ICommand ButtonUploadImageCommand { get; set; }
+        public ICommand AddErrorCommand { get; set; }
 
         #endregion
 
@@ -48,6 +58,52 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
             ErrorReportView popup = new();
             popup.DataContext = this;
             popup.ShowDialog();
+        }
+
+        public void ExecuteUploadImageCM(object obj)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            openFileDialog.Title = "Hãy chọn file ảnh sự cố";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                ErrorImage = new BitmapImage(new Uri(openFileDialog.FileName));
+            }
+        }
+
+        public void ExecuteAddErrorCM(object obj)
+        {
+            ErrorDA errorDA = new ErrorDA();
+            ErrorDTO errorDTO = new ErrorDTO() { 
+                Name = ErrorName,
+                Description = ErrorDescription,
+                Staff_Id = StaffID,
+                DateAdded = IssueDate.ToString(),
+                Image = Path.GetFileName(ErrorImage.UriSource.ToString())
+            };
+            try
+            {
+                errorDA.UploadError(errorDTO);
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+            string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages");
+            if (!Directory.Exists(applicationFolder))
+            {
+                Directory.CreateDirectory(applicationFolder);
+            }
+            File.Copy(ErrorImage.UriSource.LocalPath, Path.Combine(applicationFolder, errorDTO.Image), true);
+
+            // MSG BOX CUSTOM
+            MessageBox.Show("Add thanh cong!");
+        }
+
+        public bool CanExecuteAddErrorCM(object obj)
+        {
+            return true;
         }
 
         #endregion

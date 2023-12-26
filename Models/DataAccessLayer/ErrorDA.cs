@@ -21,14 +21,15 @@ namespace CineMajestic.Models.DataAccessLayer
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "INSERT INTO [ERROR](NAME, DESCRIPTION, DATEADDED, STAFF_id) VALUES(@Name, @Description, @Dateadded, @Staff_id)";
+                    command.CommandText = "INSERT INTO [ERRORS] (NAME, DESCRIPTION, DATEADDED, STAFF_id, IMAGE) VALUES(@Name, @Description, @Dateadded, @Staff_id, @Image)";
                     command.Parameters.Add("@Name", SqlDbType.NVarChar).Value = error.Name;
                     command.Parameters.Add("@Description", SqlDbType.NVarChar).Value = error.Description;
                     DateTime date;
-                    date = DateTime.ParseExact(error.DateAdded, "M/d/yyyy hh:mm:ss tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
+                    date = DateTime.ParseExact(error.DateAdded, "d/M/yyyy h:m:s tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
                     command.Parameters.Add("@Dateadded", SqlDbType.SmallDateTime).Value = date;
                     command.Parameters.Add("@Staff_id", SqlDbType.Int).Value = error.Staff_Id;
-                    
+                    command.Parameters.Add("@Image", SqlDbType.NVarChar).Value = error.Image;
+                    var rows = command.ExecuteNonQuery();
                 }
             }
             catch (Exception ex)

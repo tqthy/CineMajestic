@@ -169,7 +169,8 @@
                                 HorizontalAlignment="Left"
                                 Background="Transparent"
                                 BorderThickness="0"
-                                Foreground="Black">
+                                Foreground="Black"
+                                Command="{Binding ButtonUploadImageCommand}">
                                 <materialDesign:PackIcon
                                     Width="25"
                                     Height="25"
@@ -185,7 +186,7 @@
                                 BorderBrush="Black"
                                 BorderThickness="1">
                             <Border.Background>
-                                <ImageBrush ImageSource="{Binding ImageSource}" />
+                                <ImageBrush ImageSource="{Binding ErrorImage}" />
                             </Border.Background>
                         </Border>
                     </Grid>
@@ -199,7 +200,7 @@
                         Margin="-30,0,0,10"
                         VerticalAlignment="Bottom"
                         materialDesign:ButtonAssist.CornerRadius="20"
-                        Command="{Binding acceptAddCommand}"
+                        Command="{Binding AddErrorCommand}"
                         Content="Xác nhận" />
                 </Grid>
 
