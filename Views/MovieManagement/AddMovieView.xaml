@@ -143,16 +143,13 @@
                 Grid.Column="1"
                 Orientation="Horizontal">
                 <StackPanel Margin="15,15,0,0" Orientation="Vertical">
-
                     <!--  Tên phim - Title  -->
-
                     <TextBlock
                         FontSize="15"
                         FontWeight="Bold"
                         Text="Tên phim" />
-
                     <TextBox
-                        Width="350"
+                        Width="300"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
                         FontSize="15"
@@ -170,7 +167,7 @@
                         Text="Đạo diễn" />
 
                     <TextBox
-                        Width="200"
+                        Width="150"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
                         FontSize="15"
@@ -187,11 +184,28 @@
                     </TextBlock>
 
                     <TextBox
-                        Width="120"
+                        Width="100"
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
                         FontSize="15"
                         Text="{Binding Length, UpdateSourceTrigger=PropertyChanged}" />
+
+                </StackPanel>
+
+                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+
+                    <!--  Director - Giá nhập  -->
+
+                    <TextBlock FontSize="15" FontWeight="Bold">
+                        Giá nhập<Span FontSize="12" FontWeight="Medium">(VNĐ)</Span>
+                    </TextBlock>
+
+                    <TextBox
+                        Width="135"
+                        Margin="0,5,0,0"
+                        HorizontalAlignment="Left"
+                        FontSize="15"
+                        Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
 
