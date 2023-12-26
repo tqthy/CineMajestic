@@ -198,7 +198,7 @@
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBlock
-                        Margin="18,0,20,0"
+                        Margin="18,0,0,0"
                         VerticalAlignment="Center"
                         FontWeight="SemiBold"
                         Text="Đạo diễn:" />
@@ -239,14 +239,14 @@
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBlock
-                        Margin="18,0,20,0"
+                        Margin="18,0,0,0"
                         VerticalAlignment="Center"
                         FontWeight="SemiBold"
                         Text="Ngôn ngữ:" />
 
                     <!--  Binding ngôn ngữ  -->
                     <TextBlock
-                        Margin="-9,0,0,0"
+                        Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         Text="{Binding Language}" />
                     <TextBlock VerticalAlignment="Center" Text="." />
@@ -279,7 +279,7 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBlock
-                        Margin="16,0,20,0"
+                        Margin="16,0,0,0"
                         VerticalAlignment="Center"
                         FontWeight="SemiBold"
                         Text="Thể loại:" />
@@ -320,7 +320,7 @@
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBlock
-                        Margin="18,0,20,0"
+                        Margin="18,0,0,0"
                         VerticalAlignment="Center"
                         FontWeight="SemiBold"
                         Text="Ngày khởi chiếu:" />
