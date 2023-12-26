@@ -98,7 +98,8 @@
                             <TextBox
                                 Margin="20,10,0,0"
                                 FontSize="20"
-                                FontWeight="DemiBold" />
+                                FontWeight="DemiBold"
+                                Text="{Binding ErrorName}"/>
 
                             <TextBlock Margin="20,20,0,0"
                                        FontSize="20"
@@ -110,7 +111,8 @@
                                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                                      TextWrapping="Wrap"
                                      AcceptsReturn="True"
-                                     VerticalScrollBarVisibility="Auto"/>
+                                     VerticalScrollBarVisibility="Auto"
+                                     Text="{Binding ErrorDescription}"/>
 
                         </StackPanel>
 
@@ -125,7 +127,7 @@
                                 Margin="20,10,0,0"
                                 HorizontalAlignment="Left"
                                 FontSize="20"
-                                FontWeight="DemiBold" />
+                                Text="{Binding StaffID}" />
 
                             <TextBlock
                                 Margin="20,20,0,0"
@@ -136,7 +138,8 @@
                                 Margin="20,10,0,0"
                                 HorizontalAlignment="Left"
                                 FontSize="20"
-                                FontWeight="DemiBold" />
+                                FontWeight="DemiBold"
+                                SelectedDate="{Binding IssueDate}"/>
                         </StackPanel>
                     </Grid>
 

@@ -14,20 +14,22 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         #region Bindable property
 
         private string errorName;
-        public string ErrorName { get => errorName; set { OnPropertyChanged(nameof(ErrorName))}; }
+        public string ErrorName { get => errorName; set { errorName = value; OnPropertyChanged(nameof(ErrorName)); } }
         private string errorDescription;
-        public string ErrorDescription { get => errorDescription; set { OnPropertyChanged(nameof(ErrorDescription)); } }
+        public string ErrorDescription { get => errorDescription; set {errorDescription = value; OnPropertyChanged(nameof(ErrorDescription)); } }
         private string staffID;
-        public string StaffID { get => staffID; set {  OnPropertyChanged(nameof(StaffID)); } }
+        public string StaffID { get => staffID; set {staffID = value; OnPropertyChanged(nameof(StaffID)); } }
         private DateTime issueDate;
-        public DateTime IssueDate { get => issueDate; set { OnPropertyChanged(nameof(IssueDate)); } }
+        public DateTime IssueDate { get => issueDate; set {issueDate = value; OnPropertyChanged(nameof(IssueDate)); } }
         private BitmapImage errorImage;
         public BitmapImage ErrorImage { get => errorImage; set { errorImage = value; OnPropertyChanged(nameof(ErrorImage)); } }
         #endregion
 
         #region ctor
-        public ErrorManagementViewModel() 
+        public ErrorManagementViewModel(int staff_Id) 
         {
+            StaffID = staff_Id.ToString();
+            IssueDate = DateTime.Now;
             ButtonReportErrorCommand = new ViewModelCommand(ExecuteButtonReportErrorCM);
         }
 
@@ -44,6 +46,7 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         public void ExecuteButtonReportErrorCM(object obj)
         {
             ErrorReportView popup = new();
+            popup.DataContext = this;
             popup.ShowDialog();
         }
 

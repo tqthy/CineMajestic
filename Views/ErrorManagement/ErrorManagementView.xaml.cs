@@ -21,9 +21,9 @@ namespace CineMajestic.Views.ErrorManagement
     /// </summary>
     public partial class ErrorManagementView : UserControl
     {
-        public ErrorManagementView()
+        public ErrorManagementView(int Staff_Id)
         {
-            ErrorManagementViewModel vm = new();
+            ErrorManagementViewModel vm = new(Staff_Id);
             InitializeComponent();
             DataContext = vm;
         }
