@@ -12,7 +12,7 @@
     Height="675"
     AllowsTransparency="True"
     Background="Transparent"
-    FontFamily="Sogue UI"
+    FontFamily="Segoe UI"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
@@ -53,7 +53,6 @@
                         Grid.Column="0"
                         Margin="40,0,0,0"
                         VerticalAlignment="Center"
-                        FontFamily="Candara"
                         FontSize="20"
                         FontWeight="SemiBold"
                         Foreground="#3F2305"
@@ -65,7 +64,6 @@
                         Click="btnMinimize_Click"
                         Content="-"
                         Cursor="Hand"
-                        FontFamily="Montserrat"
                         FontSize="16"
                         Foreground="#623b00">
                         <Button.Style>
@@ -99,7 +97,6 @@
                         Click="btnClose_Click"
                         Content="X"
                         Cursor="Hand"
-                        FontFamily="Montserrat"
                         FontSize="12"
                         Foreground="#fffaf5">
                         <Button.Style>
