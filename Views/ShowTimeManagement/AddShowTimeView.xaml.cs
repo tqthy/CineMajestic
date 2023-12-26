@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace CineMajestic.Views.ShowTimeManagement
 {
     /// <summary>
-    /// Interaction logic for AddView.xaml
+    /// Interaction logic for AddShowTimeView.xaml
     /// </summary>
-    public partial class AddView : Window
+    public partial class AddShowTimeView : Window
     {
-        public AddView()
+        public AddShowTimeView()
         {
             InitializeComponent();
         }
