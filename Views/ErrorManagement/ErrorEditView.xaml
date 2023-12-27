@@ -164,7 +164,7 @@
                             VerticalAlignment="Center"
                             FontSize="17"
                             FontWeight="DemiBold"
-                            Text="{Binding SelectedItem.Staff_Id}" />
+                            Text="{Binding SItemStaffID}" />
 
                     </Grid>
 
@@ -212,7 +212,7 @@
                             VerticalAlignment="Center"
                             FontSize="17"
                             FontWeight="DemiBold"
-                            Text="{Binding SelectedItem.DateAdded}" />
+                            Text="{Binding IssueDate}" />
 
                     </Grid>
 

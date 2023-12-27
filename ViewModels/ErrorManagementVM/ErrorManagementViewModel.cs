@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace CineMajestic.ViewModels.ErrorManagementVM
@@ -42,7 +43,8 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         private string staffName;
         public string StaffName { get => staffName; set { staffName = value; } }
 
-       
+        private string sItemStaffID;
+        public string SItemStaffID { get => sItemStaffID; set { sItemStaffID = value; } }
 
         private ObservableCollection<ErrorDTO> errorList;
         public ObservableCollection<ErrorDTO> ErrorList { get => errorList; set { errorList = value; OnPropertyChanged(nameof(ErrorList)); } }
@@ -123,6 +125,7 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
             Cost = SelectedItem.Cost;
             ErrorName = SelectedItem.Name;
             ErrorDescription = SelectedItem.Description;
+            SItemStaffID = SelectedItem.Staff_Id;
             StaffDA staffDA = new();
             StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
             string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
@@ -132,6 +135,7 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                 EndDate = DateTime.Now;
             }
             else EndDate = DateTime.Parse(SelectedItem.EndDate);
+            IssueDate = DateTime.Parse(SelectedItem.DateAdded);
             string stt = SelectedItem.Status;
             if (stt == "Chờ tiếp nhận") ComboBoxStatusIndex = 0;
             else if (stt == "Đang xử lý") ComboBoxStatusIndex = 1;
@@ -167,16 +171,21 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         public void ExecuteAddErrorCM(object obj)
         {
             ErrorDA errorDA = new ErrorDA();
-            ErrorDTO errorDTO = new ErrorDTO() { 
+            ErrorDTO errorDTO = new ErrorDTO() {
                 Name = ErrorName,
                 Description = ErrorDescription,
                 Staff_Id = StaffID,
                 DateAdded = IssueDate.ToString(),
-                Image = Path.GetFileName(ErrorImage.UriSource.ToString())
+                Image = Path.GetFileName(ErrorImage.UriSource.ToString()),
+                StatusColor = new SolidColorBrush(Colors.DarkRed),
+                Status = "Chờ tiếp nhận"
             };
             try
             {
                 errorDA.UploadError(errorDTO);
+                // MSG BOX CUSTOM
+                MessageBox.Show("Add thanh cong!");
+                ErrorList.Add(errorDTO);
             }
             catch (Exception ex)
             {
@@ -189,8 +198,7 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
             }
             File.Copy(ErrorImage.UriSource.LocalPath, Path.Combine(applicationFolder, errorDTO.Image), true);
 
-            // MSG BOX CUSTOM
-            MessageBox.Show("Add thanh cong!");
+           
         }
 
         public bool CanExecuteAddErrorCM(object obj)

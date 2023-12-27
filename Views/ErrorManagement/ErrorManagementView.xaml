@@ -94,6 +94,7 @@
                                             Width="Auto"
                                             Margin="17,0,0,0"
                                             FontSize="17"
+                                            FontWeight="Bold"
                                             Text="{Binding Name}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
@@ -129,6 +130,7 @@
                                         <TextBlock
                                             Margin="17,0,0,0"
                                             FontSize="17"
+                                            Foreground="{Binding StatusColor}"
                                             Text="{Binding Status}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>

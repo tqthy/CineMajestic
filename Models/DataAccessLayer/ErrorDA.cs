@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -64,7 +66,7 @@ namespace CineMajestic.Models.DataAccessLayer
                             if (reader[6] != null) error.Cost = reader[6].ToString();
                             error.Staff_Id = reader[7].ToString();
                             error.Image = reader[8].ToString();
-
+                            error.StatusColor = ConvertStatusToBrush(error.Status);
                             errors.Add(error);
                         }
                     }
@@ -76,6 +78,14 @@ namespace CineMajestic.Models.DataAccessLayer
             }
 
             return errors;
+        }
+
+        public System.Windows.Media.Brush ConvertStatusToBrush(string status)
+        {
+            if (status == "Đang xử lý") return new SolidColorBrush(System.Windows.Media.Colors.DarkOrange);
+            if (status == "Đã xử lý") return new SolidColorBrush(System.Windows.Media.Colors.DarkGreen);
+            if (status == "Đã huỷ") return new SolidColorBrush(System.Windows.Media.Colors.DarkGray);
+            return new SolidColorBrush(System.Windows.Media.Colors.DarkRed);
         }
 
         public void setEndDateAndCost(string id, DateTime endDate, string cost)
@@ -112,7 +122,7 @@ namespace CineMajestic.Models.DataAccessLayer
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "UPDATE [ERRORS] SET STATUS=@status WHERE id=@id";
+                    command.CommandText = "UPDATE [ERRORS] SET STATUS=@status, COST=0, ENDDATE=GETDATE() WHERE id=@id";
                     string status = "Chờ tiếp nhận";
                     if (comboBoxStatusIndex == 1) status = "Đang xử lý";
                     if (comboBoxStatusIndex == 3) status = "Đã huỷ";

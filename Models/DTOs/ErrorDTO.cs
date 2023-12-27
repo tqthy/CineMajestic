@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace CineMajestic.Models.DTOs
 {
@@ -17,5 +19,7 @@ namespace CineMajestic.Models.DTOs
         public string EndDate { get; set; }
         public string Cost { get; set; }
         public string Image { get; set; }
+
+        public System.Windows.Media.Brush StatusColor { get; set; }
     }
 }
