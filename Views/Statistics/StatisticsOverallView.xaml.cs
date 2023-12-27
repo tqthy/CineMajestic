@@ -1,5 +1,4 @@
-﻿using CineMajestic.ViewModels.StatisticsVM;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,15 +16,13 @@ using System.Windows.Shapes;
 namespace CineMajestic.Views.Statistics
 {
     /// <summary>
-    /// Interaction logic for StatisticsView.xaml
+    /// Interaction logic for StatisticsOverallView.xaml
     /// </summary>
-    public partial class StatisticsView : UserControl
+    public partial class StatisticsOverallView : UserControl
     {
-        public StatisticsView()
+        public StatisticsOverallView()
         {
-            StatisticsViewModel vm = new();
             InitializeComponent();
-            DataContext = vm;
         }
     }
 }

@@ -22,8 +22,6 @@
                         From="0"
                         To="1"
                         Duration="0:0:0.3" />
-
-
                 </Storyboard>
             </BeginStoryboard>
         </EventTrigger>
@@ -32,6 +30,40 @@
     
     
     <Grid Background="#f5f5f5">
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0"
+                BorderBrush="#3f2305"
+                BorderThickness="0.5"
+                Width="385"
+                CornerRadius="0,0,5,5"
+                >
+            <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                             BorderBrush="#3f2305"
+                             IsChecked="True"
+                             Content="Tổng quát"
+                             Command="{Binding SwitchViewStatisticsCommand}"
+                             CommandParameter="Overall"/>
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                             BorderBrush="#3f2305"
+                             Content="Khách hàng"/>
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                             BorderBrush="#3f2305"
+                             Content="Phim"/>
+                <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
+                             BorderBrush="#3f2305"
+                             Content="Sản phẩm"/>
+            </StackPanel>
+        </Border>
+
+        <!--  Display current view  -->
+        <ContentControl
+                Grid.Row="1"
+                Content="{Binding CurrentStatisticsView}" />
+
     </Grid>
 </UserControl>
