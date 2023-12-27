@@ -46,14 +46,16 @@
                     Background="Transparent"
                     BorderThickness="0"
                     Content="Toàn bộ"
-                    Foreground="Black" />
+                    Foreground="Black"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
                 <!--  Phòng 1  -->
                 <Button
                     Height="60"
                     Background="Transparent"
                     BorderThickness="0"
                     Content="Phòng 1"
-                    Foreground="Black" />
+                    Foreground="Black"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 2  -->
                 <Button
@@ -61,7 +63,8 @@
                     Background="Transparent"
                     BorderThickness="0"
                     Content="Phòng 2"
-                    Foreground="Black" />
+                    Foreground="Black"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 3  -->
                 <Button
@@ -69,7 +72,8 @@
                     Background="Transparent"
                     BorderThickness="0"
                     Content="Phòng 3"
-                    Foreground="Black" />
+                    Foreground="Black"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 4  -->
                 <Button
@@ -77,7 +81,8 @@
                     Background="Transparent"
                     BorderThickness="0"
                     Content="Phòng 4"
-                    Foreground="Black" />
+                    Foreground="Black"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 5  -->
                 <Button
@@ -85,7 +90,8 @@
                     Background="Transparent"
                     BorderThickness="0"
                     Content="Phòng 5"
-                    Foreground="Black" />
+                    Foreground="Black"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 6  -->
                 <Button
@@ -93,7 +99,8 @@
                     Background="Transparent"
                     BorderThickness="0"
                     Content="Phòng 6"
-                    Foreground="Black" />
+                    Foreground="Black"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 7  -->
                 <Button
@@ -101,7 +108,8 @@
                     Background="Transparent"
                     BorderThickness="0"
                     Content="Phòng 7"
-                    Foreground="Black" />
+                    Foreground="Black"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Lọc theo ngày  -->
                 <DatePicker
