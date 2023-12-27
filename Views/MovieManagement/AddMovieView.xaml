@@ -142,7 +142,7 @@
                 Grid.Row="1"
                 Grid.Column="1"
                 Orientation="Horizontal">
-                <StackPanel Margin="15,15,0,0" Orientation="Vertical">
+                <StackPanel Margin="15,10,0,0" Orientation="Vertical">
                     <!--  Tên phim - Title  -->
                     <TextBlock
                         FontSize="15"
@@ -154,10 +154,14 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        FontSize="8.5"
+                        Foreground="Red"
+                        Text="{Binding TitleError}" />
 
                 </StackPanel>
 
-                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+                <StackPanel Margin="30,10,0,0" Orientation="Vertical">
 
                     <!--  Director - Đạo diễn  -->
 
@@ -172,10 +176,13 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         Text="{Binding Director, UpdateSourceTrigger=PropertyChanged}" />
-
+                    <TextBlock
+                        FontSize="8.5"
+                        Foreground="Red"
+                        Text="{Binding DirectorError}" />
                 </StackPanel>
 
-                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+                <StackPanel Margin="30,10,0,0" Orientation="Vertical">
 
                     <!--  Length - Thời lượng  -->
 
@@ -189,10 +196,13 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         Text="{Binding Length, UpdateSourceTrigger=PropertyChanged}" />
-
+                    <TextBlock
+                        FontSize="8.5"
+                        Foreground="Red"
+                        Text="{Binding LengthError}" />
                 </StackPanel>
 
-                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+                <StackPanel Margin="30,10,0,0" Orientation="Vertical">
 
                     <!--  Director - Giá nhập  -->
 
@@ -206,7 +216,10 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         Text="{Binding ImportPrice, UpdateSourceTrigger=PropertyChanged}" />
-
+                    <TextBlock
+                        FontSize="8.5"
+                        Foreground="Red"
+                        Text="{Binding ImportPriceError}" />
                 </StackPanel>
 
             </StackPanel>
@@ -216,7 +229,7 @@
                 Grid.Column="1"
                 Orientation="Horizontal">
 
-                <StackPanel Margin="15,15,0,0" Orientation="Vertical">
+                <StackPanel Margin="15,10,0,0" Orientation="Vertical">
 
                     <!--  Country - Quốc gia  -->
 
@@ -231,10 +244,13 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}" />
-
+                    <TextBlock
+                        FontSize="8.5"
+                        Foreground="Red"
+                        Text="{Binding CountryError}" />
                 </StackPanel>
 
-                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+                <StackPanel Margin="30,10,0,0" Orientation="Vertical">
 
                     <!--  Language - Ngôn ngữ  -->
 
@@ -249,7 +265,10 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         Text="{Binding Language, UpdateSourceTrigger=PropertyChanged}" />
-
+                    <TextBlock
+                        FontSize="8.5"
+                        Foreground="Red"
+                        Text="{Binding LanguageError}" />
                 </StackPanel>
 
                 <StackPanel Margin="30,15,0,0" Orientation="Horizontal">
@@ -288,7 +307,7 @@
 
                 <!--  Năm phát hành  -->
 
-                <StackPanel Margin="15,15,0,0" Orientation="Vertical">
+                <StackPanel Margin="15,10,0,0" Orientation="Vertical">
                     <TextBlock
                         FontSize="15"
                         FontWeight="Bold"
@@ -299,11 +318,15 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         Text="{Binding ReleaseYear, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        FontSize="8.5"
+                        Foreground="Red"
+                        Text="{Binding ReleaseYearError}" />
                 </StackPanel>
 
                 <!--  Tình trạng  -->
 
-                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+                <StackPanel Margin="30,10,0,0" Orientation="Vertical">
                     <TextBlock
                         FontSize="15"
                         FontWeight="Bold"
@@ -323,7 +346,7 @@
 
                 <!--  Ngày khởi chiếu  -->
 
-                <StackPanel Margin="30,15,0,0" Orientation="Vertical">
+                <StackPanel Margin="30,10,0,0" Orientation="Vertical">
                     <TextBlock
                         FontSize="15"
                         FontWeight="Bold"
@@ -336,6 +359,10 @@
                         materialDesign:HintAssist.HintOpacity="{Binding HintOpacity}"
                         FontSize="15"
                         SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        FontSize="8.5"
+                        Foreground="Red"
+                        Text="{Binding StartDateError}" />
                 </StackPanel>
 
                 <!--  Chổ hiện Poster  -->
@@ -377,7 +404,7 @@
             <StackPanel
                 Grid.Row="4"
                 Grid.Column="1"
-                Margin="15,15,0,0"
+                Margin="15,10,0,0"
                 Orientation="Horizontal">
 
                 <StackPanel Orientation="Vertical">
@@ -395,7 +422,10 @@
                         HorizontalAlignment="Left"
                         FontSize="15"
                         Text="{Binding Trailer, UpdateSourceTrigger=PropertyChanged}" />
-
+                    <TextBlock
+                        FontSize="8.5"
+                        Foreground="Red"
+                        Text="{Binding TrailerError}" />
                 </StackPanel>
 
                 <StackPanel Margin="30,0,0,0" Orientation="Vertical">
@@ -413,6 +443,10 @@
                         Margin="2,5,0,0"
                         FontSize="15"
                         Text="{Binding Genre}" />
+                    <TextBlock
+                        FontSize="8.5"
+                        Foreground="Red"
+                        Text="{Binding GenreError}" />
                 </StackPanel>
 
             </StackPanel>
@@ -422,25 +456,34 @@
 
                 <!--  Description  -->
 
-                <TextBox
-                    Width="420"
-                    Height="158"
-                    Margin="15,15,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    materialDesign:HintAssist.Hint="Giới thiệu phim"
-                    materialDesign:ValidationAssist.Background="White"
-                    AcceptsReturn="True"
-                    BorderBrush="Black"
-                    DockPanel.Dock="Left"
-                    FontSize="15"
-                    FontWeight="Light"
-                    Foreground="Black"
-                    HorizontalScrollBarVisibility="Disabled"
-                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                    Text="{Binding Description}"
-                    TextWrapping="Wrap"
-                    VerticalScrollBarVisibility="Auto" />
+                <StackPanel>
+                    <TextBox
+                        Width="420"
+                        Height="158"
+                        Margin="15,15,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        materialDesign:HintAssist.Hint="Giới thiệu phim"
+                        materialDesign:ValidationAssist.Background="White"
+                        AcceptsReturn="True"
+                        BorderBrush="Black"
+                        DockPanel.Dock="Left"
+                        FontSize="15"
+                        FontWeight="Light"
+                        Foreground="Black"
+                        HorizontalScrollBarVisibility="Disabled"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        Text="{Binding Description}"
+                        TextWrapping="Wrap"
+                        VerticalScrollBarVisibility="Auto" />
+                    <TextBlock
+                        Width="400"
+                        Margin="0,2,0,0"
+                        FontSize="8.5"
+                        Foreground="Red"
+                        Text="{Binding DescriptionError}" />
+                </StackPanel>
+
 
                 <!--  Done Button  -->
 
