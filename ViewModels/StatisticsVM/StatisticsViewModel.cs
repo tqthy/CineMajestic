@@ -8,7 +8,7 @@ using LiveChartsCore.SkiaSharpView;
 
 namespace CineMajestic.ViewModels.StatisticsVM
 {
-    public class StatisticsViewModel
+    public class StatisticsViewModel : MainBaseViewModel
     {
 
     }

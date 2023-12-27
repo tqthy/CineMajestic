@@ -17,6 +17,7 @@ using System.Windows.Input;
 using CineMajestic.Views.ProductManagement;
 using CineMajestic.Views.CustomerManagement;
 using OfficeOpenXml.Packaging.Ionic.Zip;
+using CineMajestic.Views.Statistics;
 
 namespace CineMajestic.ViewModels
 {
@@ -62,6 +63,9 @@ namespace CineMajestic.ViewModels
                     break;
                 case "QLSP"://quản lý sản phẩm    
                     CurrentView = new ProductManagementView();
+                    break;
+                case "Statistics":
+                    CurrentView = new StatisticsView();
                     break;
                 case "Customer":
                     CurrentView = new CustomerManagementView();
