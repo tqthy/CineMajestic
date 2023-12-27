@@ -40,7 +40,7 @@
                         Margin="10,0,0,0"
                         FontSize="24"
                         FontWeight="Bold"
-                        Text="Thông tin sự cố" />
+                        Text="Thay đổi thông tin" />
 
                     <!--  Nút exit  -->
                     <Button
@@ -121,13 +121,13 @@
                         <TextBlock
                             Margin="10,0,0,0"
                             FontSize="20"
-                            FontWeight="Bold"
+                            FontWeight="Regular"
                             Text="{Binding ErrorName}" />
                     </StackPanel>
                     <!--  Thông tin sự cố  -->
                     <TextBlock
                         Grid.Row="3"
-                        Margin="10,0,0,0"
+                        Margin="10,10,0,0"
                         FontSize="20"
                         Text="{Binding ErrorDescription}"
                         TextWrapping="Wrap" />
@@ -212,7 +212,7 @@
                             VerticalAlignment="Center"
                             FontSize="17"
                             FontWeight="DemiBold"
-                            Text="{Binding IssueDate}" />
+                            Text="{Binding IssueDate, StringFormat={}{0:dd/MM/yyyy}}" />
 
                     </Grid>
 

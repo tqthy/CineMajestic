@@ -37,6 +37,9 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         private DateTime endDate;
         public DateTime EndDate { get => endDate; set { endDate = value; OnPropertyChanged(nameof(EndDate)); } }
 
+        private string status;
+        public string Status { get => status; set { status = value; OnPropertyChanged(nameof(Status)); } }
+
         private string cost;
         public string Cost { get => cost; set { cost = value; OnPropertyChanged(nameof(Cost)); } }
 
@@ -75,6 +78,7 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
             AddErrorCommand = new ViewModelCommand(ExecuteAddErrorCM, CanExecuteAddErrorCM);
             ButtonEditErrorCommand = new ViewModelCommand(ExecuteButtonEditErrorCM);
             EditErrorCommand = new ViewModelCommand(ExecuteEditErrorCommand, CanExecuteEditErrorCommand);
+            ViewErrorDetailCommand = new ViewModelCommand(ExecuteViewErrorDetailCM);
             ErrorDA errDA = new();
             List<ErrorDTO> errors = errDA.GetAllErrors();
             ErrorList = new ObservableCollection<ErrorDTO>(errors);
@@ -99,7 +103,26 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
 
         public void ExecuteViewErrorDetailCM(object obj)
         {
-
+            ID = SelectedItem.Id;
+            Cost = SelectedItem.Cost;
+            ErrorName = SelectedItem.Name;
+            ErrorDescription = SelectedItem.Description;
+            int formatting = Convert.ToInt32(SelectedItem.Staff_Id);
+            SItemStaffID = StaffDA.formatID(formatting);
+            StaffDA staffDA = new();
+            StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
+            string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
+            ErrorImage = new BitmapImage(new Uri(applicationFolder));
+            if (string.IsNullOrEmpty(SelectedItem.EndDate))
+            {
+                EndDate = DateTime.Now;
+            }
+            else EndDate = DateTime.Parse(SelectedItem.EndDate);
+            IssueDate = DateTime.Parse(SelectedItem.DateAdded);
+            Status = SelectedItem.Status;
+            ErrorDetailView popup = new();
+            popup.DataContext = this;
+            popup.ShowDialog();
         }
 
         #endregion
@@ -135,7 +158,8 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
             Cost = SelectedItem.Cost;
             ErrorName = SelectedItem.Name;
             ErrorDescription = SelectedItem.Description;
-            SItemStaffID = SelectedItem.Staff_Id;
+            int formatting = Convert.ToInt32(SelectedItem.Staff_Id);
+            SItemStaffID = StaffDA.formatID(formatting);
             StaffDA staffDA = new();
             StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
             string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
@@ -161,6 +185,11 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
 
         public void ExecuteButtonReportErrorCM(object obj)
         {
+            ErrorName = "";
+            ErrorDescription = "";
+            IssueDate = DateTime.Now;
+            ErrorImage = null;
+
             ErrorReportView popup = new();
             popup.DataContext = this;
             popup.ShowDialog();

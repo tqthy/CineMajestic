@@ -122,7 +122,7 @@
                                FontWeight="Bold"
                                Margin="10,0,0,0"
                                VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding StaffID}"
+                    <TextBlock Text="{Binding SItemStaffID}"
                                FontSize="20"
                                FontWeight="Regular"
                                Margin="10,0,0,0"
@@ -138,16 +138,18 @@
                                Margin="10,0,0,0"
                                VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding Status}"
+                               x:Name="txtStatus"
                                FontSize="20"
                                FontWeight="Regular"
                                Margin="10,0,0,0"
+                               Loaded="txtStatus_Loaded"
                                VerticalAlignment="Center"/>
                     <TextBlock Text="Ngày báo cáo:"
                                FontSize="22"
                                FontWeight="Bold"
                                Margin="10,0,0,0"
                                VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding IssueDate}"
+                    <TextBlock Text="{Binding IssueDate, StringFormat={}{0:dd/MM/yyyy}}"
                                FontSize="20"
                                FontWeight="Regular"
                                Margin="10,0,0,0"
@@ -157,7 +159,9 @@
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="4"
                             Grid.Column="0"
-                            Margin="0,-10,0,0">
+                            Margin="0,-10,0,0"
+                            x:Name="infoCost"
+                            Loaded="infoCost_Loaded">
                     <TextBlock Text="Phí khắc phục:"
                                FontSize="22"
                                FontWeight="Bold"
@@ -174,13 +178,15 @@
                 <StackPanel Orientation="Horizontal"
                             Grid.Row="5"
                             Grid.Column="0"
-                            Margin="0,-5,0,0">
+                            Margin="0,-5,0,0"
+                            x:Name="infoEnd"
+                            Loaded="infoCost_Loaded">
                     <TextBlock Text="Ngày hoàn thành:"
                                FontSize="22"
                                FontWeight="Bold"
                                Margin="10,0,0,0"
                                VerticalAlignment="Center"/>
-                    <TextBlock Text="{Binding EndDate}"
+                    <TextBlock Text="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}"
                                FontSize="20"
                                FontWeight="Regular"
                                Margin="10,0,0,0"
@@ -222,7 +228,8 @@
                         BorderThickness="0.5"
                         CornerRadius="5"
                         Margin="10">
-                    <Image Source="{Binding ErrorImage}"/>
+                    <Image Source="{Binding ErrorImage}"
+                           Stretch="Fill"/>
                 </Border>
 
                 <!--<Grid Grid.Row="1">
