@@ -129,7 +129,9 @@
                     <GridView>
 
                         <!--  Tên phim  -->
-                        <GridViewColumn Width="Auto" Header="Tên phim">
+                        <GridViewColumn Width="Auto" 
+                                        Header="Tên phim"
+                                        x:Name="clName">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
@@ -141,7 +143,9 @@
                         </GridViewColumn>
 
                         <!--  Tình trạng  -->
-                        <GridViewColumn Width="Auto" Header="Tình trạng">
+                        <GridViewColumn Width="Auto" 
+                                        x:Name="clStatus"
+                                        Header="Tình trạng">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
@@ -153,7 +157,9 @@
                         </GridViewColumn>
 
                         <!--  Thời lượng  -->
-                        <GridViewColumn Width="Auto" Header="Thời lượng (phút)">
+                        <GridViewColumn Width="Auto" 
+                                        x:Name="clTime"
+                                        Header="Thời lượng (phút)">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
@@ -164,7 +170,9 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <GridViewColumn Width="Auto" Header="Quốc gia">
+                        <GridViewColumn Width="Auto" 
+                                        x:Name="clCountry"
+                                        Header="Quốc gia">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
@@ -176,7 +184,9 @@
                         </GridViewColumn>
 
 
-                        <GridViewColumn Width="Auto" Header="Đạo diễn">
+                        <GridViewColumn Width="Auto" 
+                                        x:Name="clDirector"
+                                        Header="Đạo diễn">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
