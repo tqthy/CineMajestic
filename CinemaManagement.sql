@@ -1,6 +1,6 @@
-﻿CREATE DATABASE CinemaManagement;
+﻿CREATE DATABASE CinemaManagementTest;
 GO
-USE CinemaManagement;
+USE CinemaManagementTest;
 
 --bảng ACCOUNT
 go
@@ -12,8 +12,9 @@ create table ACCOUNTS
 	Staff_Id int not null,
 	Constraint FK_StaffId foreign key(Staff_Id) references Staff(Id)
 )
-go
 
+
+go
 
 
 
@@ -33,8 +34,6 @@ create table Staff
 	ImageSource varchar(50) default 'Default.jpg'
 )
 go
-
-
 
 --bảng voucher
 CREATE TABLE VOUCHER
@@ -70,58 +69,32 @@ CREATE TABLE MOVIES(
     Title NVARCHAR(100),
     Description NVARCHAR(500),
     Director NVARCHAR(50),
-    ReleaseDate DATE,
+    ReleaseYear INT,
     Language NVARCHAR(20),
     Country NVARCHAR(20),
     Length INT,
     Trailer NVARCHAR(200),
     StartDate SMALLDATETIME,
     EndDate SMALLDATETIME,
+    Genre_id INT,
+    CONSTRAINT FK_Genre FOREIGN KEY (Genre_id) REFERENCES GENRES(id)
 );
-
---bảng GENRES
 GO
+-- Genres
 CREATE TABLE GENRES(
     id INT PRIMARY KEY IDENTITY(1, 1),
     Title NVARCHAR(50)
 );
-GO
 
---bảng MOVIES_GENRES
-GO
-CREATE TABLE MOVIES_GENRES(
-    id INT PRIMARY KEY IDENTITY(1, 1),
-    Movie_id INT REFERENCES MOVIES(id),
-    Genre_id INT REFERENCES GENRES(id)
-)
-GO
-INSERT INTO MOVIES VALUES(N'Bố Già', 
-                        N'Phim sẽ xoay quanh lối sống thường nhật của một xóm lao động nghèo, ở đó có bộ tứ anh em Giàu - Sang - Phú - Quý với Ba Sang sẽ là nhân vật chính, hay lo chuyện bao đồng nhưng vô cùng thương con cái. Câu chuyện phim tập trung về hai cha con Ba Sang (Trấn Thành) và Quắn (Tuấn Trần). Dù yêu thương nhau nhưng khoảng cách thế hệ đã đem đến những bất đồng lớn giữa hai cha con. Liệu cả hai có thể cho nhau cơ hội thấu hiểu đối phương, thu hẹp khoảng cách và tạo nên hạnh phúc từ sự khác biệt?',
-                        N'Trấn Thành',
-                        '2021/03/12',
-                        'VN',
-                        'VN',
-                        128,
-                        'https://www.youtube.com/watch?v=uVa1lTvmVhs',
-                        '2023/01/01',
-                        '2023/12/30');         
-GO              
+--bảng GENRES           
 INSERT INTO GENRES VALUES (N'Gia Đình'), (N'Hài');
 GO
+GO
+ALTER TABLE MOVIES ADD Poster NVARCHAR(100);
+GO
+INSERT INTO GENRES VALUES(N'Tài liệu'), (N'Phiêu lưu'), (N'Kinh dị'), (N'Hành động'), (N'Tội phạm'), (N'Giả tưởng'), (N'Khoa học'), (N'Hoạt hình'), (N'Tình cảm'), (N'Phép thuật')
 
-CREATE TABLE ERROR
-(
-    INT ID IDENTITY(1,1) PRIMARY KEY,
-    Detail NTEXT NOT NULL,
-    Name NVARCHAR(50) NOT NULL,
-    Status NVARCHAR(30) NOT NULL,
-    Cost INT,
-    Staff_Id INT NOT NULL,
-    DateStartFix smalldatetime,
-    DateFinsihFix smalldatetime,
-    STAFF_ID INT NOT NULL,
-    CONSTRAINT FK_STAFFID  FOREIGN KEY(STAFF_ID)  REFERENCES STAFF(ID)
-)
+
 
 --bảng product
 go
@@ -155,3 +128,17 @@ begin
 	where ID=@ID
 end
 go
+-- bang errors
+
+CREATE TABLE ERRORS(
+    id INT IDENTITY(1, 1) PRIMARY KEY,
+    NAME NVARCHAR(100) NOT NULL,
+    DESCRIPTION NVARCHAR(200) NOT NULL,
+    DATEADDED SMALLDATETIME DEFAULT GETDATE(),
+    STATUS NVARCHAR(50) DEFAULT N'Chờ tiếp nhận',
+    ENDDATE SMALLDATETIME,
+    COST MONEY,
+    STAFF_id INT CONSTRAINT FK_ERR_STAFF FOREIGN KEY REFERENCES STAFF(Id),
+    IMAGE NVARCHAR(100) NOT NULL
+)
+GO
