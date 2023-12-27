@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CineMajestic.Views.Statistics"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              FontFamily="Segoe UI"
              d:DesignHeight="608" d:DesignWidth="1000">
@@ -38,7 +38,20 @@
                                   x:Name="cbBoxChuKy"
                                   Width="200"
                                   materialDesign:HintAssist.Hint="Chọn chu kỳ"
+                                  Loaded="cbBoxChuKy_Loaded"
+                                  SelectedItem="{Binding SelectedIncomePeriod}"
+                                  SelectionChanged="cbBoxChuKy_SelectionChanged"
                                   Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCM}"
+                                                           CommandParameter="{Binding ElementName=cbBoxChuKy}" />
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCM}"
+                                                           CommandParameter="{Binding ElementName=cbBoxChuKy}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                             <ComboBoxItem Content="Theo tháng"/>
                             <ComboBoxItem Content="Theo năm"/>
                         </ComboBox>
@@ -47,9 +60,18 @@
                                   Width="200"
                                   x:Name="cbBoxThoiDiem"
                                   materialDesign:HintAssist.Hint="Chọn thời điểm"
-                                  ItemsSource="{Binding timeList}"
+                                  SelectedItem="{Binding SelectedIncomeTime}"
                                   Style="{StaticResource MaterialDesignOutlinedComboBox}">
-
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Loaded">
+                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCM}"
+                                                           CommandParameter="{Binding ElementName=cbBoxThoiDiem}" />
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCM}"
+                                                           CommandParameter="{Binding ElementName=cbBoxThoiDiem}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
                         </ComboBox>
                     </Grid>
 
