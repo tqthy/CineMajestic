@@ -83,7 +83,13 @@
                           Loaded="ListView_Loaded"
                           ItemsSource="{Binding ErrorList}"
                           SelectedItem="{Binding SelectedItem}"
-                          Focusable="True">
+                          Focusable="True"
+                          ToolTip="Nháy đúp để xem chi tiết">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding ViewErrorDetailCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Width="Auto" Header="Sự cố">

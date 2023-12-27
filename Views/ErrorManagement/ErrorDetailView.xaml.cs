@@ -23,5 +23,10 @@ namespace CineMajestic.Views.ErrorManagement
         {
             InitializeComponent();
         }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

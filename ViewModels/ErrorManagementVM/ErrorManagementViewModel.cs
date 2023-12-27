@@ -89,10 +89,20 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         public ICommand AddErrorCommand { get; set; }
         public ICommand ButtonEditErrorCommand { get; set; }
         public ICommand EditErrorCommand { get; set; }
+        public ICommand ViewErrorDetailCommand { get; set; }
 
         #endregion
 
         #region Command Execution
+
+        #region error info
+
+        public void ExecuteViewErrorDetailCM(object obj)
+        {
+
+        }
+
+        #endregion
 
         #region edit error
         public void ExecuteEditErrorCommand(object obj)

@@ -22,24 +22,33 @@
     <Border
         Background="White"
         BorderBrush="Brown"
-        BorderThickness="1"
+        BorderThickness="0"
         CornerRadius="10">
         <Grid>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="200" />
-                    <RowDefinition />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="550"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
                 <!--  Tiêu đề  -->
-                <Border Background="#DFD7BF" CornerRadius="10,10,0,0">
+                <Border Background="#DFD7BF" CornerRadius="10,10,0,0"
+                        Grid.ColumnSpan="2">
                     <Grid>
                         <TextBlock
                             Margin="10,5,0,0"
                             FontSize="25"
                             FontWeight="Bold"
-                            Text="Báo cáo sự cố" />
+                            Text="Chi tiết sự cố" />
 
                         <!--  Nút exit  -->
                         <Button
@@ -50,7 +59,8 @@
                             Content="X"
                             Cursor="Hand"
                             FontSize="12"
-                            Foreground="#fffaf5">
+                            Foreground="#fffaf5"
+                            Click="btnClose_Click">
                             <Button.Style>
                                 <Style TargetType="Button">
                                     <Setter Property="Background" Value="#3f2305" />
@@ -80,7 +90,142 @@
                     </Grid>
                 </Border>
 
-                <Grid Grid.Row="1">
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="1"
+                            Grid.Column="0">
+                    <TextBlock Text="Sự cố:"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding ErrorName}"
+                               FontSize="20"
+                               FontWeight="Regular"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="2"
+                            Grid.Column="0">
+                    <TextBlock Text="NV báo cáo:"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding StaffName}"
+                               FontSize="20"
+                               FontWeight="Regular"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="Mã NV:"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding StaffID}"
+                               FontSize="20"
+                               FontWeight="Regular"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="3"
+                            Grid.Column="0">
+                    <TextBlock Text="Tình trạng:"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Status}"
+                               FontSize="20"
+                               FontWeight="Regular"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="Ngày báo cáo:"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding IssueDate}"
+                               FontSize="20"
+                               FontWeight="Regular"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Margin="0,-10,0,0">
+                    <TextBlock Text="Phí khắc phục:"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding Cost}"
+                               FontSize="20"
+                               FontWeight="Regular"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+      
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Margin="0,-5,0,0">
+                    <TextBlock Text="Ngày hoàn thành:"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding EndDate}"
+                               FontSize="20"
+                               FontWeight="Regular"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                            Grid.Row="6"
+                            Grid.Column="0">
+                    <TextBlock Text="Chi tiết:"
+                               FontSize="22"
+                               FontWeight="Bold"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <Border Margin="10,10,0,0"
+                            Height="150"
+                            BorderBrush="LightGray"
+                            BorderThickness="1"
+                            CornerRadius="10">
+                        <TextBlock Text="{Binding ErrorDescription}"
+                                    FontSize="20"
+                                    FontWeight="Regular"
+                                    TextWrapping="Wrap"/>
+                    </Border>
+                    
+                </StackPanel>
+
+                <TextBlock Text="Ảnh sự cố"
+                           Grid.Column="1"
+                           Grid.Row="1"
+                           VerticalAlignment="Center"
+                           FontWeight="Bold"
+                           FontSize="22"
+                           HorizontalAlignment="Center"/>
+                <Border Grid.Column="1"
+                        Grid.Row="2"
+                        Grid.RowSpan="5"
+                        BorderBrush="LightGray"
+                        BorderThickness="0.5"
+                        CornerRadius="5"
+                        Margin="10">
+                    <Image Source="{Binding ErrorImage}"/>
+                </Border>
+
+                <!--<Grid Grid.Row="1">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -89,7 +234,7 @@
 
 
                         <StackPanel>
-                            <!--  Tên sự cố  -->
+                            --><!--  Tên sự cố  --><!--
                             <TextBlock
                                 Margin="20,20,0,0"
                                 FontSize="20"
@@ -107,7 +252,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel>
-                                    <!--  Tình trạng để mặc định  -->
+                                    --><!--  Tình trạng để mặc định  --><!--
                                     <TextBlock
                                         Margin="20,20,0,0"
                                         FontSize="20"
@@ -120,7 +265,7 @@
                                         Text="{Binding}" />
                                 </StackPanel>
 
-                                <!--  Ngày tiếp nhận  -->
+                                --><!--  Ngày tiếp nhận  --><!--
                                 <StackPanel Grid.Column="1">
                                     <TextBlock
                                         Margin="20,20,0,0"
@@ -141,7 +286,7 @@
 
                         </StackPanel>
 
-                        <!--  Mã nhân viên  -->
+                        --><!--  Mã nhân viên  --><!--
                         <StackPanel Grid.Column="1">
                             <TextBlock
                                 Margin="20,20,0,0"
@@ -155,7 +300,7 @@
                                 FontWeight="DemiBold"
                                 IsReadOnly="True" />
 
-                            <!--  Tên nhân viên  -->
+                            --><!--  Tên nhân viên  --><!--
                             <TextBlock
                                 Margin="20,20,0,0"
                                 FontSize="20"
@@ -180,7 +325,7 @@
                         <ColumnDefinition Width="95" />
                     </Grid.ColumnDefinitions>
 
-                    <!--  Mô tả sự cố  -->
+                    --><!--  Mô tả sự cố  --><!--
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40" />
@@ -201,7 +346,7 @@
 
                     </Grid>
 
-                    <!--  Ảnh  -->
+                    --><!--  Ảnh  --><!--
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="40" />
@@ -226,7 +371,7 @@
                         </Border>
                     </Grid>
 
-                    <!--  Nút xác nhận  -->
+                    --><!--  Nút xác nhận  --><!--
                     <Button
                         Name="btnXacNhan"
                         Grid.Column="2"
@@ -236,7 +381,7 @@
                         materialDesign:ButtonAssist.CornerRadius="20"
                         Command="{Binding acceptAddCommand}"
                         Content="Xác nhận" />
-                </Grid>
+                </Grid>-->
 
 
 
