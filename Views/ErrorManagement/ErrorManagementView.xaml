@@ -10,14 +10,31 @@
     d:DesignHeight="648"
     d:DesignWidth="1000"
     Background="Transparent"
-    FontFamily="Segoe UI "
+    FontFamily="Segoe UI"
     TextElement.FontSize="13"
     TextElement.FontWeight="Regular"
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    mc:Ignorable="d">
-    <Grid Background="white">
+    mc:Ignorable="d"
+    x:Name="mainUC">
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation
+                        Storyboard.TargetName="mainUC"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0"
+                        To="1"
+                        Duration="0:0:0.3" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Grid Background="#f5f5f5">
         <!--  Chia layout  -->
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
@@ -92,7 +109,8 @@
                     </i:Interaction.Triggers>
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Width="Auto" Header="Sự cố">
+                            <GridViewColumn Width="500"
+                                            Header="Sự cố">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <!--  Tên sự cố  -->
@@ -100,7 +118,7 @@
                                             Width="Auto"
                                             Margin="17,0,0,0"
                                             FontSize="17"
-                                            FontWeight="Bold"
+                                            FontWeight="SemiBold"
                                             Text="{Binding Name}" />
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>

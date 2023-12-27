@@ -24,8 +24,6 @@
 
     <Border
         Background="White"
-        BorderBrush="Brown"
-        BorderThickness="1"
         CornerRadius="10">
         <Grid>
             <Grid.RowDefinitions>
