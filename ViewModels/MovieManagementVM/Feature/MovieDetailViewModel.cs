@@ -184,6 +184,17 @@ namespace CineMajestic.ViewModels.MovieManagementVM
                 }
             }
         }
+
+        private string importprice;
+        public string ImportPrice
+        {
+            get => importprice;
+            set
+            {
+                importprice = value;
+                OnPropertyChanged(nameof(ImportPrice));
+            }
+        }
         public MovieDetailViewModel(MovieDTO movieDTO)
         {
             this.movieDTO = movieDTO;
@@ -204,6 +215,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             Trailer= movieDTO.Trailer;
             StartDate= movieDTO.StartDate;
             Status=movieDTO.Status;
+            ImportPrice = movieDTO.ImportPrice.ToString();
             ImageSource=movieDTO.ImageSource;
         }
     }

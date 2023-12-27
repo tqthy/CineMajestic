@@ -391,7 +391,7 @@
                 <TextBlock
                     Margin="5,0,0,0"
                     VerticalAlignment="Center"
-                    Text="10000000" />
+                    Text="{Binding ImportPrice}" />
                 <TextBlock VerticalAlignment="Center" Text=" VNĐ" />
 
             </StackPanel>
