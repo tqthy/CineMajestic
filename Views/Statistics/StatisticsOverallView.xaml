@@ -4,13 +4,157 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CineMajestic.Views.Statistics"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              mc:Ignorable="d" 
              FontFamily="Segoe UI"
              d:DesignHeight="608" d:DesignWidth="1000">
     <Grid Background="#f5f5f5">
         <Grid Background="#f5f5f5"
               Margin="0,5,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <materialDesign:Card Grid.Row="0"
+                                 Grid.RowSpan="2"
+                                 Margin="20,10,20,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <ComboBox Grid.Column="0"
+                                  x:Name="cbBoxChuKy"
+                                  Width="200"
+                                  materialDesign:HintAssist.Hint="Chọn chu kỳ"
+                                  Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                            <ComboBoxItem Content="Theo tháng"/>
+                            <ComboBoxItem Content="Theo năm"/>
+                        </ComboBox>
 
+                        <ComboBox Grid.Column="1"
+                                  Width="200"
+                                  x:Name="cbBoxThoiDiem"
+                                  materialDesign:HintAssist.Hint="Chọn thời điểm"
+                                  ItemsSource="{Binding timeList}"
+                                  Style="{StaticResource MaterialDesignOutlinedComboBox}">
+
+                        </ComboBox>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Column="0"
+                                   Grid.Row="0"
+                                   Text="Tổng doanh thu:"
+                                   FontSize="18"
+                                   Margin="10,0,0,0"
+                                   HorizontalAlignment="Center"/>
+                        <TextBlock Grid.Column="1"
+                                   Grid.Row="0"
+                                   Text="Tổng chi phí:"
+                                   FontSize="18"
+                                   Margin="10,0,0,0"
+                                   HorizontalAlignment="Center"/>
+                        <materialDesign:Card Grid.Column="0"
+                                             Grid.Row="1"
+                                             Margin="20,5,20,5"
+                                             Background="#597E52">
+                            <Grid>
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Text="100,000,000"
+                                           FontWeight="SemiBold"
+                                           FontSize="20"
+                                           Foreground="#FFFFEC"
+                                           />
+                                <TextBlock Text="đ"
+                                           Margin="0,0,5,0"
+                                           FontSize="20"
+                                           Foreground="#FFFFEC"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Right"/>
+                            </Grid>
+                        </materialDesign:Card>
+
+                        <materialDesign:Card Grid.Column="1"
+                                             Grid.Row="1"
+                                             Margin="20,5,20,5"
+                                             Background="#C6A969">
+                            <Grid>
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           Text="100,000,000"
+                                           FontWeight="SemiBold"
+                                           FontSize="20"
+                                           Foreground="#FFFFEC"
+                                           />
+                                <TextBlock Text="đ"
+                                           Margin="0,0,5,0"
+                                           FontSize="20"
+                                           Foreground="#FFFFEC"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Right"/>
+                            </Grid>
+                        </materialDesign:Card>
+
+                    </Grid>
+
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Row="0"
+                                 Grid.Column="1"
+                                 Margin="10,10,20,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="- Cơ cấu doanh thu -"
+                                   FontSize="20"/>
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Card>
+            <materialDesign:Card Grid.Row="1"
+                                 Grid.Column="1"
+                                 Margin="10,10,20,20">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="- Cơ cấu chi phí -"
+                               FontSize="20"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+
+                </Grid>
+            </materialDesign:Card>
         </Grid>
     </Grid>
 </UserControl>

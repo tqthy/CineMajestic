@@ -13,8 +13,9 @@ using CineMajestic.Views.ShowTimeManagement;
 using CineMajestic.Views.StaffManagement;
 using CineMajestic.Views.Statistics;
 using CineMajestic.Views.VoucherManagement;
-using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore;
+
 
 namespace CineMajestic.ViewModels.StatisticsVM
 {
@@ -30,6 +31,16 @@ namespace CineMajestic.ViewModels.StatisticsVM
         }
 
         public ICommand SwitchViewStatisticsCommand { get; set; }
+
+        // test 
+        public ISeries[] Series { get; set; } = new ISeries[]
+        {
+            new LineSeries<double>
+            {
+                Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
+                Fill = null
+            }
+        };
 
         public StatisticsViewModel()
         {
