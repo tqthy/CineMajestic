@@ -99,36 +99,42 @@
                     Foreground="Red"
                     Text="Màn hình"
                     TextAlignment="Center" />
+                <Border
+                    Grid.Row="1"
+                    BorderBrush="Black"
+                    BorderThickness="0,0,0,1">
+                    <!--  Danh sách ghế  -->
+                    <Grid>
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <!--  Ghế  -->
+                                        <Button
+                                            Width="30"
+                                            Height="30"
+                                            Margin="5,10,5,0"
+                                            Background="AliceBlue"
+                                            BorderBrush="Green">
+                                            <Button.Content>
+                                                <TextBlock FontSize="13" Text="{Binding}" />
+                                            </Button.Content>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
 
-                <!--  Danh sách ghế  -->
-                <Grid Grid.Row="1">
-                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <ItemsControl>
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <!--  Ghế  -->
-                                    <Button
-                                        Width="30"
-                                        Height="30"
-                                        Margin="5,10,5,0"
-                                        Background="AliceBlue"
-                                        BorderBrush="Green">
-                                        <Button.Content>
-                                            <TextBlock FontSize="13" Text="{Binding}" />
-                                        </Button.Content>
-                                    </Button>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
 
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <WrapPanel />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </Border>
 
-                    </ScrollViewer>
-                </Grid>
+
             </Grid>
             <ProgressBar
                 Grid.Column="1"
