@@ -31,21 +31,19 @@ namespace CineMajestic.ViewModels.StatisticsVM
         }
 
         public ICommand SwitchViewStatisticsCommand { get; set; }
-
-        // test 
-        public ISeries[] Series { get; set; } = new ISeries[]
-        {
-            new LineSeries<double>
-            {
-                Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
-                Fill = null
-            }
-        };
+        public ICommand ChangeIncomePeriodCommand { get; set; }
+    
 
         public StatisticsViewModel()
         {
             CurrentStatisticsView = new StatisticsOverallView();
             SwitchViewStatisticsCommand = new ViewModelCommand(SwitchViewStatistics);
+            ChangeIncomePeriodCommand = new ViewModelCommand(ExecuteChangeIncomePeriodCM);
+        }
+
+        private void ExecuteChangeIncomePeriodCM(object obj)
+        {
+
         }
 
         private void SwitchViewStatistics(object userControlName)
@@ -63,7 +61,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
                     //CurrentStatisticsView = new StatisticsProductView();
                     break;
                 case "Customer":
-                    //CurrentStatisticsView = new StatisticsCustomerView();
+                    CurrentStatisticsView = new StatisticsCustomerView();
                     break;
             }
         }

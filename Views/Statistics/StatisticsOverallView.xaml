@@ -44,12 +44,10 @@
                                   Style="{StaticResource MaterialDesignOutlinedComboBox}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Loaded">
-                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCM}"
-                                                           CommandParameter="{Binding ElementName=cbBoxChuKy}" />
+                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCommand}" />
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="SelectionChanged">
-                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCM}"
-                                                           CommandParameter="{Binding ElementName=cbBoxChuKy}" />
+                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <ComboBoxItem Content="Theo tháng"/>
@@ -64,12 +62,10 @@
                                   Style="{StaticResource MaterialDesignOutlinedComboBox}">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Loaded">
-                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCM}"
-                                                           CommandParameter="{Binding ElementName=cbBoxThoiDiem}" />
+                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCommand}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="SelectionChanged">
-                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCM}"
-                                                           CommandParameter="{Binding ElementName=cbBoxThoiDiem}" />
+                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </ComboBox>
@@ -86,6 +82,12 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
 
+                        <Border Grid.Row="1"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="2"
+                                BorderBrush="#3F2305"
+                                BorderThickness="0,0,0,2"/>
+
                         <TextBlock Grid.Column="0"
                                    Grid.Row="0"
                                    Text="Tổng doanh thu:"
@@ -100,7 +102,8 @@
                                    HorizontalAlignment="Center"/>
                         <materialDesign:Card Grid.Column="0"
                                              Grid.Row="1"
-                                             Margin="20,5,20,5"
+                                             Margin="20,-5,20,5"
+                                             Height="34"
                                              Background="#597E52">
                             <Grid>
                                 <TextBlock HorizontalAlignment="Center"
@@ -121,7 +124,8 @@
 
                         <materialDesign:Card Grid.Column="1"
                                              Grid.Row="1"
-                                             Margin="20,5,20,5"
+                                             Margin="20,-5,20,5"
+                                             Height="34"
                                              Background="#C6A969">
                             <Grid>
                                 <TextBlock HorizontalAlignment="Center"
@@ -152,12 +156,14 @@
                         <RowDefinition Height="40"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-
+                    <Border Grid.Row="0"
+                            BorderBrush="#3F2305"
+                            BorderThickness="0,0,0,2"/>
                     <StackPanel Grid.Row="0"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
-                        <TextBlock Text="- Cơ cấu doanh thu -"
+                        <TextBlock Text="Cơ cấu doanh thu"
                                    FontSize="20"/>
                     </StackPanel>
                 </Grid>
@@ -170,7 +176,10 @@
                         <RowDefinition Height="40"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="- Cơ cấu chi phí -"
+                    <Border Grid.Row="0"
+                            BorderBrush="#3F2305"
+                            BorderThickness="0,0,0,2"/>
+                    <TextBlock Text="Cơ cấu chi phí"
                                FontSize="20"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"/>

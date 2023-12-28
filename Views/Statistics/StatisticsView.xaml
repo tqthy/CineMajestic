@@ -50,7 +50,9 @@
                              CommandParameter="Overall"/>
                 <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
                              BorderBrush="#3f2305"
-                             Content="Khách hàng"/>
+                             Content="Khách hàng"
+                             Command="{Binding SwitchViewStatisticsCommand}"
+                             CommandParameter="Customer"/>
                 <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
                              BorderBrush="#3f2305"
                              Content="Phim"/>
