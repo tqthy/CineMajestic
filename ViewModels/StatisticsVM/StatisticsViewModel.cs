@@ -19,6 +19,8 @@ using System.Windows.Controls;
 using CineMajestic.Models.DataAccessLayer.Bills;
 using System.Diagnostics;
 using System.Globalization;
+using LiveChartsCore.SkiaSharpView.Painting;
+using CineMajestic.Models.DataAccessLayer;
 
 
 namespace CineMajestic.ViewModels.StatisticsVM
@@ -63,6 +65,12 @@ namespace CineMajestic.ViewModels.StatisticsVM
 
         private ISeries[] _IOSeries;
         public ISeries[] IOSeries { get { return _IOSeries; } set { _IOSeries = value; OnPropertyChanged(nameof(IOSeries)); } }
+
+        private ISeries[] _OPSeries;
+        public ISeries[] OPSeries { get { return _OPSeries; } set { _OPSeries = value; OnPropertyChanged(nameof(OPSeries)); } }
+
+        private ISeries[] _IPSeries;
+        public ISeries[] IPSeries { get { return _IPSeries; } set { _IPSeries = value; OnPropertyChanged(nameof(IPSeries)); } }
 
         public Axis[] IOXAxes { get; set; } =
         {
@@ -119,27 +127,68 @@ namespace CineMajestic.ViewModels.StatisticsVM
         {
             BillAddMovieDA billAddMovieDA = new BillAddMovieDA();
             BillAddProductDA billAddProductDA = new BillAddProductDA();
+            BillImportProductDA billImportProductDA = new BillImportProductDA();
             BillDA billDA = new BillDA();
+            ErrorDA errorDA = new ErrorDA();
 
-            long sum_income = billDA.GetIncomeByMonth(month);
-            long sum_outcome = billAddProductDA.GetOutcomeByMonth(month);
-
-            IncomeText = sum_income.ToString("N0");
-            OutcomeText = sum_outcome.ToString("N0");
-
-            IOSeries = new ISeries[]
+            try
             {
-                new ColumnSeries<long>
+                long errorCostByMonth = errorDA.GetCostByMonth(month);
+                long addProductCostByMonth = billAddProductDA.GetOutcomeByMonth(month) + billImportProductDA.GetOutcomeByMonth(month);
+
+                long sum_income = billDA.GetIncomeByMonth(month);
+                long product_income = billDA.GetProductIncomeByMonth(month);
+                long sum_outcome = addProductCostByMonth + errorCostByMonth;
+
+                IncomeText = sum_income.ToString("N0");
+                OutcomeText = sum_outcome.ToString("N0");
+
+                IOSeries = new ISeries[]
                 {
-                    Values = new List<long>{ sum_income},
-                    Name = "Doanh thu"
-                },
-                new ColumnSeries<long>
+                    new ColumnSeries<long>
+                    {
+                        Values = new List<long>{ sum_income},
+                        Name = "Doanh thu"
+                    },
+                    new ColumnSeries<long>
+                    {
+                        Values = new List<long>{ sum_outcome },
+                        Name = "Chi phí"
+                    }
+                };
+                OPSeries = new ISeries[]
                 {
-                    Values = new List<long>{ sum_outcome },
-                    Name = "Chi phí"
-                }
-            };
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {errorCostByMonth},
+                        Name = "Sự cố"
+                    },
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {addProductCostByMonth},
+                        Name = "Nhập hàng"
+                    }
+                };
+                IPSeries = new ISeries[]
+{
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {sum_income-product_income},
+                        Name = "Vé"
+                    },
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {product_income},
+                        Name = "Sản phẩm"
+                    }
+};
+
+            } catch (Exception ex)
+            {
+
+            }
+
+
 
             //IOSeries[0].Values = new List<string> { IncomeText};
             //IOSeries[1].Values = new List<string> { OutcomeText };

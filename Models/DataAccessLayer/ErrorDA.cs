@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DTOs;
+using LiveChartsCore.Kernel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -99,7 +100,7 @@ namespace CineMajestic.Models.DataAccessLayer
                     command.Connection = connection;
                     command.CommandText = "UPDATE [ERRORS] SET STATUS=@status, ENDDATE=@enddate, COST=@cost WHERE id=@id";
                     command.Parameters.Add("@status", SqlDbType.NVarChar).Value = "Đã xử lý";
-                    command.Parameters.Add("@cost", SqlDbType.Money).Value = cost;
+                    command.Parameters.Add("@cost", SqlDbType.Int).Value = cost;
                     //DateTime date;
                     //date = DateTime.ParseExact(error.DateAdded, "d/M/yyyy h:m:s tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
                     command.Parameters.Add("@enddate", SqlDbType.SmallDateTime).Value = endDate;
@@ -135,6 +136,35 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 throw ex;
             }
+        }
+
+        public long GetCostByMonth(string month)
+        {
+            long result = 0;
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT COST FROM [ERRORS] WHERE MONTH(ENDDATE)=@month AND YEAR(ENDDATE)=YEAR(GETDATE()) AND COST IS NOT NULL";
+                    command.Parameters.Add("@month", SqlDbType.Int).Value = month;
+                    using (var reader = command.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            result += Convert.ToInt64(reader[0].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
         }
     }
 }

@@ -39,5 +39,35 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
             }
             return sumIncome;
         }
+        public long GetProductIncomeByMonth(string month)
+        {
+            long sumIncome = 0;
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT BD.Total FROM [BillDetail] BD JOIN [Billtest] BT ON BD.Bill_Id=BT.Id " +
+                        "WHERE MONTH(BillDate)=@month AND YEAR(BillDate)=YEAR(GETDATE())";
+                    command.Parameters.Add("@month", SqlDbType.Int).Value = month;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            sumIncome += Convert.ToInt64(reader[0].ToString());
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return sumIncome;
+        }
     }
 }
