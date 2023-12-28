@@ -165,13 +165,14 @@ create table Seat
 
 
 --bảng suất chiếu
+--bảng suất chiếu
 create table ShowTime
 (
 	Id int identity(1,1) primary key,
 	StartTime smalldatetime not null,--cái này bao gồm ngày chiếu,giờ chiếu luôn
-	EndTime time,--cái này sẽ tự động tính từ giờ chiếu và lenght của movie(xài trong constructor c#)
+	EndTime smalldatetime,--cái này sẽ tự động tính từ giờ chiếu và lenght của movie khi add 1 suất chiếu
 	PerSeatTicketPrice int not null,
-	Movie_Id int,--khóa ngoại tham chiếu tới id của bảng movie(lưu ý chỉ lấy movie đang phát hành)
+	Movie_Id int not null,--khóa ngoại tham chiếu tới id của bảng movie(lưu ý chỉ lấy movie đang phát hành,sau này movie mà có đổi trạng thái thì cũng bỏ ở bảng showtime đi)
 	Auditorium_Id int not null,--khóa ngoại tham chiếu tới id của bảng phòng chiếu
     Constraint FK_Auditorium_Id_ByShowTime foreign key(Auditorium_Id) references Auditorium(Id),
 	Constraint FK_Movie_Id_ByShowTime foreign key(Movie_Id) references Movie(Id),

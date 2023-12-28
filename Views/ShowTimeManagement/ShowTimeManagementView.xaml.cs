@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels.ShowTimeManagementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace CineMajestic.Views.ShowTimeManagement
         public ShowTimeManagementView()
         {
             InitializeComponent();
+            ShowTimeManagementViewModel showTimeManagementViewModel = new ShowTimeManagementViewModel();
+            this.DataContext = showTimeManagementViewModel;
            
         }
     }

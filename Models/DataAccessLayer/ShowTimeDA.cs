@@ -1,7 +1,7 @@
-﻿using CineMajestic.Models.DTOs;
+﻿using CineMajestic.Models.DTOs.ShowTimeManagement;
 using System;
 using System.Collections.Generic;
-using System.Data;
+using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,38 +9,74 @@ using System.Threading.Tasks;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
-    public class ShowTimeDA : DataAccess
+    public class ShowTimeDA:DataAccess
     {
-        public List<ShowTimeDTO> GetAllShowTimeByDate(DateTime date)
+        //get danh sách show time theo phòng,tất cả
+        public ObservableCollection<ShowTimeDTO> getDSShowTime(string Phong = "All")
         {
-            
-            List<ShowTimeDTO> result = new List<ShowTimeDTO>();
-            try
+            ObservableCollection<ShowTimeDTO> list = new ObservableCollection<ShowTimeDTO>();
+
+            using (SqlConnection connection = GetConnection())
             {
-                using (var connection = GetConnection())
-                using (var command = new SqlCommand())
+                connection.Open();
+
+                string truyvan = "";
+                if (Phong != "All")
                 {
-                    connection.Open();
-                    command.CommandText = "SELECT * FROM [SCREENING] WHERE YEAR(StartTime)=@year AND MONTH(StartTime)=@month AND DAY(StartTime)=@day";
-                    command.Parameters.Add("@year", SqlDbType.Int).Value = date.Year;
-                    command.Parameters.Add("@month", SqlDbType.Int).Value = date.Month;
-                    command.Parameters.Add("@day", SqlDbType.Int).Value = date.Day;
-                    using (var reader = command.ExecuteReader())
+
+                    truyvan =
+                        "select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title\n"
+                        +
+                        "from ShowTime\n"
+                        +
+                        "inner join Auditorium on ShowTime.Auditorium_Id=Auditorium.Id\n"
+                        +
+                        "inner join MOVIE on ShowTime.Movie_Id=MOVIE.id\n"
+                        +
+                        "where Auditorium.Name=N'" + Phong + "'";
+                }
+                else
+                {
+                    truyvan =
+                        truyvan =
+                        "select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title\n"
+                        +
+                        "from ShowTime\n"
+                        +
+                        "inner join Auditorium on ShowTime.Auditorium_Id=Auditorium.Id\n"
+                        +
+                        "inner join MOVIE on ShowTime.Movie_Id=MOVIE.id\n";
+                }
+
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        List<(string, string, DateTime)> lines = new();
                         while (reader.Read())
                         {
-                            (string, string, DateTime) t = (reader[0].ToString(), reader[1].ToString(), Convert.ToDateTime(reader[2]));
-                            lines.Add(t);
+                            int showTimeId = reader.GetInt32(reader.GetOrdinal("ShowTimeId"));
+
+                            DateTime startTime = reader.GetDateTime(reader.GetOrdinal("StartTime"));
+                            string StartTime = startTime.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            DateTime endTime = reader.GetDateTime(reader.GetOrdinal("EndTime"));
+                            string EndTime = endTime.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            int PerSeatTicketPrice = reader.GetInt32(reader.GetOrdinal("PerSeatTicketPrice"));
+
+                            int MovieId = reader.GetInt32(reader.GetOrdinal("MovieId"));
+
+                            string movieTitle = reader.GetString(reader.GetOrdinal("Title"));
+
+                            int length = reader.GetInt32(reader.GetOrdinal("Length"));
+
+                            list.Add(new ShowTimeDTO(showTimeId, StartTime, EndTime, PerSeatTicketPrice, MovieId,movieTitle,length));
                         }
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return result;
+
+            return list;
         }
     }
 }

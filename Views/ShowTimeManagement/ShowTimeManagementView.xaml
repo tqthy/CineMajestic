@@ -138,7 +138,7 @@
         <materialDesign:Card Grid.Row="1" Margin="20">
             <ListView
                 x:Name="lvScreening"
-                d:ItemsSource="{d:SampleData ItemCount=5}"
+                ItemsSource="{Binding DSSuatChieu}"
                 Focusable="True">
                 <ListView.View>
                     <GridView>
@@ -150,7 +150,7 @@
                                     <TextBlock
                                         Margin="19,2,0,0"
                                         FontSize="18"
-                                        Text="{Binding Title}" />
+                                        Text="{Binding MovieTitle}" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -174,7 +174,7 @@
                                     <TextBlock
                                         Margin="19,2,0,0"
                                         FontSize="18"
-                                        Text="{Binding StartTime}" />
+                                        Text="{Binding ShowTime}" />
 
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
