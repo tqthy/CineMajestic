@@ -111,6 +111,19 @@
                             </i:Interaction.Triggers>
                             <ListView.View>
                                 <GridView>
+                                    <GridViewColumn Width="100"
+                                                    Header="STT">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                               
+                                                <TextBlock
+                                            Width="Auto"
+                                            Margin="17,0,0,0"
+                                            FontSize="17"
+                                            Text="{Binding Top}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                     <GridViewColumn Width="300"
                                                     Header="Họ tên">
                                         <GridViewColumn.CellTemplate>
@@ -120,19 +133,18 @@
                                             Width="Auto"
                                             Margin="17,0,0,0"
                                             FontSize="17"
-                                            FontWeight="SemiBold"
-                                            Text="{Binding Name}" />
+                                            Text="{Binding FullName}" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
 
-                                    <GridViewColumn Width="Auto" Header="SĐT">
+                                    <GridViewColumn Width="110" Header="SĐT">
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock
                                             Margin="17,0,0,0"
                                             FontSize="17"
-                                            Text="{Binding}" />
+                                            Text="{Binding PhoneNumber}" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>
@@ -144,7 +156,7 @@
                                                 <TextBlock
                                             Margin="17,0,0,0"
                                             FontSize="17"
-                                            Text="{Binding}" />
+                                            Text="{Binding Expenses}" />
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>
                                     </GridViewColumn>

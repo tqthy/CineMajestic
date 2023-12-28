@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -236,8 +238,78 @@ namespace CineMajestic.Models.DataAccessLayer
             List<CustomerStatisticsDTO> result = new List<CustomerStatisticsDTO>();
             try
             {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT FullName, PhoneNumber, SUM(Total) AS ChiTieu FROM CUSTOMER" +
+                        " KH JOIN Billtest BT ON KH.Id = BT.Customer_Id WHERE MONTH(BillDate)=@month AND YEAR(BillDate)=YEAR(GETDATE())" +
+                        " GROUP BY KH.Id, FullName, PhoneNumber" +
+                        " ORDER BY ChiTieu DESC";
+                    command.Parameters.Add("@month", SqlDbType.Int).Value = month;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        int stt = 0;
+                        while (reader.Read())
+                        {
+                            CustomerStatisticsDTO customer = new CustomerStatisticsDTO()
+                            {
+                                Top = (++stt).ToString(),
+                                FullName = reader[0].ToString(),
+                                PhoneNumber = reader[1].ToString(),
+                                Expenses = Convert.ToInt64(reader[2].ToString()).ToString("N0")
+                            };
+                            result.Add(customer);
+                        }
+                    }
+                }
+                
+
 
             } catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public List<CustomerStatisticsDTO> GetTopCustomerByYear(string year)
+        {
+            List<CustomerStatisticsDTO> result = new List<CustomerStatisticsDTO>();
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT FullName, PhoneNumber, SUM(Total) AS ChiTieu FROM CUSTOMER" +
+                        " KH JOIN Billtest BT ON KH.Id = BT.Customer_Id WHERE YEAR(BillDate)=@year" +
+                        " GROUP BY KH.Id, FullName, PhoneNumber" +
+                        " ORDER BY ChiTieu DESC";
+                    command.Parameters.Add("@year", SqlDbType.Int).Value = year;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        int stt = 0;
+                        while (reader.Read())
+                        {
+                            CustomerStatisticsDTO customer = new CustomerStatisticsDTO()
+                            {
+                                Top = (++stt).ToString(),
+                                FullName = reader[0].ToString(),
+                                PhoneNumber = reader[1].ToString(),
+                                Expenses = Convert.ToInt64(reader[2].ToString()).ToString("N0")
+                            };
+                            result.Add(customer);
+                        }
+                    }
+                }
+
+
+
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }

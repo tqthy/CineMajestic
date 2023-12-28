@@ -23,6 +23,7 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using CineMajestic.Models.DataAccessLayer;
 using System.Collections.ObjectModel;
 using CineMajestic.Models.DTOs;
+using SkiaSharp;
 
 
 namespace CineMajestic.ViewModels.StatisticsVM
@@ -333,10 +334,13 @@ namespace CineMajestic.ViewModels.StatisticsVM
         {
             CustomerDA customerDA = new CustomerDA();
             List<CustomerStatisticsDTO> cusList = customerDA.GetTopCustomerByMonth(month);
+            CustomerList = new ObservableCollection<CustomerStatisticsDTO>(cusList);
         }
         private void LoadCustomerByYear(string year)
         {
-
+            CustomerDA customerDA = new CustomerDA();
+            List<CustomerStatisticsDTO> cusList = customerDA.GetTopCustomerByYear(year);
+            CustomerList = new ObservableCollection<CustomerStatisticsDTO>(cusList);
         }
 
         // switch view
@@ -369,6 +373,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
             CurrentStatisticsView = new StatisticsOverallView();
             SwitchViewStatisticsCommand = new ViewModelCommand(SwitchViewStatistics);
             ChangeIncomePeriodCommand = new ViewModelCommand(ExecuteChangeIncomePeriodCM);
+            ChangeCustomerIncomePeriodCommand = new ViewModelCommand(ExecuteChangeCustomerIncomePeriodCM);
         }
 
 
