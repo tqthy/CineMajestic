@@ -64,14 +64,14 @@
                                   Width="100"
                                   materialDesign:HintAssist.Hint="Chọn chu kỳ"
                                   Loaded="cbBoxChuKy_Loaded"
-                                  SelectedItem="{Binding SelectedIncomePeriod}"
+                                  SelectedItem="{Binding SelectedCustomerIncomePeriod}"
                                   SelectionChanged="cbBoxChuKy_SelectionChanged">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Loaded">
-                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCommand}" />
+                                    <i:InvokeCommandAction Command="{Binding ChangeCustomerIncomePeriodCommand}" />
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="SelectionChanged">
-                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding ChangeCustomerIncomePeriodCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                             <ComboBoxItem Content="Theo tháng"/>
@@ -81,14 +81,14 @@
                                   Width="100"
                                   x:Name="cbBoxThoiDiem"
                                   materialDesign:HintAssist.Hint="Chọn thời điểm"
-                                  SelectedItem="{Binding SelectedIncomeTime}"
+                                  SelectedItem="{Binding SelectedCustomerIncomeTime}"
                                   Margin="20,0,0,0">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Loaded">
-                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding ChangeCustomerIncomePeriodCommand}"/>
                                 </i:EventTrigger>
                                 <i:EventTrigger EventName="SelectionChanged">
-                                    <i:InvokeCommandAction Command="{Binding ChangeIncomePeriodCommand}"/>
+                                    <i:InvokeCommandAction Command="{Binding ChangeCustomerIncomePeriodCommand}"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </ComboBox>

@@ -200,5 +200,60 @@ namespace CineMajestic.Models.DataAccessLayer
                 throw ex;
             }
         }
+        public long GetCostByYear(string year)
+        {
+            long cost = 0;
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT ImportPrice FROM [MOVIE] WHERE YEAR(ImportDate)=@year";
+                    command.Parameters.Add("@year", SqlDbType.Int).Value = year;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            cost += Convert.ToInt64(reader[0].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return cost;
+        }
+
+        public long GetCostByMonth(string month)
+        {
+            long cost = 0;
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT ImportPrice FROM [MOVIE] WHERE YEAR(ImportDate)=YEAR(GETDATE()) AND MONTH(ImportDate)=@month";
+                    command.Parameters.Add("@month", SqlDbType.Int).Value = month;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            cost += Convert.ToInt64(reader[0].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return cost;
+        }
     }
 }

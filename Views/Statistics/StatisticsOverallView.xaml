@@ -196,7 +196,7 @@
                     </StackPanel>
                     <lvc:PieChart Grid.Row="2"
                                   Margin="5"
-                                  LegendPosition="Bottom"
+                                  LegendPosition="Right"
                                   Series="{Binding IPSeries}"/>
                 </Grid>
             </materialDesign:Card>
@@ -217,7 +217,7 @@
                                VerticalAlignment="Center"/>
                     <lvc:PieChart Grid.Row="2"
                                   Margin="5"
-                                  LegendPosition="Bottom"
+                                  LegendPosition="Right"
                                   Series="{Binding OPSeries}"/>
                 </Grid>
             </materialDesign:Card>

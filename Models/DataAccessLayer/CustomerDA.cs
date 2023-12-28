@@ -230,5 +230,18 @@ namespace CineMajestic.Models.DataAccessLayer
             }
 
         }
+
+        public List<CustomerStatisticsDTO> GetTopCustomerByMonth(string month)
+        {
+            List<CustomerStatisticsDTO> result = new List<CustomerStatisticsDTO>();
+            try
+            {
+
+            } catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
     }
 }
