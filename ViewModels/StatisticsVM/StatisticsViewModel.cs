@@ -120,7 +120,69 @@ namespace CineMajestic.ViewModels.StatisticsVM
         {
             BillAddMovieDA billAddMovieDA = new BillAddMovieDA();
             BillAddProductDA billAddProductDA = new BillAddProductDA();
-            BillDA billDA= new BillDA();
+            BillImportProductDA billImportProductDA = new BillImportProductDA();
+            BillDA billDA = new BillDA();
+            ErrorDA errorDA = new ErrorDA();
+
+            try
+            {
+                long errorCostByYear = errorDA.GetCostByYear(year);
+                long addProductCostByYear = billAddProductDA.GetOutcomeByYear(year) + billImportProductDA.GetOutcomeByYear(year);
+
+                long sum_income = billDA.GetIncomeByYear(year);
+                long product_income = billDA.GetProductIncomeByYear(year);
+                long sum_outcome = addProductCostByYear + errorCostByYear;
+
+                IncomeText = sum_income.ToString("N0");
+                OutcomeText = sum_outcome.ToString("N0");
+
+                IOSeries = new ISeries[]
+                {
+                    new ColumnSeries<long>
+                    {
+                        Values = new List<long>{ sum_income},
+                        Name = "Doanh thu"
+                    },
+                    new ColumnSeries<long>
+                    {
+                        Values = new List<long>{ sum_outcome },
+                        Name = "Chi phí"
+                    }
+                };
+                OPSeries = new ISeries[]
+                {
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {errorCostByYear},
+                        Name = "Sự cố"
+                    },
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {addProductCostByYear},
+                        Name = "Nhập hàng"
+                    }
+                };
+                IPSeries = new ISeries[]
+                {
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {sum_income-product_income},
+                        Name = "Vé"
+                    },
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {product_income},
+                        Name = "Sản phẩm"
+                    }
+                };
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
         }
 
         private void LoadByMonth(string month)
@@ -134,7 +196,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
             try
             {
                 long errorCostByMonth = errorDA.GetCostByMonth(month);
-                long addProductCostByMonth = billAddProductDA.GetOutcomeByMonth(month) + billImportProductDA.GetOutcomeByMonth(month);
+                long addProductCostByMonth = billAddProductDA.GetOutcomeByMonth(month) + billImportProductDA.GetOutcomeByYear(month);
 
                 long sum_income = billDA.GetIncomeByMonth(month);
                 long product_income = billDA.GetProductIncomeByMonth(month);
@@ -170,7 +232,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
                     }
                 };
                 IPSeries = new ISeries[]
-{
+                {
                     new PieSeries<long>
                     {
                         Values = new long[] {sum_income-product_income},
@@ -181,7 +243,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
                         Values = new long[] {product_income},
                         Name = "Sản phẩm"
                     }
-};
+                };
 
             } catch (Exception ex)
             {

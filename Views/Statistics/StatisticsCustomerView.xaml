@@ -99,7 +99,7 @@
 
                     <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                         <ListView x:Name="lvKH"
-                                  ItemsSource="{Binding ErrorList}"
+                                  ItemsSource="{Binding CustomerList}"
                                   SelectedItem="{Binding SelectedItem}"
                                   Focusable="True"
                                   ToolTip="Nháy đúp để xem chi tiết"

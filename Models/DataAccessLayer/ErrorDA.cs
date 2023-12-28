@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DTOs;
+using HarfBuzzSharp;
 using LiveChartsCore.Kernel;
 using System;
 using System.Collections.Generic;
@@ -150,6 +151,35 @@ namespace CineMajestic.Models.DataAccessLayer
                     command.Connection = connection;
                     command.CommandText = "SELECT COST FROM [ERRORS] WHERE MONTH(ENDDATE)=@month AND YEAR(ENDDATE)=YEAR(GETDATE()) AND COST IS NOT NULL";
                     command.Parameters.Add("@month", SqlDbType.Int).Value = month;
+                    using (var reader = command.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            result += Convert.ToInt64(reader[0].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return result;
+        }
+
+        public long GetCostByYear(string year)
+        {
+            long result = 0;
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT COST FROM [ERRORS] WHERE YEAR(ENDDATE)=@year AND COST IS NOT NULL";
+                    command.Parameters.Add("@year", SqlDbType.Int).Value = year;
                     using (var reader = command.ExecuteReader())
                     {
 
