@@ -25,12 +25,13 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         public ShowTimeManagementViewModel()
         {
             loadData();//lần đầu mở thì vào phần all
+            Auditorium();
         }
 
         private void loadData(string Phong="All")//load data theo phòng
         {
             ShowTimeDA showTimeDA = new ShowTimeDA();
-            DSSuatChieu = showTimeDA.getDSShowTime();
+            DSSuatChieu = showTimeDA.getDSShowTime(Phong);
         }
     }
 }

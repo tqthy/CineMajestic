@@ -47,7 +47,8 @@
                     BorderThickness="0"
                     Content="Toàn bộ"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                    Command="{Binding AuditoriumCommand}"/>
                 <!--  Phòng 1  -->
                 <Button
                     Height="60"
@@ -55,7 +56,8 @@
                     BorderThickness="0"
                     Content="Phòng 1"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                    Command="{Binding AuditoriumCommand1}"/>
 
                 <!--  Phòng 2  -->
                 <Button
@@ -64,7 +66,8 @@
                     BorderThickness="0"
                     Content="Phòng 2"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                    Command="{Binding AuditoriumCommand2}"/>
 
                 <!--  Phòng 3  -->
                 <Button
@@ -73,7 +76,8 @@
                     BorderThickness="0"
                     Content="Phòng 3"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                    Command="{Binding AuditoriumCommand3}"/>
 
                 <!--  Phòng 4  -->
                 <Button
@@ -82,7 +86,8 @@
                     BorderThickness="0"
                     Content="Phòng 4"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                    Command="{Binding AuditoriumCommand4}"/>
 
                 <!--  Phòng 5  -->
                 <Button
@@ -91,7 +96,8 @@
                     BorderThickness="0"
                     Content="Phòng 5"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                    Command="{Binding AuditoriumCommand5}"/>
 
                 <!--  Phòng 6  -->
                 <Button
@@ -100,7 +106,8 @@
                     BorderThickness="0"
                     Content="Phòng 6"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                    Command="{Binding AuditoriumCommand6}"/>
 
                 <!--  Phòng 7  -->
                 <Button
@@ -109,7 +116,8 @@
                     BorderThickness="0"
                     Content="Phòng 7"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
+                    Command="{Binding AuditoriumCommand7}"/>
 
                 <!--  Lọc theo ngày  -->
                 <DatePicker
