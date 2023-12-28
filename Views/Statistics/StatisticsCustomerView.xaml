@@ -8,7 +8,26 @@
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              FontFamily="Segoe UI"
-             d:DesignHeight="608" d:DesignWidth="1000">
+             d:DesignHeight="608" d:DesignWidth="1000"
+             x:Name="UCKH">
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation
+                        Storyboard.TargetName="UCKH"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0"
+                        To="1"
+                        Duration="0:0:0.3" />
+
+
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+
     <Grid Background="#f5f5f5">
         <Grid Background="#f5f5f5"
               Margin="0,5,0,0">
@@ -80,7 +99,6 @@
 
                     <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                         <ListView x:Name="lvKH"
-                                  Loaded="ListView_Loaded"
                                   ItemsSource="{Binding ErrorList}"
                                   SelectedItem="{Binding SelectedItem}"
                                   Focusable="True"

@@ -5,10 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:CineMajestic.Views.Statistics"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF" xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              FontFamily="Segoe UI"
-             d:DesignHeight="608" d:DesignWidth="1000">
+             d:DesignHeight="608" d:DesignWidth="1000"
+             x:Name="UCOV">
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation
+                        Storyboard.TargetName="UCOV"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0"
+                        To="1"
+                        Duration="0:0:0.3" />
+
+
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+
     <Grid Background="#f5f5f5">
         <Grid Background="#f5f5f5"
               Margin="0,5,0,0">
@@ -108,7 +128,7 @@
                             <Grid>
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
-                                           Text="100,000,000"
+                                           Text="{Binding IncomeText}"
                                            FontWeight="SemiBold"
                                            FontSize="20"
                                            Foreground="#FFFFEC"
@@ -130,7 +150,7 @@
                             <Grid>
                                 <TextBlock HorizontalAlignment="Center"
                                            VerticalAlignment="Center"
-                                           Text="100,000,000"
+                                           Text="{Binding OutcomeText}"
                                            FontWeight="SemiBold"
                                            FontSize="20"
                                            Foreground="#FFFFEC"
@@ -145,6 +165,14 @@
                         </materialDesign:Card>
 
                     </Grid>
+
+                    <lvc:CartesianChart Grid.Row="2"
+                                        Margin="10"
+                                        LegendPosition="Bottom"
+                                        XAxes="{Binding IOXAxes}"
+                                        Series="{Binding IOSeries}">
+                    
+                    </lvc:CartesianChart>
 
                 </Grid>
             </materialDesign:Card>

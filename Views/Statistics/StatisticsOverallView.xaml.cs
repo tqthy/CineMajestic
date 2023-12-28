@@ -31,11 +31,13 @@ namespace CineMajestic.Views.Statistics
 
         private void cbBoxChuKy_Loaded(object sender, RoutedEventArgs e)
         {
-            GetMonthSource(cbBoxThoiDiem);
+            cbBoxChuKy.SelectedIndex = 0;
+            //GetMonthSource(cbBoxThoiDiem);
         }
 
         private void cbBoxChuKy_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            if (cbBoxChuKy.SelectedItem == null) return;
             ComboBoxItem s = (ComboBoxItem)cbBoxChuKy.SelectedItem;
             switch (s.Content.ToString())
             {
