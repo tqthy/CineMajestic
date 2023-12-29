@@ -68,6 +68,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
             loadDSSP(2);//ban đầu là get all sản phẩm
             Filter();
+            Add();
         }
 
         private void Back(object obj)

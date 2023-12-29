@@ -104,38 +104,38 @@
                             <Button
                                 Width="240"
                                 Height="40"
+                                Command="{Binding FilterAllCommand}"
                                 Content="Tất cả"
                                 Cursor="Hand"
                                 FontSize="18"
                                 FontWeight="DemiBold"
                                 Foreground="Black"
-                                Style="{StaticResource MaterialDesignFlatButton}" 
-                                Command="{Binding FilterAllCommand}"/>
+                                Style="{StaticResource MaterialDesignFlatButton}" />
                             <!--  Nút đồ ăn  -->
                             <Button
                                 Width="240"
                                 Height="40"
                                 BorderBrush="Black"
                                 BorderThickness="1,0,1,0"
+                                Command="{Binding FilterThucAnCommand}"
                                 Content="Thức ăn"
                                 Cursor="Hand"
                                 FontSize="18"
                                 FontWeight="DemiBold"
                                 Foreground="Black"
-                                Style="{StaticResource MaterialDesignFlatButton}" 
-                                Command="{Binding FilterThucAnCommand}"/>
+                                Style="{StaticResource MaterialDesignFlatButton}" />
 
                             <!--  Nút đồ uống  -->
                             <Button
                                 Width="230"
                                 Height="40"
+                                Command="{Binding FilterDoUongCommand}"
                                 Content="Đồ uống"
                                 Cursor="Hand"
                                 FontSize="18"
                                 FontWeight="DemiBold"
                                 Foreground="Black"
-                                Style="{StaticResource MaterialDesignFlatButton}" 
-                                Command="{Binding FilterDoUongCommand}"/>
+                                Style="{StaticResource MaterialDesignFlatButton}" />
 
                         </StackPanel>
                     </Border>
@@ -159,7 +159,9 @@
                                                 <Button
                                                     Width="220"
                                                     Height="135"
-                                                    VerticalAlignment="Center">
+                                                    VerticalAlignment="Center"
+                                                    Command="{Binding DataContext.AddProductCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                                    CommandParameter="{Binding}">
                                                     <Button.Background>
                                                         <ImageBrush ImageSource="{Binding ImageSource}" Stretch="Uniform" />
                                                     </Button.Background>
@@ -257,7 +259,7 @@
                     <materialDesign:Card Margin="2">
                         <Grid>
                             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                                <ItemsControl>
+                                <ItemsControl ItemsSource="{Binding DSSPChon}">
                                     <ItemsControl.ItemTemplate>
 
                                         <!--  Cách 1 sản phẩm hiển thị  -->
@@ -269,7 +271,7 @@
                                                         <ColumnDefinition Width="25*" />
                                                     </Grid.ColumnDefinitions>
                                                     <!--  Binding ảnh  -->
-                                                    <Image Source="Anh/Coca.jpg" Stretch="Uniform" />
+                                                    <Image Source="{Binding ImageSource}" Stretch="Uniform" />
 
                                                     <Grid Grid.Column="1" Margin="5,0,0,0">
                                                         <Grid.RowDefinitions>
@@ -286,7 +288,7 @@
                                                                 VerticalAlignment="Top"
                                                                 FontSize="18"
                                                                 FontWeight="DemiBold"
-                                                                Text="{Binding}"
+                                                                Text="{Binding Name}"
                                                                 TextWrapping="Wrap" />
                                                             <!--  Nút  ấn xóa sản phẩm trong đi  -->
                                                             <Button
@@ -350,6 +352,8 @@
                                                                     <Button
                                                                         HorizontalAlignment="Left"
                                                                         VerticalAlignment="Top"
+                                                                        Command="{Binding DataContext.Tru1QuantityChoiceCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                                                        CommandParameter="{Binding}"
                                                                         Cursor="Hand">
                                                                         <Button.Style>
                                                                             <Style TargetType="Button">
@@ -385,13 +389,15 @@
                                                                         HorizontalAlignment="Center"
                                                                         VerticalAlignment="Top"
                                                                         FontSize="14"
-                                                                        Text="{Binding}" />
+                                                                        Text="{Binding Quantity_Choice}" />
 
 
                                                                     <!--  Nút cộng  -->
                                                                     <Button
                                                                         HorizontalAlignment="Left"
                                                                         VerticalAlignment="Top"
+                                                                        Command="{Binding DataContext.Cong1QuantityChoiceCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                                                        CommandParameter="{Binding}"
                                                                         Cursor="Hand">
                                                                         <Button.Style>
                                                                             <Style TargetType="Button">
@@ -440,7 +446,7 @@
                                                                     VerticalAlignment="Center"
                                                                     FontFamily="Arial"
                                                                     FontSize="18"
-                                                                    Text="{Binding}" />
+                                                                    Text="{Binding Price}" />
 
                                                                 <TextBlock
                                                                     Margin="1,0,3,0"

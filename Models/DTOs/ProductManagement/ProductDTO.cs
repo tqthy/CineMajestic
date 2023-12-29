@@ -15,6 +15,8 @@ namespace CineMajestic.Models.DTOs.ProductManagement
         private int price;
         private int type;//1 là thức ăn,2 là đồ uống
         private string imageSource;
+        private int quantity_Choice = 1;
+
 
         public int Id { get { return id; } set { id = value; } }
         public string Name { get { return name; } set { name = value; } }
@@ -28,6 +30,17 @@ namespace CineMajestic.Models.DTOs.ProductManagement
                 OnPropertyChanged(nameof(Quantity));
             }
         }
+
+        public int Quantity_Choice
+        {
+            get => quantity_Choice;
+            set
+            {
+                quantity_Choice=value;
+                OnPropertyChanged(nameof(Quantity_Choice));
+            }
+        }
+
 
         public int Price { get { return price; } set { price = value; } }
         public int Type { get { return type; } set { type = value; } }
