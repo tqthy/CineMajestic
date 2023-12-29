@@ -244,5 +244,33 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+        //lấy toàn bộ imageSource phục vụ việc xóa ảnh
+        public List<string> listImageSource()
+        {
+            List<string> list = new List<string>();
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string truyvan =
+                    "select ImageSource from Movie";
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                            list.Add(imageSource);
+                        }
+                    }
+                }
+            }
+
+
+            return list;
+        }
+
     }
 }

@@ -25,10 +25,53 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
         private void EditMovie(object obj)
         {
+            deleteImage();
+
+
             EditFilmView editFilmView = new EditFilmView(obj as MovieDTO);
             editFilmView.ShowDialog();
 
             loadData();
+        }
+
+
+        //xóa image không dùng
+        private void deleteImage()
+        {
+            MovieDA movieDA = new MovieDA();
+            List<string> DSIM = new List<string>(movieDA.listImageSource());
+            List<string> listFileDelete = new List<string>();
+            Task.Run(() =>
+            {
+                try
+                {
+                    string s = "";
+                    DirectoryInfo dir = new DirectoryInfo(MotSoPTBoTro.pathProject() + @"Images\MovieManagement");
+                    FileInfo[] files = dir.GetFiles("*.*", SearchOption.AllDirectories);
+                    foreach (FileInfo file in files)
+                    {
+
+                        if (!DSIM.Contains(file.Name))
+                        {
+                            if (file.Name != "Doremon.jpg")
+                            {
+                                listFileDelete.Add(file.Name);
+                            }
+                        }
+
+                    }
+                    foreach (string item in listFileDelete)
+                    {
+                        try
+                        {
+                            File.Delete(MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + item);
+                        }
+                        catch { }
+                    }
+
+                }
+                catch { }
+            });
         }
     }
 
