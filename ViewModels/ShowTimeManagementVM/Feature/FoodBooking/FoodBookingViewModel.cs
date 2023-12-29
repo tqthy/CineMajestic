@@ -1,7 +1,10 @@
-﻿using CineMajestic.Views.ShowTimeManagement;
+﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs.ProductManagement;
+using CineMajestic.Views.ShowTimeManagement;
 using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,9 +45,19 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
 
 
-    public class FoodBookingViewModel:MainBaseViewModel
+    public partial class FoodBookingViewModel:MainBaseViewModel
     {
         public ICommand BackCommand { get; set; }
+        private ObservableCollection<ProductDTO> dSSP;
+        public ObservableCollection<ProductDTO> DSSP
+        {
+            get => dSSP;
+            set
+            {
+                dSSP = value;
+                OnPropertyChanged(nameof(DSSP));    
+            }
+        }
 
 
         FoodBookingView foodBookingView;
@@ -52,11 +65,20 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         {
             BackCommand = new ViewModelCommand(Back);
             this.foodBookingView = foodBookingView;
+
+            loadDSSP(2);//ban đầu là get all sản phẩm
+            Filter();
         }
 
         private void Back(object obj)
         {
             foodBookingView.Close();
+        }
+
+        private void loadDSSP(int type)
+        {
+            ProductDA productDA = new ProductDA();
+            DSSP = productDA.getDSSPTheoLoai(type);
         }
     }
 }

@@ -109,7 +109,8 @@
                                 FontSize="18"
                                 FontWeight="DemiBold"
                                 Foreground="Black"
-                                Style="{StaticResource MaterialDesignFlatButton}" />
+                                Style="{StaticResource MaterialDesignFlatButton}" 
+                                Command="{Binding FilterAllCommand}"/>
                             <!--  Nút đồ ăn  -->
                             <Button
                                 Width="240"
@@ -121,7 +122,8 @@
                                 FontSize="18"
                                 FontWeight="DemiBold"
                                 Foreground="Black"
-                                Style="{StaticResource MaterialDesignFlatButton}" />
+                                Style="{StaticResource MaterialDesignFlatButton}" 
+                                Command="{Binding FilterThucAnCommand}"/>
 
                             <!--  Nút đồ uống  -->
                             <Button
@@ -132,7 +134,8 @@
                                 FontSize="18"
                                 FontWeight="DemiBold"
                                 Foreground="Black"
-                                Style="{StaticResource MaterialDesignFlatButton}" />
+                                Style="{StaticResource MaterialDesignFlatButton}" 
+                                Command="{Binding FilterDoUongCommand}"/>
 
                         </StackPanel>
                     </Border>
@@ -140,7 +143,7 @@
                     <!--  Lưới sản phẩm  -->
                     <Grid Grid.Row="1">
                         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                            <ItemsControl>
+                            <ItemsControl ItemsSource="{Binding DSSP}">
                                 <ItemsControl.ItemTemplate>
 
                                     <!--  Cách 1 sản phẩm hiển thị  -->
@@ -196,7 +199,7 @@
                                                                 Margin="10,0,0,0"
                                                                 VerticalAlignment="Center"
                                                                 FontSize="22"
-                                                                Text="{Binding}" />
+                                                                Text="{Binding Quantity}" />
                                                         </StackPanel>
 
 
@@ -218,7 +221,7 @@
                                                                 VerticalAlignment="Center"
                                                                 FontFamily="Arial"
                                                                 FontSize="22"
-                                                                Text="{Binding}" />
+                                                                Text="{Binding Price}" />
                                                         </StackPanel>
 
                                                     </Grid>
