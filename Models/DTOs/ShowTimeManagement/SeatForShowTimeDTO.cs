@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace CineMajestic.Models.DTOs.ShowTimeManagement
 {
-    public class SeatDTO:INotifyPropertyChanged
+    public class SeatForShowTimeDTO:INotifyPropertyChanged
     {
-        public int Id {  get; set; }
-        public string Location {  get; set; }
+        public int Id { get; set; }
+        public int Seat_Id {  get; set; }
+        public int ShowTime_Id {  get; set; }
+        public string Location { get; set; }
 
         private bool condition;
         public bool Condition
@@ -22,18 +24,17 @@ namespace CineMajestic.Models.DTOs.ShowTimeManagement
                 OnPropertyChanged(nameof(Condition));
             }
         }
-        public int Auditorium_Id {  get; set; }
 
         //constructor phục vụ lấy danh sách ghế
 
-        public SeatDTO(int id, string location, bool condition, int auditorium_Id)
+        public SeatForShowTimeDTO(int id,int seat_Id,int showTime_Id,string location,bool condition)
         {
             Id = id;
+            Seat_Id = seat_Id;
+            ShowTime_Id = showTime_Id;
             Location = location;
             Condition = condition;
-            Auditorium_Id = auditorium_Id;
         }
-
 
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -44,3 +45,4 @@ namespace CineMajestic.Models.DTOs.ShowTimeManagement
         }
     }
 }
+

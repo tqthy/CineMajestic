@@ -56,14 +56,14 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             }
         }
 
-        private int totalPrice;
-        public int TotalPrice
+        private int totalPriceTicket;
+        public int TotalPriceTicket
         {
-            get => totalPrice;
+            get => totalPriceTicket;
             set
             {
-                totalPrice = value;
-                OnPropertyChanged(nameof(TotalPrice));
+                totalPriceTicket = value;
+                OnPropertyChanged(nameof(TotalPriceTicket));
             }
         }
 
@@ -87,7 +87,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 NameAuditorium = showTimeDTO.NameAuditorium;
                 PerSeatTicketPrice = showTimeDTO.PerSeatTicketPrice;
                 Seats = "Hiện chưa chọn ghế nào!";
-                TotalPrice = 0;
+                TotalPriceTicket = 0;
             }
             catch { }
         }

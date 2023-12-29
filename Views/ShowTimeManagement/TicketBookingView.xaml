@@ -380,7 +380,7 @@
                                     VerticalAlignment="Center"
                                     FontSize="18"
                                     FontWeight="SemiBold"
-                                    Text="{Binding TotalPrice}" />
+                                    Text="{Binding TotalPriceTicket}" />
 
                                 <!--  đơn vị đồng  -->
                                 <TextBlock
