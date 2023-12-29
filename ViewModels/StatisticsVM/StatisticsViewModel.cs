@@ -24,6 +24,8 @@ using CineMajestic.Models.DataAccessLayer;
 using System.Collections.ObjectModel;
 using CineMajestic.Models.DTOs;
 using SkiaSharp;
+using CineMajestic.Models.DTOs.ProductManagement;
+using LiveChartsCore.Defaults;
 
 
 namespace CineMajestic.ViewModels.StatisticsVM
@@ -78,7 +80,53 @@ namespace CineMajestic.ViewModels.StatisticsVM
             set { _SelectedCustomerIncomeTime = value; OnPropertyChanged(nameof(SelectedCustomerIncomeTime)); }
         }
 
-        
+        // movie
+
+        private ObservableCollection<MovieStatisticsDTO> movieList = new();
+        public ObservableCollection<MovieStatisticsDTO> MovieList
+        {
+            get => movieList;
+            set { movieList = value; OnPropertyChanged(nameof(MovieList)); }
+        }
+
+        private ComboBoxItem _SelectedMovieIncomePeriod;
+        public ComboBoxItem SelectedMovieIncomePeriod
+        {
+            get { return _SelectedMovieIncomePeriod; }
+            set { _SelectedMovieIncomePeriod = value; OnPropertyChanged(nameof(SelectedMovieIncomePeriod)); }
+        }
+
+        private string _SelectedMovieIncomeTime;
+        public string SelectedMovieIncomeTime
+        {
+            get { return _SelectedMovieIncomeTime; }
+            set { _SelectedMovieIncomeTime = value; OnPropertyChanged(nameof(SelectedMovieIncomeTime)); }
+        }
+
+
+        // product
+
+        private ObservableCollection<ProductStatisticsDTO> productList = new();
+        public ObservableCollection<ProductStatisticsDTO> ProductList
+        {
+            get => productList;
+            set { productList = value; OnPropertyChanged(nameof(ProductList)); }
+        }
+
+        private ComboBoxItem _SelectedProductIncomePeriod;
+        public ComboBoxItem SelectedProductIncomePeriod
+        {
+            get { return _SelectedProductIncomePeriod; }
+            set { _SelectedProductIncomePeriod = value; OnPropertyChanged(nameof(SelectedProductIncomePeriod)); }
+        }
+
+        private string _SelectedProductIncomeTime;
+        public string SelectedProductIncomeTime
+        {
+            get { return _SelectedProductIncomeTime; }
+            set { _SelectedProductIncomeTime = value; OnPropertyChanged(nameof(SelectedProductIncomeTime)); }
+        }
+
 
         // current view
 
@@ -111,6 +159,20 @@ namespace CineMajestic.ViewModels.StatisticsVM
                 Labels = new string[] {""}
             }
         };
+
+        public Axis[] CXAxes { get; set; } = new Axis[]
+        {
+            new TimeSpanAxis(TimeSpan.FromHours(1), date => date.ToString("%h") + "h")
+        };
+
+        public Axis[] CYAxes { get; set; } = {
+            new Axis
+            {
+                Name="Số lượng khách"
+            }
+        };
+        private ISeries[] _CLSeries;
+        public ISeries[] CLSeries { get { return _CLSeries; } set { _CLSeries = value; OnPropertyChanged(nameof(CLSeries)); } }
 
         #endregion
 
@@ -343,6 +405,96 @@ namespace CineMajestic.ViewModels.StatisticsVM
             CustomerList = new ObservableCollection<CustomerStatisticsDTO>(cusList);
         }
 
+        // Movie
+
+        public ICommand ChangeMovieIncomePeriodCommand { get; set; }
+
+        private void ExecuteChangeMovieIncomePeriodCM(object obj)
+        {
+            if (SelectedMovieIncomePeriod == null) return;
+            else
+            {
+                switch (SelectedMovieIncomePeriod.Content.ToString())
+                {
+                    case "Theo năm":
+                        {
+                            if (SelectedMovieIncomeTime != null)
+                            {
+                                LoadMovieByYear(SelectedMovieIncomeTime);
+                            }
+                            return;
+                        }
+                    case "Theo tháng":
+                        {
+                            if (SelectedMovieIncomeTime != null)
+                            {
+                                LoadMovieByMonth(SelectedMovieIncomeTime.Substring(6));
+                            }
+                            return;
+                        }
+                }
+            }
+        }
+
+        private void LoadMovieByMonth(string month)
+        {
+            MovieDA movieDA = new MovieDA();
+            List<MovieStatisticsDTO> movList = movieDA.GetTopMovieByMonth(month);
+            MovieList = new ObservableCollection<MovieStatisticsDTO>(movList);
+        }
+        private void LoadMovieByYear(string year)
+        {
+            MovieDA movieDA = new();
+            List<MovieStatisticsDTO> movList = movieDA.GetTopMovieByYear(year);
+            MovieList = new ObservableCollection<MovieStatisticsDTO>(movList);
+        }
+
+        // product
+
+        public ICommand ChangeProductIncomePeriodCommand { get; set; }
+
+        private void ExecuteChangeProductIncomePeriodCM(object obj)
+        {
+            if (SelectedProductIncomePeriod == null) return;
+            else
+            {
+                switch (SelectedProductIncomePeriod.Content.ToString())
+                {
+                    case "Theo năm":
+                        {
+                            if (SelectedProductIncomeTime != null)
+                            {
+                                LoadProductByYear(SelectedProductIncomeTime);
+                            }
+                            return;
+                        }
+                    case "Theo tháng":
+                        {
+                            if (SelectedProductIncomeTime != null)
+                            {
+                                LoadProductByMonth(SelectedProductIncomeTime.Substring(6));
+                            }
+                            return;
+                        }
+                }
+            }
+        }
+
+        private void LoadProductByMonth(string month)
+        {
+            ProductDA productDA = new();
+            List<ProductStatisticsDTO> pList = productDA.GetTopProductByMonth(month);
+            ProductList = new ObservableCollection<ProductStatisticsDTO>(pList);
+        }
+        private void LoadProductByYear(string year)
+        {
+            ProductDA productDA = new();
+            List<ProductStatisticsDTO> pList = productDA.GetTopProductByYear(year);
+            ProductList = new ObservableCollection<ProductStatisticsDTO>(pList);
+        }
+
+
+
         // switch view
         public ICommand SwitchViewStatisticsCommand { get; set; }
 
@@ -352,15 +504,52 @@ namespace CineMajestic.ViewModels.StatisticsVM
             switch (UserControlName)
             {
                 case "Movie":
-                    //CurrentStatisticsView = new StatisticsMovieView();
+                    CurrentStatisticsView = new StatisticsMovie();
                     break;
                 case "Overall":
                     CurrentStatisticsView = new StatisticsOverallView();
                     break;
                 case "Product":
-                    //CurrentStatisticsView = new StatisticsProductView();
+                    CurrentStatisticsView = new StatisticsProduct();
                     break;
                 case "Customer":
+                    try 
+                    {
+                        List<TimeSpanPoint> timeSpanPoints = new List<TimeSpanPoint>();
+                        BillDA billService = new BillDA();
+                        List<Tuple<int, int>> tuples = billService.GetCustomerDistribution();
+                        int iT = 0; 
+                        for(int h = 0; h <= 23; ++h)
+                        {
+                            if (iT >= tuples.Count)
+                            {
+                                timeSpanPoints.Add(new TimeSpanPoint(TimeSpan.FromHours(h), 0));
+                            } else
+                            {
+                                if (tuples[iT].Item1 == h)
+                                {
+                                    timeSpanPoints.Add(new TimeSpanPoint(TimeSpan.FromHours(h), tuples[iT].Item2));
+                                    ++iT;
+                                } else
+                                {
+                                    timeSpanPoints.Add(new TimeSpanPoint(TimeSpan.FromHours(h), 0));
+                                }
+                            }
+                        }
+
+                        CLSeries = new ISeries[]
+                        {
+                            new LineSeries<TimeSpanPoint>
+                            {
+                                Values = timeSpanPoints
+                            }
+                        };
+                    } catch
+                    {
+
+                    }
+                    
+                    
                     CurrentStatisticsView = new StatisticsCustomerView();
                     break;
             }
@@ -374,6 +563,8 @@ namespace CineMajestic.ViewModels.StatisticsVM
             SwitchViewStatisticsCommand = new ViewModelCommand(SwitchViewStatistics);
             ChangeIncomePeriodCommand = new ViewModelCommand(ExecuteChangeIncomePeriodCM);
             ChangeCustomerIncomePeriodCommand = new ViewModelCommand(ExecuteChangeCustomerIncomePeriodCM);
+            ChangeMovieIncomePeriodCommand = new ViewModelCommand(ExecuteChangeMovieIncomePeriodCM);
+            ChangeProductIncomePeriodCommand = new ViewModelCommand(ExecuteChangeProductIncomePeriodCM);
         }
 
 

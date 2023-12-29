@@ -210,7 +210,7 @@ namespace CineMajestic.Models.DataAccessLayer
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "SELECT ImportPrice FROM [MOVIE] WHERE YEAR(ImportDate)=@year";
+                    command.CommandText = "SELECT Total FROM [Bill_AddMovie] WHERE YEAR(BillDate)=@year";
                     command.Parameters.Add("@year", SqlDbType.Int).Value = year;
                     using (var reader = command.ExecuteReader())
                     {
@@ -238,7 +238,7 @@ namespace CineMajestic.Models.DataAccessLayer
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "SELECT ImportPrice FROM [MOVIE] WHERE YEAR(ImportDate)=YEAR(GETDATE()) AND MONTH(ImportDate)=@month";
+                    command.CommandText = "SELECT Total FROM [Bill_AddMovie] WHERE YEAR(BillDate)=YEAR(GETDATE()) AND MONTH(BillDate)=@month";
                     command.Parameters.Add("@month", SqlDbType.Int).Value = month;
                     using (var reader = command.ExecuteReader())
                     {
@@ -254,6 +254,80 @@ namespace CineMajestic.Models.DataAccessLayer
                 throw ex;
             }
             return cost;
+        }
+
+        public List<MovieStatisticsDTO> GetTopMovieByMonth(string month)
+        {
+            List<MovieStatisticsDTO > results = new List<MovieStatisticsDTO>();
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT Title, Sum(QuantityTicket), SUM(Bill.PerSeatTicketPrice*QuantityTicket) AS DoanhThu FROM Bill JOIN ShowTime ON Bill.ShowTime_Id=ShowTime.Id " +
+                        "JOIN MOVIE ON ShowTime.Movie_Id = MOVIE.id WHERE MONTH(BillDate)=@month AND YEAR(BillDate)=YEAR(GETDATE()) GROUP BY MOVIE.id, Title ORDER BY DoanhThu DESC";
+                    command.Parameters.Add("@month", SqlDbType.Int).Value = month;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        int rank = 0;
+                        while (reader.Read())
+                        {
+                            MovieStatisticsDTO movie = new MovieStatisticsDTO()
+                            {
+                                Rank = (++rank).ToString(),
+                                Title = reader[0].ToString(),
+                                ViewCount = reader[1].ToString(),
+                                Income = Convert.ToInt64(reader[2].ToString()).ToString("N0")
+                            };
+                            results.Add(movie);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return results;
+        }
+
+        public List<MovieStatisticsDTO> GetTopMovieByYear(string year)
+        {
+            List<MovieStatisticsDTO> results = new List<MovieStatisticsDTO>();
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT Title, Sum(QuantityTicket), SUM(Bill.PerSeatTicketPrice*QuantityTicket) AS DoanhThu FROM Bill JOIN ShowTime ON Bill.ShowTime_Id=ShowTime.Id " +
+                        "JOIN MOVIE ON ShowTime.Movie_Id = MOVIE.id WHERE YEAR(BillDate)=@year GROUP BY MOVIE.id, Title ORDER BY DoanhThu DESC";
+                    command.Parameters.Add("@year", SqlDbType.Int).Value = year;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        int rank = 0;
+                        while (reader.Read())
+                        {
+                            MovieStatisticsDTO movie = new MovieStatisticsDTO()
+                            {
+                                Rank = (++rank).ToString(),
+                                Title = reader[0].ToString(),
+                                ViewCount = reader[1].ToString(),
+                                Income = Convert.ToInt64(reader[2].ToString()).ToString("N0")
+                            };
+                            results.Add(movie);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return results;
         }
     }
 }

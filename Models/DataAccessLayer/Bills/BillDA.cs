@@ -130,5 +130,39 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
             }
             return sumIncome;
         }
+
+        public List<Tuple<int, int>> GetCustomerDistribution()
+        {
+            List<Tuple<int, int>> result = new();
+
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT DATEPART(HOUR, BillDate) DP, SUM(QuantityTicket) FROM Bill GROUP BY DATEPART(HOUR, BillDate) " +
+                        "ORDER BY DP ASC";
+                    using (var reader = command.ExecuteReader())
+                    {
+                        Tuple<int, int> item = new(0, 0);
+                        while (reader.Read())
+                        {
+                            int item1 = Convert.ToInt32(reader[0].ToString());
+                            int item2 = Convert.ToInt32(reader[1].ToString());
+                            item = new(item1, item2);
+                            result.Add(item);
+                        }
+                    }
+                }
+            }
+            catch (Exception x)
+            {
+                throw x;
+            }
+
+            return result;
+        }
     }
 }

@@ -55,10 +55,14 @@
                              CommandParameter="Customer"/>
                 <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
                              BorderBrush="#3f2305"
-                             Content="Phim"/>
+                             Content="Phim"
+                             Command="{Binding SwitchViewStatisticsCommand}"
+                             CommandParameter="Movie"/>
                 <RadioButton Style="{StaticResource MaterialDesignTabRadioButtonTop}"
                              BorderBrush="#3f2305"
-                             Content="Sản phẩm"/>
+                             Content="Sản phẩm"
+                             Command="{Binding SwitchViewStatisticsCommand}"
+                             CommandParameter="Product"/>
             </StackPanel>
         </Border>
 

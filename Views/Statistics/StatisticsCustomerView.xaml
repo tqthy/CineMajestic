@@ -186,9 +186,14 @@
                                Grid.Row="0"
                                VerticalAlignment="Center"
                                Margin="10,0,0,0"/>
+
+                    <lvc:CartesianChart Series="{Binding CLSeries}"
+                                        XAxes="{Binding CXAxes}"
+                                        YAxes="{Binding CYAxes}"
+                                        Grid.Row="1"/>
                 </Grid>
             </materialDesign:Card>
-
+        
             
         </Grid>
     </Grid>

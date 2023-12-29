@@ -27,7 +27,139 @@
             </BeginStoryboard>
         </EventTrigger>
     </UserControl.Triggers>
-    <Grid>
-            
+
+    <Grid Background="#f5f5f5">
+
+        <materialDesign:Card Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="15*"/>
+                    <RowDefinition Height="85*"/>
+                </Grid.RowDefinitions>
+
+                <Border BorderBrush="#3F2305"
+                        Grid.Row="0"
+                        Margin="10,0,10,0"
+                        BorderThickness="0,0,0,1"/>
+
+                <TextBlock Grid.Row="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Text="Bảng xếp hạng doanh thu phim"
+                   FontWeight="SemiBold"
+                   FontSize="24"
+                   Margin="20,0,0,0"/>
+                <StackPanel Grid.Row="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+                    <ComboBox 
+                        x:Name="cbBoxChuKy"
+                        Width="200"
+                        materialDesign:HintAssist.Hint="Chọn chu kỳ"
+                        Loaded="cbBoxChuKy_Loaded"
+                        SelectedItem="{Binding SelectedMovieIncomePeriod}"
+                        SelectionChanged="cbBoxChuKy_SelectionChanged"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding ChangeMovieIncomePeriodCommand}" />
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding ChangeMovieIncomePeriodCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ComboBoxItem Content="Theo tháng"/>
+                        <ComboBoxItem Content="Theo năm"/>
+                    </ComboBox>
+
+                    <ComboBox Margin="20,0,20,0"
+                        Width="200"
+                        x:Name="cbBoxThoiDiem"
+                        materialDesign:HintAssist.Hint="Chọn thời điểm"
+                        SelectedItem="{Binding SelectedMovieIncomeTime}"
+                        Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Loaded">
+                                <i:InvokeCommandAction Command="{Binding ChangeMovieIncomePeriodCommand}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding ChangeMovieIncomePeriodCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+                </StackPanel>
+
+                <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ListView x:Name="lvMV"
+                                  ItemsSource="{Binding MovieList}"
+                                  SelectedItem="{Binding SelectedItem}"
+                                  Focusable="True"
+                                  Margin="10,0,10,0">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="100"
+                                                    Header="STT">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+
+                                            <TextBlock
+                                            Width="Auto"
+                                            Margin="17,0,0,0"
+                                            FontSize="17"
+                                            Text="{Binding Rank}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="300"
+                                              Header="Tên phim">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <!--  Tên KH  -->
+                                            <TextBlock
+                                            Width="Auto"
+                                            Margin="17,0,0,0"
+                                            FontSize="17"
+                                            Text="{Binding Title}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <GridViewColumn Width="140" Header="Lượt xem">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                            Margin="17,0,0,0"
+                                            FontSize="17"
+                                            Text="{Binding ViewCount}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                                <!--  Tình trạng  -->
+                                <GridViewColumn Width="400" Header="Doanh thu trong kỳ">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                            Margin="17,0,0,0"
+                                            FontSize="17"
+                                            Text="{Binding Income}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+
+            </Grid>
+        </materialDesign:Card>
     </Grid>
+
 </UserControl>

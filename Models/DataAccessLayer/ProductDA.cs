@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -144,6 +145,83 @@ namespace CineMajestic.Models.DataAccessLayer
                     command.ExecuteNonQuery();
                 }
             }
+        }
+
+        public List<ProductStatisticsDTO> GetTopProductByMonth(string month)
+        {
+            List<ProductStatisticsDTO> results = new List<ProductStatisticsDTO>();
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT Name, SUM(BD.Quantity) AS BuyCount, SUM(BD.Total) AS Income FROM BillDetail BD " +
+                        "JOIN Product PD ON BD.Product_Id=PD.ID JOIN Bill ON BD.Bill_Id=Bill.Id " +
+                        "WHERE MONTH(BillDate)=@month AND YEAR(BillDate)=YEAR(GETDATE()) GROUP BY PD.ID, Name";
+                    command.Parameters.Add("@month", SqlDbType.Int).Value = month;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        int rank = 0;
+                        while (reader.Read())
+                        {
+                            ProductStatisticsDTO product = new ProductStatisticsDTO()
+                            {
+                                Rank = (++rank).ToString(),
+                                Name = reader[0].ToString(),
+                                BuyCount = reader[1].ToString(),
+                                Income = Convert.ToInt64(reader[2].ToString()).ToString("N0")
+                            };
+                            results.Add(product);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return results;
+            
+        }
+
+        public List<ProductStatisticsDTO> GetTopProductByYear(string year)
+        {
+            List<ProductStatisticsDTO> results = new List<ProductStatisticsDTO>();
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT Name, SUM(BD.Quantity) AS BuyCount, SUM(BD.Total) AS Income FROM BillDetail BD " +
+                        "JOIN Product PD ON BD.Product_Id=PD.ID JOIN Bill ON BD.Bill_Id=Bill.Id " +
+                        "WHERE YEAR(BillDate)=@year GROUP BY PD.ID, Name";
+                    command.Parameters.Add("@year", SqlDbType.Int).Value = year;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        int rank = 0;
+                        while (reader.Read())
+                        {
+                            ProductStatisticsDTO product = new ProductStatisticsDTO()
+                            {
+                                Rank = (++rank).ToString(),
+                                Name = reader[0].ToString(),
+                                BuyCount = reader[1].ToString(),
+                                Income = Convert.ToInt64(reader[2].ToString()).ToString("N0")
+                            };
+                            results.Add(product);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return results;
         }
     }
 }
