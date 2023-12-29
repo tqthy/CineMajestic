@@ -172,7 +172,7 @@
                         Margin="0,5,0,0"
                         HorizontalAlignment="Left"
                         FontSize="15"
-                        Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}" />
+                        Text="{Binding ImportPrice, UpdateSourceTrigger=PropertyChanged}" />
 
                 </StackPanel>
 

@@ -25,6 +25,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             Delete();
             MovieDetail();
             Filter();
+            edit();
         }
 
         //Hàm load column

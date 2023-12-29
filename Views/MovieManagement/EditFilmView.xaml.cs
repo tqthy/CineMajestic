@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels.MovieManagementVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +21,11 @@ namespace CineMajestic.Views.MovieManagement
     /// </summary>
     public partial class EditFilmView : Window
     {
-        public EditFilmView()
+        public EditFilmView(MovieDTO movieDTO)
         {
             InitializeComponent();
+            EditMovieViewModel editMovieViewModel=new EditMovieViewModel(movieDTO);
+            this.DataContext= editMovieViewModel;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
