@@ -24,13 +24,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         private void Continue(object obj)
         {
             FoodBookingView foodBookingView = new FoodBookingView();
-            foodBookingView.Hide();
             foodBookingView.ShowDialog();
-            try
-            {
-                foodBookingView.Show();
-            }
-            catch { }
         }
 
         private bool CanContinue(object obj)
@@ -69,6 +63,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             loadDSSP(2);//ban đầu là get all sản phẩm
             Filter();
             Add();
+
+            Bill();
         }
 
         private void Back(object obj)

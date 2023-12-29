@@ -522,7 +522,8 @@
                     VerticalContentAlignment="Center"
                     materialDesign:ButtonAssist.CornerRadius="15"
                     Content="Tiếp tục"
-                    FontSize="20" />
+                    FontSize="20" 
+                    Command="{Binding ContinueCommand}"/>
             </Grid>
         </Grid>
 
