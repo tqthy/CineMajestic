@@ -98,6 +98,16 @@ CREATE TABLE MOVIE
     ImageSource varchar(100) not null,
 );
 GO
+
+insert into MOVIE(Title,Description,Genre,Director,ReleaseYear,Language,Country,Length,Trailer,StartDate,Status,ImportPrice,ImageSource)
+values(N'Bố già',N'Phim hay',N'Kịch tính',N'Trần Thành',2022,N'Tiếng Việt',N'Việt Nam',120,'youtube','2022-12-31',N'Đang phát hành',1000000,'bogia.jpg')
+
+update MOVIE
+set ImageSource='bogia.jpg'
+where ID=1
+
+
+select * from MOVIE
 --tân từ: mỗi bộ phim có 1 id riêng để phân biệt với các bộ phim khác,có tiêu đề,miêu tả về phim,thể loại phim,đạo diễn 
 --năm ra mắt,ngôn ngữ trong phim,quốc gia sx,thời lượng phim(phút),link trailer,ngày ra mắt phim,trạng thái phim trong rạp(đang phát hành,ngừng ph),đường dẫn ảnh phim
 
@@ -149,6 +159,34 @@ create table Auditorium
 	NumberOfSeats int not null,
 )
 --tân từ: mỗi phòng sẽ có 1 id riêng làm khóa chính để phân biệt với các phòng khác,có tên,số chỗ ngồi trong phòng
+--chỉ có 7 phòng tương hoy
+
+--tạm thời số chỗ như này nghen
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 1',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 2',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 3',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 4',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 5',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 6',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 7',176)
+
+update Auditorium
+set NumberOfSeats=176
+
+select * from Auditorium
 
 
 --bảng chỗ ngồi
@@ -163,8 +201,77 @@ create table Seat
 --mỗi chỗ ngồi sẽ có 1 id riêng để phân biệt với các chỗ ngồi khác,có vị trí(A01,A02,B03,...),tình trạng(có người ngồi hay chưa)
 --cho biết chỗ ngồi thuộc phòng nào
 
+--phần hỗ trợ add ghế
+go
+create procedure sp_generate_seat_for_firstName
+(
+	@firstName char(1),
+	@Auditorium_Id int
+)
+as
+begin
+	declare @Location char(3)
+	declare @i int=1
+	while(@i<=9)
+	begin
+		set @Location=@firstName+'0'+cast(@i as char(1)) 
+		set @i=@i+1
+		insert into Seat(Location,Condition,Auditorium_Id)
+		values(@Location,0,@Auditorium_Id)
+	end
+	while(@i<=16)
+	begin
+		set @Location=@firstName+cast(@i as char(2)) 
+		set @i=@i+1
+		insert into Seat(Location,Condition,Auditorium_Id)
+		values(@Location,0,@Auditorium_Id)
+	end
+end
+go
+go
 
---bảng suất chiếu
+
+
+go
+create procedure sp_generate_seat_for_auditorium
+(
+	@Auditorium_Id int
+)
+as
+begin
+	execute sp_generate_seat_for_firstName 'A',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'B',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'C',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'D',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'E',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'F',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'G',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'H',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'I',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'K',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'L',@Auditorium_Id
+end
+go
+
+
+--tạo ghế cho phòng 1,2,3,4,5,6,7
+go
+execute sp_generate_seat_for_auditorium 1
+execute sp_generate_seat_for_auditorium 2
+execute sp_generate_seat_for_auditorium 3
+execute sp_generate_seat_for_auditorium 4
+execute sp_generate_seat_for_auditorium 5
+execute sp_generate_seat_for_auditorium 6
+execute sp_generate_seat_for_auditorium 7
+go
+
+select * from Seat
+
+
+
+
+
+
 --bảng suất chiếu
 create table ShowTime
 (
@@ -181,6 +288,19 @@ create table ShowTime
 --thời gian kết thúc(giờ phút giây được tính tự động), có giá để mua 1 chỗ ngồi 
 --cho biết phim chiếu là gì
 --cho biết phòng nào đang chiếu
+
+select * from MOVIE
+
+select * from ShowTime
+
+select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title,Auditorium.Name as phongchieu
+from ShowTime 
+inner join Auditorium on ShowTime.Auditorium_Id=Auditorium.Id
+inner join MOVIE on ShowTime.Movie_Id=MOVIE.id
+where Auditorium.Name=N'Phòng 1'
+
+insert into ShowTime(StartTime,EndTime,PerSeatTicketPrice,Movie_Id,Auditorium_Id)
+values('2023-12-29','2023-12-29 02:00:00',45000,1,1)
 
 
 
@@ -257,6 +377,7 @@ create table Bill_AddMovie
 	Constraint FK_Movie_Id_ByBill_AddMovie foreign key(Movie_Id) references Movie(Id),
 )
 
+select * from Bill_AddMovie
 
 --bill nhập 1 product
 create table Bill_AddProduct

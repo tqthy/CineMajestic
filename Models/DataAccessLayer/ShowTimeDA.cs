@@ -26,7 +26,7 @@ namespace CineMajestic.Models.DataAccessLayer
                 {
 
                     truyvan =
-                        "select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title,ImageSource,Auditorium.Name as phongchieu\n"
+                        "select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title,ImageSource,Auditorium.Name as phongchieu,ShowTime.Auditorium_Id as auditoriumId\n"
                         +
                         "from ShowTime\n"
                         +
@@ -40,7 +40,7 @@ namespace CineMajestic.Models.DataAccessLayer
                 {
                     truyvan =
                         truyvan =
-                        "select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title,ImageSource,Auditorium.Name as phongchieu\n"
+                        "select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title,ImageSource,Auditorium.Name as phongchieu,ShowTime.Auditorium_Id as auditoriumId\n"
                         +
                         "from ShowTime\n"
                         +
@@ -74,7 +74,9 @@ namespace CineMajestic.Models.DataAccessLayer
                             string ImageSource= reader.GetString(reader.GetOrdinal("ImageSource"));
                             string phongchieu = reader.GetString(reader.GetOrdinal("phongchieu"));
 
-                            list.Add(new ShowTimeDTO(showTimeId, StartTime, EndTime, PerSeatTicketPrice, MovieId, movieTitle, length, ImageSource,phongchieu));
+                            int Auditorium_Id = reader.GetInt32(reader.GetOrdinal("auditoriumId"));
+
+                            list.Add(new ShowTimeDTO(showTimeId, StartTime, EndTime, PerSeatTicketPrice, MovieId, movieTitle, length, ImageSource,phongchieu,Auditorium_Id));
                         }
                     }
                 }

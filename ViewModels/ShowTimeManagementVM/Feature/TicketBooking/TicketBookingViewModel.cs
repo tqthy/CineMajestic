@@ -79,13 +79,17 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private void loadShowTimeCurrent()
         {
-            ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + showTimeDTO.ImageSource;
-            Title = showTimeDTO.MovieTitle;
-            Showtime = showTimeDTO.ShowTime;
-            NameAuditorium = showTimeDTO.NameAuditorium;
-            PerSeatTicketPrice= showTimeDTO.PerSeatTicketPrice;
-            Seats = "Hiện chưa chọn ghế nào!";
-            TotalPrice = 0;
+            try
+            {
+                ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + showTimeDTO.ImageSource;
+                Title = showTimeDTO.MovieTitle;
+                Showtime = showTimeDTO.ShowTime;
+                NameAuditorium = showTimeDTO.NameAuditorium;
+                PerSeatTicketPrice = showTimeDTO.PerSeatTicketPrice;
+                Seats = "Hiện chưa chọn ghế nào!";
+                TotalPrice = 0;
+            }
+            catch { }
         }
     }
 }
