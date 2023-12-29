@@ -92,7 +92,7 @@ namespace CineMajestic.Models.DataAccessLayer
                     +
                     "N'" + movie.Status + "',"
                     +
-                    movie.ImportPrice+","
+                    movie.ImportPrice + ","
                     +
                     "'" + movie.ImageSource + "')";
                 using (SqlCommand command = new SqlCommand(insert, connection))
@@ -141,6 +141,63 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
             return identCurrent;
+        }
+
+
+        //lấy danh sách tên phim đang phát hành
+        public List<Tuple<int, string>> getDSTitleDPH()
+        {
+            List<Tuple<int, string>> result = new List<Tuple<int, string>>();
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string truyvan =
+                    "select id,title\n"
+                    +
+                    "from movie\n"
+                    +
+                    "where Status=N'Đang phát hành'";
+
+
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("id"));
+                            string title = reader.GetString(reader.GetOrdinal("Title"));
+
+                            result.Add(new Tuple<int, string> ( id, title ));
+                        }
+                    }
+                }
+            }
+            return result;
+
+        }
+
+
+        //lấy thời lượng phim 
+        public int MovieLength(int id)
+        {
+            int kq = 0;
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string truyvan = "select length from movie\n"
+                    + "where Id=" + id;
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        kq = reader.GetInt32(reader.GetOrdinal("Length"));
+                    }
+                }
+            }
+
+            return kq;
         }
     }
 }

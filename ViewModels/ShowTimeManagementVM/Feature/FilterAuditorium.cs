@@ -9,6 +9,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 {
     public partial class ShowTimeManagementViewModel
     {
+        string phong = "";//xem ở phòng nào
         public ICommand AuditoriumCommand { get; set; }//tất cả các phòng
         public ICommand AuditoriumCommand1 {  get; set; }
         public ICommand AuditoriumCommand2 {  get; set; }
@@ -22,6 +23,9 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private void Auditorium()
         {
+            //ban đầu là all
+            phong = "All";
+
             AuditoriumCommand = new ViewModelCommand(auditorium);
             AuditoriumCommand1 = new ViewModelCommand(auditorium1);
             AuditoriumCommand2 = new ViewModelCommand(auditorium2);
@@ -36,35 +40,43 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         private void auditorium(object obj)//tất cả các phòng
         {
             loadData();
+            phong = "All";
         }
 
         private void auditorium1(object obj)
         {
             loadData("Phòng 1");
+            phong = "Phòng 1";
         }
         private void auditorium2(object obj)
         {
             loadData("Phòng 2");
+            phong = "Phòng 2";
         }
         private void auditorium3(object obj)
         {
             loadData("Phòng 3");
+            phong = "Phòng 3";
         }
         private void auditorium4(object obj)
         {
             loadData("Phòng 4");
+            phong = "Phòng 4";
         }
         private void auditorium5(object obj)
         {
             loadData("Phòng 5");
+            phong = "Phòng 5";
         }
         private void auditorium6(object obj)
         {
             loadData("Phòng 6");
+            phong = "Phòng 6";
         }
         private void auditorium7(object obj)
         {
             loadData("Phòng 7");
+            phong = "Phòng 7";
         }
     }
 }

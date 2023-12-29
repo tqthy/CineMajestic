@@ -64,7 +64,10 @@
                     <ComboBox
                         Height="40"
                         Margin="22,5,0,0"
-                        FontSize="22" />
+                        DisplayMemberPath="Item2"
+                        FontSize="22"
+                        ItemsSource="{Binding DSPhim}"
+                        SelectedItem="{Binding SelectedPhim}" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
@@ -78,7 +81,8 @@
                     <DatePicker
                         Height="40"
                         Margin="60,5,20,0"
-                        FontSize="22" />
+                        FontSize="22" 
+                        SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
             </Grid>
@@ -107,7 +111,8 @@
                         Focusable="False"
                         FontSize="22"
                         Is24Hours="True"
-                        WithSeconds="False" />
+                        WithSeconds="False" 
+                        SelectedTime="{Binding Showtime,UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
@@ -118,15 +123,12 @@
                         Text="Phòng chiếu:" />
 
                     <!--  Phòng chiếu  -->
-                    <ComboBox Margin="20,5,10,0" FontSize="22">
-                        <ComboBoxItem Content="Phòng 1" />
-                        <ComboBoxItem Content="Phòng 2" />
-                        <ComboBoxItem Content="Phòng 3" />
-                        <ComboBoxItem Content="Phòng 4" />
-                        <ComboBoxItem Content="Phòng 5" />
-                        <ComboBoxItem Content="Phòng 6" />
-                        <ComboBoxItem Content="Phòng 7" />
-                    </ComboBox>
+                    <ComboBox
+                        Margin="20,5,10,0"
+                        DisplayMemberPath="Item2"
+                        FontSize="22"
+                        ItemsSource="{Binding DSPhong}"
+                        SelectedItem="{Binding SelectedPhong}" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
@@ -142,7 +144,7 @@
                         Margin="60,5,20,0"
                         VerticalAlignment="Center"
                         FontSize="22"
-                        Text="50000" />
+                        Text="{Binding PerSeatTicketPrice}" />
                 </StackPanel>
 
             </Grid>
@@ -166,7 +168,7 @@
                     Width="90"
                     Margin="590,0,10,0"
                     materialDesign:ButtonAssist.CornerRadius="20"
-                    Command="{Binding acceptAddCommand}"
+                    Command="{Binding AcceptCommand}"
                     Content="Xác nhận" />
             </Grid>
         </Grid>

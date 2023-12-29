@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
-    public class ShowTimeDA:DataAccess
+    public class ShowTimeDA : DataAccess
     {
         //get danh sách show time theo phòng,tất cả
         public ObservableCollection<ShowTimeDTO> getDSShowTime(string Phong = "All")
@@ -70,13 +70,43 @@ namespace CineMajestic.Models.DataAccessLayer
 
                             int length = reader.GetInt32(reader.GetOrdinal("Length"));
 
-                            list.Add(new ShowTimeDTO(showTimeId, StartTime, EndTime, PerSeatTicketPrice, MovieId,movieTitle,length));
+                            list.Add(new ShowTimeDTO(showTimeId, StartTime, EndTime, PerSeatTicketPrice, MovieId, movieTitle, length));
                         }
                     }
                 }
             }
 
             return list;
+        }
+
+
+
+        //thêm 1 showtime
+        public void addShowtime(ShowTimeDTO showTime)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string insert =
+                    "insert into ShowTime(StartTime,EndTime,PerSeatTicketPrice,Movie_Id,Auditorium_Id)\n"
+                    +
+                    "values("
+                    +
+                    "'" + showTime.StartTime + "',"
+                    +
+                    "'" + showTime.EndTime + "',"
+                    +
+                    showTime.PerSeatTicketPrice + ","
+                    +
+                    showTime.MovieId + ","
+                    +
+                    showTime.Auditorium_Id + ")";
+
+                using (SqlCommand command = new SqlCommand(insert, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CineMajestic.ViewModels.ShowTimeManagementVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,11 @@ namespace CineMajestic.Views.ShowTimeManagement
     /// </summary>
     public partial class AddShowTimeView : Window
     {
-        public AddShowTimeView()
+        public AddShowTimeView(string phong)
         {
             InitializeComponent();
+            AddShowTimeViewModel addShowTimeViewModel = new AddShowTimeViewModel(phong,this);
+            this.DataContext=addShowTimeViewModel;
         }
     }
 }

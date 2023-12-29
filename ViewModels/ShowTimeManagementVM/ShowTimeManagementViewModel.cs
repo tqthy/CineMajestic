@@ -26,6 +26,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         {
             loadData();//lần đầu mở thì vào phần all
             Auditorium();
+            AddShowTime();
         }
 
         private void loadData(string Phong="All")//load data theo phòng

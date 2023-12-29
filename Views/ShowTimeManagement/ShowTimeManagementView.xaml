@@ -133,7 +133,8 @@
                     Width="210"
                     Height="37"
                     Margin="0,0,0,0"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}">
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}"
+                    Command="{Binding AddShowTimeCommand}">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Height="20" Kind="PlaylistPlus" />
                         <TextBlock Margin="10,0,0,0" Text="Thêm suất chiếu" />
