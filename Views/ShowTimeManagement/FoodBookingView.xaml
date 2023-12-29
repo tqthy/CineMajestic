@@ -34,6 +34,7 @@
                 <!--  button quay lại trang chọn vé  -->
                 <StackPanel Orientation="Horizontal">
                     <Button
+                        Command="{Binding BackCommand}"
                         Width="40"
                         Height="35"
                         HorizontalAlignment="Left"
