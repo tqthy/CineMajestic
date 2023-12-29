@@ -27,6 +27,18 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             }
         }
 
+        private int totalPrice;
+        public int TotalPrice
+        {
+            get => totalPrice;
+            set
+            {
+                totalPrice = value;
+                OnPropertyChanged(nameof(TotalPrice));
+            }
+        }
+
+
         private void Add()
         {
             AddProductCommand = new ViewModelCommand(AddProduct);
@@ -44,12 +56,14 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 if (!DSSPChon.Contains(productDTO))
                 {
                     DSSPChon.Add(productDTO);
+                    TotalPrice += productDTO.Price;
                 }
                 else
                 {
                     if (productDTO.Quantity_Choice < productDTO.Quantity)
                     {
                         productDTO.Quantity_Choice += 1;
+                        TotalPrice += productDTO.Price;
                     }
                 }
             }
@@ -63,6 +77,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 if (productDTO.Quantity_Choice < productDTO.Quantity)
                 {
                     productDTO.Quantity_Choice += 1;
+                    TotalPrice += productDTO.Price;
                 }
             }
         }
@@ -74,10 +89,12 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 if (productDTO.Quantity_Choice > 1)
                 {
                     productDTO.Quantity_Choice -= 1;
+                    TotalPrice -= productDTO.Price;
                 }
                 else 
                 {
                     DSSPChon.Remove(productDTO);
+                    TotalPrice -= productDTO.Price;
                 }
             }
         }

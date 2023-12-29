@@ -503,7 +503,7 @@
                             VerticalAlignment="Center"
                             FontSize="24"
                             FontWeight="SemiBold"
-                            Text="500000" />
+                            Text="{Binding TotalPrice}" />
 
                         <!--  đơn vị đồng  -->
                         <TextBlock
