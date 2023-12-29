@@ -1,10 +1,14 @@
-﻿using CineMajestic.Models.DTOs;
+﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs;
 using CineMajestic.Views.MovieManagement;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CineMajestic.ViewModels.MovieManagementVM
@@ -29,7 +33,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
     }
 
 
-    public class EditMovieViewModel:MainBaseViewModel
+    public class EditMovieViewModel : MainBaseViewModel
     {
         private MovieDTO movieDTO;
         //tiêu đề
@@ -199,10 +203,19 @@ namespace CineMajestic.ViewModels.MovieManagementVM
                 OnPropertyChanged(nameof(ImportPrice));
             }
         }
-        public EditMovieViewModel(MovieDTO movieDTO)
+
+
+        public ICommand acceptCommand { get; set; }
+        public ICommand addImageCommand {  get; set; }
+
+        private EditFilmView editFilmView;
+        public EditMovieViewModel(MovieDTO movieDTO, EditFilmView editFilmView)
         {
             this.movieDTO = movieDTO;
             loadMovieCurrent();
+            acceptCommand = new ViewModelCommand(accept);
+            addImageCommand = new ViewModelCommand(addImage);
+            this.editFilmView = editFilmView;
         }
 
         private void loadMovieCurrent()
@@ -224,6 +237,77 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             Status = movieDTO.Status;
             ImportPrice = movieDTO.ImportPrice.ToString();
             ImageSource = movieDTO.ImageSource;
+        }
+
+        private void accept(object obj)
+        {
+            string imageSource = "";
+            try
+            {
+                imageSource = Path.GetFileName(ImageSource);
+            }
+            catch { }
+
+
+            MovieDA movieDA = new MovieDA();
+
+            try
+            {
+                movieDA.editMovie(new MovieDTO(movieDTO.Id, Title, Description, Director, ReleaseYear, Language, Country, int.Parse(Length), Trailer, StartDate.Value.ToString("yyyy-MM-dd"), Genre, Status, imageSource, int.Parse(ImportPrice)));
+            }
+            catch { }
+
+            //cập nhật lại billAddMovie chỗ này: khỏi nha vì tạo trigger roài
+            MessageBox.Show("Sửa thành công!");
+
+            editFilmView.Close();
+        }
+
+
+        //add image
+        private void addImage(object obj)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Ảnh (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+
+            bool? result = openFileDialog.ShowDialog();
+
+            if (result == true)
+            {
+                try
+                {
+                    string selectedImagePath = openFileDialog.FileName;
+                    string folder = Path.GetDirectoryName(selectedImagePath);
+                    string fileName = Path.GetFileName(selectedImagePath);
+                    string extension = Path.GetExtension(fileName);//đuôi mở rộng của file
+
+
+                    string fileOld1 = selectedImagePath;
+
+                    string pathfileOld2 = selectedImagePath;
+
+                    while (File.Exists(MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + fileName))
+                    {
+                        fileName = MotSoPTBoTro.RandomFileName() + extension;
+                        File.Move(fileOld1, folder + @"\" + fileName);
+                        pathfileOld2 = folder + @"\" + fileName;
+                    }
+
+                    try
+                    {
+                        MotSoPTBoTro.copyFile(pathfileOld2, MotSoPTBoTro.pathProject() + @"Images\MovieManagement");
+                        ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + fileName;
+
+
+                        //đổi lại tên file người dùng chọn
+                        File.Move(pathfileOld2, selectedImagePath);
+                    }
+                    catch { }
+
+
+                }
+                catch { }
+            }
         }
     }
 }

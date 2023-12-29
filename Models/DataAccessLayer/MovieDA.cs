@@ -1,6 +1,7 @@
 ﻿using CineMajestic.Models.DTOs;
 using CineMajestic.ViewModels.MovieManagementVM;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
@@ -168,7 +169,7 @@ namespace CineMajestic.Models.DataAccessLayer
                             int id = reader.GetInt32(reader.GetOrdinal("id"));
                             string title = reader.GetString(reader.GetOrdinal("Title"));
 
-                            result.Add(new Tuple<int, string> ( id, title ));
+                            result.Add(new Tuple<int, string>(id, title));
                         }
                     }
                 }
@@ -198,6 +199,50 @@ namespace CineMajestic.Models.DataAccessLayer
             }
 
             return kq;
+        }
+
+
+        //update(edit) movie
+        public void editMovie(MovieDTO movie)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string update =
+                    "update Movie\n"
+                    +
+                    "set Title=" + "N'" + movie.Title + "',"
+                    +
+                    "Description=" + "N'" + movie.Description + "',"
+                    +
+                    "Genre=" + "N'" + movie.Genre + "',"
+                    +
+                    "Director=" + "N'" + movie.Director + "',"
+                    +
+                    "ReleaseYear=" + movie.ReleaseYear + ","
+                    +
+                    "Language=" + "N'" + movie.Language + "',"
+                    +
+                    "Country=" + "N'" + movie.Country + "',"
+                    +
+                    "Length=" + movie.Length + ","
+                    +
+                    "Trailer=" + "N'" + movie.Trailer + "',"
+                    +
+                    "StartDate=" + "'" + movie.StartDate + "',"
+                    +
+                    "Status=" + "N'" + movie.Status + "',"
+                    +
+                    "ImportPrice=" + movie.ImportPrice + ","
+                    +
+                    "ImageSource=" + "'" + movie.ImageSource + "'\n"
+                    +
+                    "where Id=" + movie.Id;
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }

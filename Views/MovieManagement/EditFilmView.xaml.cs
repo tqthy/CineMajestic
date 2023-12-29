@@ -24,7 +24,7 @@ namespace CineMajestic.Views.MovieManagement
         public EditFilmView(MovieDTO movieDTO)
         {
             InitializeComponent();
-            EditMovieViewModel editMovieViewModel=new EditMovieViewModel(movieDTO);
+            EditMovieViewModel editMovieViewModel=new EditMovieViewModel(movieDTO,this);
             this.DataContext= editMovieViewModel;
         }
 
