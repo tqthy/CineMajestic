@@ -34,11 +34,11 @@
                 <!--  button quay lại trang chọn vé  -->
                 <StackPanel Orientation="Horizontal">
                     <Button
-                        Command="{Binding BackCommand}"
                         Width="40"
                         Height="35"
                         HorizontalAlignment="Left"
                         Background="Transparent"
+                        Command="{Binding BackCommand}"
                         Style="{StaticResource MaterialDesignOutlinedDarkButton}">
                         <Button.Template>
                             <ControlTemplate>
@@ -153,62 +153,31 @@
                                                 </Grid.RowDefinitions>
 
                                                 <!--  Binding ảnh ở đây  -->
-                                                <Image
-                                                    Width="160"
-                                                    Height="140"
-                                                    Source="{Binding}"
-                                                    Stretch="Uniform" />
+                                                <Button
+                                                    Width="220"
+                                                    Height="135"
+                                                    VerticalAlignment="Center">
+                                                    <Button.Background>
+                                                        <ImageBrush ImageSource="{Binding ImageSource}" Stretch="Uniform" />
+                                                    </Button.Background>
+                                                    <Button.Template>
+                                                        <ControlTemplate TargetType="Button">
+                                                            <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Button.Template>
+                                                </Button>
                                                 <Grid Grid.Row="1">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="4*" />
                                                         <RowDefinition Height="5*" />
                                                     </Grid.RowDefinitions>
-
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <TextBlock
-                                                            Margin="10,0,0,0"
-                                                            VerticalAlignment="Center"
-                                                            FontSize="22"
-                                                            Text="Coca" />
-                                                        <!--  Nút  ấn vô sản phẩm đề vô giỏ  -->
-                                                        <Button
-                                                            Margin="130,5,0,0"
-                                                            HorizontalAlignment="Left"
-                                                            BorderThickness="0"
-                                                            Cursor="Hand"
-                                                            FontSize="16">
-                                                            <Button.Style>
-                                                                <Style TargetType="Button">
-                                                                    <Setter Property="Background" Value="#FF42A7FF" />
-                                                                    <Style.Triggers>
-                                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                                            <Setter Property="Background" Value="#FF56E7FF" />
-                                                                        </Trigger>
-                                                                    </Style.Triggers>
-                                                                </Style>
-                                                            </Button.Style>
-                                                            <Button.Template>
-                                                                <ControlTemplate TargetType="Button">
-                                                                    <Border
-                                                                        Width="30"
-                                                                        Height="30"
-                                                                        Background="{TemplateBinding Background}"
-                                                                        CornerRadius="29">
-                                                                        <materialDesign:PackIcon
-                                                                            Width="25"
-                                                                            Height="25"
-                                                                            Margin="2,0,5,1"
-                                                                            VerticalAlignment="Center"
-                                                                            Foreground="White"
-                                                                            Kind="Plus" />
-                                                                    </Border>
-
-                                                                </ControlTemplate>
-                                                            </Button.Template>
-                                                        </Button>
-                                                    </StackPanel>
-
-
+                                                    <TextBlock
+                                                        Margin="10,0,0,0"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="22"
+                                                        Text="Coca" />
                                                     <Grid Grid.Row="1">
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition />
