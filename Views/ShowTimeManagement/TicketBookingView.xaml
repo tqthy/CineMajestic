@@ -104,20 +104,21 @@
                     BorderBrush="Black"
                     BorderThickness="0,0,0,1">
                     <!--  Danh sách ghế  -->
-                    <Grid>
+                    <Grid Grid.Row="1">
                         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                            <ItemsControl>
+                            <ItemsControl ItemsSource="{Binding DSGhe}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <!--  Ghế  -->
                                         <Button
-                                            Width="30"
-                                            Height="30"
+                                            Width="31.22"
+                                            Height="31"
                                             Margin="5,10,5,0"
                                             Background="AliceBlue"
-                                            BorderBrush="Green">
+                                            BorderBrush="Green"
+                                            Style="{x:Null}">
                                             <Button.Content>
-                                                <TextBlock FontSize="13" Text="{Binding}" />
+                                                <TextBlock FontSize="13" Text="{Binding Location}" />
                                             </Button.Content>
                                         </Button>
                                     </DataTemplate>

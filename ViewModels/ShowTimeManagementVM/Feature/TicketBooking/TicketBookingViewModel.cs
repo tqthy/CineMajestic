@@ -28,7 +28,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
 
 
-    public class TicketBookingViewModel:MainBaseViewModel
+    public partial class TicketBookingViewModel:MainBaseViewModel
     {
         public string ImageSource {  get; set; }
 
@@ -73,6 +73,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         {
             this.showTimeDTO = showTimeDTO;
             loadShowTimeCurrent();
+            loadSeat();
         }
 
 
