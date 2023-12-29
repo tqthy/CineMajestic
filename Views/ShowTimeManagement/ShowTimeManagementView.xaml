@@ -149,6 +149,14 @@
                 x:Name="lvScreening"
                 ItemsSource="{Binding DSSuatChieu}"
                 Focusable="True">
+                
+                <!--event trigger phục vụ việc order-->
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding DataContext.TicketBookingCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding ElementName=lvScreening, Path=SelectedItem}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                
                 <ListView.View>
                     <GridView>
 

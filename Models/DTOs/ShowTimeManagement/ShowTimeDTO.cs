@@ -18,9 +18,11 @@ namespace CineMajestic.Models.DTOs.ShowTimeManagement
         public string MovieTitle {  get; set; }
         public int Length {  get; set; }
         public int Auditorium_Id {  get; set; }
+        public string ImageSource {  get; set; }
+        public string NameAuditorium {  get; set; }
 
         //constructor phục vụ lấy ds ShowTime
-        public ShowTimeDTO(int id,string startTime,string endTime,int perSeatTicketPrice,int movieId,string movieTitle,int length)
+        public ShowTimeDTO(int id,string startTime,string endTime,int perSeatTicketPrice,int movieId,string movieTitle,int length,string imageSource,string nameAuditorium)
         {
             Id = id;
             StartTime = startTime;
@@ -29,6 +31,8 @@ namespace CineMajestic.Models.DTOs.ShowTimeManagement
             PerSeatTicketPrice = perSeatTicketPrice;
             MovieTitle = movieTitle;
             Length=length;
+            ImageSource=imageSource;
+            NameAuditorium=nameAuditorium;
             //giờ chiếu
             string[]s=StartTime.Split(' ');
             ShowTime = s[1];

@@ -170,7 +170,7 @@
                         <Image
                             Width="200"
                             Height="180"
-                            Source="/Images/MovieManagement/Doremon.jpg"
+                            Source="{Binding ImageSource}"
                             Stretch="Uniform" />
 
                         <!--  Thông tin hóa đơn  -->
@@ -208,7 +208,7 @@
                                             VerticalAlignment="Center"
                                             FontSize="18"
                                             FontWeight="SemiBold"
-                                            Text="Chơi chiêu tên phim ngắn thôi" />
+                                            Text="{Binding Title}" />
                                     </Grid>
 
                                     <Grid Grid.Row="1">
@@ -232,7 +232,7 @@
                                             VerticalAlignment="Center"
                                             FontSize="18"
                                             FontWeight="SemiBold"
-                                            Text="18h00 - 20h00" />
+                                            Text="{Binding Showtime}" />
                                     </Grid>
 
                                     <Grid Grid.Row="2">
@@ -280,7 +280,7 @@
                                             VerticalAlignment="Center"
                                             FontSize="18"
                                             FontWeight="SemiBold"
-                                            Text="Phòng 1" />
+                                            Text="{Binding NameAuditorium}" />
                                     </Grid>
 
                                     <!--  Giá vé  -->
@@ -307,7 +307,7 @@
                                                 VerticalAlignment="Center"
                                                 FontSize="18"
                                                 FontWeight="SemiBold"
-                                                Text="50000" />
+                                                Text="{Binding PerSeatTicketPrice}" />
 
                                             <!--  Đơn vị đồng  -->
                                             <TextBlock
@@ -338,7 +338,7 @@
                                             VerticalAlignment="Center"
                                             FontSize="18"
                                             FontWeight="SemiBold"
-                                            Text="A01" />
+                                            Text="{Binding Seats}" />
                                     </Grid>
                                 </Grid>
                             </Border>
@@ -369,7 +369,7 @@
                                     VerticalAlignment="Center"
                                     FontSize="18"
                                     FontWeight="SemiBold"
-                                    Text="500000" />
+                                    Text="{Binding TotalPrice}" />
 
                                 <!--  đơn vị đồng  -->
                                 <TextBlock

@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -25,7 +26,7 @@ namespace CineMajestic.Models.DataAccessLayer
                 {
 
                     truyvan =
-                        "select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title\n"
+                        "select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title,ImageSource,Auditorium.Name as phongchieu\n"
                         +
                         "from ShowTime\n"
                         +
@@ -39,7 +40,7 @@ namespace CineMajestic.Models.DataAccessLayer
                 {
                     truyvan =
                         truyvan =
-                        "select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title\n"
+                        "select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title,ImageSource,Auditorium.Name as phongchieu\n"
                         +
                         "from ShowTime\n"
                         +
@@ -70,7 +71,10 @@ namespace CineMajestic.Models.DataAccessLayer
 
                             int length = reader.GetInt32(reader.GetOrdinal("Length"));
 
-                            list.Add(new ShowTimeDTO(showTimeId, StartTime, EndTime, PerSeatTicketPrice, MovieId, movieTitle, length));
+                            string ImageSource= reader.GetString(reader.GetOrdinal("ImageSource"));
+                            string phongchieu = reader.GetString(reader.GetOrdinal("phongchieu"));
+
+                            list.Add(new ShowTimeDTO(showTimeId, StartTime, EndTime, PerSeatTicketPrice, MovieId, movieTitle, length, ImageSource,phongchieu));
                         }
                     }
                 }
