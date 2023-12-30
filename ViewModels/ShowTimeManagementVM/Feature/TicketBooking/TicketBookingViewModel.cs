@@ -81,6 +81,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         {
             this.showTimeDTO = showTimeDTO;
             this.orderDTO = orderDTO;
+            orderDTO.showTimeDTO= showTimeDTO;
             loadShowTimeCurrent();
             Seat();
             FoodBooking();

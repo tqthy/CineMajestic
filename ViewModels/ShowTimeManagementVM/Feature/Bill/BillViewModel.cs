@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DTOs.Bills;
+using CineMajestic.Models.DTOs.ShowTimeManagement;
 using CineMajestic.Views.ShowTimeManagement;
 using System;
 using System.Collections.Generic;
@@ -38,10 +39,12 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private BillView billView;
         private OrderDTO orderDTO;
+        public ShowTimeDTO showTimeDTO { get; set; }//dùng để bind lên hóa đơn
         public BillViewModel(BillView billView,OrderDTO orderDTO)
         {
             this.billView = billView;
             this.orderDTO= orderDTO;
+            showTimeDTO = orderDTO.showTimeDTO;
             BackCommand = new ViewModelCommand(Back);
             Paycommand = new ViewModelCommand(Pay);
         }
@@ -54,7 +57,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         
         private void Pay(object obj)
         {
-           
+
         }
     }
 }

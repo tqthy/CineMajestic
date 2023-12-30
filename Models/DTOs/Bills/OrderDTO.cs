@@ -24,7 +24,10 @@ namespace CineMajestic.Models.DTOs.Bills
         public int TotalTicket;
 
         //khách hàng order
-        CustomerDTO customer;
+        public CustomerDTO customer {  get; set; }
+
+        //showtime order
+        public ShowTimeDTO showTimeDTO {  get; set; }
 
 
         public OrderDTO()
