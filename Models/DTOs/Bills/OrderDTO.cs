@@ -2,6 +2,7 @@
 using CineMajestic.Models.DTOs.ShowTimeManagement;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +12,12 @@ namespace CineMajestic.Models.DTOs.Bills
     public class OrderDTO
     {
         //danh sách vật phẩm chọn
-        List<ProductDTO> listProduct;
+        public ObservableCollection<ProductDTO> DSSP {  get; set; }
         //tổng tiền order vật phẩm
         int TotalProduct;
 
-
         //danh sách ghế chọn
-        List<SeatForShowTimeDTO> listSeat;
+        public ObservableCollection<SeatForShowTimeDTO> DSGhe {  get; set; }
         //tổng tiền vé(số ghế chọn)
         int TotalTicket;
 
@@ -27,8 +27,6 @@ namespace CineMajestic.Models.DTOs.Bills
 
         public OrderDTO()
         {
-            listProduct = new List<ProductDTO>();
-            listSeat= new List<SeatForShowTimeDTO>();
             customer = new CustomerDTO();
             TotalProduct = 0;
             TotalTicket = 0;
