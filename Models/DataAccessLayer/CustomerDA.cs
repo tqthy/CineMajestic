@@ -244,7 +244,7 @@ namespace CineMajestic.Models.DataAccessLayer
                     connection.Open();
                     command.Connection = connection;
                     command.CommandText = "SELECT FullName, PhoneNumber, SUM(Total) AS ChiTieu FROM CUSTOMER" +
-                        " KH JOIN Billtest BT ON KH.Id = BT.Customer_Id WHERE MONTH(BillDate)=@month AND YEAR(BillDate)=YEAR(GETDATE())" +
+                        " KH JOIN Bill BT ON KH.Id = BT.Customer_Id WHERE MONTH(BillDate)=@month AND YEAR(BillDate)=YEAR(GETDATE())" +
                         " GROUP BY KH.Id, FullName, PhoneNumber" +
                         " ORDER BY ChiTieu DESC";
                     command.Parameters.Add("@month", SqlDbType.Int).Value = month;
@@ -285,7 +285,7 @@ namespace CineMajestic.Models.DataAccessLayer
                     connection.Open();
                     command.Connection = connection;
                     command.CommandText = "SELECT FullName, PhoneNumber, SUM(Total) AS ChiTieu FROM CUSTOMER" +
-                        " KH JOIN Billtest BT ON KH.Id = BT.Customer_Id WHERE YEAR(BillDate)=@year" +
+                        " KH JOIN Bill BT ON KH.Id = BT.Customer_Id WHERE YEAR(BillDate)=@year" +
                         " GROUP BY KH.Id, FullName, PhoneNumber" +
                         " ORDER BY ChiTieu DESC";
                     command.Parameters.Add("@year", SqlDbType.Int).Value = year;

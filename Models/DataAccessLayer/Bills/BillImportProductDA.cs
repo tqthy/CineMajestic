@@ -20,7 +20,7 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "SELECT Total FROM [Bill_ImportProductTest] WHERE MONTH(BillDate)=@month AND YEAR(BillDate)=YEAR(GETDATE())";
+                    command.CommandText = "SELECT Total FROM [Bill_ImportProduct] WHERE MONTH(BillDate)=@month AND YEAR(BillDate)=YEAR(GETDATE())";
                     command.Parameters.Add("@month", SqlDbType.Int).Value = month;
                     using (var reader = command.ExecuteReader())
                     {
@@ -49,7 +49,7 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "SELECT Total FROM [Bill_ImportProductTest] WHERE YEAR(BillDate)=@year";
+                    command.CommandText = "SELECT Total FROM [Bill_ImportProduct] WHERE YEAR(BillDate)=@year";
                     command.Parameters.Add("@year", SqlDbType.Int).Value = year;
                     using (var reader = command.ExecuteReader())
                     {

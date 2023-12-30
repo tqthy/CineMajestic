@@ -20,7 +20,7 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "SELECT Total FROM [Billtest] WHERE MONTH(BillDate)=@month AND YEAR(BillDate)=YEAR(GETDATE())";
+                    command.CommandText = "SELECT Total FROM [Bill] WHERE MONTH(BillDate)=@month AND YEAR(BillDate)=YEAR(GETDATE())";
                     command.Parameters.Add("@month", SqlDbType.Int).Value = month;
                     using (var reader = command.ExecuteReader())
                     {
@@ -49,7 +49,7 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "SELECT BD.Total FROM [BillDetail] BD JOIN [Billtest] BT ON BD.Bill_Id=BT.Id " +
+                    command.CommandText = "SELECT BD.Total FROM [BillDetail] BD JOIN [Bill] BT ON BD.Bill_Id=BT.Id " +
                         "WHERE MONTH(BillDate)=@month AND YEAR(BillDate)=YEAR(GETDATE())";
                     command.Parameters.Add("@month", SqlDbType.Int).Value = month;
                     using (var reader = command.ExecuteReader())
@@ -80,7 +80,7 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "SELECT Total FROM [Billtest] WHERE YEAR(BillDate)=@year";
+                    command.CommandText = "SELECT Total FROM [Bill] WHERE YEAR(BillDate)=@year";
                     command.Parameters.Add("@year", SqlDbType.Int).Value = year;
                     using (var reader = command.ExecuteReader())
                     {
@@ -110,7 +110,7 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "SELECT BD.Total FROM [BillDetail] BD JOIN [Billtest] BT ON BD.Bill_Id=BT.Id " +
+                    command.CommandText = "SELECT BD.Total FROM [BillDetail] BD JOIN [Bill] BT ON BD.Bill_Id=BT.Id " +
                         "WHERE YEAR(BillDate)=@year";
                     command.Parameters.Add("@year", SqlDbType.Int).Value = year;
                     using (var reader = command.ExecuteReader())
