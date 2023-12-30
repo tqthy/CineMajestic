@@ -226,6 +226,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
                 long product_income = billDA.GetProductIncomeByYear(year);
                 long sum_outcome = addProductCostByYear + errorCostByYear + movieCostByYear;
 
+
                 IncomeText = sum_income.ToString("N0");
                 OutcomeText = sum_outcome.ToString("N0");
 
