@@ -1,21 +1,12 @@
-﻿CREATE DATABASE CinemaManagementTest;
-GO
-USE CinemaManagementTest;
-
---bảng ACCOUNT
+﻿--tạo database
 go
-create table ACCOUNTS
-(
-	id INT PRIMARY KEY IDENTITY(1, 1),
-    Username VARCHAR(40) not null unique,
-    Password VARCHAR(40) not null,
-	Staff_Id int not null,
-	Constraint FK_StaffId foreign key(Staff_Id) references Staff(Id)
-)
-
-
+create database CineMajestic
 go
 
+--sử dụng database
+go
+use CineMajestic
+go
 
 
 --bảng staff
@@ -34,8 +25,26 @@ create table Staff
 	ImageSource varchar(50) default 'Default.jpg'
 )
 go
+--tân từ cho bảng Staff: mỗi nhân viên có id riêng làm khóa chính để phân biệt, có họ tên,ngày sinh,giới tính,email,sđt,mức lương,chức vụ,ngày vào làm,ảnh thẻ(sẽ dùng ảnh mặc định khi nhân viên vừa vào làm)
+
+
+-- bảng ACCOUNTS
+go
+create table ACCOUNTS
+(
+	id INT PRIMARY KEY IDENTITY(1, 1),
+    Username VARCHAR(40) not null unique,
+    Password VARCHAR(40) not null,
+	Staff_Id int not null,
+	Constraint FK_StaffId foreign key(Staff_Id) references Staff(Id)
+)
+go
+--tân từ: mỗi tài khoản có 1 id riêng làm khóa chính,có tên tk riêng,mk,có khóa ngoại Staff_Id tham chiếu tới id của bảng nhân viên để phân biệt tài khoản này là của ai
+
+
 
 --bảng voucher
+go
 CREATE TABLE VOUCHER
 (   
     ID INT IDENTITY (1,1) PRIMARY KEY,
@@ -46,9 +55,13 @@ CREATE TABLE VOUCHER
     STARTDATE SMALLDATETIME NOT NULL,
     FINDATE SMALLDATETIME NOT NULL
 )
+go
+--tân từ: mỗi voucher có 1 id riêng làm khóa chính để phần biệt, có tên,code,chi tiết voucher,loại (vip 1 2 3),ngày áp dụng và ngày kết thúc voucher
 
 
---bảng custom
+
+--tạo bảng customer
+go
 CREATE TABLE CUSTOMER
 (
     Id int identity(1,1) primary key ,
@@ -60,39 +73,43 @@ CREATE TABLE CUSTOMER
     RegDate smalldatetime not null,
     Gender nvarchar(20) not null,
 )   
+go
+--tân từ: mỗi khách hàng có id riêng làm khóa chính để phân biệt, có tên,sđt,email,point,ngày sinh,ngày đăng ký,và giới tính
+
 
 
 --bảng MOVIES
 GO
-CREATE TABLE MOVIES(
+CREATE TABLE MOVIE
+(
     id INT PRIMARY KEY IDENTITY(1, 1),
-    Title NVARCHAR(100),
-    Description NVARCHAR(500),
-    Director NVARCHAR(50),
-    ReleaseYear INT,
-    Language NVARCHAR(20),
-    Country NVARCHAR(20),
-    Length INT,
-    Trailer NVARCHAR(200),
-    StartDate SMALLDATETIME,
-    EndDate SMALLDATETIME,
-    Genre_id INT,
-    CONSTRAINT FK_Genre FOREIGN KEY (Genre_id) REFERENCES GENRES(id)
+    Title NVARCHAR(100) not null,
+    Description NVARCHAR(500) not null,
+    Genre nvarchar(100) not null,
+    Director NVARCHAR(50) not null,
+    ReleaseYear int not null,
+    Language NVARCHAR(20) not null,
+    Country NVARCHAR(20) not null,
+    Length INT not null,
+    Trailer NVARCHAR(200) not null,
+    StartDate SMALLDATETIME not null,
+    Status nvarchar(50) not null,
+	ImportPrice int not null,
+    ImageSource varchar(100) not null,
 );
 GO
--- Genres
-CREATE TABLE GENRES(
-    id INT PRIMARY KEY IDENTITY(1, 1),
-    Title NVARCHAR(50)
-);
 
---bảng GENRES           
-INSERT INTO GENRES VALUES (N'Gia Đình'), (N'Hài');
-GO
-GO
-ALTER TABLE MOVIES ADD Poster NVARCHAR(100);
-GO
-INSERT INTO GENRES VALUES(N'Tài liệu'), (N'Phiêu lưu'), (N'Kinh dị'), (N'Hành động'), (N'Tội phạm'), (N'Giả tưởng'), (N'Khoa học'), (N'Hoạt hình'), (N'Tình cảm'), (N'Phép thuật')
+--insert into MOVIE(Title,Description,Genre,Director,ReleaseYear,Language,Country,Length,Trailer,StartDate,Status,ImportPrice,ImageSource)
+--values(N'Bố già',N'Phim hay',N'Kịch tính',N'Trần Thành',2022,N'Tiếng Việt',N'Việt Nam',120,'youtube','2022-12-31',N'Đang phát hành',1000000,'bogia.jpg')
+
+--update MOVIE
+--set ImageSource='bogia.jpg'
+--where ID=1
+
+
+--select * from MOVIE
+--tân từ: mỗi bộ phim có 1 id riêng để phân biệt với các bộ phim khác,có tiêu đề,miêu tả về phim,thể loại phim,đạo diễn 
+--năm ra mắt,ngôn ngữ trong phim,quốc gia sx,thời lượng phim(phút),link trailer,ngày ra mắt phim,trạng thái phim trong rạp(đang phát hành,ngừng ph),đường dẫn ảnh phim
 
 
 
@@ -109,6 +126,7 @@ create table Product
 	Type int not null,
 )
 go
+--tân từ: mỗi product sẽ có id riêng làm khóa chính để phân biệt với các product khác,có tên,đường dẫn ảnh,số lượng hiện có,giá nhập vào,giá bán(sẽ được tự động set=1.2 giá nhập),loại product(thức ăn ,đồ uống)
 
 --trigger tự set giá sau mỗi lần update,insert: giá bán = giá nhập +giá nhập *20%
 go
@@ -128,17 +146,335 @@ begin
 	where ID=@ID
 end
 go
--- bang errors
 
-CREATE TABLE ERRORS(
-    id INT IDENTITY(1, 1) PRIMARY KEY,
-    NAME NVARCHAR(100) NOT NULL,
-    DESCRIPTION NVARCHAR(200) NOT NULL,
-    DATEADDED SMALLDATETIME DEFAULT GETDATE(),
-    STATUS NVARCHAR(50) DEFAULT N'Chờ tiếp nhận',
-    ENDDATE SMALLDATETIME,
-    COST MONEY,
-    STAFF_id INT CONSTRAINT FK_ERR_STAFF FOREIGN KEY REFERENCES STAFF(Id),
-    IMAGE NVARCHAR(100) NOT NULL
+
+
+
+
+--bảng phòng
+create table Auditorium
+(
+	Id int identity(1,1) primary key,
+	Name nvarchar(50) not null,
+	NumberOfSeats int not null,
 )
-GO
+--tân từ: mỗi phòng sẽ có 1 id riêng làm khóa chính để phân biệt với các phòng khác,có tên,số chỗ ngồi trong phòng
+--chỉ có 7 phòng tương hoy
+
+--tạm thời số chỗ như này nghen
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 1',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 2',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 3',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 4',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 5',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 6',176)
+
+insert into Auditorium(Name,NumberOfSeats)
+values(N'Phòng 7',176)
+
+
+
+--select * from Auditorium
+
+
+--bảng chỗ ngồi
+go
+create table Seat
+(
+	Id int identity(1,1) primary key,
+	Location varchar(3),
+	Auditorium_Id int not null,
+	Constraint FK_Auditorium_Id_BySeat foreign key(Auditorium_Id) references Auditorium(Id)
+)
+go
+--mỗi chỗ ngồi sẽ có 1 id riêng để phân biệt với các chỗ ngồi khác,có vị trí(A01,A02,B03,...),tình trạng(có người ngồi hay chưa)
+--cho biết chỗ ngồi thuộc phòng nào
+
+--phần hỗ trợ add ghế
+go
+create procedure sp_generate_seat_for_firstName
+(
+	@firstName char(1),
+	@Auditorium_Id int
+)
+as
+begin
+	declare @Location char(3)
+	declare @i int=1
+	while(@i<=9)
+	begin
+		set @Location=@firstName+'0'+cast(@i as char(1)) 
+		set @i=@i+1
+		insert into Seat(Location,Auditorium_Id)
+		values(@Location,@Auditorium_Id)
+	end
+	while(@i<=16)
+	begin
+		set @Location=@firstName+cast(@i as char(2)) 
+		set @i=@i+1
+		insert into Seat(Location,Auditorium_Id)
+		values(@Location,@Auditorium_Id)
+	end
+end
+go
+
+
+
+
+go
+create procedure sp_generate_seat_for_auditorium
+(
+	@Auditorium_Id int
+)
+as
+begin
+	execute sp_generate_seat_for_firstName 'A',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'B',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'C',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'D',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'E',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'F',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'G',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'H',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'I',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'K',@Auditorium_Id
+	execute sp_generate_seat_for_firstName 'L',@Auditorium_Id
+end
+go
+
+
+--tạo ghế cho phòng 1,2,3,4,5,6,7
+go
+execute sp_generate_seat_for_auditorium 1
+execute sp_generate_seat_for_auditorium 2
+execute sp_generate_seat_for_auditorium 3
+execute sp_generate_seat_for_auditorium 4
+execute sp_generate_seat_for_auditorium 5
+execute sp_generate_seat_for_auditorium 6
+execute sp_generate_seat_for_auditorium 7
+go
+
+--select * from Seat
+
+
+
+
+
+--tạo trigger khi insert 1 showtime thì phải tạo dữ liệu cho bảng(tạo ở dưới bảng create showtime)
+
+
+--bảng suất chiếu
+go
+create table ShowTime
+(
+	Id int identity(1,1) primary key,
+	StartTime smalldatetime not null,--cái này bao gồm ngày chiếu,giờ chiếu luôn
+	EndTime smalldatetime,--cái này sẽ tự động tính từ giờ chiếu và lenght của movie khi add 1 suất chiếu
+	PerSeatTicketPrice int not null,
+	Movie_Id int not null,--khóa ngoại tham chiếu tới id của bảng movie(lưu ý chỉ lấy movie đang phát hành,sau này movie mà có đổi trạng thái thì cũng bỏ ở bảng showtime đi)
+	Auditorium_Id int not null,--khóa ngoại tham chiếu tới id của bảng phòng chiếu
+    Constraint FK_Auditorium_Id_ByShowTime foreign key(Auditorium_Id) references Auditorium(Id),
+	Constraint FK_Movie_Id_ByShowTime foreign key(Movie_Id) references Movie(Id),
+)
+go
+--mỗi suất chiếu có 1 id để phân biệt với suất chiếu khác, có thời gian bắt đầu(ngày tháng năm,giờ phút giây),
+--thời gian kết thúc(giờ phút giây được tính tự động), có giá để mua 1 chỗ ngồi 
+--cho biết phim chiếu là gì
+--cho biết phòng nào đang chiếu
+
+
+--trigger khi insert 1 showtime thì tạo dữ liệu cho bảng SeatForShowtime
+go
+create trigger trg_createSeatForShowtimeByShowtime_insert
+on ShowTime
+after insert
+as
+begin
+	declare @ShowtimeId int
+	declare @Auditorium_Id int
+
+	select @ShowtimeId=Id,@Auditorium_Id=Auditorium_Id
+	from inserted
+
+	insert into SeatForShowtime(Seat_Id,ShowTime_Id,Condition)
+	select Id, @ShowtimeId, 0
+    from Seat
+    where Auditorium_Id = @Auditorium_Id
+end
+go
+
+--chỗ ngồi cho từng showtime: khi add 1 showtime phải add dữ liệu cho bảng này
+--xóa showtime thì cái này xóa
+go
+create table SeatForShowtime
+(
+    Id int identity(1,1) primary key,
+    Seat_Id int not null,
+    ShowTime_Id int not null,
+    Condition bit,
+    Constraint FK_Seat_Id_BySeatForShowtime foreign key(Seat_Id) references Seat(Id),
+    Constraint FK_ShowTime_Id_BySeatForShowtime foreign key(ShowTime_Id) references ShowTime(Id)
+)
+go
+
+--select SeatForShowtime.Id as SeatForShowTime_Id,SeatForShowtime.Seat_Id as Seat_Id,ShowTime_Id,Location,Condition
+--from SeatForShowtime
+--inner join Seat on Seat.Id=SeatForShowtime.Id
+--where SeatForShowtime.ShowTime_Id=8
+
+--select * from MOVIE
+
+--select * from ShowTime
+
+--select Showtime.Id as ShowTimeId,ShowTime.StartTime,ShowTime.EndTime,ShowTime.PerSeatTicketPrice,Movie.id as MovieId,Movie.Length,Movie.Title,Auditorium.Name as phongchieu
+--from ShowTime 
+--inner join Auditorium on ShowTime.Auditorium_Id=Auditorium.Id
+--inner join MOVIE on ShowTime.Movie_Id=MOVIE.id
+--where Auditorium.Name=N'Phòng 1'
+
+
+
+--bảng hóa đơn
+go
+create table Bill
+(
+	Id int identity(1,1) primary key,
+	Staff_Id int,
+	Customer_Id int,
+	ShowTime_Id int,
+	BillDate smalldatetime not null,
+	QuantityTicket int not null,
+	PerSeatTicketPrice int not null,--giống bên suất chiếu,để đây cho dễ làm
+	Discount int,
+	Note nvarchar(300),
+	Total int not null,
+    Constraint FK_StaffId_ByBill foreign key(Staff_Id) references Staff(Id),
+    Constraint FK_ShowTime_IdByBill foreign key(ShowTime_Id) references ShowTime(Id),
+	Constraint FK_Customer_IdByBill foreign key(Customer_Id) references Customer(Id),
+)
+go
+--tân từ: mỗi hóa đơn có 1 id riêng làm khóa chính để phân biệt với các hóa đơn khác
+--cho biết nhân viên nào tạo hóa đơn này
+--cho biết khách hàng nào thanh toán hđ
+--cho biết hóa đơn được mua để xem suất chiếu nào
+--cho biết ngày tạo hóa đơn
+--số lượng suất chiếu được mua(số vé)
+--cho biết giảm giá bn 4
+--ghi chú
+--giá trị hóa đơn
+
+
+--bảng vé
+go
+create table Ticket
+(
+	Id int identity(1,1) primary key,
+	Seat_Id int not null,
+	Bill_Id int not null,
+	Constraint FK_Seat_Id_ByTicket foreign key(Seat_Id) references Seat(Id),
+	Constraint FK_Bill_Id_ByTicket foreign key(Bill_Id) references Bill(Id),
+)
+go
+--mỗi vé có id riêng làm khóa chính để phân biệt với vé khác
+--cho biết vé thuộc hóa đơn nào(từ đó biết được ai mua,suất chiếu gì,phòng nào)
+--cho biết chỗ ngồi của vé
+
+
+
+
+--bảng chi tiết hóa đơn
+go
+create table BillDetail
+(
+	Id int identity(1,1) primary key,
+    Bill_Id int not null,
+	Product_Id int,
+	Quantity int not null,
+	UnitPrice int not null,
+	Total as (Quantity * UnitPrice),
+	Constraint FK_BillId_ByBillDeTail foreign key(Bill_Id) references Bill(Id),
+    Constraint FK_ProductId_ByBillDeTail foreign key(Product_Id) references Product(ID)
+)
+go
+--mỗi cthđ có 1 id riêng làm khóa chính để phân biệt với cthđ khác
+--cho biết cthđ thuộc hóa đơn nào
+--cho biết mua sản phẩm nào,số lượng bao nhiêu,đơn giá,tổng tiên
+
+
+
+
+--bill nhập 1 phim
+go
+create table Bill_AddMovie
+(
+	Id int identity(1,1) primary key,
+	Movie_Id int,
+	BillDate smalldatetime not null,
+	Total int not null,
+	Constraint FK_Movie_Id_ByBill_AddMovie foreign key(Movie_Id) references Movie(Id),
+)
+go
+
+
+--trigger cập nhật lại billaddmovie khi edit movie
+go
+create trigger trg_updateBillAddmovie_update
+on Movie
+after update
+as
+begin
+	declare @MovieId int
+	declare @ImportPrice int
+
+	select @MovieId=Id,@ImportPrice=ImportPrice
+	from inserted
+
+	update Bill_AddMovie
+	set Total=@ImportPrice
+	where Id=@MovieId
+end
+go
+
+--select * from Bill_AddMovie
+
+--bill nhập 1 product
+go
+create table Bill_AddProduct
+(
+	Id int identity(1,1) primary key,
+	Product_Id int,
+	BillDate smalldatetime not null,
+	Quantity int not null,
+	UnitPurchasePrice int not null,
+	Total as (Quantity * UnitPurchasePrice),
+	Constraint FK_ProductId_ByBill_AddProduct foreign key(Product_Id) references Product(ID)
+)
+go
+
+--bill nhập thêm số lượng product
+go
+create table Bill_ImportProduct
+(
+	Id int identity(1,1) primary key,
+	Product_Id int,
+	BillDate smalldatetime not null,
+	Quantity int not null,
+	UnitPurchasePrice int not null,
+	Total as (Quantity * UnitPurchasePrice),
+	Constraint FK_ProductId_ByBill_ImportProduct foreign key(Product_Id) references Product(ID)
+)
+go
+
+
+

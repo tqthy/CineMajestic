@@ -1,6 +1,4 @@
-﻿using CineMajestic.Models.DataAccessLayer;
-using CineMajestic.Models.DTOs;
-using CineMajestic.ViewModels.ShowTimeManagementVM;
+﻿using CineMajestic.ViewModels.ShowTimeManagementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,22 +11,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CineMajestic.Views.ShowTimeManagement
 {
     /// <summary>
-    /// Interaction logic for ShowTimeManagementView.xaml
+    /// Interaction logic for AddShowTimeView.xaml
     /// </summary>
-    public partial class ShowTimeManagementView : UserControl
+    public partial class AddShowTimeView : Window
     {
-        public ShowTimeManagementView()
+        public AddShowTimeView(string phong)
         {
             InitializeComponent();
-            ShowTimeManagementViewModel showTimeManagementViewModel = new ShowTimeManagementViewModel();
-            this.DataContext = showTimeManagementViewModel;
-
+            AddShowTimeViewModel addShowTimeViewModel = new AddShowTimeViewModel(phong,this);
+            this.DataContext=addShowTimeViewModel;
         }
     }
 }

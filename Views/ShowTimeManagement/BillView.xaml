@@ -1,0 +1,831 @@
+﻿<Window
+    x:Class="CineMajestic.Views.ShowTimeManagement.BillView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:CineMajestic.Views.ShowTimeManagement"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="1110"
+    Height="600"
+    AllowsTransparency="True"
+    Background="Transparent"
+    FontFamily="Segoe UI"
+    TextElement.FontSize="13"
+    TextElement.FontWeight="Regular"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    WindowStartupLocation="CenterScreen"
+    WindowStyle="None"
+    mc:Ignorable="d">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Black" BorderThickness="0,0,0,0.5">
+            <Grid>
+                <!--  button quay lại trang chọn sản phẩm  -->
+                <Button
+                    Width="40"
+                    Height="35"
+                    HorizontalAlignment="Left"
+                    Background="Transparent"
+                    Command="{Binding BackCommand}"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Border>
+                                <materialDesign:PackIcon
+                                    Width="30"
+                                    Height="30"
+                                    Margin="2,0,0,0"
+                                    VerticalAlignment="Center"
+                                    Foreground="Black"
+                                    Kind="ArrowLeft" />
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!--  Hóa đơn  -->
+            <Grid Margin="1,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <!--  Tiêu đề  -->
+                <materialDesign:Card Margin="0,10,0,5" UniformCornerRadius="6">
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        FontSize="25"
+                        FontWeight="Bold"
+                        Text="THANH TOÁN HÓA ĐƠN"
+                        TextAlignment="Center" />
+                </materialDesign:Card>
+
+                <!--  Thông tin khách hàng  -->
+                <materialDesign:Card
+                    Grid.Row="1"
+                    Margin="2,10,2,5"
+                    UniformCornerRadius="6">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="55" />
+                            <RowDefinition Height="55" />
+                            <RowDefinition Height="55" />
+                            <RowDefinition Height="55" />
+                            <RowDefinition Height="55" />
+                            <RowDefinition Height="55" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="40" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <!--  Thông tin khách hàng  -->
+                        <Border
+                            BorderBrush="Black"
+                            BorderThickness="0,0,0,1"
+                            CornerRadius="10,10,0,0">
+                            <TextBlock
+                                Margin="20,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="25"
+                                FontWeight="Bold"
+                                Text="Thông tin khách hàng" />
+                        </Border>
+
+                        <!--  Số điện thoại  -->
+                        <Grid Grid.Row="1" Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Margin="3,0,5,10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Số điện thoại:" />
+                            <StackPanel Grid.Column="1">
+                                <!--  Ô nhập số điện thoại  -->
+                                <TextBox
+                                    Width="170"
+                                    Height="33"
+                                    Margin="5,0.5,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    FontSize="18" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    FontSize="8.5"
+                                    Foreground="red"
+                                    Text="" />
+                            </StackPanel>
+                        </Grid>
+
+                        <!--  Họ và tên  -->
+                        <Grid Grid.Row="2" Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Margin="3,0,5,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Họ và tên:" />
+                            <StackPanel Grid.Column="1">
+                                <!--  Ô nhập  Họ và tên  -->
+                                <TextBox
+                                    Width="170"
+                                    Height="33"
+                                    Margin="5,0.5,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    FontSize="18" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    FontSize="8.5"
+                                    Foreground="red"
+                                    Text="{Binding FullNameError}" />
+                            </StackPanel>
+                        </Grid>
+
+                        <!--  Email  -->
+                        <Grid Grid.Row="3" Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Margin="3,0,5,10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Email:" />
+                            <StackPanel Grid.Column="1">
+                                <!--  Ô nhập  Email  -->
+                                <TextBox
+                                    Width="170"
+                                    Height="33"
+                                    Margin="5,0.5,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    FontSize="18" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    FontSize="8.5"
+                                    Foreground="red"
+                                    Text="{Binding FullNameError}" />
+                            </StackPanel>
+                        </Grid>
+
+                        <!--  Voucher  -->
+                        <Grid Grid.Row="4" Margin="0,10,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock
+                                Margin="3,0,5,10"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Voucher:" />
+                            <StackPanel Grid.Column="1">
+                                <!--  Ô nhập  Voucher  -->
+                                <TextBox
+                                    Width="170"
+                                    Height="33"
+                                    Margin="5,0.5,0,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    VerticalContentAlignment="Center"
+                                    FontSize="18" />
+                                <TextBlock
+                                    Margin="10,0,0,0"
+                                    FontSize="8.5"
+                                    Foreground="red"
+                                    Text="gg" />
+                            </StackPanel>
+                        </Grid>
+
+                        <!--  Hóa đơn  -->
+                        <Border
+                            Grid.Row="5"
+                            BorderBrush="Black"
+                            BorderThickness="0,0,0,1"
+                            CornerRadius="10,10,0,0">
+                            <TextBlock
+                                Margin="20,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="25"
+                                FontWeight="Bold"
+                                Text="Hóa đơn" />
+                        </Border>
+
+
+                        <!--  Tổng tiền  -->
+                        <Grid Grid.Row="6" Margin="0,8,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Margin="3,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Tổng tiền:" />
+                            <StackPanel
+                                Grid.Column="1"
+                                Margin="0,0,3,0"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+
+                                <!--  Binding tổng tiền  -->
+                                <TextBlock
+                                    Margin="18,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    Text="" />
+
+                                <!--  Đơn vị đồng  -->
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    Text=" đ" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="7">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Margin="3,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Khuyến mãi:" />
+                            <StackPanel
+                                Grid.Column="1"
+                                Margin="0,0,3,0"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+
+                                <!--  Binding khuyến mãi  -->
+                                <TextBlock
+                                    Margin="18,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="18"
+                                    FontWeight="SemiBold" />
+
+                                <!--  Đơn vị đồng  -->
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    Text=" đ" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="8">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Margin="3,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Tổng thanh toán:" />
+                            <StackPanel
+                                Grid.Column="1"
+                                Margin="0,0,3,0"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+
+                                <!--  Binding tồng thanh toán  -->
+                                <TextBlock
+                                    Margin="18,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="18"
+                                    FontWeight="SemiBold" />
+
+                                <!--  Đơn vị đồng  -->
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    Text=" đ" />
+                            </StackPanel>
+                        </Grid>
+
+                        <Grid Grid.Row="9">
+                            <Button
+                                Width="110"
+                                Margin="0,0,5,5"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                materialDesign:ButtonAssist.CornerRadius="2"
+                                Content="Thanh toán" />
+                        </Grid>
+
+
+                    </Grid>
+                </materialDesign:Card>
+
+            </Grid>
+
+            <!--  Thông tin đặt vé phím  -->
+            <materialDesign:Card
+                Grid.Column="1"
+                Margin="5,10,0,5"
+                UniformCornerRadius="6">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!--  Thông tin phim  -->
+                    <Border
+                        BorderBrush="Black"
+                        BorderThickness="0,0,0,1"
+                        CornerRadius="10,10,0,0">
+                        <TextBlock
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="25"
+                            FontWeight="Bold"
+                            Text="Phim" />
+                    </Border>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Tên phim  -->
+                        <TextBlock
+                            Width="50"
+                            Margin="3,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Text="Phim:" />
+                        <!--  Binding tên phim  -->
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="0,0,2,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="SemiBold"
+                            Text="{Binding Title}" />
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Ngày chiếu  -->
+                        <TextBlock
+                            Width="50"
+                            Margin="3,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Text="Ngày chiếu:" />
+                        <!--  Binding ggày chiếu  -->
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="0,0,2,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="SemiBold" />
+                    </Grid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Giờ chiếu  -->
+                        <TextBlock
+                            Margin="3,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Text="Giờ chiếu:" />
+                        <!--  Binding giờ chiếu  -->
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="0,0,2,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="SemiBold" />
+                    </Grid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Giờ chiếu  -->
+                        <TextBlock
+                            Margin="3,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Text="Rạp:" />
+                        <!--  Tên rạp  -->
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="0,0,2,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="SemiBold"
+                            Text="CineMajestic" />
+                    </Grid>
+
+                    <Grid Grid.Row="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Phòng chiếu  -->
+                        <TextBlock
+                            Margin="3,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Text="Phòng chiếu:" />
+                        <!--  Binding tên phòng  -->
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="0,0,2,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="SemiBold" />
+                    </Grid>
+
+
+                    <Grid Grid.Row="6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <!--  Ghế  -->
+                        <TextBlock
+                            Margin="3,0,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Text="Ghế:" />
+                        <!--  Binding tên ghế  -->
+                        <TextBlock
+                            Grid.Column="1"
+                            Margin="0,0,2,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            FontWeight="SemiBold" />
+                    </Grid>
+                    <!--  Giá vé  -->
+                    <Grid Grid.Row="7">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock
+                            Margin="3,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="18"
+                            Text="Giá vé:" />
+                        <StackPanel
+                            Grid.Column="1"
+                            Margin="0,0,3,0"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+
+                            <!--  Binding tiền vé  -->
+                            <TextBlock
+                                Margin="18,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="SemiBold" />
+
+                            <!--  Đơn vị đồng  -->
+                            <TextBlock
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                FontWeight="SemiBold"
+                                Text=" đ" />
+                        </StackPanel>
+                    </Grid>
+
+                    <!--  Tổng  -->
+                    <Border
+                        Grid.Row="9"
+                        BorderBrush="Black"
+                        BorderThickness="0,1,0,1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Margin="3,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Tổng:" />
+                            <StackPanel
+                                Grid.Column="1"
+                                Margin="0,0,3,0"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+
+                                <!--  Binding tiền vé  -->
+                                <TextBlock
+                                    Margin="18,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="18"
+                                    FontWeight="SemiBold" />
+
+                                <!--  Đơn vị đồng  -->
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    Text=" đ" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+
+                </Grid>
+
+            </materialDesign:Card>
+
+            <!--  Thông tin đặt đồ ăn  -->
+            <materialDesign:Card
+                Grid.Column="2"
+                Margin="5,10,0,5"
+                UniformCornerRadius="6">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="310" />
+                        <RowDefinition Height="40" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!--  Đồ ăn  -->
+                    <Border
+                        BorderBrush="Black"
+                        BorderThickness="0,0,0,1"
+                        CornerRadius="10,10,0,0">
+                        <TextBlock
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="25"
+                            FontWeight="Bold"
+                            Text="Đồ ăn" />
+                    </Border>
+
+                    <!--  Danh sách đồ ăn  -->
+                    <Grid Grid.Row="1">
+                        <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemsSource="{Binding}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <!--  Đồ ăn  -->
+                                        <Border
+                                            Width="300"
+                                            Height="90"
+                                            Margin="0,3,0,0"
+                                            BorderBrush="Black"
+                                            BorderThickness="0,0,0,0.5">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="170" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+
+                                                <StackPanel>
+                                                    <TextBlock
+                                                        Margin="5,0,0,0"
+                                                        FontSize="18"
+                                                        FontWeight="DemiBold"
+                                                        Text="{Binding}"
+                                                        TextWrapping="Wrap" />
+                                                    <StackPanel Orientation="Horizontal">
+
+                                                        <!--  Số lượng sản phẩm  -->
+                                                        <TextBlock
+                                                            Margin="10,0,0,0"
+                                                            FontSize="18"
+                                                            FontWeight="DemiBold"
+                                                            Text="{Binding}" />
+
+                                                        <!--  Dấu x  -->
+                                                        <TextBlock
+                                                            Margin="3,0,0,0"
+                                                            FontSize="18"
+                                                            FontWeight="DemiBold"
+                                                            Text="x" />
+
+                                                        <!--  Giá cả 1 sản phẩm  -->
+                                                        <TextBlock
+                                                            Margin="10,0,0,0"
+                                                            FontSize="18"
+                                                            FontWeight="DemiBold"
+                                                            Text="{Binding}" />
+
+                                                        <!--  Đơn vị đồng  -->
+                                                        <TextBlock
+                                                            Margin="3,0,0,0"
+                                                            FontSize="18"
+                                                            FontWeight="DemiBold"
+                                                            Text="đ" />
+
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <StackPanel />
+
+
+                                                <StackPanel
+                                                    Grid.Column="1"
+                                                    Margin="0,0,3,3"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Bottom"
+                                                    Orientation="Horizontal">
+
+                                                    <!--  Binding tổng tiền sp chọn  -->
+                                                    <TextBlock
+                                                        Margin="18,0,0,0"
+                                                        VerticalAlignment="Center"
+                                                        FontSize="18"
+                                                        FontWeight="SemiBold"
+                                                        Text="{Binding}" />
+
+                                                    <!--  Đơn vị đồng  -->
+                                                    <TextBlock
+                                                        VerticalAlignment="Center"
+                                                        FontSize="18"
+                                                        FontWeight="SemiBold"
+                                                        Text=" đ" />
+                                                </StackPanel>
+
+                                            </Grid>
+
+                                        </Border>
+
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+
+                        </ScrollViewer>
+
+                    </Grid>
+                    <!--  Tổng  -->
+                    <Border
+                        Grid.Row="2"
+                        BorderBrush="Black"
+                        BorderThickness="0,1,0,1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock
+                                Margin="3,0,0,0"
+                                VerticalAlignment="Center"
+                                FontSize="18"
+                                Text="Tổng:" />
+                            <StackPanel
+                                Grid.Column="1"
+                                Margin="0,0,3,0"
+                                HorizontalAlignment="Right"
+                                Orientation="Horizontal">
+
+                                <!--  Binding tiền vé  -->
+                                <TextBlock
+                                    Margin="18,0,0,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="18"
+                                    FontWeight="SemiBold" />
+
+                                <!--  Đơn vị đồng  -->
+                                <TextBlock
+                                    VerticalAlignment="Center"
+                                    FontSize="18"
+                                    FontWeight="SemiBold"
+                                    Text=" đ" />
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+            </materialDesign:Card>
+
+            <!--  Ghi chú  -->
+            <materialDesign:Card
+                Grid.Column="3"
+                Margin="5,10,0,5"
+                UniformCornerRadius="6">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Border
+                        BorderBrush="Black"
+                        BorderThickness="0,0,0,1"
+                        CornerRadius="10,10,0,0">
+                        <TextBlock
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="25"
+                            FontWeight="Bold"
+                            Text="Ghi chú" />
+                    </Border>
+                    <TextBox
+                        Grid.Row="1"
+                        Width="204"
+                        Height="300"
+                        Margin="0,10,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        materialDesign:HintAssist.Hint="Ghi chú"
+                        AcceptsReturn="True"
+                        BorderBrush="Black"
+                        DockPanel.Dock="Left"
+                        FontSize="18"
+                        FontWeight="Light"
+                        Foreground="Black"
+                        HorizontalScrollBarVisibility="Disabled"
+                        Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                        TextWrapping="Wrap"
+                        VerticalScrollBarVisibility="Auto" />
+                </Grid>
+            </materialDesign:Card>
+
+        </Grid>
+
+
+
+    </Grid>
+</Window>

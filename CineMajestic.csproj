@@ -1,63 +1,65 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+	</PropertyGroup>
 
-  <ItemGroup>
-    
-    <None Remove="Icon\DauCong.png" />
-    <None Remove="Icon\delete.png" />
-    <None Remove="Icon\logout.png" />
-    <None Remove="Icon\money.png" />
-    <None Remove="Icon\Open.png" />
-    <None Remove="Icon\pen.png" />
-    <None Remove="Icon\QLProduct.png" />
-    <None Remove="Icon\SL.png" />
-    <None Remove="Icon\ThemSP.jpg" />
-    <None Remove="Images\background.jpg" />
-    <None Remove="Images\InformationManagement\Default.jpg" />
-    <None Remove="Images\logo.png" />
-    <None Remove="Images\logo1.png" />
-	<None Remove="Images\Voucher\LogoVoucher.png" />
-	<None Remove="Images\MessageBox\logo2.png" />
-	<None Remove="Images\StaffManagement\Default.jpg" />
+	<ItemGroup>
 
-  </ItemGroup>
+		<None Remove="Icon\DauCong.png" />
+		<None Remove="Icon\delete.png" />
+		<None Remove="Icon\logout.png" />
+		<None Remove="Icon\money.png" />
+		<None Remove="Icon\Open.png" />
+		<None Remove="Icon\pen.png" />
+		<None Remove="Icon\QLProduct.png" />
+		<None Remove="Icon\SL.png" />
+		<None Remove="Icon\ThemSP.jpg" />
+		<None Remove="Images\background.jpg" />
+		<None Remove="Images\InformationManagement\Default.jpg" />
+		<None Remove="Images\logo.png" />
+		<None Remove="Images\logo1.png" />
+		<None Remove="Images\Voucher\LogoVoucher.png" />
+		<None Remove="Images\MessageBox\logo2.png" />
+		<None Remove="Images\StaffManagement\Default.jpg" />
+		<None Remove="Images\MovieManagement\Doremon.jpg" />
 
-  <ItemGroup>
-    <PackageReference Include="EPPlus" Version="7.0.4" />
-    <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc2" />
-    <PackageReference Include="MaterialDesignColors" Version="2.1.4" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
-	  <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.5" />
-	  <PackageReference Include="QRCoder" Version="1.4.3" />
-	  <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
+	</ItemGroup>
 
-	  <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="EPPlus" Version="7.0.4" />
+		<PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc2" />
+		<PackageReference Include="MaterialDesignColors" Version="2.1.4" />
+		<PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+		<PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.5" />
+		<PackageReference Include="QRCoder" Version="1.4.3" />
+		<PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
 
-  <ItemGroup>
-    <Resource Include="Icon\DauCong.png" />
-    <Resource Include="Icon\delete.png" />
-    <Resource Include="Icon\logout.png" />
-    <Resource Include="Icon\money.png" />
-    <Resource Include="Icon\Open.png" />
-    <Resource Include="Icon\pen.png" />
-    <Resource Include="Icon\QLProduct.png" />
-    <Resource Include="Icon\SL.png" />
-    <Resource Include="Icon\ThemSP.jpg" />
-    <Resource Include="Images\background.jpg" />
-    <Resource Include="Images\InformationManagement\Default.jpg" />
-    <Resource Include="Images\logo.png" />
-    <Resource Include="Images\logo1.png" />
-	<Resource Include="Images\Voucher\LogoVoucher.png" />
-	<Resource Include="Images\MessageBox\logo2.png" />
-	<Resource Include="Images\StaffManagement\Default.jpg" />
+		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
+	</ItemGroup>
 
-  </ItemGroup>
+	<ItemGroup>
+		<Resource Include="Icon\DauCong.png" />
+		<Resource Include="Icon\delete.png" />
+		<Resource Include="Icon\logout.png" />
+		<Resource Include="Icon\money.png" />
+		<Resource Include="Icon\Open.png" />
+		<Resource Include="Icon\pen.png" />
+		<Resource Include="Icon\QLProduct.png" />
+		<Resource Include="Icon\SL.png" />
+		<Resource Include="Icon\ThemSP.jpg" />
+		<Resource Include="Images\background.jpg" />
+		<Resource Include="Images\InformationManagement\Default.jpg" />
+		<Resource Include="Images\logo.png" />
+		<Resource Include="Images\logo1.png" />
+		<Resource Include="Images\Voucher\LogoVoucher.png" />
+		<Resource Include="Images\MessageBox\logo2.png" />
+		<Resource Include="Images\StaffManagement\Default.jpg" />
+		<Resource Include="Images\MovieManagement\Doremon.jpg" />
+
+	</ItemGroup>
 </Project>

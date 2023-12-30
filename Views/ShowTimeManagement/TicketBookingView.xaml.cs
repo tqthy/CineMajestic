@@ -1,4 +1,5 @@
-﻿using CineMajestic.ViewModels.MovieManagementVM;
+﻿using CineMajestic.Models.DTOs.ShowTimeManagement;
+using CineMajestic.ViewModels.ShowTimeManagementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,22 +14,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace CineMajestic.Views.MovieManagement
+namespace CineMajestic.Views.ShowTimeManagement
 {
     /// <summary>
-    /// Interaction logic for AddMovieView.xaml
+    /// Interaction logic for TicketBookingView.xaml
     /// </summary>
-    public partial class AddMovieView : Window
+    public partial class TicketBookingView : Window
     {
-        public AddMovieView()
+        public TicketBookingView(ShowTimeDTO showTimeDTO)
         {
             InitializeComponent();
-            AddMovieViewModel addMovieViewModel = new AddMovieViewModel(this);
-            this.DataContext = addMovieViewModel;
-        }
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
+            TicketBookingViewModel ticketBookingViewModel= new TicketBookingViewModel(showTimeDTO);
+            this.DataContext = ticketBookingViewModel;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)

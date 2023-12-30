@@ -4,289 +4,52 @@ using CineMajestic.Views.MovieManagement;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace CineMajestic.ViewModels.MovieManagementVM
 {
-    public partial class MovieManagementViewModel : MainBaseViewModel
+    public partial class MovieManagementViewModel:MainBaseViewModel
     {
-        #region Binding properties
+        private ObservableCollection<MovieDTO> DSPhim_All;
+        private ObservableCollection<MovieDTO> DSPhim_DPH;//đang phát hành
+        private ObservableCollection<MovieDTO> DSPhim_NPH;//ngưng phát hành
 
-        private string id;
-        public string Id { get => id; set { id = value; OnPropertyChanged(nameof(Id)); } }
-        private string title;
-        public string Title { get => title; set { title = value; OnPropertyChanged(nameof(Title)); } }
-        private string country;
-        public string Country { get => country; set { country = value; OnPropertyChanged(nameof(Country)); } }
-        private string length;
-        public string Length { get => length; set { length = value; OnPropertyChanged(nameof(Length)); } }
-        private string description;
-        public string Description { get => description; set { description = value; OnPropertyChanged(nameof(Description)); } }
-        private string director;
-        public string Director { get => director; set { director = value; OnPropertyChanged(nameof(Director)); } }
-        private string releaseYear;
-        public string ReleaseYear { get => releaseYear; set { releaseYear = value; OnPropertyChanged(nameof(ReleaseYear)); } }
-        private string trailer;
-        public string Trailer { get => trailer; set { trailer = value; OnPropertyChanged(nameof(Trailer)); } }
-        private string language;
-        public string Language { get => language; set { language = value; OnPropertyChanged(nameof(Language)); } }
-        private string startDate;
-        public string StartDate { get => startDate; set { startDate = value; OnPropertyChanged(nameof(StartDate)); } }
-        private string endDate;
-        public string EndDate { get => endDate; set { endDate = value; OnPropertyChanged(nameof(EndDate)); } }
-        private string genre;
-        public string Genre { get => genre; set { genre = value; OnPropertyChanged(nameof(Genre)); } }
+        private MovieManagementView movieManagementView; //Dùng để giãn column khi edit,xóa,hoặc thêm
 
-        // Add or Edit Window
-
-        private string windowTitle;
-        public string WindowTitle { get => windowTitle; set { windowTitle = value; OnPropertyChanged(nameof(WindowTitle)); } }
-
-        private BitmapImage moviePoster;
-        public BitmapImage MoviePoster { get => moviePoster; set { moviePoster = value; OnPropertyChanged(nameof(MoviePoster)); } }
-        
-        // Movies List
-
-        private ObservableCollection<MovieDTO> movieList;
-        public ObservableCollection<MovieDTO> MovieList
-        {
-            get => movieList;
-            set
-            {
-                movieList = value;
-                OnPropertyChanged(nameof(MovieList));
-            }
-        }
-
-        // Genres List
-
-        private ObservableCollection<GenreDTO> genreList;
-        public ObservableCollection<GenreDTO> GenreList
-        {
-            get => genreList;
-            set
-            {
-                genreList = value;
-                OnPropertyChanged(nameof(GenreList));
-            }
-        }
-
-        // ComboBox selected genre
-        private GenreDTO selectedGenre;
-        public GenreDTO SelectedGenre { get => selectedGenre; set { selectedGenre = value; OnPropertyChanged(nameof(SelectedGenre)); } }
-
-        // Listview selected item
-
-        private MovieDTO selectedItem;
-        public MovieDTO SelectedItem { get => selectedItem; set { selectedItem = value; OnPropertyChanged(nameof(SelectedItem)); } }
-
-        // UI
-
-        private string hintEndDate;
-        public string HintEndDate { get => hintEndDate; set { hintEndDate = value; OnPropertyChanged(nameof(HintEndDate)); } }
-
-        private string hintStartDate;
-        public string HintStartDate { get => hintStartDate; set { hintStartDate = value; OnPropertyChanged(nameof(HintStartDate)); } }
-
-        private double hintOpacity;
-        public double HintOpacity { get => hintOpacity; set { hintOpacity = value; OnPropertyChanged(nameof(HintOpacity)); } }
-
-        #endregion
-
-
-
-        #region Commands
-
-        public ICommand ButtonAddMovieCommand { get; }
-        public ICommand RemoveMovieCommand { get; }
-        public ICommand ButtonEditMovieCommand { get; }
-        public ICommand DeleteMovieCommand { get; }
-        public ICommand ViewDetailCommand { get; }
-
-        #endregion
-
-
-        #region Constructor
         public MovieManagementViewModel()
         {
-            try
-            {
-                _ = LoadCollection();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                MessageBox.Show("Co loi khi ket noi voi co so du lieu!");
-            }
-            
-            AddOrEditMovieCommand = new ViewModelCommand(ExecuteAddOrEditMovieCommand, CanExecuteAddOrEditMovieCommand);
-            ButtonAddMovieCommand = new ViewModelCommand(ExecuteButtonAddMovieCommand);
-            ButtonEditMovieCommand = new ViewModelCommand(ExecuteButtonEditMovieCommand);
-            UploadPosterCommand = new ViewModelCommand(ExecuteUploadPosterCommand);
-            DeleteMovieCommand = new ViewModelCommand(ExecuteDeleteMovieCommand);
-            ViewDetailCommand = new ViewModelCommand(ExecuteViewDetailCommand);
+            AddMovie();
+            // SearchMovie(); gọi ở loaddata r
+            Delete();
+            MovieDetail();
+            Filter();
+            edit();
         }
 
-        private async Task LoadCollection()
+        //Hàm load column
+        private void loadWithColumn()
         {
-            MovieDA movieDA = new MovieDA();
-            GenreDA genreDA = new GenreDA();
+            if (movieManagementView != null) 
+            {
+                movieManagementView.clName.Width = 0;
+                movieManagementView.clName.Width = double.NaN;
 
-            Task<List<MovieDTO>> movietasks = Task.Run(() => movieDA.GetAllMovies());
-            Task<List<GenreDTO>> genretasks = Task.Run(() => genreDA.GetAllGenres());
+                movieManagementView.clStatus.Width = 0;
+                movieManagementView.clStatus.Width = double.NaN;
 
-            List<MovieDTO> movies = await movietasks;
-            List<GenreDTO> genres = await genretasks;
+                movieManagementView.clTime.Width = 0;
+                movieManagementView.clTime.Width = double.NaN;
 
-            MovieList = new ObservableCollection<MovieDTO>(movies);
-            GenreList = new ObservableCollection<GenreDTO>(genres);
+                movieManagementView.clCountry.Width = 0;
+                movieManagementView.clCountry.Width = double.NaN;
+
+                movieManagementView.clDirector.Width = 0;
+                movieManagementView.clDirector.Width = double.NaN;
+            }
+
         }
-
-        #endregion
-
-        #region Commands execution
-
-        // add button click
-        public void ExecuteButtonAddMovieCommand(object obj)
-        {
-            WindowTitle = "Thêm phim";
-            HintOpacity = 0.6;
-            HintStartDate = "Chọn ngày";
-            HintEndDate = "Chọn ngày";
-            AddMovieView addMoviePopup = new AddMovieView();
-            Id = null;
-            Title = null;
-            Description = null;
-            Country = null;
-            Language = null;
-            StartDate = null;
-            EndDate = null;
-            Trailer = null;
-            Director = null;
-            ReleaseYear = null;
-            Length = null;
-            SelectedGenre = null;
-            MoviePoster = null;
-            addMoviePopup.DataContext = this;
-            addMoviePopup.ShowDialog();
-        }
-
-        // edit button click
-        public void ExecuteButtonEditMovieCommand(object obj)
-        {
-            WindowTitle = "Chỉnh sửa phim";
-            HintOpacity = 1;
-            HintStartDate = SelectedItem.StartDate;
-            HintEndDate = SelectedItem.EndDate;
-            GenreDA genreDA = new GenreDA();
-            Id = SelectedItem.Id;
-            Title = SelectedItem.Title;
-            Description = SelectedItem.Description;
-            Country = SelectedItem.Country;
-            Language = SelectedItem.Language;
-            StartDate = SelectedItem.StartDate;
-            EndDate = SelectedItem.EndDate;
-            Trailer = SelectedItem.Trailer;
-            Director = SelectedItem.Director;
-            ReleaseYear = SelectedItem.ReleaseYear;
-            Length = SelectedItem.Length;
-            try
-            {
-                SelectedGenre = genreDA.GetGenreByID(SelectedItem.Genre);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                MessageBox.Show("Co loi xay ra khi ket noi voi CSDL!");
-                return;
-            }
-            MoviePoster = new BitmapImage(new Uri(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", SelectedItem.Title, "Poster", SelectedItem.Poster)));
-            AddMovieView editMoviePopup = new AddMovieView();
-            editMoviePopup.DataContext = this;
-            for (int i = 0; i < GenreList.Count; i++)
-            {
-                if (GenreList[i].Id == SelectedItem.Genre)
-                {
-                    editMoviePopup.GenreComboBox.SelectedItem = GenreList[i];
-                    break;
-                }
-            }
-            editMoviePopup.dpStart.DisplayDate = DateTime.Parse(StartDate);
-            editMoviePopup.dpEnd.DisplayDate = DateTime.Parse(EndDate);
-            editMoviePopup.ShowDialog();
-            
-        }
-
-        // Delete
-        public void ExecuteDeleteMovieCommand(object obj)
-        {
-            MovieDA movieDA = new MovieDA();
-            MovieDTO selectedMovie = SelectedItem as MovieDTO;
-            try
-            {
-                movieDA.DeleteMovie(selectedMovie);
-            }
-            catch (Exception ex) 
-            {
-                Console.WriteLine(ex.Message);
-                MessageBox.Show("Co loi xay ra!");
-                return;
-            }
-            MessageBox.Show("Successfully deleted!");
-            for (int i = 0; i < MovieList.Count; i++)
-            {
-                if (MovieList[i].Id == SelectedItem?.Id)
-                {
-                    MovieList.Remove(MovieList[i]);
-                    break;
-                }
-            }
-        }
-
-        // View Details 
-        public void ExecuteViewDetailCommand(object obj)
-        {
-            Id = SelectedItem.Id;
-            Title = SelectedItem.Title;
-            Description = SelectedItem.Description;
-            Country = SelectedItem.Country;
-            Language = SelectedItem.Language;
-            string[] temp = SelectedItem.StartDate.Split(' ');
-            StartDate = temp[0];
-            temp = SelectedItem.EndDate.Split(' ');
-            EndDate = temp[0];
-            Trailer = SelectedItem.Trailer;
-            Director = SelectedItem.Director;
-            ReleaseYear = SelectedItem.ReleaseYear;
-            Length = SelectedItem.Length;
-            GenreDA genreDA = new GenreDA();
-            try
-            {
-                Genre = genreDA.GetGenreByID(SelectedItem.Genre).Title;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                MessageBox.Show("Co loi xay ra!");
-                return;
-            }
-            MoviePoster = new BitmapImage(new Uri(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", SelectedItem.Title, "Poster", SelectedItem.Poster)));
-            MovieDetailView movieDetailPopup = new()
-            {
-                DataContext = this
-            };
-            movieDetailPopup.ShowDialog();
-        }
-
-        #endregion
 
     }
 }

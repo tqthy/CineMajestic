@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels.MovieManagementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,11 @@ namespace CineMajestic.Views.MovieManagement
     /// </summary>
     public partial class MovieDetailView : Window
     {
-        public MovieDetailView()
+        public MovieDetailView(MovieDTO movieDTO)
         {
             InitializeComponent();
+            MovieDetailViewModel movieDetailViewModel = new MovieDetailViewModel(movieDTO);
+            this.DataContext = movieDetailViewModel;
         }
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {

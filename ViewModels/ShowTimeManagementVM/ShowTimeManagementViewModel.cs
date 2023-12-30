@@ -1,5 +1,5 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
-using CineMajestic.Models.DTOs;
+using CineMajestic.Models.DTOs.ShowTimeManagement;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,32 +11,29 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 {
     public partial class ShowTimeManagementViewModel : MainBaseViewModel
     {
-        #region Bindable Property
-
-        private ObservableCollection<ShowTimeDTO> screeningList;
-        public ObservableCollection<ShowTimeDTO> ScreeningList {  get { return screeningList; } set { screeningList = value; OnPropertyChanged(nameof(ScreeningList)); } }
-
-        #endregion
-
-
-
-        #region Constructor
-
-        public ShowTimeManagementViewModel()
-        { 
-            ShowTimeDA showTimeDA = new ShowTimeDA();
-            List<ShowTimeDTO> showTimeDTOs = showTimeDA.GetAllShowTimeByDate(DateTime.Now);
-            ScreeningList = new ObservableCollection<ShowTimeDTO>(showTimeDTOs);
+        private ObservableCollection<ShowTimeDTO> dSSuatChieu;
+        public ObservableCollection<ShowTimeDTO> DSSuatChieu
+        {
+            get => dSSuatChieu;
+            set
+            {
+                dSSuatChieu = value;
+                OnPropertyChanged(nameof(DSSuatChieu));
+            }
         }
 
-        #endregion
+        public ShowTimeManagementViewModel()
+        {
+            loadData();//lần đầu mở thì vào phần all
+            Auditorium();
+            AddShowTime();
+            TicketBooking();
+        }
 
-
-
-        #region Commands
-
-
-
-        #endregion
+        private void loadData(string Phong = "All")//load data theo phòng
+        {
+            ShowTimeDA showTimeDA = new ShowTimeDA();
+            DSSuatChieu = showTimeDA.getDSShowTime(Phong);
+        }
     }
 }

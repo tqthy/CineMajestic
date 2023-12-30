@@ -1,4 +1,5 @@
-﻿using CineMajestic.ViewModels.MovieManagementVM;
+﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels.MovieManagementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,24 +17,20 @@ using System.Windows.Shapes;
 namespace CineMajestic.Views.MovieManagement
 {
     /// <summary>
-    /// Interaction logic for AddMovieView.xaml
+    /// Interaction logic for EditFilmView.xaml
     /// </summary>
-    public partial class AddMovieView : Window
+    public partial class EditFilmView : Window
     {
-        public AddMovieView()
+        public EditFilmView(MovieDTO movieDTO)
         {
             InitializeComponent();
-            AddMovieViewModel addMovieViewModel = new AddMovieViewModel(this);
-            this.DataContext = addMovieViewModel;
-        }
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
+            EditMovieViewModel editMovieViewModel=new EditMovieViewModel(movieDTO,this);
+            this.DataContext= editMovieViewModel;
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

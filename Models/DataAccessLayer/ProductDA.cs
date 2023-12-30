@@ -40,7 +40,7 @@ namespace CineMajestic.Models.DataAccessLayer
 
 
                             imageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + imageSource;
-                            DSSP.Add(new ProductDTO(id,name,quantity,purchasePrice,price,type,imageSource));
+                            DSSP.Add(new ProductDTO(id, name, quantity, purchasePrice, price, type, imageSource));
                         }
                     }
                 }
@@ -53,7 +53,7 @@ namespace CineMajestic.Models.DataAccessLayer
         //thêm 1 sản phẩm
         public void addProduct(ProductDTO product)
         {
-            using(SqlConnection connection = GetConnection())
+            using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
                 string insert =
@@ -67,7 +67,7 @@ namespace CineMajestic.Models.DataAccessLayer
                     + product.PurchasePrice.ToString() + ","
                     + product.Type.ToString() + ")";
 
-                using(SqlCommand command=new SqlCommand(insert,connection))
+                using (SqlCommand command = new SqlCommand(insert, connection))
                 {
                     command.ExecuteNonQuery();
                 }
@@ -78,7 +78,7 @@ namespace CineMajestic.Models.DataAccessLayer
         //xóa 1 sản phẩm
         public void deleteProduct(ProductDTO product)
         {
-            using(SqlConnection connection = GetConnection())
+            using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
                 string delete =
@@ -93,12 +93,12 @@ namespace CineMajestic.Models.DataAccessLayer
             }
         }
 
-        
+
 
         //update sản phẩm
         public void editProduct(ProductDTO product)
         {
-            using(SqlConnection connection=GetConnection())
+            using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
                 string update =
@@ -126,7 +126,7 @@ namespace CineMajestic.Models.DataAccessLayer
 
 
         //import số lượng product
-        public void importSL(ProductDTO product,int sl)
+        public void importSL(ProductDTO product, int sl)
         {
             using (SqlConnection connection = GetConnection())
             {
@@ -183,7 +183,7 @@ namespace CineMajestic.Models.DataAccessLayer
                 throw ex;
             }
             return results;
-            
+
         }
 
         public List<ProductStatisticsDTO> GetTopProductByYear(string year)
@@ -223,6 +223,53 @@ namespace CineMajestic.Models.DataAccessLayer
             }
             return results;
         }
+
+
+        //lấy danh sách sản phẩm theo loại
+        public ObservableCollection<ProductDTO> getDSSPTheoLoai(int Type)//0 là thức ăn,1 là đồ uống
+        {
+            ObservableCollection<ProductDTO> DSSP = new ObservableCollection<ProductDTO>();
+
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string truyvan = "";
+                if (Type == 2)
+                {
+                    truyvan = "select * from Product";
+                }
+                else if (Type == 1)
+                {
+                    truyvan = "select * from Product where Type=1";
+                }
+                else if (Type == 0)
+                {
+                    truyvan = "select * from Product where Type=0";
+                }
+
+
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(reader.GetOrdinal("ID"));
+                            string name = reader.GetString(reader.GetOrdinal("Name"));
+                            string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                            int quantity = reader.GetInt32(reader.GetOrdinal("Quantity"));
+                            int price = reader.GetInt32(reader.GetOrdinal("Price"));
+                            int type = reader.GetInt32(reader.GetOrdinal("Type"));
+
+
+
+                            imageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + imageSource;
+                            DSSP.Add(new ProductDTO(id, name, quantity, price, type, imageSource));
+                        }
+                    }
+                }
+            }
+            return DSSP;
+        }
     }
 }
-

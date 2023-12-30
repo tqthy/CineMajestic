@@ -52,6 +52,7 @@
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
@@ -80,41 +81,8 @@
                         FontWeight="SemiBold"
                         Foreground="#3F2305"
                         Text="Chi tiết phim" />
-                    <Button
-                        x:Name="btnMinimize"
-                        Grid.Column="1"
-                        BorderThickness="0"
-                        Click="btnMinimize_Click"
-                        Content="-"
-                        Cursor="Hand"
-                        FontFamily="Montserrat"
-                        FontSize="16"
-                        Foreground="#623b00"
-                        Visibility="Hidden">
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="Background" Value="#F2EAD3" />
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#E4D4C5" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
 
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border
-                                    Width="18"
-                                    Height="18"
-                                    Background="{TemplateBinding Background}"
-                                    CornerRadius="9">
-                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-
+                    <!--  Nút thoát  -->
                     <Button
                         x:Name="btnClose"
                         Grid.Column="2"
@@ -157,7 +125,7 @@
 
             <!--#endregion-->
 
-            <!--  Content  -->
+            <!--  Tên phim  -->
             <Border Grid.Row="1" Grid.Column="1">
                 <TextBlock
                     Width="250"
@@ -170,7 +138,7 @@
                     TextWrapping="Wrap" />
             </Border>
 
-
+            <!--  poster  -->
             <Border
                 Grid.Row="2"
                 Grid.RowSpan="6"
@@ -190,8 +158,7 @@
                 Grid.Column="1"
                 Margin="15"
                 CornerRadius="3">
-                <!--<Rectangle Fill="#f7f7f7"/>-->
-                <Image Source="{Binding MoviePoster}" Stretch="fill" />
+                <Image Source="{Binding ImageSource}" Stretch="Fill" />
             </Border>
 
             <Border
@@ -202,25 +169,28 @@
                 BorderBrush="LightGray"
                 BorderThickness="1,0,0,0" />
 
-            <!--  Row 1  -->
+            <!--  Row 0  -->
 
             <Grid
                 Grid.Row="1"
                 Grid.Column="2"
                 Margin="10,0,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3.5*" />
-                    <ColumnDefinition Width="6.5*" />
+                    <ColumnDefinition Width="240" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Horizontal">
                     <TextBlock
                         VerticalAlignment="Center"
                         FontWeight="SemiBold"
                         Text="Thời lượng:" />
+
+                    <!--  Binding length  -->
                     <TextBlock
                         Margin="4,0,0,0"
                         VerticalAlignment="Center"
                         Text="{Binding Length}" />
+
                     <TextBlock
                         Margin="3,0,0,0"
                         VerticalAlignment="Center"
@@ -229,9 +199,12 @@
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBlock
+                        Margin="18,0,0,0"
                         VerticalAlignment="Center"
                         FontWeight="SemiBold"
                         Text="Đạo diễn:" />
+
+                    <!--  Binding đạo diễn  -->
                     <TextBlock
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
@@ -241,33 +214,38 @@
 
             </Grid>
 
-            <!--  Row 2  -->
+            <!--  Row 1  -->
 
             <Grid
                 Grid.Row="2"
                 Grid.Column="2"
                 Margin="10,0,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3.5*" />
-                    <ColumnDefinition Width="6.5*" />
+                    <ColumnDefinition Width="240" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Horizontal">
                     <TextBlock
                         VerticalAlignment="Center"
                         FontWeight="SemiBold"
-                        Text="Năm sản xuất:" />
+                        Text="Tình trạng:" />
+
+                    <!--  Binding tình trạng  -->
                     <TextBlock
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
-                        Text="{Binding ReleaseYear}" />
+                        Text="{Binding Status}" />
                     <TextBlock VerticalAlignment="Center" Text="." />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBlock
+                        Margin="18,0,0,0"
                         VerticalAlignment="Center"
                         FontWeight="SemiBold"
                         Text="Ngôn ngữ:" />
+
+                    <!--  Binding ngôn ngữ  -->
                     <TextBlock
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
@@ -277,21 +255,23 @@
 
             </Grid>
 
-            <!--  Row 3  -->
+            <!--  Row 2  -->
 
             <Grid
                 Grid.Row="3"
                 Grid.Column="2"
                 Margin="10,0,0,0">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="3.5*" />
-                    <ColumnDefinition Width="6.5*" />
+                    <ColumnDefinition Width="240" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0" Orientation="Horizontal">
                     <TextBlock
                         VerticalAlignment="Center"
                         FontWeight="SemiBold"
                         Text="Quốc gia:" />
+
+                    <!--  Bindning quốc gia  -->
                     <TextBlock
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
@@ -300,9 +280,12 @@
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal">
                     <TextBlock
+                        Margin="16,0,0,0"
                         VerticalAlignment="Center"
                         FontWeight="SemiBold"
                         Text="Thể loại:" />
+
+                    <!--  Binding thể loại  -->
                     <TextBlock
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
@@ -311,38 +294,111 @@
                 </StackPanel>
             </Grid>
 
+            <!--  Row 3  -->
+
+            <Grid
+                Grid.Row="4"
+                Grid.Column="2"
+                Margin="10,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="240" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold"
+                        Text="Năm phát hành:" />
+
+                    <!--  Bindning năm phát hành  -->
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="{Binding ReleaseYear}" />
+                    <TextBlock VerticalAlignment="Center" Text="." />
+                </StackPanel>
+
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock
+                        Margin="18,0,0,0"
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold"
+                        Text="Ngày khởi chiếu:" />
+
+                    <!--  Binding ngày khởi chiếu  -->
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="{Binding StartDate}" />
+                    <TextBlock VerticalAlignment="Center" Text="." />
+                </StackPanel>
+            </Grid>
+
             <!--  Row 4  -->
 
-            <StackPanel
+            <Grid
                 Grid.Row="4"
+                Grid.Column="2"
+                Margin="10,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="240" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold"
+                        Text="Năm phát hành:" />
+
+                    <!--  Bindning năm phát hành  -->
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="{Binding ReleaseYear}" />
+                    <TextBlock VerticalAlignment="Center" Text="." />
+                </StackPanel>
+
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock
+                        Margin="18,0,0,0"
+                        VerticalAlignment="Center"
+                        FontWeight="SemiBold"
+                        Text="Ngày khởi chiếu:" />
+
+                    <!--  Binding ngày khởi chiếu  -->
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="{Binding StartDate}" />
+                    <TextBlock VerticalAlignment="Center" Text="." />
+                </StackPanel>
+            </Grid>
+
+            <!--  Row 5 - Giá nhập  -->
+            <StackPanel
+                Grid.Row="5"
                 Grid.Column="2"
                 Margin="10,0,0,0"
                 Orientation="Horizontal">
                 <TextBlock
                     VerticalAlignment="Center"
                     FontWeight="SemiBold"
-                    Text="Ngày khởi chiếu:" />
-                <TextBlock
-                    Margin="5,0,0,0"
-                    VerticalAlignment="Center"
-                    Text="{Binding StartDate}" />
-                <TextBlock VerticalAlignment="Center" Text="." />
-                <TextBlock
-                    Margin="10,0,0,0"
-                    VerticalAlignment="Center"
-                    FontWeight="SemiBold"
-                    Text="Ngày ngừng chiếu:" />
-                <TextBlock
-                    Margin="5,0,0,0"
-                    VerticalAlignment="Center"
-                    Text="{Binding EndDate}" />
-                <TextBlock VerticalAlignment="Center" Text="." />
-            </StackPanel>
+                    Text="Giá nhập:" />
 
-            <!--  Row 5  -->
+                <!--  Binding giá nhập ở đây  -->
+                <TextBlock
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    Text="{Binding ImportPrice}" />
+                <TextBlock VerticalAlignment="Center" Text=" VNĐ" />
+
+            </StackPanel>
+            <!--  Row 6  -->
 
             <StackPanel
-                Grid.Row="5"
+                Grid.Row="6"
                 Grid.Column="2"
                 Margin="10,0,0,0"
                 Orientation="Horizontal">
@@ -356,9 +412,9 @@
                     Text="{Binding Trailer}" />
             </StackPanel>
 
-            <!--  Row 6, 7: Description  -->
+            <!--  Row 7, 8: Description  -->
             <StackPanel
-                Grid.Row="6"
+                Grid.Row="7"
                 Grid.RowSpan="2"
                 Grid.Column="2"
                 Margin="10,0,0,0"
