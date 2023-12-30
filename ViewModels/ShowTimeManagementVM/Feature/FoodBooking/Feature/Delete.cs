@@ -31,6 +31,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
             foreach(var item in list)
             {
+                item.Quantity_Choice = 1;
                 DSSPChon.Remove(item);
             }
             TotalPrice = 0;
@@ -42,6 +43,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             if (obj is ProductDTO productDTO)
             {
                 TotalPrice -= productDTO.Price * productDTO.Quantity_Choice;
+                productDTO.Quantity_Choice = 1;
                 DSSPChon.Remove(productDTO);
             }
         }
