@@ -184,7 +184,7 @@
                     <Button
                         x:Name="btnQLSuatChieu"
                         Width="199"
-                        Margin="0,10,0,0"
+                        Margin="0,20,0,0"
                         HorizontalAlignment="Left"
                         materialDesign:ButtonAssist.CornerRadius="15"
                         Click="Button_Click"
@@ -216,7 +216,7 @@
                     <!--  Quản lí nhân sự  -->
                     <Button x:Name="btnQLNhanSu"
                         Width="199"
-                        Margin="0,10,0,0"
+                        Margin="0,20,0,0"
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"
@@ -248,7 +248,7 @@
                     <!--  Quản lý khách hàng  -->
                     <Button x:Name="btnQLKhachHang"
                         Width="199"
-                        Margin="0,10,0,0"
+                        Margin="0,20,0,0"
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"
@@ -281,7 +281,7 @@
 
                     <Button x:Name="btnQLSanPham"
                         Width="199"
-                        Margin="0,10,0,0"
+                        Margin="0,20,0,0"
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"
@@ -314,7 +314,7 @@
                     <!--  Voucher  -->
                     <Button x:Name="btnVoucher"
                         Width="199"
-                        Margin="0,10,0,0"
+                        Margin="0,20,0,0"
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"
@@ -344,7 +344,7 @@
 
                     <Button x:Name="btnThongKe"
                             Width="199"
-                            Margin="0,10,0,0"
+                            Margin="0,20,0,0"
                             HorizontalAlignment="Left"
                             Background="Transparent"
                             BorderThickness="0"
@@ -372,7 +372,7 @@
 
                     <Button x:Name="btnSuCo"
                             Width="199"
-                            Margin="0,10,0,0"
+                            Margin="0,20,0,0"
                             HorizontalAlignment="Left"
                             Background="Transparent"
                             BorderThickness="0"
@@ -401,7 +401,7 @@
                     <!--  Cá nhân  -->
                     <Button x:Name="btnCaNhan"
                         Width="199"
-                        Margin="0,10,0,0"
+                        Margin="0,140,0,0"
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"
@@ -432,7 +432,7 @@
                     <!--  Log out  -->
                     <Button
                         Width="199"
-                        Margin="0,10,0,0"
+                        Margin="0,20,0,0"
                         HorizontalAlignment="Left"
                         Background="Transparent"
                         BorderThickness="0"

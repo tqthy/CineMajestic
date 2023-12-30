@@ -15,7 +15,7 @@
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
     mc:Ignorable="d">
-    <Grid Background="White">
+    <Grid Background="#f5f5f5">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition Height="300" />
@@ -24,40 +24,48 @@
         </Grid.RowDefinitions>
 
         <!--  Tiêu đề  -->
-        <Grid Background="#DFD7BF">
+        <Border Background="#DFD7BF"
+                Margin="15,10,15,0"
+                Height="335"
+                VerticalAlignment="Top"
+                CornerRadius="10"
+                Grid.RowSpan="2"
+                             >
             <TextBlock
-                Margin="10,0,0,10"
-                VerticalAlignment="Bottom"
-                FontSize="27"
+                Margin="10,5,0,0"
+                VerticalAlignment="Top"
+                FontSize="20"
                 FontWeight="Bold"
                 Text="Thông tin cá nhân " />
-        </Grid>
+        </Border>
 
         <!--  Thông tin cá nhân  -->
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="7*" />
-            </Grid.ColumnDefinitions>
+        <materialDesign:Card Grid.Row="1"
+                             Margin="16,1,16,5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="7*" />
+                </Grid.ColumnDefinitions>
 
-            <!--  Edit ảnh  -->
-            <Grid Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="8*" />
-                    <RowDefinition Height="2*" />
-                </Grid.RowDefinitions>
-                <Border
+                <!--  Edit ảnh  -->
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="8*" />
+                        <RowDefinition Height="2*" />
+                    </Grid.RowDefinitions>
+                    <Border
                     Width="150"
                     Height="150"
                     Margin="0,30,0,0"
                     BorderBrush="Black"
                     BorderThickness="2"
                     CornerRadius="70">
-                    <Border.Background>
-                        <ImageBrush ImageSource="{Binding ImageSource}" />
-                    </Border.Background>
-                </Border>
-                <TextBlock
+                        <Border.Background>
+                            <ImageBrush ImageSource="{Binding ImageSource}" />
+                        </Border.Background>
+                    </Border>
+                    <TextBlock
                     Height="25"
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"
@@ -66,32 +74,32 @@
                     FontWeight="Bold"
                     Text="{Binding Id}" />
 
-                <!--  Nút đổi ảnh đại diện  -->
-                <Button
+                    <!--  Nút đổi ảnh đại diện  -->
+                    <Button
                     Grid.Row="1"
                     Width="120"
                     VerticalAlignment="Top"
                     Content="Thay đổi ảnh"
                     FontSize="15" 
                     Command="{Binding editImageCommand}"/>
-            </Grid>
+                </Grid>
 
-            <!--  Phần hiển thị thông tin  -->
-            <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
+                <!--  Phần hiển thị thông tin  -->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-                <!--  Tên và giới tính  -->
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBox
+                    <!--  Tên và giới tính  -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
                         Width="300"
                         Height="50"
                         HorizontalAlignment="Left"
@@ -101,7 +109,7 @@
                         IsReadOnly="True"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding FullName}" />
-                    <TextBox
+                        <TextBox
                         Grid.Column="1"
                         Width="300"
                         Height="50"
@@ -112,15 +120,15 @@
                         IsReadOnly="True"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding Gender}" />
-                </Grid>
+                    </Grid>
 
-                <!--  Ngày sinh và số điện thoại  -->
-                <Grid Grid.Row="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBox
+                    <!--  Ngày sinh và số điện thoại  -->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
                         Width="300"
                         Height="50"
                         HorizontalAlignment="Left"
@@ -130,7 +138,7 @@
                         IsReadOnly="True"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding Birth}" />
-                    <TextBox
+                        <TextBox
                         Grid.Column="1"
                         Width="300"
                         Height="50"
@@ -141,15 +149,15 @@
                         IsReadOnly="True"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding PhoneNumber}" />
-                </Grid>
+                    </Grid>
 
-                <!--  Ngày vào làm và lương  -->
-                <Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBox
+                    <!--  Ngày vào làm và lương  -->
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
                         Width="300"
                         Height="50"
                         HorizontalAlignment="Left"
@@ -159,7 +167,7 @@
                         IsReadOnly="True"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding NgayVL}" />
-                    <TextBox
+                        <TextBox
                         Grid.Column="1"
                         Width="300"
                         Height="50"
@@ -170,20 +178,22 @@
                         IsReadOnly="True"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding Salary}" />
-                </Grid>
+                    </Grid>
 
-                <!--  Chức vụ và Email  -->
-                <Grid Grid.Row="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="47*" />
-                        <ColumnDefinition Width="303*" />
-                        <ColumnDefinition Width="350*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBox
+                    <!--  Chức vụ và Email  -->
+                    <Grid Grid.Row="3"
+                          Margin="0,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="47*" />
+                            <ColumnDefinition Width="303*" />
+                            <ColumnDefinition Width="350*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox
                         Grid.ColumnSpan="2"
                         Width="300"
                         Height="50"
                         Margin="0,12,0,13"
+                        VerticalAlignment="Center"
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Chức vụ"
                         FontSize="17"
@@ -191,11 +201,12 @@
                         IsReadOnly="True"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding Role}" />
-                    <TextBox
+                        <TextBox
                         Grid.Column="2"
                         Width="300"
                         Height="50"
                         Margin="0,12,0,13"
+                        VerticalAlignment="Center"
                         HorizontalAlignment="Left"
                         materialDesign:HintAssist.Hint="Email"
                         FontSize="17"
@@ -203,43 +214,50 @@
                         IsReadOnly="True"
                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                         Text="{Binding Email}" />
+                    </Grid>
                 </Grid>
             </Grid>
-
-        </Grid>
+        </materialDesign:Card>
 
         <!--  Tiêu đề đổi mật khẩu  -->
-        <Grid Grid.Row="2" Background="#DFD7BF">
+        <Border Grid.Row="2" Background="#DFD7BF"
+                Margin="15,5,15,0"
+                CornerRadius="10"
+                Grid.RowSpan="2"
+                Height="280">
             <TextBlock
-                Margin="10,0,0,10"
-                VerticalAlignment="Bottom"
-                FontSize="27"
+                Margin="10,7,0,10"
+                VerticalAlignment="Top"
+                FontSize="20"
                 FontWeight="Bold"
                 Text="Đổi mật khẩu " />
-        </Grid>
+        </Border>
 
-        <!--  Đổi mật khẩu  -->
-        <Grid Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
+        <materialDesign:Card Grid.Row="3"
+                             Margin="16,0,16,5">
+            <!--  Đổi mật khẩu  -->
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
 
-            <!--  Mật khẩu cũ  -->
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock
+
+                <!--  Mật khẩu cũ  -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
                     Margin="0,0,5,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="20"
                     Text="Mật khẩu cũ" />
-                <StackPanel Grid.Column="1">
-                    <PasswordBox
+                    <StackPanel Grid.Column="1">
+                        <PasswordBox
                         x:Name="txtMKCu"
                         Grid.Column="1"
                         Width="350"
@@ -251,31 +269,31 @@
                         materialDesign:HintAssist.Hint="Mật khẩu cũ"
                         FontSize="20" />
 
-                    <!--  In ra lỗi  -->
-                    <TextBlock
+                        <!--  In ra lỗi  -->
+                        <TextBlock
                         Margin="10,0,0,0"
                         FontSize="15"
                         Foreground="Red" 
                         Text="{Binding Password1Error}"/>
-                </StackPanel>
+                    </StackPanel>
 
-            </Grid>
+                </Grid>
 
-            <!--  Mật khẩu mới  -->
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock
+                <!--  Mật khẩu mới  -->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
                     Margin="0,0,5,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="20"
                     Text="Mật khẩu mới" />
-                <StackPanel Grid.Column="1" Orientation="Horizontal">
-                    <StackPanel>
-                        <PasswordBox
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <StackPanel>
+                            <PasswordBox
                             x:Name="txtMKMoi"
                             Width="350"
                             Height="35"
@@ -286,37 +304,39 @@
                             materialDesign:HintAssist.Hint="Mật khẩu mới"
                             FontSize="20" />
 
-                        <!--  In ra lỗi  -->
-                        <TextBlock
+                            <!--  In ra lỗi  -->
+                            <TextBlock
                             Margin="10,0,0,0"
                             FontSize="15"
                             Foreground="Red" 
                             Text="{Binding Password2Error}"/>
+                        </StackPanel>
+
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                Margin="120,0,0,0"
+                                Content="Đổi mật khẩu"
+                                Height="40"
+                                FontSize="25" 
+                                Width="200"
+                                Command="{Binding changePasswordCommand}"/>
                     </StackPanel>
 
-                    <Button
-                        Margin="120,0,0,0"
-                        Content="Đổi mật khẩu"
-                        FontSize="20" 
-                        Command="{Binding changePasswordCommand}"/>
-                </StackPanel>
+                </Grid>
 
-            </Grid>
-
-            <!--  Xác nhận mật khẩu mới  -->
-            <Grid Grid.Row="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200" />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <TextBlock
+                <!--  Xác nhận mật khẩu mới  -->
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock
                     Margin="0,0,5,0"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     FontSize="20"
                     Text="Nhập lại mật khẩu" />
-                <StackPanel Grid.Column="1">
-                    <PasswordBox
+                    <StackPanel Grid.Column="1">
+                        <PasswordBox
                         x:Name="txtXacNhanMKMoi"
                         Grid.Column="1"
                         Width="350"
@@ -328,16 +348,19 @@
                         materialDesign:HintAssist.Hint="Mật khẩu mới"
                         FontSize="20" />
 
-                    <!--  In ra lỗi  -->
-                    <TextBlock
+                        <!--  In ra lỗi  -->
+                        <TextBlock
                         Margin="10,0,0,0"
                         FontSize="15"
                         Foreground="Red" 
                         Text="{Binding Password3Error}"/>
-                </StackPanel>
+                    </StackPanel>
+
+                </Grid>
 
             </Grid>
-        </Grid>
+        </materialDesign:Card>
+
 
     </Grid>
 
