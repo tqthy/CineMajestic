@@ -297,7 +297,10 @@
                                     Margin="18,0,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="18"
-                                    FontWeight="SemiBold" />
+                                    FontWeight="SemiBold" 
+                                    Width="120"
+                                    Height="30"
+                                    Text="{Binding ChangeDiscount, UpdateSourceTrigger=PropertyChanged}" />
 
                                 <!--  Đơn vị đồng  -->
                                 <TextBlock
@@ -330,7 +333,8 @@
                                     Margin="18,0,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="18"
-                                    FontWeight="SemiBold" />
+                                    FontWeight="SemiBold" 
+                                    Text="{Binding billDTO.Total}"/>
 
                                 <!--  Đơn vị đồng  -->
                                 <TextBlock
@@ -413,7 +417,7 @@
                             VerticalAlignment="Center"
                             FontSize="18"
                             FontWeight="SemiBold"
-                            Text="{Binding Title}" />
+                            Text="{Binding billDTO.MovieTitle}" />
                     </Grid>
 
                     <Grid Grid.Row="2">
@@ -438,7 +442,7 @@
                             VerticalAlignment="Center"
                             FontSize="18"
                             FontWeight="SemiBold" 
-                            Text="{Binding ShowDate}"/>
+                            Text="{Binding billDTO.StartDate}"/>
                     </Grid>
 
                     <Grid Grid.Row="3">
@@ -462,7 +466,7 @@
                             VerticalAlignment="Center"
                             FontSize="18"
                             FontWeight="SemiBold" 
-                            Text="{Binding Showtime}"/>
+                            Text="{Binding billDTO.StartAndEndTime}"/>
                     </Grid>
 
                     <Grid Grid.Row="4">
@@ -510,7 +514,7 @@
                             VerticalAlignment="Center"
                             FontSize="18"
                             FontWeight="SemiBold" 
-                            Text="{Binding NameAuditorium}"/>
+                            Text="{Binding billDTO.NameAuditorium}"/>
                     </Grid>
 
 
@@ -535,7 +539,7 @@
                             VerticalAlignment="Center"
                             FontSize="18"
                             FontWeight="SemiBold" 
-                            Text="{Binding Seats}"/>
+                            Text="{Binding  billDTO.Seats}"/>
                     </Grid>
                     <!--  Giá vé  -->
                     <Grid Grid.Row="7">
@@ -561,7 +565,7 @@
                                 VerticalAlignment="Center"
                                 FontSize="18"
                                 FontWeight="SemiBold" 
-                                Text="{Binding PerSeatTicketPrice}"/>
+                                Text="{Binding billDTO.TicketPrice}"/>
 
                             <!--  Đơn vị đồng  -->
                             <TextBlock
@@ -600,7 +604,7 @@
                                     VerticalAlignment="Center"
                                     FontSize="18"
                                     FontWeight="SemiBold" 
-                                    Text="{Binding TotalTicket}"/>
+                                    Text="{Binding billDTO.TotalPriceTicket }"/>
 
                                 <!--  Đơn vị đồng  -->
                                 <TextBlock
@@ -646,7 +650,7 @@
                     <!--  Danh sách đồ ăn  -->
                     <Grid Grid.Row="1">
                         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                            <ItemsControl ItemsSource="{Binding Name}">
+                            <ItemsControl ItemsSource="{Binding  billDTO.DSSP}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <!--  Đồ ăn  -->
@@ -667,7 +671,7 @@
                                                         Margin="5,0,0,0"
                                                         FontSize="18"
                                                         FontWeight="DemiBold"
-                                                        Text="{Binding}"
+                                                        Text="{Binding Name}"
                                                         TextWrapping="Wrap" />
                                                     <StackPanel Orientation="Horizontal">
 
@@ -676,7 +680,7 @@
                                                             Margin="10,0,0,0"
                                                             FontSize="18"
                                                             FontWeight="DemiBold"
-                                                            Text="{Binding}" />
+                                                            Text="{Binding Quantity_Choice}" />
 
                                                         <!--  Dấu x  -->
                                                         <TextBlock
@@ -690,7 +694,7 @@
                                                             Margin="10,0,0,0"
                                                             FontSize="18"
                                                             FontWeight="DemiBold"
-                                                            Text="{Binding}" />
+                                                            Text="{Binding Price}" />
 
                                                         <!--  Đơn vị đồng  -->
                                                         <TextBlock
@@ -717,7 +721,7 @@
                                                         VerticalAlignment="Center"
                                                         FontSize="18"
                                                         FontWeight="SemiBold"
-                                                        Text="{Binding}" />
+                                                        Text="{Binding TotalPrice_QuantityChoice}" />
 
                                                     <!--  Đơn vị đồng  -->
                                                     <TextBlock
@@ -766,12 +770,13 @@
                                 HorizontalAlignment="Right"
                                 Orientation="Horizontal">
 
-                                <!--  Binding tiền vé  -->
+                                <!--  Binding tổng tiền sản phẩm  -->
                                 <TextBlock
                                     Margin="18,0,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="18"
-                                    FontWeight="SemiBold" />
+                                    FontWeight="SemiBold" 
+                                    Text="{Binding billDTO.TotalPriceProduct}"/>
 
                                 <!--  Đơn vị đồng  -->
                                 <TextBlock
