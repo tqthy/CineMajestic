@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:CineMajestic.Views.ShowTimeManagement"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Width="1010"
+    Width="1020"
     Height="600"
     AllowsTransparency="True"
     Background="Transparent"
@@ -89,7 +89,7 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
-                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="310" />
             </Grid.ColumnDefinitions>
 
             <Border BorderBrush="Black" BorderThickness="0,0.5,0.5,0">
@@ -164,7 +164,7 @@
                                                     Command="{Binding DataContext.AddProductCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                                                     CommandParameter="{Binding}">
                                                     <Button.Background>
-                                                        <ImageBrush ImageSource="{Binding ImageSource}" Stretch="Uniform" />
+                                                        <ImageBrush ImageSource="{Binding ImageSource}" Stretch="Fill" />
                                                     </Button.Background>
                                                     <Button.Template>
                                                         <ControlTemplate TargetType="Button">
@@ -257,7 +257,7 @@
 
                 <!--  Danh sách sản phẩm đã chọn  -->
                 <Border BorderBrush="Black" BorderThickness="0,0,0,0.5">
-                    <materialDesign:Card Margin="2">
+                    <materialDesign:Card>
                         <Grid>
                             <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                                 <ItemsControl ItemsSource="{Binding DSSPChon}">
@@ -266,13 +266,16 @@
                                         <!--  Cách 1 sản phẩm hiển thị  -->
                                         <DataTemplate>
                                             <materialDesign:Card Margin="2,5,0,0">
-                                                <Grid Width="298" Height="120">
+                                                <Grid Width="290" Height="120">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="14*" />
                                                         <ColumnDefinition Width="25*" />
                                                     </Grid.ColumnDefinitions>
                                                     <!--  Binding ảnh  -->
-                                                    <Image Source="{Binding ImageSource}" Stretch="Uniform" />
+                                                    <Image
+                                                        Height="120"
+                                                        Source="{Binding ImageSource}"
+                                                        Stretch="Fill" />
 
                                                     <Grid Grid.Column="1" Margin="5,0,0,0">
                                                         <Grid.RowDefinitions>
@@ -283,8 +286,8 @@
                                                         <StackPanel Orientation="Horizontal">
                                                             <!--  Binding tên sản phẩm  -->
                                                             <TextBlock
-                                                                Width="100"
-                                                                Margin="3,15,0,0"
+                                                                Width="140"
+                                                                Margin="3,12,0,0"
                                                                 HorizontalAlignment="Center"
                                                                 VerticalAlignment="Top"
                                                                 FontSize="18"
@@ -293,7 +296,7 @@
                                                                 TextWrapping="Wrap" />
                                                             <!--  Nút  ấn xóa sản phẩm trong đi  -->
                                                             <Button
-                                                                Margin="35,25,0,0"
+                                                                Margin="0,25,0,0"
                                                                 HorizontalAlignment="Left"
                                                                 VerticalAlignment="Top"
                                                                 BorderThickness="0"
@@ -305,7 +308,7 @@
                                                                         <Setter Property="Background" Value="DimGray" />
                                                                         <Style.Triggers>
                                                                             <Trigger Property="IsMouseOver" Value="True">
-                                                                                <Setter Property="Background" Value="#FF56E7FF" />
+                                                                                <Setter Property="Background" Value="Red" />
                                                                             </Trigger>
                                                                         </Style.Triggers>
                                                                     </Style>
@@ -342,22 +345,25 @@
                                                         <Grid Grid.Row="1">
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition />
-                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition />
                                                             </Grid.ColumnDefinitions>
 
                                                             <Border
                                                                 Width="90"
                                                                 Height="30"
+                                                                HorizontalAlignment="Left"
                                                                 BorderBrush="Black"
-                                                                BorderThickness="0.5,0.5,0.5,0.5">
+                                                                BorderThickness="1">
                                                                 <StackPanel Orientation="Horizontal">
                                                                     <!--  Nút trừ  -->
                                                                     <Button
-                                                                        HorizontalAlignment="Left"
-                                                                        VerticalAlignment="Top"
                                                                         Command="{Binding DataContext.Tru1QuantityChoiceCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                                                                         CommandParameter="{Binding}"
-                                                                        Cursor="Hand">
+                                                                        Content="-"
+                                                                        Cursor="Hand"
+                                                                        FontFamily="Montserrat"
+                                                                        FontSize="25"
+                                                                        Foreground="Black">
                                                                         <Button.Style>
                                                                             <Style TargetType="Button">
                                                                                 <Setter Property="Background" Value="White" />
@@ -368,40 +374,35 @@
                                                                                 <Border
                                                                                     Width="27"
                                                                                     Height="30"
-                                                                                    BorderBrush="Black"
-                                                                                    BorderThickness="0,0,1,0">
-                                                                                    <materialDesign:PackIcon
-                                                                                        Width="20"
-                                                                                        Height="20"
-                                                                                        Margin="2.5,0,5,1"
-                                                                                        VerticalAlignment="Center"
-                                                                                        Foreground="Black"
-                                                                                        Kind="Minus" />
+                                                                                    Background="{TemplateBinding Background}">
+                                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                                                 </Border>
-
                                                                             </ControlTemplate>
                                                                         </Button.Template>
                                                                     </Button>
 
                                                                     <!--  Binding Số lượng  -->
-                                                                    <TextBlock
-                                                                        Width="36"
-                                                                        Height="Auto"
-                                                                        Margin="0,5,0,0"
-                                                                        Padding="13,0,0,0"
-                                                                        HorizontalAlignment="Center"
-                                                                        VerticalAlignment="Top"
-                                                                        FontSize="14"
-                                                                        Text="{Binding Quantity_Choice}" />
+                                                                    <Border BorderBrush="Black" BorderThickness="1,0,1,0">
+                                                                        <TextBlock
+                                                                            Width="32"
+                                                                            Height="Auto"
+                                                                            Padding="11,4,0,0"
+                                                                            HorizontalAlignment="Center"
+                                                                            FontSize="15"
+                                                                            Text="{Binding Quantity_Choice}" />
+                                                                    </Border>
+
 
 
                                                                     <!--  Nút cộng  -->
                                                                     <Button
-                                                                        HorizontalAlignment="Left"
-                                                                        VerticalAlignment="Top"
                                                                         Command="{Binding DataContext.Cong1QuantityChoiceCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                                                                         CommandParameter="{Binding}"
-                                                                        Cursor="Hand">
+                                                                        Content="+"
+                                                                        Cursor="Hand"
+                                                                        FontFamily="Montserrat"
+                                                                        FontSize="25"
+                                                                        Foreground="Black">
                                                                         <Button.Style>
                                                                             <Style TargetType="Button">
                                                                                 <Setter Property="Background" Value="White" />
@@ -412,17 +413,9 @@
                                                                                 <Border
                                                                                     Width="27"
                                                                                     Height="30"
-                                                                                    BorderBrush="Black"
-                                                                                    BorderThickness="1,0,0,0">
-                                                                                    <materialDesign:PackIcon
-                                                                                        Width="20"
-                                                                                        Height="20"
-                                                                                        Margin="2.5,0,5,1"
-                                                                                        VerticalAlignment="Center"
-                                                                                        Foreground="Black"
-                                                                                        Kind="Plus" />
+                                                                                    Background="{TemplateBinding Background}">
+                                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                                                                                 </Border>
-
                                                                             </ControlTemplate>
                                                                         </Button.Template>
                                                                     </Button>
@@ -436,13 +429,6 @@
                                                                 HorizontalAlignment="Right"
                                                                 VerticalAlignment="Center"
                                                                 Orientation="Horizontal">
-                                                                <materialDesign:PackIcon
-                                                                    Width="15"
-                                                                    Height="24"
-                                                                    Background="Transparent"
-                                                                    Foreground="Goldenrod"
-                                                                    Kind="Money" />
-
                                                                 <!--  Binding giá sản phẩm  -->
                                                                 <TextBlock
                                                                     Margin="2,0,3,0"
