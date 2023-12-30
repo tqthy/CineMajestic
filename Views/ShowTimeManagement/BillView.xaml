@@ -211,19 +211,17 @@
                                 Text="Voucher:" />
                             <StackPanel Grid.Column="1">
                                 <!--  Ô nhập  Voucher  -->
-                                <TextBox
+                                <ComboBox
                                     Width="170"
                                     Height="33"
-                                    Margin="5,0.5,0,0"
+                                    Margin="5,1,0,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Center"
                                     VerticalContentAlignment="Center"
                                     FontSize="18" />
-                                <TextBlock
-                                    Margin="10,0,0,0"
-                                    FontSize="8.5"
-                                    Foreground="red"
-                                    Text="gg" />
+
+
+
                             </StackPanel>
                         </Grid>
 
@@ -295,7 +293,7 @@
                                 Orientation="Horizontal">
 
                                 <!--  Binding khuyến mãi  -->
-                                <TextBlock
+                                <TextBox
                                     Margin="18,0,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="18"
@@ -350,8 +348,8 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom"
                                 materialDesign:ButtonAssist.CornerRadius="2"
-                                Content="Thanh toán" 
-                                Command="{Binding Paycommand}"/>
+                                Command="{Binding Paycommand}"
+                                Content="Thanh toán" />
                         </Grid>
 
 
