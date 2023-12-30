@@ -23,6 +23,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private void Continue(object obj)
         {
+            orderDTO.TotalProduct = TotalPrice;
             BillView billView=new BillView(orderDTO);
             billView.ShowDialog();
         }
@@ -53,7 +54,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         
         private void Pay(object obj)
         {
-
+           
         }
     }
 }

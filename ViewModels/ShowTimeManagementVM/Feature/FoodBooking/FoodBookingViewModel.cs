@@ -26,6 +26,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         private void Continue(object obj)
         {
             orderDTO.Seats = Seats;
+            orderDTO.TotalTicket = TotalPriceTicket;
             FoodBookingView foodBookingView = new FoodBookingView(orderDTO);
             foodBookingView.ShowDialog();
         }

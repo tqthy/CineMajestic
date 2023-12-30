@@ -37,10 +37,13 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private void loadSeat()
         {
-            SeatForShowTimeDA seatForShowTimeDA=new SeatForShowTimeDA();
-            DSGhe = seatForShowTimeDA.getDSGhe(showTimeDTO.Id);
-            DSGheChon=new ObservableCollection<SeatForShowTimeDTO>();
-            orderDTO.DSGheChon = DSGheChon;
+            if (showTimeDTO != null)
+            {
+                SeatForShowTimeDA seatForShowTimeDA = new SeatForShowTimeDA();
+                DSGhe = seatForShowTimeDA.getDSGhe(showTimeDTO.Id);
+                DSGheChon = new ObservableCollection<SeatForShowTimeDTO>();
+                orderDTO.DSGheChon = DSGheChon;
+            }
         }
 
 

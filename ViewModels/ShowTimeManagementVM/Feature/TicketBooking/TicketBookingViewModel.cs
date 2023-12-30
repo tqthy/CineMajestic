@@ -24,30 +24,33 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         private OrderDTO orderDTO;
         private void ticketBooking(object obj)
         {
-            orderDTO=new OrderDTO();
-            TicketBookingView ticketBookingView=new TicketBookingView(obj as ShowTimeDTO,orderDTO);
-            ticketBookingView.ShowDialog();
+            if (obj != null)
+            {
+                orderDTO = new OrderDTO();
+                TicketBookingView ticketBookingView = new TicketBookingView(obj as ShowTimeDTO, orderDTO);
+                ticketBookingView.ShowDialog();
+            }
         }
     }
 
 
 
-    public partial class TicketBookingViewModel:MainBaseViewModel
+    public partial class TicketBookingViewModel : MainBaseViewModel
     {
-        public string ImageSource {  get; set; }
+        public string ImageSource { get; set; }
 
         //tên phim
         public string Title { get; set; }
-        
+
         //thời gian bắt đầu và kết thúc
         public string Showtime { get; set; }
-        
+
         //tên phòng chiếu
-        public string NameAuditorium {  get; set; }
-        
+        public string NameAuditorium { get; set; }
+
         //giá vé 1 ghế
-        public int PerSeatTicketPrice {  get; set; }
-        
+        public int PerSeatTicketPrice { get; set; }
+
         //danh sách ghế chọn
         private string seats;
         public string Seats
@@ -74,7 +77,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         private ShowTimeDTO showTimeDTO;
 
         private OrderDTO orderDTO;
-        public TicketBookingViewModel(ShowTimeDTO showTimeDTO,OrderDTO orderDTO)
+        public TicketBookingViewModel(ShowTimeDTO showTimeDTO, OrderDTO orderDTO)
         {
             this.showTimeDTO = showTimeDTO;
             this.orderDTO = orderDTO;
@@ -86,7 +89,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private void loadShowTimeCurrent()
         {
-            try
+            if (showTimeDTO != null)
             {
                 ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + showTimeDTO.ImageSource;
                 Title = showTimeDTO.MovieTitle;
@@ -96,7 +99,6 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 Seats = "Hiện chưa chọn ghế nào!";
                 TotalPriceTicket = 0;
             }
-            catch { }
         }
     }
 }
