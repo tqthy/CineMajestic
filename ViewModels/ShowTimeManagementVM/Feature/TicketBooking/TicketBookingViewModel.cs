@@ -78,15 +78,18 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private OrderDTO orderDTO;
         private int Staff_Id;
-        public TicketBookingViewModel(ShowTimeDTO showTimeDTO, OrderDTO orderDTO,int Staff_Id)
+
+        TicketBookingView ticketBookingView;
+        public TicketBookingViewModel(ShowTimeDTO showTimeDTO, OrderDTO orderDTO,int Staff_Id, TicketBookingView ticketBookingView)
         {
             this.showTimeDTO = showTimeDTO;
             this.orderDTO = orderDTO;
-            orderDTO.showTimeDTO= showTimeDTO;
+            orderDTO.showTimeDTO = showTimeDTO;
             loadShowTimeCurrent();
             Seat();
             FoodBooking();
             this.Staff_Id = Staff_Id;
+            this.ticketBookingView = ticketBookingView;
         }
 
 

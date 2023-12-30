@@ -27,7 +27,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         {
             orderDTO.Seats = Seats;
             orderDTO.TotalTicket = TotalPriceTicket;
-            FoodBookingView foodBookingView = new FoodBookingView(orderDTO,Staff_Id);
+            FoodBookingView foodBookingView = new FoodBookingView(orderDTO,Staff_Id,  ticketBookingView);
             foodBookingView.ShowDialog();
         }
 
@@ -61,7 +61,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         FoodBookingView foodBookingView;
         private OrderDTO orderDTO;
         private int Staff_Id;
-        public FoodBookingViewModel(FoodBookingView foodBookingView,OrderDTO orderDTO,int Staff_Id)
+        TicketBookingView ticketBookingView;
+        public FoodBookingViewModel(FoodBookingView foodBookingView,OrderDTO orderDTO,int Staff_Id, TicketBookingView ticketBookingView)
         {
             BackCommand = new ViewModelCommand(Back);
             this.foodBookingView = foodBookingView;
@@ -72,6 +73,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             Delete();
             Bill();
             this.Staff_Id = Staff_Id;
+            this.ticketBookingView= ticketBookingView;
         }
 
         private void Back(object obj)

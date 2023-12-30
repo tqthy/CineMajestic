@@ -31,7 +31,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             {
                 item.TotalPrice_QuantityChoice = item.Price * item.Quantity_Choice;
             }
-            BillView billView = new BillView(orderDTO,Staff_Id);
+            BillView billView = new BillView(orderDTO,Staff_Id,  ticketBookingView,  foodBookingView);
             billView.ShowDialog();
         }
     }
@@ -50,7 +50,9 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         public BillDTO billDTO { get; set; }
         public ShowTimeDTO showTimeDTO { get; set; }//dùng để bind lên hóa đơn
         private int Staff_Id;
-        public BillViewModel(BillView billView, OrderDTO orderDTO,int Staff_Id)
+        TicketBookingView ticketBookingView;
+        FoodBookingView foodBookingView;
+        public BillViewModel(BillView billView, OrderDTO orderDTO,int Staff_Id, TicketBookingView ticketBookingView, FoodBookingView foodBookingView)
         {
             this.billView = billView;
             this.orderDTO = orderDTO;
@@ -59,6 +61,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             Paycommand = new ViewModelCommand(Pay);
             this.Staff_Id = Staff_Id;
             loadBillDTO();
+            this.ticketBookingView = ticketBookingView;
+            this.foodBookingView= foodBookingView;
         }
 
 
@@ -153,7 +157,9 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             }
 
             MessageBox.Show("Hoàn tất!");
-
+            billView.Close();
+            foodBookingView.Close();
+            ticketBookingView.Close();
         }
 
 

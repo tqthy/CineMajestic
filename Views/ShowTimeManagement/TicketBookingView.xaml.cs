@@ -25,7 +25,7 @@ namespace CineMajestic.Views.ShowTimeManagement
         public TicketBookingView(ShowTimeDTO showTimeDTO,OrderDTO orderDTO,int Staff_Id)
         {
             InitializeComponent();
-            TicketBookingViewModel ticketBookingViewModel= new TicketBookingViewModel(showTimeDTO,orderDTO, Staff_Id);
+            TicketBookingViewModel ticketBookingViewModel= new TicketBookingViewModel(showTimeDTO,orderDTO, Staff_Id,this);
             this.DataContext = ticketBookingViewModel;
         }
 

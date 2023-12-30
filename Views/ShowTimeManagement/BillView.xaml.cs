@@ -21,10 +21,10 @@ namespace CineMajestic.Views.ShowTimeManagement
     /// </summary>
     public partial class BillView : Window
     {
-        public BillView(OrderDTO orderDTO,int Staff_Id)
+        public BillView(OrderDTO orderDTO,int Staff_Id, TicketBookingView ticketBookingView, FoodBookingView foodBookingView)
         {
             InitializeComponent();
-            BillViewModel billViewModel = new BillViewModel(this,orderDTO, Staff_Id);
+            BillViewModel billViewModel = new BillViewModel(this,orderDTO, Staff_Id,  ticketBookingView,foodBookingView);
             this.DataContext = billViewModel;
         }
     }
