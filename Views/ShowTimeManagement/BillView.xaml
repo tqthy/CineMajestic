@@ -439,7 +439,8 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             FontSize="18"
-                            FontWeight="SemiBold" />
+                            FontWeight="SemiBold" 
+                            Text="{Binding ShowDate}"/>
                     </Grid>
 
                     <Grid Grid.Row="3">
@@ -462,7 +463,8 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             FontSize="18"
-                            FontWeight="SemiBold" />
+                            FontWeight="SemiBold" 
+                            Text="{Binding Showtime}"/>
                     </Grid>
 
                     <Grid Grid.Row="4">
@@ -486,7 +488,7 @@
                             VerticalAlignment="Center"
                             FontSize="18"
                             FontWeight="SemiBold"
-                            Text="CineMajestic" />
+                            Text="CineMajestic_UIT" />
                     </Grid>
 
                     <Grid Grid.Row="5">
@@ -509,7 +511,8 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             FontSize="18"
-                            FontWeight="SemiBold" />
+                            FontWeight="SemiBold" 
+                            Text="{Binding NameAuditorium}"/>
                     </Grid>
 
 
@@ -533,7 +536,8 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             FontSize="18"
-                            FontWeight="SemiBold" />
+                            FontWeight="SemiBold" 
+                            Text="{Binding Seats}"/>
                     </Grid>
                     <!--  Giá vé  -->
                     <Grid Grid.Row="7">
@@ -558,7 +562,8 @@
                                 Margin="18,0,0,0"
                                 VerticalAlignment="Center"
                                 FontSize="18"
-                                FontWeight="SemiBold" />
+                                FontWeight="SemiBold" 
+                                Text="{Binding PerSeatTicketPrice}"/>
 
                             <!--  Đơn vị đồng  -->
                             <TextBlock
@@ -596,7 +601,8 @@
                                     Margin="18,0,0,0"
                                     VerticalAlignment="Center"
                                     FontSize="18"
-                                    FontWeight="SemiBold" />
+                                    FontWeight="SemiBold" 
+                                    Text="{Binding TotalTicket}"/>
 
                                 <!--  Đơn vị đồng  -->
                                 <TextBlock
@@ -642,7 +648,7 @@
                     <!--  Danh sách đồ ăn  -->
                     <Grid Grid.Row="1">
                         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                            <ItemsControl ItemsSource="{Binding}">
+                            <ItemsControl ItemsSource="{Binding Name}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <!--  Đồ ăn  -->
