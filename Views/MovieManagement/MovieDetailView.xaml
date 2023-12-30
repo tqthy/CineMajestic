@@ -141,7 +141,7 @@
             <!--  poster  -->
             <Border
                 Grid.Row="2"
-                Grid.RowSpan="7"
+                Grid.RowSpan="6"
                 Grid.Column="1"
                 Margin="10"
                 Background="#3f2305"
