@@ -335,99 +335,98 @@
                                                         </StackPanel>
 
                                                         <Grid Grid.Row="1">
-                                                            <Grid.RowDefinitions>
-                                                                <RowDefinition Height="4*" />
-                                                                <RowDefinition Height="5*" />
-                                                            </Grid.RowDefinitions>
-                                                        </Grid>
-
-
-                                                        <Grid Grid.Row="1">
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition />
                                                                 <ColumnDefinition />
                                                             </Grid.ColumnDefinitions>
 
-                                                            <Border
-                                                                Width="90"
-                                                                Height="30"
-                                                                HorizontalAlignment="Left"
-                                                                BorderBrush="Black"
-                                                                BorderThickness="1">
-                                                                <StackPanel Orientation="Horizontal">
-                                                                    <!--  Nút trừ  -->
-                                                                    <Button
-                                                                        Command="{Binding DataContext.Tru1QuantityChoiceCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                                                        CommandParameter="{Binding}"
-                                                                        Content="-"
-                                                                        Cursor="Hand"
-                                                                        FontFamily="Montserrat"
-                                                                        FontSize="25"
-                                                                        Foreground="Black">
-                                                                        <Button.Style>
-                                                                            <Style TargetType="Button">
-                                                                                <Setter Property="Background" Value="White" />
-                                                                            </Style>
-                                                                        </Button.Style>
-                                                                        <Button.Template>
-                                                                            <ControlTemplate TargetType="Button">
-                                                                                <Border
-                                                                                    Width="27"
-                                                                                    Height="30"
-                                                                                    Background="{TemplateBinding Background}">
-                                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                                                </Border>
-                                                                            </ControlTemplate>
-                                                                        </Button.Template>
-                                                                    </Button>
+                                                            <StackPanel>
+                                                                <Border
+                                                                    Width="90"
+                                                                    Height="30"
+                                                                    Margin="0,5,0,0"
+                                                                    HorizontalAlignment="Left"
+                                                                    BorderBrush="Black"
+                                                                    BorderThickness="1">
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <!--  Nút trừ  -->
+                                                                        <Button
+                                                                            Command="{Binding DataContext.Tru1QuantityChoiceCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                                                            CommandParameter="{Binding}"
+                                                                            Content="-"
+                                                                            Cursor="Hand"
+                                                                            FontFamily="Montserrat"
+                                                                            FontSize="25"
+                                                                            Foreground="Black">
+                                                                            <Button.Style>
+                                                                                <Style TargetType="Button">
+                                                                                    <Setter Property="Background" Value="White" />
+                                                                                </Style>
+                                                                            </Button.Style>
+                                                                            <Button.Template>
+                                                                                <ControlTemplate TargetType="Button">
+                                                                                    <Border
+                                                                                        Width="27"
+                                                                                        Height="30"
+                                                                                        Background="{TemplateBinding Background}">
+                                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                                                    </Border>
+                                                                                </ControlTemplate>
+                                                                            </Button.Template>
+                                                                        </Button>
+                                                                        <!--  textbox số lượng  -->
+                                                                        <Border BorderBrush="Black" BorderThickness="1,0,1,0">
+                                                                            <TextBox
+                                                                                Width="32"
+                                                                                Height="Auto"
+                                                                                HorizontalContentAlignment="Center"
+                                                                                FontSize="15"
+                                                                                Text="{Binding Quantity_Choice}" />
+                                                                        </Border>
+                                                                        <!--  Nút cộng  -->
+                                                                        <Button
+                                                                            Command="{Binding DataContext.Cong1QuantityChoiceCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                                                            CommandParameter="{Binding}"
+                                                                            Content="+"
+                                                                            Cursor="Hand"
+                                                                            FontFamily="Montserrat"
+                                                                            FontSize="25"
+                                                                            Foreground="Black">
+                                                                            <Button.Style>
+                                                                                <Style TargetType="Button">
+                                                                                    <Setter Property="Background" Value="White" />
+                                                                                </Style>
+                                                                            </Button.Style>
+                                                                            <Button.Template>
+                                                                                <ControlTemplate TargetType="Button">
+                                                                                    <Border
+                                                                                        Width="27"
+                                                                                        Height="30"
+                                                                                        Background="{TemplateBinding Background}">
+                                                                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                                                                    </Border>
+                                                                                </ControlTemplate>
+                                                                            </Button.Template>
+                                                                        </Button>
+                                                                    </StackPanel>
+                                                                </Border>
 
-                                                                    <!--  Binding Số lượng  -->
-                                                                    <Border BorderBrush="Black" BorderThickness="1,0,1,0">
-                                                                        <TextBlock
-                                                                            Width="32"
-                                                                            Height="Auto"
-                                                                            Padding="11,4,0,0"
-                                                                            HorizontalAlignment="Center"
-                                                                            FontSize="15"
-                                                                            Text="{Binding Quantity_Choice}" />
-                                                                    </Border>
-
-
-
-                                                                    <!--  Nút cộng  -->
-                                                                    <Button
-                                                                        Command="{Binding DataContext.Cong1QuantityChoiceCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                                                        CommandParameter="{Binding}"
-                                                                        Content="+"
-                                                                        Cursor="Hand"
-                                                                        FontFamily="Montserrat"
-                                                                        FontSize="25"
-                                                                        Foreground="Black">
-                                                                        <Button.Style>
-                                                                            <Style TargetType="Button">
-                                                                                <Setter Property="Background" Value="White" />
-                                                                            </Style>
-                                                                        </Button.Style>
-                                                                        <Button.Template>
-                                                                            <ControlTemplate TargetType="Button">
-                                                                                <Border
-                                                                                    Width="27"
-                                                                                    Height="30"
-                                                                                    Background="{TemplateBinding Background}">
-                                                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                                                                                </Border>
-                                                                            </ControlTemplate>
-                                                                        </Button.Template>
-                                                                    </Button>
-                                                                </StackPanel>
-                                                            </Border>
+                                                                <!--  Báo lỗi ở đây  -->
+                                                                <TextBlock
+                                                                    HorizontalAlignment="Center"
+                                                                    FontSize="10"
+                                                                    Foreground="Red"
+                                                                    FontWeight="DemiBold"
+                                                                    Text="gggg" />
+                                                            </StackPanel>
 
 
 
                                                             <StackPanel
                                                                 Grid.Column="1"
+                                                                Margin="0,10,0,0"
                                                                 HorizontalAlignment="Right"
-                                                                VerticalAlignment="Center"
+                                                                VerticalAlignment="Top"
                                                                 Orientation="Horizontal">
                                                                 <!--  Binding giá sản phẩm  -->
                                                                 <TextBlock

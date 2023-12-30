@@ -45,79 +45,79 @@
                     Height="60"
                     Background="Transparent"
                     BorderThickness="0"
+                    Command="{Binding AuditoriumCommand}"
                     Content="Toàn bộ"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
-                    Command="{Binding AuditoriumCommand}"/>
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
                 <!--  Phòng 1  -->
                 <Button
                     Height="60"
                     Background="Transparent"
                     BorderThickness="0"
+                    Command="{Binding AuditoriumCommand1}"
                     Content="Phòng 1"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
-                    Command="{Binding AuditoriumCommand1}"/>
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 2  -->
                 <Button
                     Height="60"
                     Background="Transparent"
                     BorderThickness="0"
+                    Command="{Binding AuditoriumCommand2}"
                     Content="Phòng 2"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
-                    Command="{Binding AuditoriumCommand2}"/>
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 3  -->
                 <Button
                     Height="60"
                     Background="Transparent"
                     BorderThickness="0"
+                    Command="{Binding AuditoriumCommand3}"
                     Content="Phòng 3"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
-                    Command="{Binding AuditoriumCommand3}"/>
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 4  -->
                 <Button
                     Height="60"
                     Background="Transparent"
                     BorderThickness="0"
+                    Command="{Binding AuditoriumCommand4}"
                     Content="Phòng 4"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
-                    Command="{Binding AuditoriumCommand4}"/>
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 5  -->
                 <Button
                     Height="60"
                     Background="Transparent"
                     BorderThickness="0"
+                    Command="{Binding AuditoriumCommand5}"
                     Content="Phòng 5"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
-                    Command="{Binding AuditoriumCommand5}"/>
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 6  -->
                 <Button
                     Height="60"
                     Background="Transparent"
                     BorderThickness="0"
+                    Command="{Binding AuditoriumCommand6}"
                     Content="Phòng 6"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
-                    Command="{Binding AuditoriumCommand6}"/>
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Phòng 7  -->
                 <Button
                     Height="60"
                     Background="Transparent"
                     BorderThickness="0"
+                    Command="{Binding AuditoriumCommand7}"
                     Content="Phòng 7"
                     Foreground="Black"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" 
-                    Command="{Binding AuditoriumCommand7}"/>
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}" />
 
                 <!--  Lọc theo ngày  -->
                 <DatePicker
@@ -133,8 +133,8 @@
                     Width="210"
                     Height="37"
                     Margin="0,0,0,0"
-                    Style="{StaticResource MaterialDesignOutlinedDarkButton}"
-                    Command="{Binding AddShowTimeCommand}">
+                    Command="{Binding AddShowTimeCommand}"
+                    Style="{StaticResource MaterialDesignOutlinedDarkButton}">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Height="20" Kind="PlaylistPlus" />
                         <TextBlock Margin="10,0,0,0" Text="Thêm suất chiếu" />
@@ -147,16 +147,16 @@
         <materialDesign:Card Grid.Row="1" Margin="20">
             <ListView
                 x:Name="lvScreening"
-                ItemsSource="{Binding DSSuatChieu}"
-                Focusable="True">
-                
-                <!--event trigger phục vụ việc order-->
+                Focusable="True"
+                ItemsSource="{Binding DSSuatChieu}" d:ItemsSource="{d:SampleData ItemCount=5}">
+
+                <!--  event trigger phục vụ việc order  -->
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="MouseDoubleClick">
                         <i:InvokeCommandAction Command="{Binding DataContext.TicketBookingCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding ElementName=lvScreening, Path=SelectedItem}" />
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                
+
                 <ListView.View>
                     <GridView>
 
@@ -185,7 +185,7 @@
                         </GridViewColumn>
 
                         <!--  Giờ chiếu  -->
-                        <GridViewColumn Width="200" Header="Giờ chiếu">
+                        <GridViewColumn Width="190" Header="Giờ chiếu">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock
@@ -206,7 +206,7 @@
                                         <!--  Nút edit  -->
                                         <Border
                                             BorderBrush="Black"
-                                            BorderThickness="0"
+                                            BorderThickness="1"
                                             CornerRadius="5"
                                             Cursor="Hand">
                                             <Border.Style>
@@ -224,7 +224,7 @@
                                                 Kind="Pencil" />
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger EventName="MouseLeftButtonUp">
-                                                    <i:InvokeCommandAction Command="{Binding DataContext.EditMovieCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
+                                                    <i:InvokeCommandAction Command="{Binding DataContext.showEditView, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
                                         </Border>
@@ -233,7 +233,7 @@
                                         <Border
                                             Margin="10,0,0,0"
                                             BorderBrush="Black"
-                                            BorderThickness="0"
+                                            BorderThickness="1"
                                             CornerRadius="5"
                                             Cursor="Hand">
                                             <Border.Style>
