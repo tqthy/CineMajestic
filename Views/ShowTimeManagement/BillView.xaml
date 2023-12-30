@@ -159,7 +159,7 @@
                                     VerticalAlignment="Center"
                                     VerticalContentAlignment="Center"
                                     FontSize="18"
-                                    Text="{Binding billDTO.FullName, UpdateSourceTrigger=PropertyChanged}" />
+                                    Text="{Binding billDTO.Fullname, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock
                                     Margin="10,0,0,0"
                                     FontSize="8.5"

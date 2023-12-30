@@ -391,9 +391,9 @@ namespace CineMajestic.Models.DataAccessLayer
                 string update =
                     "update Customer\n"
                     +
-                    "Point =Point+" + Point + "\n"
+                    "set Point =Point+" + Point + "\n"
                     +
-                    "where PhoneNumber=" + PhoneNumber;
+                    "where PhoneNumber=" + "'"+PhoneNumber+"'";
 
                 using (SqlCommand command = new SqlCommand(update, connection))
                 {
