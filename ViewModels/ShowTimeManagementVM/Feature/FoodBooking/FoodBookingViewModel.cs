@@ -60,7 +60,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             BackCommand = new ViewModelCommand(Back);
             this.foodBookingView = foodBookingView;
 
-            loadDSSP(2);//ban đầu là get all sản phẩm
+            loadDSSP(0);//ban đầu là get all sản phẩm
             Filter();
             Add();
             Delete();
