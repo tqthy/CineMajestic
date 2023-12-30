@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
@@ -403,5 +404,4 @@ namespace CineMajestic.Models.DataAccessLayer
             return results;
         }
     }
-}
 }
