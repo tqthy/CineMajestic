@@ -87,7 +87,18 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             set
             {
                 title = value;
-                OnPropertyChanged(nameof(Title));
+                ValidateTitle();
+
+            }
+        }
+        private string titleError;
+        public string TitleError
+        {
+            get => titleError;
+            set
+            {
+                titleError = value;
+                OnPropertyChanged(nameof(TitleError));
             }
         }
 
@@ -100,7 +111,19 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             set
             {
                 description = value;
-                OnPropertyChanged(nameof(Description));
+                ValidateDescription();
+
+            }
+        }
+
+        private string descriptionError;
+        public string DescriptionError
+        {
+            get => descriptionError;
+            set
+            {
+                descriptionError = value;
+                OnPropertyChanged(nameof(DescriptionError));
             }
         }
 
@@ -117,6 +140,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             }
         }
 
+
         //đạo diễn
         private string director;
         public string Director
@@ -125,7 +149,17 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             set
             {
                 director = value;
-                OnPropertyChanged(nameof(Director));
+                ValidateDirector();
+            }
+        }
+        private string directorError;
+        public string DirectorError
+        {
+            get => directorError;
+            set
+            {
+                directorError = value;
+                OnPropertyChanged(nameof(DirectorError));
             }
         }
 
@@ -138,7 +172,17 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             set
             {
                 releaseYear = value;
-                OnPropertyChanged(nameof(ReleaseYear));
+                ValidateReleaseYear();
+            }
+        }
+        private string releaseYearError;
+        public string ReleaseYearError
+        {
+            get => releaseYearError;
+            set
+            {
+                releaseYearError = value;
+                OnPropertyChanged(nameof(ReleaseYearError));
             }
         }
 
@@ -151,7 +195,17 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             set
             {
                 language = value;
-                OnPropertyChanged(nameof(Language));
+                ValidateLanguage();
+            }
+        }
+        private string languageError;
+        public string LanguageError
+        {
+            get => languageError;
+            set
+            {
+                languageError = value;
+                OnPropertyChanged(nameof(LanguageError));
             }
         }
 
@@ -164,7 +218,18 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             set
             {
                 country = value;
-                OnPropertyChanged(nameof(Country));
+                ValidateCountry();
+            }
+        }
+
+        private string countryError;
+        public string CountryError
+        {
+            get => countryError;
+            set
+            {
+                countryError = value;
+                OnPropertyChanged(nameof(CountryError));
             }
         }
 
@@ -178,7 +243,17 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             set
             {
                 length = value;
-                OnPropertyChanged(nameof(Length));
+                ValidateLength();
+            }
+        }
+        private string lengthError;
+        public string LengthError
+        {
+            get => lengthError;
+            set
+            {
+                lengthError = value;
+                OnPropertyChanged(nameof(LengthError));
             }
         }
 
@@ -191,7 +266,17 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             set
             {
                 trailer = value;
-                OnPropertyChanged(nameof(Trailer));
+                ValidateTrailer();
+            }
+        }
+        private string trailerError;
+        public string TrailerError
+        {
+            get => trailerError;
+            set
+            {
+                trailerError = value;
+                OnPropertyChanged(nameof(TrailerError));
             }
         }
 
@@ -236,14 +321,25 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             }
         }
 
-        private string importprice;
+        //Giá nhập
+        private string importPrice;
         public string ImportPrice
         {
-            get => importprice;
+            get => importPrice;
             set
             {
-                importprice = value;
-                OnPropertyChanged(nameof(ImportPrice));
+                importPrice = value;
+                ValidateImportPrice();
+            }
+        }
+        private string importPriceError;
+        public string ImportPriceError
+        {
+            get => importPriceError;
+            set
+            {
+                importPriceError = value;
+                OnPropertyChanged(nameof(ImportPriceError));
             }
         }
 
@@ -256,7 +352,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         {
             this.movieDTO = movieDTO;
             loadMovieCurrent();
-            acceptCommand = new ViewModelCommand(accept);
+            acceptCommand = new ViewModelCommand(accept,canAcceptAdd);
             addImageCommand = new ViewModelCommand(addImage);
             this.editFilmView = editFilmView;
         }
@@ -305,8 +401,6 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
             editFilmView.Close();
         }
-
-
         //add image
         private void addImage(object obj)
         {
@@ -350,6 +444,167 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
                 }
                 catch { }
+            }
+        }
+
+        //Phần các hàm validate _ báo lỗi
+        private bool[] _canAccept = new bool[9];//phục vụ việc có cho nhấn button accept ko
+        private bool canAcceptAdd(object obj)
+        {
+            return _canAccept[0] && _canAccept[1] && _canAccept[2] && _canAccept[3] && _canAccept[4] && _canAccept[5] &&
+                _canAccept[6] && _canAccept[7] && _canAccept[8];
+        }
+        private void ValidateTitle()
+        {
+            if (string.IsNullOrWhiteSpace(Title))
+            {
+                TitleError = "Không để trống!";
+                _canAccept[0] = false;
+            }
+            else
+            {
+                TitleError = "";
+                _canAccept[0] = true;
+            }
+        }
+
+        private void ValidateDescription()
+        {
+            if (string.IsNullOrWhiteSpace(Description))
+            {
+                DescriptionError = "Không để trống!";
+                _canAccept[1] = false;
+            }
+            else
+            {
+                DescriptionError = "";
+                _canAccept[1] = true;
+            }
+        }
+
+        private void ValidateDirector()
+        {
+            if (string.IsNullOrWhiteSpace(Director))
+            {
+                DirectorError = "Không để trống!";
+                _canAccept[2] = false;
+            }
+            else
+            {
+                DirectorError = "";
+                _canAccept[2] = true;
+            }
+        }
+
+        private void ValidateLength()
+        {
+            if (string.IsNullOrWhiteSpace(Length))
+            {
+                LengthError = "Không để trống!";
+                _canAccept[3] = false;
+            }
+            else if (!Length.All(char.IsDigit))
+            {
+                LengthError = "Không hợp lệ!";
+                _canAccept[3] = false;
+            }
+            else if (!int.TryParse(Length, out int lengthvalue))
+            {
+                LengthError = "Không hợp lệ!";
+                _canAccept[3] = false;
+            }
+            else
+            {
+                LengthError = "";
+                _canAccept[3] = true;
+            }
+        }
+
+        private void ValidateLanguage()
+        {
+            if (string.IsNullOrWhiteSpace(Language))
+            {
+                LanguageError = "Không để trống!";
+                _canAccept[4] = false;
+            }
+            else
+            {
+                LanguageError = "";
+                _canAccept[4] = true;
+            }
+        }
+
+        private void ValidateCountry()
+        {
+            if (string.IsNullOrWhiteSpace(Country))
+            {
+                CountryError = "Không để trống!";
+                _canAccept[5] = false;
+            }
+            else
+            {
+                CountryError = "";
+                _canAccept[5] = true;
+            }
+        }
+
+        private void ValidateTrailer()
+        {
+            if (string.IsNullOrWhiteSpace(Trailer))
+            {
+                TrailerError = "Không để trống!";
+                _canAccept[6] = false;
+            }
+            else
+            {
+                TrailerError = "";
+                _canAccept[6] = true;
+            }
+        }
+        private void ValidateReleaseYear()
+        {
+            if (string.IsNullOrWhiteSpace(ReleaseYear))
+            {
+                ReleaseYearError = "Không để trống!";
+                _canAccept[7] = false;
+            }
+            else if (!ReleaseYear.All(char.IsDigit))
+            {
+                ReleaseYearError = "Không hợp lệ!";
+                _canAccept[7] = false;
+            }
+            else if (int.Parse(ReleaseYear) < 0)
+            {
+                ReleaseYearError = "Không hợp lệ!";
+                _canAccept[7] = false;
+            }
+            else
+            {
+                ReleaseYearError = "";
+                _canAccept[7] = true;
+            }
+        }
+        private void ValidateImportPrice()
+        {
+            if (string.IsNullOrWhiteSpace(ImportPrice))
+            {
+                ImportPriceError = "Không để trống!";
+                _canAccept[8] = false;
+            }
+            else if (!ImportPrice.All(char.IsDigit))
+            {
+                ImportPriceError = "Không hợp lệ!";
+                _canAccept[8] = false;
+            }
+            else if (!int.TryParse(ImportPrice, out int importPriceValue))
+            {
+                ImportPriceError = "Không hợp lệ!";
+                _canAccept[8] = false;
+            }
+            else
+            {
+                ImportPriceError = "";
+                _canAccept[8] = true;
             }
         }
     }
