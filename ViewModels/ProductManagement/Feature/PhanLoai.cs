@@ -49,11 +49,11 @@ namespace CineMajestic.ViewModels.ProductManagement
 
         private void HandleSelectionChanged()
         {
-            if(SelectedItemIndex == 1)
+            if (SelectedItemIndex == 1)
             {
                 FilterDSSP = DSSP_ThucAn;
             }
-            else if(SelectedItemIndex == 2)
+            else if (SelectedItemIndex == 2)
             {
                 FilterDSSP = DSSP_DoUong;
             }
@@ -66,9 +66,9 @@ namespace CineMajestic.ViewModels.ProductManagement
         private void loadData()
         {
             DSSP_All = new ObservableCollection<ProductDTO>();
-            DSSP_ThucAn = new ObservableCollection<ProductDTO>();   
+            DSSP_ThucAn = new ObservableCollection<ProductDTO>();
             DSSP_DoUong = new ObservableCollection<ProductDTO>();
-            
+
             ProductDA data = new ProductDA();
             ObservableCollection<ProductDTO> getDSSP = data.getDSSP();
             foreach (var item in getDSSP)
@@ -77,7 +77,7 @@ namespace CineMajestic.ViewModels.ProductManagement
                 {
                     DSSP_ThucAn.Add(item);
                 }
-                else if(item.Type == 2)
+                else if (item.Type == 2)
                 {
                     DSSP_DoUong.Add(item);
                 }

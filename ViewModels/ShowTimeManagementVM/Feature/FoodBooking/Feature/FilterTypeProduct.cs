@@ -23,17 +23,17 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private void FilterAll(object obj)
         {
-            loadDSSP(2);
+            loadDSSP(0);
         }
 
         private void FilterThucAn(object obj)
         {
-            loadDSSP(0);
+            loadDSSP(1);
         }
 
         private void FilterDoUong(object obj)
         {
-            loadDSSP(1);
+            loadDSSP(2);
         }
     }
 }
