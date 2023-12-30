@@ -22,9 +22,12 @@ namespace CineMajestic.ViewModels.VoucherManagement
         }
         private void VoucherDetail(object obj)
         {
-            VoucherDTO voucherDTO = obj as VoucherDTO;
-            VoucherDetailView voucherDetailView = new VoucherDetailView(voucherDTO);
-            voucherDetailView.ShowDialog();
+            if (obj != null)
+            {
+                VoucherDTO voucherDTO = obj as VoucherDTO;
+                VoucherDetailView voucherDetailView = new VoucherDetailView(voucherDTO);
+                voucherDetailView.ShowDialog();
+            }
         }
     }
     public class VoucherDetailViewModel : MainBaseViewModel

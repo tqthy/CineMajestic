@@ -22,9 +22,12 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 
         private void StaffDetail(object obj)
         {
-            StaffDTO staff = (StaffDTO)obj;
-            StaffDetailView staffDetailView = new StaffDetailView(staff);
-            staffDetailView.ShowDialog();
+            if (obj != null)
+            {
+                StaffDTO staff = (StaffDTO)obj;
+                StaffDetailView staffDetailView = new StaffDetailView(staff);
+                staffDetailView.ShowDialog();
+            }
         }
 
     }

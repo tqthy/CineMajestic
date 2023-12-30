@@ -19,8 +19,11 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
         private void movieDetail(object obj)
         {
-            MovieDetailView movieDetailView = new MovieDetailView(obj as MovieDTO);
-            movieDetailView.ShowDialog();
+            if (obj != null)
+            {
+                MovieDetailView movieDetailView = new MovieDetailView(obj as MovieDTO);
+                movieDetailView.ShowDialog();
+            }
         }
     }
 
