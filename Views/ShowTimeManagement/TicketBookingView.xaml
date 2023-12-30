@@ -88,7 +88,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60" />
                     <RowDefinition />
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="20" />
                 </Grid.RowDefinitions>
 
                 <!--  Màn hình  -->
@@ -104,7 +104,7 @@
                     BorderBrush="Black"
                     BorderThickness="0,0,0,1">
                     <!--  Danh sách ghế  -->
-                    <Grid Grid.Row="1">
+                    <Grid Grid.Row="1" Margin="0,20,0,0">
                         <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                             <ItemsControl ItemsSource="{Binding DSGhe}">
                                 <ItemsControl.ItemTemplate>
@@ -122,7 +122,7 @@
                                                     <Setter Property="BorderBrush" Value="Green" />
                                                     <Style.Triggers>
                                                         <DataTrigger Binding="{Binding Condition}" Value="True">
-                                                            <Setter Property="Background" Value="Red" />
+                                                            <Setter Property="Background" Value="#FFFF242F" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
