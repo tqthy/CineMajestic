@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static CineMajestic.ViewModels.ShowTimeManagementVM.ShowTimeManagementViewModel;
 
 namespace CineMajestic.Views.ShowTimeManagement
 {
@@ -22,6 +23,8 @@ namespace CineMajestic.Views.ShowTimeManagement
         public EditShowTimeView()
         {
             InitializeComponent();
+            EditShowTimeViewModel edit = new EditShowTimeViewModel(this);
+            this.DataContext = edit;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Views.ShowTimeManagement;
+using CineMajestic.Views.VoucherManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,23 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             EditShowTimeView view = new EditShowTimeView();
             view.ShowDialog();
             loadData();
+        }
+
+        public class EditShowTimeViewModel
+        {
+            private EditShowTimeView wd;
+            public ICommand CancelCommand { get; set; }
+
+            public EditShowTimeViewModel(EditShowTimeView wd)
+            {
+                this.wd = wd;
+                CancelCommand = new ViewModelCommand(quit);
+            }
+
+            private void quit(object obj)
+            {
+                wd.Close();
+            }
         }
     }
 }

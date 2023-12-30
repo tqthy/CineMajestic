@@ -28,6 +28,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             Auditorium();
             AddShowTime();
             TicketBooking();
+            edit();
         }
 
         private void loadData(string Phong = "All")//load data theo phòng
