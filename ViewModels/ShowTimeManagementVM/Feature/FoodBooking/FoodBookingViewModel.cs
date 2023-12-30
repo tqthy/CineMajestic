@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs.Bills;
 using CineMajestic.Models.DTOs.ProductManagement;
 using CineMajestic.Views.ShowTimeManagement;
 using MaterialDesignThemes.Wpf;
@@ -8,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CineMajestic.ViewModels.ShowTimeManagementVM
@@ -23,7 +25,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private void Continue(object obj)
         {
-            FoodBookingView foodBookingView = new FoodBookingView();
+            orderDTO.Seats = Seats;
+            FoodBookingView foodBookingView = new FoodBookingView(orderDTO);
             foodBookingView.ShowDialog();
         }
 
@@ -55,11 +58,12 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
 
         FoodBookingView foodBookingView;
-        public FoodBookingViewModel(FoodBookingView foodBookingView)
+        private OrderDTO orderDTO;
+        public FoodBookingViewModel(FoodBookingView foodBookingView,OrderDTO orderDTO)
         {
             BackCommand = new ViewModelCommand(Back);
             this.foodBookingView = foodBookingView;
-
+            this.orderDTO = orderDTO;
             loadDSSP(0);//ban đầu là get all sản phẩm
             Filter();
             Add();

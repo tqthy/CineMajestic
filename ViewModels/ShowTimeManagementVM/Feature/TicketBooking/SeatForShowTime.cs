@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs.Bills;
 using CineMajestic.Models.DTOs.ShowTimeManagement;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 {
     public partial class TicketBookingViewModel
     {
-
         private ObservableCollection<SeatForShowTimeDTO> dSGhe;
-        public ObservableCollection<SeatForShowTimeDTO> DSGhe
+        public ObservableCollection<SeatForShowTimeDTO> DSGhe//load danh sách ghế 
         {
             get => dSGhe;
             set
@@ -23,6 +23,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 OnPropertyChanged(nameof(DSGhe));
             }
         }
+
+        public ObservableCollection<SeatForShowTimeDTO> DSGheChon;//danh sách ghế chọn
 
         public ICommand SelectedSeatCommand {  get; set; }
 
@@ -37,6 +39,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         {
             SeatForShowTimeDA seatForShowTimeDA=new SeatForShowTimeDA();
             DSGhe = seatForShowTimeDA.getDSGhe(showTimeDTO.Id);
+            DSGheChon=new ObservableCollection<SeatForShowTimeDTO>();
+            orderDTO.DSGheChon = DSGheChon;
         }
 
 
@@ -61,12 +65,14 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                         Seats = seatForShowTimeDTO.Location;
                     }
                     TotalPriceTicket += showTimeDTO.PerSeatTicketPrice;
+                    DSGheChon.Add(seatForShowTimeDTO);
                 }
                 else
                 {
                     TotalPriceTicket-=showTimeDTO.PerSeatTicketPrice;
+                    DSGheChon.Remove(seatForShowTimeDTO);
 
-                    if(Seats.Contains(','))
+                    if (Seats.Contains(','))
                     {
                         string[]kq=Seats.Split(',');
                         Seats = "";

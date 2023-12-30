@@ -45,6 +45,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             DSSPChon = new ObservableCollection<ProductDTO>();
             Cong1QuantityChoiceCommand = new ViewModelCommand(Cong1QuantityChoice);
             Tru1QuantityChoiceCommand = new ViewModelCommand(Tru1QuantityChoice);
+            orderDTO.DSSPChon = DSSPChon;
         }
 
 

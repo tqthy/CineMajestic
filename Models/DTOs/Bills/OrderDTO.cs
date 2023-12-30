@@ -12,12 +12,14 @@ namespace CineMajestic.Models.DTOs.Bills
     public class OrderDTO
     {
         //danh sách vật phẩm chọn
-        public ObservableCollection<ProductDTO> DSSP {  get; set; }
+        public ObservableCollection<ProductDTO> DSSPChon {  get; set; }
         //tổng tiền order vật phẩm
         int TotalProduct;
 
         //danh sách ghế chọn
-        public ObservableCollection<SeatForShowTimeDTO> DSGhe {  get; set; }
+        public ObservableCollection<SeatForShowTimeDTO> DSGheChon {  get; set; }
+        //danh sách vị trí ghế chọn
+        public string Seats { get; set; }//để xíu làm bill nhanh hơn đỡ phải gộp lại ạ
         //tổng tiền vé(số ghế chọn)
         int TotalTicket;
 
@@ -28,8 +30,6 @@ namespace CineMajestic.Models.DTOs.Bills
         public OrderDTO()
         {
             customer = new CustomerDTO();
-            TotalProduct = 0;
-            TotalTicket = 0;
         }
     }
 }

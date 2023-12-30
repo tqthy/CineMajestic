@@ -350,7 +350,8 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom"
                                 materialDesign:ButtonAssist.CornerRadius="2"
-                                Content="Thanh toán" />
+                                Content="Thanh toán" 
+                                Command="{Binding Paycommand}"/>
                         </Grid>
 
 

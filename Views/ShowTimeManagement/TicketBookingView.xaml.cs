@@ -1,4 +1,5 @@
-﻿using CineMajestic.Models.DTOs.ShowTimeManagement;
+﻿using CineMajestic.Models.DTOs.Bills;
+using CineMajestic.Models.DTOs.ShowTimeManagement;
 using CineMajestic.ViewModels.ShowTimeManagementVM;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,10 @@ namespace CineMajestic.Views.ShowTimeManagement
     /// </summary>
     public partial class TicketBookingView : Window
     {
-        public TicketBookingView(ShowTimeDTO showTimeDTO)
+        public TicketBookingView(ShowTimeDTO showTimeDTO,OrderDTO orderDTO)
         {
             InitializeComponent();
-            TicketBookingViewModel ticketBookingViewModel= new TicketBookingViewModel(showTimeDTO);
+            TicketBookingViewModel ticketBookingViewModel= new TicketBookingViewModel(showTimeDTO,orderDTO);
             this.DataContext = ticketBookingViewModel;
         }
 

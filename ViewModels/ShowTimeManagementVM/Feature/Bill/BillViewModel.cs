@@ -1,9 +1,12 @@
-﻿using CineMajestic.Views.ShowTimeManagement;
+﻿using CineMajestic.Models.DTOs.Bills;
+using CineMajestic.Views.ShowTimeManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CineMajestic.ViewModels.ShowTimeManagementVM
@@ -20,7 +23,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private void Continue(object obj)
         {
-            BillView billView=new BillView();
+            BillView billView=new BillView(orderDTO);
             billView.ShowDialog();
         }
     }
@@ -29,20 +32,28 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
     public class BillViewModel : MainBaseViewModel
     {
         public ICommand BackCommand { get; set; }
-
+        public ICommand Paycommand {  get; set; }
 
 
         private BillView billView;
-        public BillViewModel(BillView billView)
+        private OrderDTO orderDTO;
+        public BillViewModel(BillView billView,OrderDTO orderDTO)
         {
             this.billView = billView;
+            this.orderDTO= orderDTO;
             BackCommand = new ViewModelCommand(Back);
+            Paycommand = new ViewModelCommand(Pay);
         }
 
 
         private void Back(object obj)
         {
             billView.Close();
+        }
+        
+        private void Pay(object obj)
+        {
+
         }
     }
 }

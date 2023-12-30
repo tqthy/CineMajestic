@@ -1,4 +1,5 @@
-﻿using CineMajestic.Models.DTOs.ShowTimeManagement;
+﻿using CineMajestic.Models.DTOs.Bills;
+using CineMajestic.Models.DTOs.ShowTimeManagement;
 using CineMajestic.Views.ShowTimeManagement;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,12 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             TicketBookingCommand = new ViewModelCommand(ticketBooking);
         }
 
+
+        private OrderDTO orderDTO;
         private void ticketBooking(object obj)
         {
-            TicketBookingView ticketBookingView=new TicketBookingView(obj as ShowTimeDTO);
+            orderDTO=new OrderDTO();
+            TicketBookingView ticketBookingView=new TicketBookingView(obj as ShowTimeDTO,orderDTO);
             ticketBookingView.ShowDialog();
         }
     }
@@ -69,9 +73,11 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private ShowTimeDTO showTimeDTO;
 
-        public TicketBookingViewModel(ShowTimeDTO showTimeDTO)
+        private OrderDTO orderDTO;
+        public TicketBookingViewModel(ShowTimeDTO showTimeDTO,OrderDTO orderDTO)
         {
             this.showTimeDTO = showTimeDTO;
+            this.orderDTO = orderDTO;
             loadShowTimeCurrent();
             Seat();
             FoodBooking();

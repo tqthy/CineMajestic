@@ -1,4 +1,5 @@
-﻿using CineMajestic.ViewModels.ShowTimeManagementVM;
+﻿using CineMajestic.Models.DTOs.Bills;
+using CineMajestic.ViewModels.ShowTimeManagementVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,10 +21,10 @@ namespace CineMajestic.Views.ShowTimeManagement
     /// </summary>
     public partial class BillView : Window
     {
-        public BillView()
+        public BillView(OrderDTO orderDTO)
         {
             InitializeComponent();
-            BillViewModel billViewModel = new BillViewModel(this);
+            BillViewModel billViewModel = new BillViewModel(this,orderDTO);
             this.DataContext = billViewModel;
         }
     }
