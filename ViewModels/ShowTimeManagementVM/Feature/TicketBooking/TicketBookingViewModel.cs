@@ -27,7 +27,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             if (obj != null)
             {
                 orderDTO = new OrderDTO();
-                TicketBookingView ticketBookingView = new TicketBookingView(obj as ShowTimeDTO, orderDTO);
+                TicketBookingView ticketBookingView = new TicketBookingView(obj as ShowTimeDTO, orderDTO,Staff_Id);
                 ticketBookingView.ShowDialog();
             }
         }
@@ -77,7 +77,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         private ShowTimeDTO showTimeDTO;
 
         private OrderDTO orderDTO;
-        public TicketBookingViewModel(ShowTimeDTO showTimeDTO, OrderDTO orderDTO)
+        private int Staff_Id;
+        public TicketBookingViewModel(ShowTimeDTO showTimeDTO, OrderDTO orderDTO,int Staff_Id)
         {
             this.showTimeDTO = showTimeDTO;
             this.orderDTO = orderDTO;
@@ -85,6 +86,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             loadShowTimeCurrent();
             Seat();
             FoodBooking();
+            this.Staff_Id = Staff_Id;
         }
 
 

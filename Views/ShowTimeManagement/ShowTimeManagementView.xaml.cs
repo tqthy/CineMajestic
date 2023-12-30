@@ -23,10 +23,10 @@ namespace CineMajestic.Views.ShowTimeManagement
     /// </summary>
     public partial class ShowTimeManagementView : UserControl
     {
-        public ShowTimeManagementView()
+        public ShowTimeManagementView(int Staff_Id)
         {
             InitializeComponent();
-            ShowTimeManagementViewModel showTimeManagementViewModel = new ShowTimeManagementViewModel();
+            ShowTimeManagementViewModel showTimeManagementViewModel = new ShowTimeManagementViewModel(Staff_Id);
             this.DataContext = showTimeManagementViewModel;
 
         }

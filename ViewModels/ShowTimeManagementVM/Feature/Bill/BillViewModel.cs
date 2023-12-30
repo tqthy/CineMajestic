@@ -1,4 +1,6 @@
-﻿using CineMajestic.Models.DTOs.Bills;
+﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DataAccessLayer.Bills;
+using CineMajestic.Models.DTOs.Bills;
 using CineMajestic.Models.DTOs.ShowTimeManagement;
 using CineMajestic.Views.ShowTimeManagement;
 using System;
@@ -17,7 +19,6 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
     {
         public ICommand ContinueCommand { get; set; }
 
-
         private void Bill()
         {
             ContinueCommand = new ViewModelCommand(Continue);
@@ -30,7 +31,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             {
                 item.TotalPrice_QuantityChoice = item.Price * item.Quantity_Choice;
             }
-            BillView billView = new BillView(orderDTO);
+            BillView billView = new BillView(orderDTO,Staff_Id);
             billView.ShowDialog();
         }
     }
@@ -40,19 +41,23 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
     {
         public ICommand BackCommand { get; set; }
         public ICommand Paycommand { get; set; }
+        public List<string> DSVC {  get; set; }
+
 
 
         private BillView billView;
         private OrderDTO orderDTO;
         public BillDTO billDTO { get; set; }
         public ShowTimeDTO showTimeDTO { get; set; }//dùng để bind lên hóa đơn
-        public BillViewModel(BillView billView, OrderDTO orderDTO)
+        private int Staff_Id;
+        public BillViewModel(BillView billView, OrderDTO orderDTO,int Staff_Id)
         {
             this.billView = billView;
             this.orderDTO = orderDTO;
             showTimeDTO = orderDTO.showTimeDTO;
             BackCommand = new ViewModelCommand(Back);
             Paycommand = new ViewModelCommand(Pay);
+            this.Staff_Id = Staff_Id;
             loadBillDTO();
         }
 
@@ -86,8 +91,23 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
             changeDiscount = "0";
             Total = billDTO.Total;
+
+            VoucherDA voucherDA = new VoucherDA();
+            DSVC = voucherDA.listCodeOk();
+
+         
         }
 
+        private string selectedVC = "";
+        public string SelectedVC
+        {
+            get => selectedVC;
+            set
+            {
+                selectedVC = value;
+                OnPropertyChanged(nameof(SelectedVC));
+            }
+        }
         private void Back(object obj)
         {
             billView.Close();
@@ -95,9 +115,61 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
         private void Pay(object obj)
         {
+            //add custom hoặc lấy id custom trước để có id custom
+            int point = billDTO.Total / 1000;
+            CustomerDA customerDA = new CustomerDA();
+            if (!customerDA.checkCustom(billDTO.PhoneNumber))//nếu khách hàng chưa tồn tại
+            {
+                customerDA.addCustom(new Models.DTOs.CustomerDTO(billDTO.PhoneNumber, billDTO.Fullname, billDTO.Email, point));
+            }
+            else
+            {
+                customerDA.updateCustomBySDT(point, billDTO.PhoneNumber);
+            }
+
+            //add bill
+            setData();
+            billDTO.Customer_Id = customerDA.identCurrent();
+            BillDA billDA = new BillDA();
+            billDA.addBill(billDTO);
+
+
+            //chuyển trạng thái ghế của showtime
+            SeatForShowTimeDA seatForShowTimeDA = new SeatForShowTimeDA();
+            foreach (var item in orderDTO.DSGheChon)
+            {
+                seatForShowTimeDA.choiceSeat(item);
+            }
+
+
+            int bill_Id = billDA.identCurrent();
+            BillDetailDA billDetailDA = new BillDetailDA();
+            ProductDA productDA = new ProductDA();
+            //add chi tiết hóa đơn
+            foreach (var item in orderDTO.DSSPChon)
+            {
+                billDetailDA.addBillDetail(bill_Id, item);
+                productDA.updateQuantity(item.Id, item.Quantity_Choice);
+            }
+
+            MessageBox.Show("Hoàn tất!");
 
         }
 
+
+        private void setData()
+        {
+            billDTO.Staff_Id = Staff_Id;
+            billDTO.Showtime_Id = showTimeDTO.Id;
+            billDTO.BillDate = DateTime.Now.ToString("yyyy-MM-dd");
+            billDTO.PerTicketPrice = showTimeDTO.PerSeatTicketPrice;
+            billDTO.QuantityTicket = billDTO.TotalPriceTicket / showTimeDTO.PerSeatTicketPrice;
+            try
+            {
+                billDTO.Discount = int.Parse(changeDiscount);
+            }
+            catch { billDTO.Discount = 0; }
+        }
 
         private int Total;
         private string changeDiscount;

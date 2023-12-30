@@ -49,5 +49,26 @@ namespace CineMajestic.Models.DataAccessLayer
             return list;
         }
 
+
+
+
+        //chuyển trạng thái ghế là được chọn ứng với showtime đc chọn 
+        public void choiceSeat(SeatForShowTimeDTO seat)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string update =
+                    "update SeatForShowtime\n"
+                    +
+                    "set Condition=1\n"
+                    +
+                    "where Id=" + seat.Id;
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

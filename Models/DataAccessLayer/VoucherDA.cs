@@ -141,6 +141,36 @@ namespace CineMajestic.Models.DataAccessLayer
             return list;
         }
 
+        //lấy danh sách code có thể sử dụng(phục vụ việc bill)
+        public List<string> listCodeOk()
+        {
+            List<string> list = new List<string>();
+
+            using (SqlConnection connection = GetConnection())
+            {
+                string dateNow = DateTime.Now.ToString("yyyy-MM-dd");
+
+                connection.Open();
+                string truyvan =
+                    "select Code\n"
+                    +
+                    "from Voucher\n"
+                    +
+                    "where '" + dateNow + "'>=STARTDATE" + " and '" + dateNow + "'<=FINDATE";
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string code = reader.GetString(reader.GetOrdinal("CODE"));
+                            list.Add(code);
+                        }
+                    }
+                }
+            }
+            return list;
+        }
 
         //câu lệnh tự xóa voucher hết hạn
         public void deleteVoucherExpiry()

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,6 +52,7 @@ namespace CineMajestic.Models.DTOs.Bills
         public string NameAuditorium { get; set; }//phòng chiếu
         public string Seats {  get; set; }//danh sách chỗ ngồi
         public int QuantityTicket {  get; set; }//số lượng vé
+        public int PerTicketPrice {  get; set; }
         public string TicketPrice {  get; set; }//giá 1 vé(nhưng kiểu e sẽ cho kiểu giá 1 vé x số lượng vé)
         public string MovieTitle {  get; set; }//movie title
         public int TotalPriceTicket {  get; set; }//tổng tiền vé
@@ -62,7 +64,10 @@ namespace CineMajestic.Models.DTOs.Bills
         public int TotalPriceProduct { get; set; }//tổng tiền product
 
 
-
+        //khách hàng
+        public string PhoneNumber {  get; set; }
+        public string Fullname {  get; set; }
+        public string Email {  get; set; }
 
 
         public event PropertyChangedEventHandler? PropertyChanged;

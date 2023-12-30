@@ -46,5 +46,22 @@ namespace CineMajestic.Models.DTOs
             Point = point;
             RegDate = regDate;
         }
+
+
+
+        //bổ trợ add custom
+        public CustomerDTO(string phoneNumber,string fullName,string email,int point)
+        {
+            PhoneNumber = phoneNumber;
+            Email = email;
+            FullName= fullName;
+            Point = point;
+            Birth = "1950-01-01";
+            RegDate = DateTime.Now.ToString("yyyy-MM-dd");
+            Gender = "Nam";
+        }
+
+
+        
     }
 }

@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CineMajestic.Models.DTOs.Bills;
 
 namespace CineMajestic.Models.DataAccessLayer.Bills
 {
@@ -163,6 +164,66 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
             }
 
             return result;
+        }
+
+
+
+        //thêm 1 bill
+        public void addBill(BillDTO billDTO)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string insert =
+                    "insert into Bill(Staff_Id,Customer_Id,ShowTime_Id,QuantityTicket,PerSeatTicketPrice,Discount,Note,Total,BillDate)\n"
+                    +
+                    "values("
+                    +
+                    billDTO.Staff_Id + ","
+                    +
+                    billDTO.Customer_Id + ","
+                    +
+                    billDTO.Showtime_Id + ","
+                    +
+                    billDTO.QuantityTicket + ","
+                    +
+                    billDTO.PerTicketPrice + ","
+                    +
+                    billDTO.Discount + ","
+                    +
+                    "N'" + billDTO.Note + "',"
+                    +
+                    billDTO.Total + ","
+                    +
+                    "'" + billDTO.BillDate + "')";
+                using (SqlCommand command = new SqlCommand(insert, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+
+
+        //iden curent
+        public int identCurrent()
+        {
+            int identCurrent;
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string cm =
+                    "select ident_current('Bill') as lastId";
+                using (SqlCommand command = new SqlCommand(cm, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        identCurrent = (int)reader.GetDecimal(reader.GetOrdinal("lastId"));
+                    }
+                }
+            }
+            return identCurrent;
         }
     }
 }

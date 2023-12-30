@@ -22,13 +22,16 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             }
         }
 
-        public ShowTimeManagementViewModel()
+
+        private int Staff_Id;
+        public ShowTimeManagementViewModel(int Staff_Id)
         {
             loadData();//lần đầu mở thì vào phần all
             Auditorium();
             AddShowTime();
             TicketBooking();
             edit();
+            this.Staff_Id= Staff_Id;
         }
 
         private void loadData(string Phong = "All")//load data theo phòng

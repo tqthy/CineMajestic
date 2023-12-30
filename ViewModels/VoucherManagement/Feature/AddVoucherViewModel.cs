@@ -189,7 +189,8 @@ namespace CineMajestic.ViewModels.VoucherManagement
         }
         private void ValidateStartDate()
         {
-            if (StartDate > FinDate || StartDate < DateTime.Now)
+            DateTime kq = (DateTime)StartDate;
+            if (StartDate > FinDate || kq.Date < DateTime.Today)
             {
                 StartDateError = "Ngày ra voucher không hợp lệ";
                 _canAccept[2] = false;

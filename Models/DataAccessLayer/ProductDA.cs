@@ -273,5 +273,28 @@ namespace CineMajestic.Models.DataAccessLayer
             }
             return DSSP;
         }
+
+
+        //cập nhật lại số lượng product sau khi thanh toán hóa đơn
+        public void updateQuantity(int id,int quantity)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                
+                connection.Open();
+                string update =
+                    "update Product\n"
+                    +
+                    "set Quantity=Quantity - "+quantity+"\n" 
+                    +
+                    "where ID=" + id;
+
+
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

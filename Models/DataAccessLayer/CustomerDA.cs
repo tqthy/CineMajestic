@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DTOs;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -49,14 +50,14 @@ namespace CineMajestic.Models.DataAccessLayer
 
                             string gender = reader.GetString(reader.GetOrdinal("GENDER"));
 
-                            list.Add(new CustomerDTO(id,fullname,phonenumber,email,point,Birth,Regdate,gender));
+                            list.Add(new CustomerDTO(id, fullname, phonenumber, email, point, Birth, Regdate, gender));
                         }
                     }
                 }
             }
             return list;
         }
-        
+
         //edit 1 khách hàng
         public void editCustomer(CustomerDTO customer)
         {
@@ -68,9 +69,9 @@ namespace CineMajestic.Models.DataAccessLayer
                     +
                     "set FullName=" + "N'" + customer.FullName + "',"
                     +
-                    "PhoneNumber =" + "'" + customer.PhoneNumber+ "',"
+                    "PhoneNumber =" + "'" + customer.PhoneNumber + "',"
                     +
-                    "Email=" + "'" + customer.Email+ "',"
+                    "Email=" + "'" + customer.Email + "',"
                     +
                     "RegDate=" + "'" + customer.RegDate + "',"
                     +
@@ -141,14 +142,14 @@ namespace CineMajestic.Models.DataAccessLayer
 
         //lấy khách hàng vip 
         //400đ vip 1, 800đ vip2, 1200đ vip3
-        public  List<CustomerDTO>getKHVip(string LoaiVoucher)
+        public List<CustomerDTO> getKHVip(string LoaiVoucher)
         {
             int pointMin = 0;
-            if(LoaiVoucher=="Vip 1")
+            if (LoaiVoucher == "Vip 1")
             {
                 pointMin = 400;
             }
-            else if(LoaiVoucher=="Vip 2")
+            else if (LoaiVoucher == "Vip 2")
             {
                 pointMin = 800;
             }
@@ -156,7 +157,7 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 pointMin = 1200;
             }
-            List<CustomerDTO> list=new List<CustomerDTO> ();
+            List<CustomerDTO> list = new List<CustomerDTO>();
             using (SqlConnection connection = GetConnection())
             {
                 connection.Open();
@@ -199,7 +200,7 @@ namespace CineMajestic.Models.DataAccessLayer
 
 
         //cập nhật lại điểm của khách hàng
-        public void updatePoint(CustomerDTO customerDTO,string LoaiVoucher)
+        public void updatePoint(CustomerDTO customerDTO, string LoaiVoucher)
         {
             int pointMin = 0;
             if (LoaiVoucher == "Vip 1")
@@ -264,10 +265,11 @@ namespace CineMajestic.Models.DataAccessLayer
                         }
                     }
                 }
-                
 
 
-            } catch (Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -314,6 +316,90 @@ namespace CineMajestic.Models.DataAccessLayer
                 throw ex;
             }
             return result;
+        }
+
+
+
+        //kiểm tra khách hàng đã có trong hệ thống chưa
+        public bool checkCustom(string input)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string truyvan =
+                    "select PhoneNumber from CUSTOMER";
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using(SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while(reader.Read())
+                        {
+                            string PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+                            if (input == PhoneNumber)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return false; ;
+        }
+
+
+        //thêm một khách hàng
+        public void addCustom(CustomerDTO customerDTO)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string insert =
+                    "insert into CUSTOMER(FullName,PhoneNumber,Email,Point,Birth,RegDate,Gender)\n"
+                    +
+                    "values("
+                    +
+                    "N'" + customerDTO.FullName + "',"
+                    +
+                    "'" + customerDTO.PhoneNumber + "',"
+                    +
+                    "'" + customerDTO.Email + "',"
+                    +
+                    customerDTO.Point + ","
+                    +
+                    "'" + customerDTO.Birth + "',"
+                    +
+                     "'" + customerDTO.RegDate + "',"
+                    +
+                     "N'" + customerDTO.Gender + "')";
+
+                using (SqlCommand command = new SqlCommand(insert, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+
+            }
+        }
+
+
+        //update custom theo sđt
+        public void updateCustomBySDT(int Point,string PhoneNumber)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string update =
+                    "update Customer\n"
+                    +
+                    "Point =Point+" + Point + "\n"
+                    +
+                    "where PhoneNumber=" + PhoneNumber;
+
+                using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
         }
     }
 }
