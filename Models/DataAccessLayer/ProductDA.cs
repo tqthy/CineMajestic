@@ -226,7 +226,7 @@ namespace CineMajestic.Models.DataAccessLayer
 
 
         //lấy danh sách sản phẩm theo loại
-        public ObservableCollection<ProductDTO> getDSSPTheoLoai(int Type)//0 là thức ăn,1 là đồ uống
+        public ObservableCollection<ProductDTO> getDSSPTheoLoai(int Type)//1 là thức ăn,2 là đồ uống
         {
             ObservableCollection<ProductDTO> DSSP = new ObservableCollection<ProductDTO>();
 
@@ -234,7 +234,7 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 connection.Open();
                 string truyvan = "";
-                if (Type == 2)
+                if (Type == 0)
                 {
                     truyvan = "select * from Product";
                 }
@@ -242,9 +242,9 @@ namespace CineMajestic.Models.DataAccessLayer
                 {
                     truyvan = "select * from Product where Type=1";
                 }
-                else if (Type == 0)
+                else if (Type == 2)
                 {
-                    truyvan = "select * from Product where Type=0";
+                    truyvan = "select * from Product where Type=2";
                 }
 
 
@@ -258,14 +258,16 @@ namespace CineMajestic.Models.DataAccessLayer
                             string name = reader.GetString(reader.GetOrdinal("Name"));
                             string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
                             int quantity = reader.GetInt32(reader.GetOrdinal("Quantity"));
+                            int purchasePrice = reader.GetInt32(reader.GetOrdinal("PurchasePrice"));
                             int price = reader.GetInt32(reader.GetOrdinal("Price"));
                             int type = reader.GetInt32(reader.GetOrdinal("Type"));
 
 
 
                             imageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + imageSource;
-                            DSSP.Add(new ProductDTO(id, name, quantity, price, type, imageSource));
+                            DSSP.Add(new ProductDTO(id, name, quantity, purchasePrice, price, type, imageSource));
                         }
+
                     }
                 }
             }
