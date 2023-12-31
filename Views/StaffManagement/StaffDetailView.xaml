@@ -107,7 +107,7 @@
                     BorderThickness="2"
                     CornerRadius="70">
                     <Border.Background>
-                        <ImageBrush ImageSource="pack://application:,,,/Images/StaffManagement/Default.jpg" />
+                        <ImageBrush ImageSource="{Binding ImageSource}" />
                     </Border.Background>
                 </Border>
                 <TextBox

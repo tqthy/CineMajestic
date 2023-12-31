@@ -44,6 +44,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         public int Salary { get; set; }
         public string Role { get; set; }
         public string NgayVaoLam { get; set; }
+        public string ImageSource {  get; set; }
 
         public ICommand exitCommand {  get; set; }
         StaffDetailView wd;
@@ -58,6 +59,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             Salary= staff.Salary;
             Role= staff.Role;
             NgayVaoLam=staff.NgayVaoLam;
+            ImageSource = staff.ImageSource;
             exitCommand=new ViewModelCommand(exit);
             this.wd = wd;
         }

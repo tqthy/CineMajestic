@@ -53,7 +53,9 @@ namespace CineMajestic.Models.DataAccessLayer
                             DateTime NgayVL = reader.GetDateTime(reader.GetOrdinal("NgayVaolam"));
                             string ngayVL = NgayVL.ToString("dd/MM/yyyy");
 
-                            list.Add(new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL));
+                            string ImageSource= reader.GetString(reader.GetOrdinal("ImageSource"));
+
+                            list.Add(new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL,MotSoPTBoTro.pathProject()+ @"Images\StaffManagement\" +ImageSource));
                         }
                     }
                 }
