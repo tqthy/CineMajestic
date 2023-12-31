@@ -116,9 +116,12 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         {
 
             //starttime
-            string formatStartDate=StartDate.Value.ToString("yyyy-MM-dd");
-            string formatShowtime = Showtime.Value.ToString("HH:mm:ss");
-            string StartTime = formatStartDate + " " + formatShowtime;
+            try
+            {
+                string formatStartDate = StartDate.Value.ToString("yyyy-MM-dd");
+                string formatShowtime = Showtime.Value.ToString("HH:mm:ss");
+                string StartTime = formatStartDate + " " + formatShowtime;
+          
 
             //endtime
             DateTime ?endTime;
@@ -154,7 +157,9 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 }
 
             }
-            catch { return; }
+            catch { addShowTimeView.Close(); }
+            }
+            catch { addShowTimeView.Close(); }
         }
 
 
