@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CineMajestic.ViewModels.ShowTimeManagementVM
@@ -34,7 +35,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             SelectedSeatCommand = new ViewModelCommand(selectedSeat);
         }
 
-
+        List<string> checkSeats;//phục vụ việc check ghế có người mua chưa
         private void loadSeat()
         {
             if (showTimeDTO != null)
@@ -43,6 +44,15 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 DSGhe = seatForShowTimeDA.getDSGhe(showTimeDTO.Id);
                 DSGheChon = new ObservableCollection<SeatForShowTimeDTO>();
                 orderDTO.DSGheChon = DSGheChon;
+
+                checkSeats = new List<string>();
+                foreach(var item in DSGhe)
+                {
+                    if (item.Condition)
+                    {
+                        checkSeats.Add(item.Location);
+                    }
+                }
             }
         }
 
@@ -51,53 +61,60 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         {
             if (obj is SeatForShowTimeDTO seatForShowTimeDTO)
             {
-                if(Seats== "Hiện chưa chọn ghế nào!")
+                if (!checkSeats.Contains(seatForShowTimeDTO.Location))
                 {
-                    Seats = "";
-                }
-                seatForShowTimeDTO.Condition = !seatForShowTimeDTO.Condition;
-
-                if (seatForShowTimeDTO.Condition)
-                {
-                    if (Seats != "")
+                    if (Seats == "Hiện chưa chọn ghế nào!")
                     {
-                        Seats += "," + seatForShowTimeDTO.Location;
+                        Seats = "";
+                    }
+                    seatForShowTimeDTO.Condition = !seatForShowTimeDTO.Condition;
+
+                    if (seatForShowTimeDTO.Condition)
+                    {
+                        if (Seats != "")
+                        {
+                            Seats += "," + seatForShowTimeDTO.Location;
+                        }
+                        else
+                        {
+                            Seats = seatForShowTimeDTO.Location;
+                        }
+                        TotalPriceTicket += showTimeDTO.PerSeatTicketPrice;
+                        DSGheChon.Add(seatForShowTimeDTO);
                     }
                     else
                     {
-                        Seats = seatForShowTimeDTO.Location;
-                    }
-                    TotalPriceTicket += showTimeDTO.PerSeatTicketPrice;
-                    DSGheChon.Add(seatForShowTimeDTO);
-                }
-                else
-                {
-                    TotalPriceTicket-=showTimeDTO.PerSeatTicketPrice;
-                    DSGheChon.Remove(seatForShowTimeDTO);
+                        TotalPriceTicket -= showTimeDTO.PerSeatTicketPrice;
+                        DSGheChon.Remove(seatForShowTimeDTO);
 
-                    if (Seats.Contains(','))
-                    {
-                        string[]kq=Seats.Split(',');
-                        Seats = "";
-                        foreach(string item in kq)
+                        if (Seats.Contains(','))
                         {
-                            if (item != seatForShowTimeDTO.Location)
+                            string[] kq = Seats.Split(',');
+                            Seats = "";
+                            foreach (string item in kq)
                             {
-                                if (Seats != "")
+                                if (item != seatForShowTimeDTO.Location)
                                 {
-                                    Seats += "," + item;
-                                }
-                                else
-                                {
-                                    Seats += item;
+                                    if (Seats != "")
+                                    {
+                                        Seats += "," + item;
+                                    }
+                                    else
+                                    {
+                                        Seats += item;
+                                    }
                                 }
                             }
                         }
+                        else
+                        {
+                            Seats = "";
+                        }
                     }
-                    else
-                    {
-                        Seats = "";
-                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ghế đã có người mua rồi!");
                 }
             }
         }
