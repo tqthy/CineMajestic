@@ -30,7 +30,6 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             Auditorium();
             AddShowTime();
             TicketBooking();
-            edit();
             delete();
             this.Staff_Id= Staff_Id;
         }
