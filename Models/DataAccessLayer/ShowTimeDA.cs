@@ -161,5 +161,32 @@ namespace CineMajestic.Models.DataAccessLayer
             return false; 
         }
 
+
+        //kiểm tra 1 movie có đang  chiếu k(phục vụ bên movie)
+        public bool checkShowtimeByMovie(int movieId)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string select = "select Movie_Id from ShowTime";
+                using (SqlCommand command = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int MovieId = reader.GetInt32(reader.GetOrdinal("Movie_Id"));
+
+                            if (MovieId == movieId)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
     }
 }
