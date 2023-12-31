@@ -28,8 +28,17 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             {
                 userDA.deleteAccount(staff);//bởi vì ràng buộc khóa ngoại tham chiếu
                 staffDA.deleteStaff(staff);
-                YesMessageBox mb = new YesMessageBox("Thông báo", "Xóa thành công");
+                YesNoMessageBox mb = new YesNoMessageBox("Thông báo", "Bạn có muốn xóa nhân viên này?");
                 mb.ShowDialog();
+                if (mb.DialogResult == false)
+                    return;
+                else
+                {
+                    mb.Close();
+                    YesMessageBox msb = new YesMessageBox("Thông báo", "Xóa thành công");
+                    msb.ShowDialog();
+                    msb.Close();
+                }
                 loadData();
             }
         }

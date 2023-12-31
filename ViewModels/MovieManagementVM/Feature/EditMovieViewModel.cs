@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
+using CineMajestic.Views.MessageBox;
 using CineMajestic.Views.MovieManagement;
 using Microsoft.Win32;
 using System;
@@ -397,7 +398,9 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             catch { }
 
             //cập nhật lại billAddMovie chỗ này: khỏi nha vì tạo trigger roài
-            MessageBox.Show("Sửa thành công!");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Sửa thông tin phim thành công");
+            mb.ShowDialog();
+            mb.Close();
 
             editFilmView.Close();
         }

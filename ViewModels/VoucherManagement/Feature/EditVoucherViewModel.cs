@@ -157,9 +157,18 @@ namespace CineMajestic.ViewModels.VoucherManagement
 
             //sau này nhớ xử lý lỗi người dùng
             voucherDA.editVoucher(new VoucherDTO(voucher.Id, Name, VoucherDetail, Type, StartDate.Value.ToString("yyyy-MM-dd"), FinDate.Value.ToString("yyyy-MM-dd")));
-            YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm voucher thành công");
+            YesNoMessageBox mb = new YesNoMessageBox("Thông báo", "Bạn có muốn sửa thông tin voucher?");
             mb.ShowDialog();
-            wd.Close();
+            if (mb.DialogResult == false)
+                return;
+            else
+            {
+                wd.Close();
+                YesMessageBox msb =  new YesMessageBox("Thông báo", "Sửa thông tin voucher thành công");
+                msb.ShowDialog();
+                msb.Close();
+            }
+           
         }
         private bool[] _canAccept = new bool[4];//phục vụ việc có cho nhấn button accept k
         private bool canAcceptEdit(object obj)
@@ -196,7 +205,7 @@ namespace CineMajestic.ViewModels.VoucherManagement
         }
         private void ValidateStartDate()
         {
-            if (StartDate > FinDate || StartDate < DateTime.Now)
+            if (StartDate > FinDate )
             {
                 StartDateError = "Ngày ra voucher không hợp lệ";
                 _canAccept[2] = false;

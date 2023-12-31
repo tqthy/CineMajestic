@@ -2,6 +2,7 @@
 using CineMajestic.Models.DataAccessLayer.Bills;
 using CineMajestic.Models.DTOs.Bills;
 using CineMajestic.Models.DTOs.ShowTimeManagement;
+using CineMajestic.Views.MessageBox;
 using CineMajestic.Views.ShowTimeManagement;
 using System;
 using System.Collections.Generic;
@@ -156,7 +157,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 productDA.updateQuantity(item.Id, item.Quantity_Choice);
             }
 
-            MessageBox.Show("Hoàn tất!");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Hoàn tất");
+            mb.ShowDialog();
             billView.Close();
             foodBookingView.Close();
             ticketBookingView.Close();

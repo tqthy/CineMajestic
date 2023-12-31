@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:CineMajestic.Views.MessageBox"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="mainUC"
     Title="YesNoMessageBox"
     Width="350"
     Height="200"
@@ -20,8 +21,7 @@
     TextOptions.TextRenderingMode="Auto"
     Topmost="True"
     WindowStartupLocation="CenterScreen"
-    WindowStyle="None"
-    x:Name="mainUC">
+    WindowStyle="None">
 
     <Window.Triggers>
         <EventTrigger RoutedEvent="Window.Loaded">
@@ -106,7 +106,7 @@
                     Name="btnNo"
                     Width="90"
                     Margin="120,0,0,0"
-                    Background="DarkRed"
+                    Background="Red"
                     Click="btnNo_Click"
                     Content="NO" />
                 <!--  Nút xác nhận sửa thông tin  -->
@@ -114,8 +114,8 @@
                     Name="btnYes"
                     Width="90"
                     Margin="0,0,110,0"
-                    Click="btnYes_Click"
                     Background="SaddleBrown"
+                    Click="btnYes_Click"
                     Content="YES" />
             </Grid>
         </Grid>

@@ -73,9 +73,17 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         {
             StaffDA staffDA = new StaffDA();
             staffDA.updateStaff(new StaffDTO(staffDTO.Id, FullName, Birth.Value.ToString("yyyy-MM-dd"), Gender, Email, PhoneNumber, int.Parse(Salary), Role, NgayVL.Value.ToString("yyyy-MM-dd")));
-            YesMessageBox mb = new YesMessageBox("Thông báo", "Sửa nhân viên thành công");
+            YesNoMessageBox mb = new YesNoMessageBox("Thông báo", "Bạn có muốn sửa thông tin nhân viên?");
             mb.ShowDialog();
-            wd.Close();
+            if (mb.DialogResult == false)
+                return;
+            else
+            {
+                mb.Close();
+                YesMessageBox msb = new YesMessageBox("Thông báo", "Sửa thông tin thành công");
+                msb.ShowDialog();
+                msb.Close();
+            }
         }
 
         //Họ và tên

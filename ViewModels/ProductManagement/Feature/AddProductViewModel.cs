@@ -147,7 +147,7 @@ namespace CineMajestic.ViewModels.ProductManagement
             Type += 1;
             ProductDA productDA = new ProductDA();
             productDA.addProduct(new ProductDTO(Name, int.Parse(Quantity), int.Parse(PurchasePrice), Type, ImageSource));
-            YesMessageBox mb = new YesMessageBox("Thông báo", "Thành công");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm sản phẩm thành công");
             mb.ShowDialog();
             wd.Close();
         }

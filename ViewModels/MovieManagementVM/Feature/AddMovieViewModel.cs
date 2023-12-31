@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
+using CineMajestic.Views.MessageBox;
 using CineMajestic.Views.MovieManagement;
 using Microsoft.Win32;
 using System;
@@ -325,7 +326,8 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             //thêm vào bill addmovie
             BillAddMovieDA billAddMovieDA = new BillAddMovieDA();
             billAddMovieDA.addBill(new BillAddMovieDTO(movieDA.identCurrent(), dateTime.ToString("yyyy-MM-dd"), int.Parse(ImportPrice)));
-            MessageBox.Show("Thêm thành công!");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm phim thành công");
+            mb.ShowDialog();
             addMovieView.Close();
         }
 

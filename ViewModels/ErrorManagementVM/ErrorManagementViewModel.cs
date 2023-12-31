@@ -1,6 +1,7 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
 using CineMajestic.Views.ErrorManagement;
+using CineMajestic.Views.MessageBox;
 using Microsoft.VisualBasic.Devices;
 using Microsoft.Win32;
 using System;
@@ -141,7 +142,8 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                 // cap nhat err list
                 List<ErrorDTO> errors = errDA.GetAllErrors();
                 ErrorList = new ObservableCollection<ErrorDTO>(errors);
-                MessageBox.Show("Chinh sua thanh cong!");
+                YesMessageBox mb = new YesMessageBox("Thông báo", "Sửa thành công");
+                mb.ShowDialog();
             } catch (Exception ex)
             {
 
@@ -223,7 +225,8 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
             {
                 errorDA.UploadError(errorDTO);
                 // MSG BOX CUSTOM
-                MessageBox.Show("Add thanh cong!");
+                YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm thành công");
+                mb.ShowDialog();
                 ErrorList.Add(errorDTO);
             }
             catch (Exception ex)

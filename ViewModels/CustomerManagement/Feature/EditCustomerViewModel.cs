@@ -195,7 +195,7 @@ namespace CineMajestic.ViewModels.CustomerManagement
         {
             CustomerDA customerDA = new CustomerDA();
             customerDA.editCustomer(new CustomerDTO(customer.Id,FullName,PhoneNumber,Email, RegDate.Value.ToString("yyyy-MM-dd"),int.Parse(Point)));
-            YesMessageBox mb = new YesMessageBox("Thông báo", "Sửa thành công");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Sửa thông tin khách hàng thành công");
             mb.ShowDialog();
             wd.Close();
         }

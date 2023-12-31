@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs;
+using CineMajestic.Views.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,10 +27,21 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             BillAddMovieDA billAddMovieDA = new BillAddMovieDA();
             billAddMovieDA.updateMovie_IdNull((obj as MovieDTO).Id);
 
-            //tiến hành xóa movie
-            movieDA.deleteMovie(obj as MovieDTO);
-            MessageBox.Show("Xóa thành công");
-            loadData();
+            YesNoMessageBox mb = new YesNoMessageBox("Thông báo", "Bạn có muốn xóa phim này?");
+            mb.ShowDialog();
+            if (mb.DialogResult == false)
+                return;
+            else
+            {
+                //tiến hành xóa movie
+                movieDA.deleteMovie(obj as MovieDTO);
+                mb.Close();
+                YesMessageBox msb = new YesMessageBox("Thông báo", "Xóa thành công");
+                msb.ShowDialog();
+                msb.Close();
+                loadData();
+            }
+           
         }
 
 

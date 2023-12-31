@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Views.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,21 +22,39 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         private void PhatLuong(object obj)
         {
             string[] s = DateTime.Today.ToString("yyyy-MM-dd").Split('-');
-            if (s[2] != "20")
+            YesMessageBox wd = new YesMessageBox("Thông báo", "Bạn có muốn phát lương cho nhân viên không?");
+            wd.ShowDialog();
+            if(wd.DialogResult == false)
             {
-                MessageBox.Show("Hôm nay không phải ngày phát lương!");
                 return;
             }
-            if (MotSoPTBoTro.checkSalary())
+            else
             {
-                MessageBox.Show("Tháng này đã phát lương rồi");
-                return;
+                if (s[2] != "20")
+                {
+                    wd.Close();
+                    YesMessageBox mb = new YesMessageBox("Cảnh cáo", "Hôm nay không phải ngày phát lương!");
+                    mb.ShowDialog();
+                    mb.Close();
+                    return;
+                }
+                if (MotSoPTBoTro.checkSalary())
+                {
+                    wd.Close();
+                    YesMessageBox mb = new YesMessageBox("Cảnh cáo", "Tháng này đã phát lương rồi!");
+                    mb.ShowDialog();
+                    mb.Close();
+                    return;
+                }
+
+                StaffSalaryDA staffSalaryDA = new StaffSalaryDA();
+                staffSalaryDA.PhatLuongAll();
+                wd.Close();
+                YesMessageBox mb2 = new YesMessageBox("Thông báo", "Phát lương thành công!");
+                mb2.ShowDialog();
+                mb2.Close();
             }
-
-            StaffSalaryDA staffSalaryDA = new StaffSalaryDA();
-            staffSalaryDA.PhatLuongAll();
-
-            MessageBox.Show("Thành công!");
+            
         }
     }
 }

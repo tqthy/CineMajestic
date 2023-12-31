@@ -83,7 +83,7 @@ namespace CineMajestic.ViewModels.ProductManagement
             ProductDA productDA = new ProductDA();
             productDA.importSL(product,int.Parse(Quantity));
 
-            YesMessageBox mb = new YesMessageBox("Thông báo", "Thành công");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Nhập thêm số lượng sản phẩm thành công");
             mb.ShowDialog();
             wd.Close();
         }

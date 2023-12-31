@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs.ShowTimeManagement;
+using CineMajestic.Views.MessageBox;
 using CineMajestic.Views.ShowTimeManagement;
 using System;
 using System.Collections.Generic;
@@ -134,7 +135,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             ShowTimeDA showTimeDA = new ShowTimeDA();
             showTimeDA.addShowtime(new ShowTimeDTO(StartTime, EndTime, PerSeatTicketPrice, SelectedPhim.Item1, SelectedPhong.Item1));
 
-            MessageBox.Show("Thêm showtime thành công!");
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm suất chiếu thành công");
+            mb.ShowDialog();
             addShowTimeView.Close();
         }
 
