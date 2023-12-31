@@ -22,11 +22,11 @@ namespace CineMajestic.ViewModels.StaffManagementVM
 
         private void deleteStaff(object obj)
         {
-            UserDA userDA = new UserDA();
+           // UserDA userDA = new UserDA();
             StaffDA staffDA=new StaffDA();
             if(obj is StaffDTO staff)
             {
-                userDA.deleteAccount(staff);//bởi vì ràng buộc khóa ngoại tham chiếu
+               // userDA.deleteAccount(staff);//bởi vì ràng buộc khóa ngoại tham chiếu//dùng trigger
                 staffDA.deleteStaff(staff);
                 YesNoMessageBox mb = new YesNoMessageBox("Thông báo", "Bạn có muốn xóa nhân viên này?");
                 mb.ShowDialog();

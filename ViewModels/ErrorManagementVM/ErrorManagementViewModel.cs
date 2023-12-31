@@ -110,10 +110,21 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                 Cost = SelectedItem.Cost;
                 ErrorName = SelectedItem.Name;
                 ErrorDescription = SelectedItem.Description;
-                int formatting = Convert.ToInt32(SelectedItem.Staff_Id);
-                SItemStaffID = StaffDA.formatID(formatting);
+                try
+                {
+                    int formatting = Convert.ToInt32(SelectedItem.Staff_Id);
+                    SItemStaffID = StaffDA.formatID(formatting);
+                }
+                catch { SItemStaffID = "Không xác định!"; }
+
+
                 StaffDA staffDA = new();
-                StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
+                try
+                {
+                    StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
+                }
+                catch { StaffName = "Không xác định!"; }
+
                 string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
                 try
                 {
@@ -174,10 +185,15 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                 Cost = SelectedItem.Cost;
                 ErrorName = SelectedItem.Name;
                 ErrorDescription = SelectedItem.Description;
-                int formatting = Convert.ToInt32(SelectedItem.Staff_Id);
-                SItemStaffID = StaffDA.formatID(formatting);
-                StaffDA staffDA = new();
-                StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
+                try
+                {
+                    int formatting = Convert.ToInt32(SelectedItem.Staff_Id);
+                    SItemStaffID = StaffDA.formatID(formatting);
+                    StaffDA staffDA = new();
+                    StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
+                }
+                catch { MessageBox.Show("Nhân viên báo cáo sự cố này không còn trong hệ thống,bạn không thể tiếp tục chỉnh sửa sự cố này!");return; }
+
                 string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
                 try
                 {
