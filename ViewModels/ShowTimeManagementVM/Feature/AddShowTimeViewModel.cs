@@ -4,6 +4,7 @@ using CineMajestic.Views.MessageBox;
 using CineMajestic.Views.ShowTimeManagement;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -131,13 +132,29 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             }
             catch { }
 
+            try
+            {
+                DateTime startTimeByADD = DateTime.ParseExact(StartTime, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 
-            ShowTimeDA showTimeDA = new ShowTimeDA();
-            showTimeDA.addShowtime(new ShowTimeDTO(StartTime, EndTime, PerSeatTicketPrice, SelectedPhim.Item1, SelectedPhong.Item1));
+                ShowTimeDA showTimeDA = new ShowTimeDA();
+                if (showTimeDA.canAddShowtime(SelectedPhong.Item2, startTimeByADD))
+                {
 
-            YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm suất chiếu thành công");
-            mb.ShowDialog();
-            addShowTimeView.Close();
+                    showTimeDA.addShowtime(new ShowTimeDTO(StartTime, EndTime, PerSeatTicketPrice, SelectedPhim.Item1, SelectedPhong.Item1));
+
+                    YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm suất chiếu thành công");
+                    mb.ShowDialog();
+                    addShowTimeView.Close();
+                }
+                else
+                {
+                    YesMessageBox mb = new YesMessageBox("Thông báo", "Có một suất chiếu khác đang chiếu trong khoảng thời gian này!");
+                    mb.ShowDialog();
+                    addShowTimeView.Close();
+                }
+
+            }
+            catch { return; }
         }
 
 

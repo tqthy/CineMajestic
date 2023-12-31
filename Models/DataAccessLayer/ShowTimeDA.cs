@@ -158,7 +158,7 @@ namespace CineMajestic.Models.DataAccessLayer
                     }
                 }
             }
-            return false; 
+            return false;
         }
 
 
@@ -188,5 +188,41 @@ namespace CineMajestic.Models.DataAccessLayer
             return false;
         }
 
+
+
+        //kiểm tra khả năng có thể add 1 showtime
+        public bool canAddShowtime(string phong,DateTime startTimeByADD)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string truyvan =
+                    "select StartTime,EndTime\n"
+                    +
+                    "from Showtime\n"
+                    +
+                    "inner join Auditorium on ShowTime.Auditorium_Id=Auditorium.Id\n"
+                    +
+                    "where Auditorium.Name=" + "N'" + phong + "'";
+                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime startTime = reader.GetDateTime(reader.GetOrdinal("StartTime"));
+                            DateTime endTime = reader.GetDateTime(reader.GetOrdinal("EndTime"));
+
+                            if (startTimeByADD.CompareTo(startTime) >= 0 && startTimeByADD.CompareTo(endTime) <= 0)
+                            {
+                                return false; 
+                            }
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 }

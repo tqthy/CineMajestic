@@ -24,7 +24,7 @@ namespace CineMajestic.Models.DataAccessLayer
                     +
                     "from SeatForShowtime\n"
                     +
-                    "inner join Seat on Seat.Id=SeatForShowtime.Id\n"
+                    "inner join Seat on Seat.Id=SeatForShowtime.Seat_Id\n"
                     +
                     "where SeatForShowtime.ShowTime_Id=" + showtime_Id;
                 using (SqlCommand command = new SqlCommand(truyvan, connection))

@@ -44,7 +44,6 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 DSGhe = seatForShowTimeDA.getDSGhe(showTimeDTO.Id);
                 DSGheChon = new ObservableCollection<SeatForShowTimeDTO>();
                 orderDTO.DSGheChon = DSGheChon;
-
                 checkSeats = new List<string>();
                 foreach(var item in DSGhe)
                 {
