@@ -104,26 +104,38 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
 
         public void ExecuteViewErrorDetailCM(object obj)
         {
-            ID = SelectedItem.Id;
-            Cost = SelectedItem.Cost;
-            ErrorName = SelectedItem.Name;
-            ErrorDescription = SelectedItem.Description;
-            int formatting = Convert.ToInt32(SelectedItem.Staff_Id);
-            SItemStaffID = StaffDA.formatID(formatting);
-            StaffDA staffDA = new();
-            StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
-            string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
-            ErrorImage = new BitmapImage(new Uri(applicationFolder));
-            if (string.IsNullOrEmpty(SelectedItem.EndDate))
+            if (SelectedItem != null)
             {
-                EndDate = DateTime.Now;
+                ID = SelectedItem.Id;
+                Cost = SelectedItem.Cost;
+                ErrorName = SelectedItem.Name;
+                ErrorDescription = SelectedItem.Description;
+                int formatting = Convert.ToInt32(SelectedItem.Staff_Id);
+                SItemStaffID = StaffDA.formatID(formatting);
+                StaffDA staffDA = new();
+                StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
+                string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
+                try
+                {
+                    ErrorImage = new BitmapImage(new Uri(applicationFolder));
+                }
+                catch { }
+                if (string.IsNullOrEmpty(SelectedItem.EndDate))
+                {
+                    EndDate = DateTime.Now;
+                }
+                else EndDate = DateTime.Parse(SelectedItem.EndDate);
+
+                if (SelectedItem.DateAdded != null)
+                {
+                    IssueDate = DateTime.Parse(SelectedItem.DateAdded);
+                }
+
+                Status = SelectedItem.Status;
+                ErrorDetailView popup = new();
+                popup.DataContext = this;
+                popup.ShowDialog();
             }
-            else EndDate = DateTime.Parse(SelectedItem.EndDate);
-            IssueDate = DateTime.Parse(SelectedItem.DateAdded);
-            Status = SelectedItem.Status;
-            ErrorDetailView popup = new();
-            popup.DataContext = this;
-            popup.ShowDialog();
         }
 
         #endregion
@@ -156,30 +168,38 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         }
         public void ExecuteButtonEditErrorCM(object obj)
         {
-            ID = SelectedItem.Id;
-            Cost = SelectedItem.Cost;
-            ErrorName = SelectedItem.Name;
-            ErrorDescription = SelectedItem.Description;
-            int formatting = Convert.ToInt32(SelectedItem.Staff_Id);
-            SItemStaffID = StaffDA.formatID(formatting);
-            StaffDA staffDA = new();
-            StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
-            string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
-            ErrorImage = new BitmapImage(new Uri(applicationFolder));
-            if (string.IsNullOrEmpty(SelectedItem.EndDate))
+            if (SelectedItem != null)
             {
-                EndDate = DateTime.Now;
+                ID = SelectedItem.Id;
+                Cost = SelectedItem.Cost;
+                ErrorName = SelectedItem.Name;
+                ErrorDescription = SelectedItem.Description;
+                int formatting = Convert.ToInt32(SelectedItem.Staff_Id);
+                SItemStaffID = StaffDA.formatID(formatting);
+                StaffDA staffDA = new();
+                StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
+                string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
+                try
+                {
+                    ErrorImage = new BitmapImage(new Uri(applicationFolder));
+                }
+                catch { }
+
+                if (string.IsNullOrEmpty(SelectedItem.EndDate))
+                {
+                    EndDate = DateTime.Now;
+                }
+                else EndDate = DateTime.Parse(SelectedItem.EndDate);
+                IssueDate = DateTime.Parse(SelectedItem.DateAdded);
+                string stt = SelectedItem.Status;
+                if (stt == "Chờ tiếp nhận") ComboBoxStatusIndex = 0;
+                else if (stt == "Đang xử lý") ComboBoxStatusIndex = 1;
+                else if (stt == "Đã xử lý") ComboBoxStatusIndex = 2;
+                else if (stt == "Đã huỷ") ComboBoxStatusIndex = 3;
+                ErrorEditView popup = new();
+                popup.DataContext = this;
+                popup.ShowDialog();
             }
-            else EndDate = DateTime.Parse(SelectedItem.EndDate);
-            IssueDate = DateTime.Parse(SelectedItem.DateAdded);
-            string stt = SelectedItem.Status;
-            if (stt == "Chờ tiếp nhận") ComboBoxStatusIndex = 0;
-            else if (stt == "Đang xử lý") ComboBoxStatusIndex = 1;
-            else if (stt == "Đã xử lý") ComboBoxStatusIndex = 2;
-            else if (stt == "Đã huỷ") ComboBoxStatusIndex = 3;
-            ErrorEditView popup = new();
-            popup.DataContext = this;
-            popup.ShowDialog();
         }
         #endregion
 
@@ -216,12 +236,12 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                 Name = ErrorName,
                 Description = ErrorDescription,
                 Staff_Id = StaffID,
-                DateAdded = IssueDate.ToString(),
+                //DateAdded = IssueDate.ToString(),
                 Image = Path.GetFileName(ErrorImage.UriSource.ToString()),
                 StatusColor = new SolidColorBrush(Colors.DarkRed),
                 Status = "Chờ tiếp nhận"
             };
-            try
+         //   try
             {
                 errorDA.UploadError(errorDTO);
                 // MSG BOX CUSTOM
@@ -229,17 +249,26 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                 mb.ShowDialog();
                 ErrorList.Add(errorDTO);
             }
-            catch (Exception ex)
+           /// catch (Exception ex)
             {
-                return;
+            //    return;
             }
-            string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages");
-            if (!Directory.Exists(applicationFolder))
-            {
-                Directory.CreateDirectory(applicationFolder);
-            }
-            File.Copy(ErrorImage.UriSource.LocalPath, Path.Combine(applicationFolder, errorDTO.Image), true);
 
+            try
+            {
+                string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages");
+                if (!Directory.Exists(applicationFolder))
+                {
+                    Directory.CreateDirectory(applicationFolder);
+                }
+                try
+                {
+                    File.Copy(ErrorImage.UriSource.LocalPath, Path.Combine(applicationFolder, errorDTO.Image), true);
+                }
+                catch { }
+
+            }
+            catch { }
            
         }
 
