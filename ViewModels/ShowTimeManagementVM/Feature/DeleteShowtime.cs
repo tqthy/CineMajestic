@@ -1,4 +1,5 @@
-﻿using CineMajestic.Models.DTOs.ShowTimeManagement;
+﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs.ShowTimeManagement;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,18 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             if(obj != null)
             {
                 ShowTimeDTO showTimeDTO = (ShowTimeDTO)obj;
-                //phải check xem phim có đang chiếu k thì mới đc xóa
 
-
+                ShowTimeDA showTimeDA = new ShowTimeDA();
+                if (showTimeDA.checkShowtime(showTimeDTO))
+                {
+                    MessageBox.Show("Suất chiếu đang được chiếu!");
+                }
+                else
+                {
+                    showTimeDA.deleteShowtime(showTimeDTO);
+                    MessageBox.Show("Xóa suất chiếu thành công!");
+                    loadData(phong);
+                }
             }
         }
     }

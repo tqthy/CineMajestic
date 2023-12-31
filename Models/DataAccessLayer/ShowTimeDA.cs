@@ -6,6 +6,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media;
 
 namespace CineMajestic.Models.DataAccessLayer
@@ -129,5 +131,35 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+        //kiểm tra 1 showtime có đang hoạt động k(1 phim có đang được chiếu hay k)
+        public bool checkShowtime(ShowTimeDTO showTimeDTO)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string select = "select StartTime, EndTime from ShowTime where Id=" + showTimeDTO.Id;
+                using (SqlCommand command = new SqlCommand(select, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime startTime = reader.GetDateTime(reader.GetOrdinal("StartTime"));
+                            DateTime endTime = reader.GetDateTime(reader.GetOrdinal("EndTime"));
+                            DateTime now = DateTime.Now;
+
+                            if (now.CompareTo(startTime) > 0 && now.CompareTo(endTime) < 0)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false; 
+        }
+
     }
 }
