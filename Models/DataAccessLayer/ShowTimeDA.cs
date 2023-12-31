@@ -114,5 +114,20 @@ namespace CineMajestic.Models.DataAccessLayer
                 }
             }
         }
+
+
+        //xóa 1 showtime
+        public void deleteShowtime(ShowTimeDTO showTimeDTO)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string delete = "delete Showtime where id=" + showTimeDTO.Id;
+                using (SqlCommand command = new SqlCommand(delete, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
