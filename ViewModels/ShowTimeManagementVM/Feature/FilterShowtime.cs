@@ -1,4 +1,5 @@
-﻿using CineMajestic.Models.DTOs.ShowTimeManagement;
+﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs.ShowTimeManagement;
 using Microsoft.Xaml.Behaviors.Media;
 using System;
 using System.Collections.Generic;
@@ -22,11 +23,14 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
                 filterStartDate = value;
                 OnPropertyChanged(nameof(FilterStartDate));
-                if (filterStartDate != null)
+                if (FilterStartDate != null)
                 {
-                    dateChoice = filterStartDate.Value.ToString("dd/MM/yyyy");
+                    dateChoice = FilterStartDate.Value.ToString("dd/MM/yyyy");
                     ObservableCollection<ShowTimeDTO> list = new ObservableCollection<ShowTimeDTO>();
-                    foreach(var item in DSSuatChieu)
+
+                    ShowTimeDA showTimeDA = new ShowTimeDA();
+                    ObservableCollection<ShowTimeDTO> DSST = showTimeDA.getDSShowTime(phong);
+                    foreach (var item in DSST)
                     {
                         string[]s=item.StartTime.Split(' ');
                         if (s[0] == dateChoice)
