@@ -126,7 +126,8 @@
                     materialDesign:HintAssist.Hint="Chọn ngày"
                     materialDesign:TextFieldAssist.HasClearButton="True"
                     DockPanel.Dock="Right"
-                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" 
+                    SelectedDate="{Binding FilterStartDate, UpdateSourceTrigger=PropertyChanged}"/>
 
                 <!--  Nút thêm suất chiếu  -->
                 <Button

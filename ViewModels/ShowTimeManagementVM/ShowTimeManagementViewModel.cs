@@ -38,6 +38,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         {
             ShowTimeDA showTimeDA = new ShowTimeDA();
             DSSuatChieu = showTimeDA.getDSShowTime(Phong);
+            FilterStartDate = null;
         }
     }
 }
