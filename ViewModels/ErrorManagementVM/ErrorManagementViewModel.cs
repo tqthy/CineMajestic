@@ -200,7 +200,7 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         public void ExecuteUploadImageCM(object obj)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.png;*.jpeg)|*.png;*.jpeg|All files (*.*)|*.*";
+            openFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
             openFileDialog.Title = "Hãy chọn file ảnh sự cố";
             if (openFileDialog.ShowDialog() == true)
