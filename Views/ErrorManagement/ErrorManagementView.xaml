@@ -94,38 +94,40 @@
         </Grid>
 
         <!--  Danh sách các sự cố  -->
-        <Grid Grid.Row="1">
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <ListView x:Name="lvError"
+        <materialDesign:Card Grid.Row="1"
+                             Margin="10">
+            <Grid >
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ListView x:Name="lvError"
                           Loaded="ListView_Loaded"
                           ItemsSource="{Binding ErrorList}"
                           SelectedItem="{Binding SelectedItem}"
                           Focusable="True"
                           ToolTip="Nháy đúp để xem chi tiết">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDoubleClick">
-                            <i:InvokeCommandAction Command="{Binding ViewErrorDetailCommand}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Width="500"
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding ViewErrorDetailCommand}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Width="500"
                                             Header="Sự cố">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <!--  Tên sự cố  -->
-                                        <TextBlock
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <!--  Tên sự cố  -->
+                                            <TextBlock
                                             Width="Auto"
                                             Margin="17,0,0,0"
                                             FontSize="17"
                                             FontWeight="SemiBold"
                                             Text="{Binding Name}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
-                            <!--  Chi phí  -->
-                            <!--<GridViewColumn Width="Auto" Header="Phí sửa">
+                                <!--  Chi phí  -->
+                                <!--<GridViewColumn Width="Auto" Header="Phí sửa">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock
@@ -135,68 +137,70 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>-->
-                            <!--  Ngày nhận error  -->
-                            <GridViewColumn Width="Auto" Header="Ngày tiếp nhận">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
+                                <!--  Ngày nhận error  -->
+                                <GridViewColumn Width="Auto" Header="Ngày tiếp nhận">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
                                             Margin="17,0,0,0"
                                             FontSize="17"
                                             Text="{Binding DateAdded}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
-                            <!--  Tình trạng  -->
-                            <GridViewColumn Width="Auto" Header="Tình trạng">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
+                                <!--  Tình trạng  -->
+                                <GridViewColumn Width="Auto" Header="Tình trạng">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
                                             Margin="17,0,0,0"
                                             FontSize="17"
                                             Foreground="{Binding StatusColor}"
                                             Text="{Binding Status}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
-                            <GridViewColumn>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <!--  Nút sửa  -->
-                                        <Border
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <!--  Nút sửa  -->
+                                            <Border
                                             Margin="17,0,0,0"
                                             BorderBrush="Black"
                                             BorderThickness="0.5"
                                             CornerRadius="5"
                                             Cursor="Hand">
-                                            <Border.Style>
-                                                <Style TargetType="Border">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="#00e5ff" />
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Border.Style>
-                                            <materialDesign:PackIcon
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#00e5ff" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <materialDesign:PackIcon
                                                 Width="30"
                                                 Height="30"
                                                 Kind="Pencil" />
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                                    <i:InvokeCommandAction Command="{Binding DataContext.ButtonEditErrorCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </Border>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </ScrollViewer>
-        </Grid>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.ButtonEditErrorCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Border>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+            </Grid>
+        </materialDesign:Card>
+
 
     </Grid>
 </UserControl>

@@ -111,160 +111,164 @@
         </ComboBox>
 
         <!--  Thông tin phim  -->
-        <Grid Grid.Row="2" Grid.Column="1">
-            <ListView
+        <materialDesign:Card Grid.Row="2" Grid.Column="1"
+                             Margin="0,5,10,5">
+            <Grid>
+                <ListView
                 Name="lvMovies"
                 d:ItemsSource="{d:SampleData ItemCount=5}"
                 Focusable="True"
                 ItemsSource="{Binding FilterDSPhim}"
                 SelectedItem="{Binding SelectedItem}"
                 ToolTip="Nháy đúp để xem chi tiết">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding DataContext.MovieDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding ElementName=lvMovies, Path=SelectedItem}" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <ListView.Resources />
-                <ListView.View>
-                    <GridView>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding DataContext.MovieDetailCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding ElementName=lvMovies, Path=SelectedItem}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ListView.Resources />
+                    <ListView.View>
+                        <GridView>
 
-                        <!--  Tên phim  -->
-                        <GridViewColumn Width="Auto" 
+                            <!--  Tên phim  -->
+                            <GridViewColumn Width="Auto" 
                                         Header="Tên phim"
                                         x:Name="clName">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
                                         Margin="17,3,0,0"
                                         FontSize="17"
                                         Text="{Binding Title}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                        <!--  Tình trạng  -->
-                        <GridViewColumn Width="Auto" 
+                            <!--  Tình trạng  -->
+                            <GridViewColumn Width="Auto" 
                                         x:Name="clStatus"
                                         Header="Tình trạng">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
                                         Margin="17,3,0,0"
                                         FontSize="17"
                                         Text="{Binding Status}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                        <!--  Thời lượng  -->
-                        <GridViewColumn Width="Auto" 
+                            <!--  Thời lượng  -->
+                            <GridViewColumn Width="Auto" 
                                         x:Name="clTime"
                                         Header="Thời lượng (phút)">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
                                         Margin="17,3,0,0"
                                         FontSize="17"
                                         Text="{Binding Length}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                        <GridViewColumn Width="Auto" 
+                            <GridViewColumn Width="Auto" 
                                         x:Name="clCountry"
                                         Header="Quốc gia">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
                                         Margin="17,3,0,0"
                                         FontSize="17"
                                         Text="{Binding Country}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
 
-                        <GridViewColumn Width="Auto" 
+                            <GridViewColumn Width="Auto" 
                                         x:Name="clDirector"
                                         Header="Đạo diễn">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock
                                         Margin="17,3,0,0"
                                         FontSize="17"
                                         Text="{Binding Director}" />
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                        <GridViewColumn>
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
+                            <GridViewColumn>
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
 
-                                        <!--  Nút edit  -->
-                                        <Border
+                                            <!--  Nút edit  -->
+                                            <Border
                                             BorderBrush="Black"
                                             BorderThickness="0"
                                             CornerRadius="5"
                                             Cursor="Hand">
-                                            <Border.Style>
-                                                <Style TargetType="Border">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="#00e5ff" />
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Border.Style>
-                                            <materialDesign:PackIcon
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#00e5ff" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <materialDesign:PackIcon
                                                 Width="30"
                                                 Height="30"
                                                 Kind="MovieEditOutline" />
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                                    <i:InvokeCommandAction Command="{Binding DataContext.EditMovieCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </Border>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.EditMovieCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </Border>
 
-                                        <!--  Nút xóa movie  -->
-                                        <Border
+                                            <!--  Nút xóa movie  -->
+                                            <Border
                                             Margin="10,0,0,0"
                                             BorderBrush="Black"
                                             BorderThickness="0"
                                             CornerRadius="5"
                                             Cursor="Hand">
-                                            <Border.Style>
-                                                <Style TargetType="Border">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="#ff6255" />
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Border.Style>
-                                            <materialDesign:PackIcon
+                                                <Border.Style>
+                                                    <Style TargetType="Border">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="Background" Value="#ff6255" />
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Border.Style>
+                                                <materialDesign:PackIcon
                                                 Width="30"
                                                 Height="30"
                                                 Kind="GarbageCanEmpty" />
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                                    <i:InvokeCommandAction Command="{Binding DataContext.DeleteMovieCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                        <i:InvokeCommandAction Command="{Binding DataContext.DeleteMovieCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
 
-                                        </Border>
-                                    </StackPanel>
+                                            </Border>
+                                        </StackPanel>
 
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
 
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </materialDesign:Card>
+
 
     </Grid>
 </UserControl>

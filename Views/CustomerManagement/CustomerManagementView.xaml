@@ -15,8 +15,25 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    mc:Ignorable="d">
-    <Grid Background="White">
+    mc:Ignorable="d"
+    x:Name="mainUC">
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation
+                        Storyboard.TargetName="mainUC"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0"
+                        To="1"
+                        Duration="0:0:0.3" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+    <Grid Background="#F5F5F5">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="9*" />
@@ -82,8 +99,9 @@
             </Button>
 
         </StackPanel>
-
-        <Grid Grid.Row="1">
+        <materialDesign:Card Grid.Row="1"
+                             Margin="10">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="9*" />
                 <RowDefinition Height="0.5*" />
@@ -250,6 +268,7 @@
                 Foreground="Brown"
                 Text="{Binding Notify}" />
         </Grid>
+        </materialDesign:Card>
 
     </Grid>
 </UserControl>

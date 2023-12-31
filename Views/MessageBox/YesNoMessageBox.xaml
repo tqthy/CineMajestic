@@ -20,7 +20,24 @@
     TextOptions.TextRenderingMode="Auto"
     Topmost="True"
     WindowStartupLocation="CenterScreen"
-    WindowStyle="None">
+    WindowStyle="None"
+    x:Name="mainUC">
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Window.Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation
+                        Storyboard.TargetName="mainUC"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0"
+                        To="1"
+                        Duration="0:0:0.3" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
+
     <Border
         Background="White"
         BorderBrush="Black"
@@ -89,7 +106,7 @@
                     Name="btnNo"
                     Width="90"
                     Margin="120,0,0,0"
-                    Background="Red"
+                    Background="DarkRed"
                     Click="btnNo_Click"
                     Content="NO" />
                 <!--  Nút xác nhận sửa thông tin  -->
@@ -98,6 +115,7 @@
                     Width="90"
                     Margin="0,0,110,0"
                     Click="btnYes_Click"
+                    Background="SaddleBrown"
                     Content="YES" />
             </Grid>
         </Grid>

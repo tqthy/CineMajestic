@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
+using CineMajestic.Models.DTOs;
 using CineMajestic.Models.DTOs.StaffManagement;
 using CineMajestic.ViewModels.InformationManagement;
 using Microsoft.Extensions.Primitives;
@@ -303,6 +304,62 @@ namespace CineMajestic.Models.DataAccessLayer
 
 
             return list;
+        }
+
+        public long GetSalaryByYear(string year)
+        {
+            long res = 0;
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT SUM(Total) FROM [Staff_Salary] WHERE YEAR(BillDate)=@year";
+                    command.Parameters.Add("@year", SqlDbType.Int).Value = year;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (!string.IsNullOrEmpty(reader[0].ToString())) res += Convert.ToInt64(reader[0].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return res;
+        }
+
+        public long GetSalaryByMonth(string month)
+        {
+            long res = 0;
+            try
+            {
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT SUM(Total) FROM [Staff_Salary] WHERE YEAR(BillDate)=YEAR(GETDATE()) AND MONTH(BillDate)=@month";
+                    command.Parameters.Add("@month", SqlDbType.Int).Value = month;
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (!string.IsNullOrEmpty(reader[0].ToString())) res += Convert.ToInt64(reader[0].ToString());
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return res;
         }
     }
 }

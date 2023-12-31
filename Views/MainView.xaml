@@ -18,8 +18,24 @@
     WindowStyle="None"
     mc:Ignorable="d"
     Deactivated="Window_Deactivated"
-    Activated="Window_Activated">
+    Activated="Window_Activated"
+    x:Name="mainUC">
 
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation
+                        Storyboard.TargetName="mainUC"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0"
+                        To="1"
+                        Duration="0:0:0.5" />
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </Window.Triggers>
 
     <!--<Window.DataContext>
         <vm:MainViewModel />

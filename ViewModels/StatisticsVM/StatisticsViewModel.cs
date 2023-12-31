@@ -216,6 +216,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
             MovieDA movieDA = new MovieDA();
             BillDA billDA = new BillDA();
             ErrorDA errorDA = new ErrorDA();
+            StaffDA staffDA = new StaffDA();
 
             try
             {
@@ -225,7 +226,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
                 long sum_income = billDA.GetIncomeByYear(year);
                 long product_income = billDA.GetProductIncomeByYear(year);
                 long sum_outcome = addProductCostByYear + errorCostByYear + movieCostByYear;
-
+                long salaryCostByYear = staffDA.GetSalaryByYear(year);
 
                 IncomeText = sum_income.ToString("N0");
                 OutcomeText = sum_outcome.ToString("N0");
@@ -259,6 +260,16 @@ namespace CineMajestic.ViewModels.StatisticsVM
                     {
                         Values = new long[] {movieCostByYear},
                         Name = "Nhập phim"
+                    },
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {salaryCostByYear},
+                        Name = "Lương NV"
+                    },
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {movieCostByYear/20},
+                        Name = "Voucher"
                     }
                 };
                 IPSeries = new ISeries[]
@@ -292,6 +303,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
             BillDA billDA = new BillDA();
             ErrorDA errorDA = new ErrorDA();
             MovieDA movieDA = new MovieDA();
+            StaffDA staffDA = new();
 
             try
             {
@@ -301,6 +313,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
                 long sum_income = billDA.GetIncomeByMonth(month);
                 long product_income = billDA.GetProductIncomeByMonth(month);
                 long sum_outcome = addProductCostByMonth + errorCostByMonth + movieCostByMonth;
+                long salaryCostByMonth = staffDA.GetSalaryByMonth(month);
 
                 IncomeText = sum_income.ToString("N0");
                 OutcomeText = sum_outcome.ToString("N0");
@@ -334,6 +347,16 @@ namespace CineMajestic.ViewModels.StatisticsVM
                     {
                         Values = new long[] {movieCostByMonth},
                         Name = "Nhập phim"
+                    },
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {salaryCostByMonth},
+                        Name = "Lương NV"
+                    },
+                    new PieSeries<long>
+                    {
+                        Values = new long[] {movieCostByMonth/20},
+                        Name = "Voucher"
                     }
                 };
                 IPSeries = new ISeries[]
