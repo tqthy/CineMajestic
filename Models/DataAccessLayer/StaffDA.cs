@@ -363,5 +363,30 @@ namespace CineMajestic.Models.DataAccessLayer
             }
             return res;
         }
+
+
+        //check 1 nhân viên có phải quản lý hay không
+        public bool checkQuanLy(int staffid)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string cm =
+                    "select Role from Staff where id="+staffid;
+                using (SqlCommand command = new SqlCommand(cm, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        string role = reader.GetString(reader.GetOrdinal("Role"));
+                        if(role=="Quản lý")
+                        {
+                            return true;
+                        }    
+                    }
+                }
+            }
+            return false;
+        }
     }
 }

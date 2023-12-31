@@ -1,4 +1,5 @@
-﻿using CineMajestic.Models.DTOs;
+﻿using CineMajestic.Models.DataAccessLayer;
+using CineMajestic.Models.DTOs;
 using CineMajestic.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,12 @@ namespace CineMajestic.Views
             MainViewModel mainViewModel = new MainViewModel(Staff_Id);
             this.DataContext= mainViewModel;
             this.loginView = loginView;
+
+            StaffDA staffDA = new StaffDA();
+            if (!staffDA.checkQuanLy(Staff_Id))
+            {
+                btnQLNhanSu.Visibility= Visibility.Collapsed; 
+            }
         }
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {

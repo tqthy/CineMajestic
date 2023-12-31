@@ -46,18 +46,9 @@ namespace CineMajestic.ViewModels
 
         // -> Commands
         public ICommand LoginCommand { get; }
-       // public ICommand RecoverPasswordCommand { get; }
-      //  public ICommand ShowPasswordCommand { get; }
-      //  public ICommand RememberPasswordCommand { get; }
-        public ICommand ForgotPasswordCommand {  get; }
-        // Constructors
 
-        //public LoginViewModel()
-        //{
-        //    userDA = new UserDA();
-        //    LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
-        //    RecoverPasswordCommand = new ViewModelCommand(p => ExecuteRecoverPasswordCommand("", ""));
-        //}
+        public ICommand ForgotPasswordCommand {  get; }
+
 
         private LoginView wd;
         public LoginViewModel(LoginView wd)
@@ -76,22 +67,6 @@ namespace CineMajestic.ViewModels
         {
             return ValidAccount();
         }
-
-        //private void ExecuteLoginCommand(object obj)
-        //{
-        //    var isValidUser = userDA.AuthenticateUser(new NetworkCredential(Username, Password));
-
-        //    if (isValidUser)
-        //    {
-        //        Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Username), null);
-        //        IsViewVisible = false;
-        //    }
-        //    else
-        //    {
-        //        ErrorMessage = "* Invalid username or password";
-        //    }
-        //}
-
 
         private void ExecuteLoginCommand(object obj)
         {
@@ -118,13 +93,6 @@ namespace CineMajestic.ViewModels
 
         }
 
-
-        // Utility methods
-        //private bool ValidAccount()
-        //{
-        //    if (string.IsNullOrWhiteSpace(Username) || Password == null) return false;
-        //    return true;
-        //}
         private bool ValidAccount()
         {
             if (string.IsNullOrWhiteSpace(Username) || wd.txtPassword.Password == "") return false;
