@@ -21,10 +21,10 @@ namespace CineMajestic.Views.StaffManagement
     /// </summary>
     public partial class StaffManagementView : UserControl
     {
-        public StaffManagementView()
+        public StaffManagementView(int StaffID)
         {
             InitializeComponent();
-            StaffManageVM staffManageVM = new StaffManageVM(this);
+            StaffManageVM staffManageVM = new StaffManageVM(this,StaffID);
             this.DataContext = staffManageVM;
         }
     }

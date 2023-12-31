@@ -59,7 +59,7 @@ namespace CineMajestic.ViewModels
                     CurrentView = new ShowTimeManagementView(Staff_Id);
                     break;
                 case "Staff": // Quản lí nhân viên
-                    CurrentView = new StaffManagementView();
+                    CurrentView = new StaffManagementView(Staff_Id);
                     break;
                 case "QLSP"://quản lý sản phẩm    
                     CurrentView = new ProductManagementView();

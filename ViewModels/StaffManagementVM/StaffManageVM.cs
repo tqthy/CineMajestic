@@ -28,9 +28,12 @@ namespace CineMajestic.ViewModels.StaffManagementVM
             }
         }
 
+        
         private StaffManagementView staffManagementView;//phục vụ việc set lại chiều rộng cột khi thêm,edit,xóa
-        public StaffManageVM(StaffManagementView staffManagementView)
+        private int StaffId;
+        public StaffManageVM(StaffManagementView staffManagementView,int StaffId)
         {
+            this.StaffId = StaffId;
             DSNV = new ObservableCollection<StaffDTO>();
             loadData();
             //SearchStaff();//gọi ở hàm loaddata rồi nên không cần nữa
