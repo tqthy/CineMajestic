@@ -117,6 +117,7 @@
                         Text="Giá nhập" />
                     <StackPanel Grid.Column="1">
                         <TextBox
+                            IsReadOnly="True"
                             Width="150"
                             Height="30"
                             Margin="5,5,0,0"
@@ -153,6 +154,7 @@
 
                     <StackPanel Grid.Column="1">
                         <TextBox
+                            IsReadOnly="True"
                             Width="150"
                             Height="30"
                             Margin="5,5,0,0"
