@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -20,8 +21,8 @@ namespace CineMajestic.Models.DataAccessLayer
             //Bình
             //_connectionString = @"Data Source=LAPTOP-J7OECDJF\SQLEXPRESS;Initial Catalog=CineMajestic;Integrated Security=True";
 
-            //image
-            _connectionString = @"Data Source=DESKTOP-34OSP4G\SQLEXPRESS;Initial Catalog=CineMajesticImage;Integrated Security=True";
+            _connectionString = ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString;
+
         }
 
         protected SqlConnection GetConnection()
