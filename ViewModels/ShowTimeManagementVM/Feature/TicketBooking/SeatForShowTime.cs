@@ -1,6 +1,7 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs.Bills;
 using CineMajestic.Models.DTOs.ShowTimeManagement;
+using CineMajestic.Views.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -113,7 +114,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 }
                 else
                 {
-                    MessageBox.Show("Ghế đã có người mua rồi!");
+                    YesMessageBox mb = new YesMessageBox("Thông báo","Ghế đã có người đặt");
+                    mb.ShowDialog();
                 }
             }
         }

@@ -1,5 +1,6 @@
 ﻿using CineMajestic.Models.DataAccessLayer;
 using CineMajestic.Models.DTOs.ShowTimeManagement;
+using CineMajestic.Views.MessageBox;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,19 +24,30 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         {
             if(obj != null)
             {
-                ShowTimeDTO showTimeDTO = (ShowTimeDTO)obj;
-
-                ShowTimeDA showTimeDA = new ShowTimeDA();
-                if (showTimeDA.checkShowtime(showTimeDTO))
+                YesNoMessageBox yesNoMessageBox = new YesNoMessageBox("Thông báo", "Bạn có muốn xóa suất chiếu này?");
+                yesNoMessageBox.ShowDialog();
+                if (yesNoMessageBox.DialogResult == false)
                 {
-                    MessageBox.Show("Suất chiếu đang được chiếu!");
+                    return;
                 }
                 else
                 {
-                    showTimeDA.deleteShowtime(showTimeDTO);
-                    MessageBox.Show("Xóa suất chiếu thành công!");
-                    loadData(phong);
+                    ShowTimeDTO showTimeDTO = (ShowTimeDTO)obj;
+                    ShowTimeDA showTimeDA = new ShowTimeDA();
+                    if (showTimeDA.checkShowtime(showTimeDTO))
+                    {
+                        YesMessageBox yesMessage = new YesMessageBox("Thông báo", "Suất chiếu đang được chiếu!");
+                        yesMessage.ShowDialog();
+                    }
+                    else
+                    {
+                        showTimeDA.deleteShowtime(showTimeDTO);
+                        YesMessageBox yesMessage = new YesMessageBox("Thông báo", "Xóa xuất chiếu thành công");
+                        yesMessage.ShowDialog();
+                        loadData(phong);
+                    }
                 }
+                
             }
         }
     }
