@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.Models.DTOs.StaffManagement
 {
@@ -19,7 +20,7 @@ namespace CineMajestic.Models.DTOs.StaffManagement
         public int Salary { get; set; }
         public string Role { get; set; }
         public string NgayVaoLam {  get; set; }
-        public string ImageSource {  get; set; }
+        public BitmapImage ImageSource {  get; set; }
 
         //phục vụ edit
         public StaffDTO(int id,string fullName,string birth,string gender,string email,string phoneNumber,int salary,string role,string ngayVL)
@@ -52,7 +53,7 @@ namespace CineMajestic.Models.DTOs.StaffManagement
 
 
         //phục vụ phần information và lấy data
-        public StaffDTO(int id, string fullName, string birth, string gender, string email, string phoneNumber, int salary, string role, string ngayVL,string imageSource)
+        public StaffDTO(int id, string fullName, string birth, string gender, string email, string phoneNumber, int salary, string role, string ngayVL, BitmapImage imageSource)
         {
             Id = id;
             FullName = fullName;

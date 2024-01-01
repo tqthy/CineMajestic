@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DTOs.ShowTimeManagement;
+using CineMajestic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -74,12 +76,14 @@ namespace CineMajestic.Models.DataAccessLayer
 
                                 int length = reader.GetInt32(reader.GetOrdinal("Length"));
 
-                                string ImageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                                byte[] imageBytes = (byte[])reader["ImageSource"];
+                                BitmapImage imageSource = ImageVsSQL.ByteArrayToBitmapImage(imageBytes);
+
                                 string phongchieu = reader.GetString(reader.GetOrdinal("phongchieu"));
 
                                 int Auditorium_Id = reader.GetInt32(reader.GetOrdinal("auditoriumId"));
 
-                                list.Add(new ShowTimeDTO(showTimeId, StartTime, EndTime, PerSeatTicketPrice, MovieId, movieTitle, length, ImageSource, phongchieu, Auditorium_Id));
+                                list.Add(new ShowTimeDTO(showTimeId, StartTime, EndTime, PerSeatTicketPrice, MovieId, movieTitle, length, imageSource, phongchieu, Auditorium_Id));
                             }
                         }
                     }

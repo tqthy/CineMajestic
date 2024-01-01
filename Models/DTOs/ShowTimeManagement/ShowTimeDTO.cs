@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.Models.DTOs.ShowTimeManagement
 {
@@ -18,11 +19,11 @@ namespace CineMajestic.Models.DTOs.ShowTimeManagement
         public string MovieTitle {  get; set; }
         public int Length {  get; set; }
         public int Auditorium_Id {  get; set; }
-        public string ImageSource {  get; set; }
+        public BitmapImage ImageSource {  get; set; }
         public string NameAuditorium {  get; set; }
 
         //constructor phục vụ lấy ds ShowTime
-        public ShowTimeDTO(int id,string startTime,string endTime,int perSeatTicketPrice,int movieId,string movieTitle,int length,string imageSource,string nameAuditorium, int auditorium_Id)
+        public ShowTimeDTO(int id,string startTime,string endTime,int perSeatTicketPrice,int movieId,string movieTitle,int length, BitmapImage imageSource,string nameAuditorium, int auditorium_Id)
         {
             Id = id;
             StartTime = startTime;

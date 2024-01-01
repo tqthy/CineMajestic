@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.ViewModels.ShowTimeManagementVM
 {
@@ -37,7 +38,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
     public partial class TicketBookingViewModel : MainBaseViewModel
     {
-        public string ImageSource { get; set; }
+        public BitmapImage ImageSource { get; set; }
 
         //tên phim
         public string Title { get; set; }
@@ -97,7 +98,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         {
             if (showTimeDTO != null)
             {
-                ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + showTimeDTO.ImageSource;
+                ImageSource = showTimeDTO.ImageSource;
                 Title = showTimeDTO.MovieTitle;
                 Showtime = showTimeDTO.ShowTime;
                 NameAuditorium = showTimeDTO.NameAuditorium;

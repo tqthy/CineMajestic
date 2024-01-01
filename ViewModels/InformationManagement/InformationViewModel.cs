@@ -11,6 +11,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.ViewModels.InformationManagement
 {
@@ -26,14 +27,17 @@ namespace CineMajestic.ViewModels.InformationManagement
         public string NgayVL { get; set; }
         public int Salary { get; set; }
 
-        private string imageSource;
-        public string ImageSource
+        private BitmapImage imageSource;
+        public BitmapImage? ImageSource
         {
             get => imageSource;
             set
             {
-                imageSource = value;
-                OnPropertyChanged(nameof(ImageSource));
+                if (imageSource != value)
+                {
+                    imageSource = value;
+                    OnPropertyChanged(nameof(ImageSource));
+                }
             }
         }
 
@@ -45,7 +49,6 @@ namespace CineMajestic.ViewModels.InformationManagement
             this.Staff_Id = Staff_Id;
             loadData();
             EditImage();
-            deleteImage();
             this.informationView = informationView;
             ChangePassword();
         }
@@ -66,7 +69,6 @@ namespace CineMajestic.ViewModels.InformationManagement
                 Role = "Quản lý";
                 NgayVL = "12/12/2023";
                 Salary = 9999999;
-                ImageSource = "pack://application:,,,/Images/InformationManagement/Default.jpg";
             }
             else
             {
@@ -83,44 +85,5 @@ namespace CineMajestic.ViewModels.InformationManagement
             }
         }
 
-
-        //xóa image không dùng
-        private void deleteImage()
-        {
-            StaffDA staffDA = new StaffDA();
-            List<string> DSIM = new List<string>(staffDA.listImageSource());
-            List<string> listFileDelete = new List<string>();
-            Task.Run(() =>
-            {
-                try
-                {
-                    string s = "";
-                    DirectoryInfo dir = new DirectoryInfo(MotSoPTBoTro.pathProject() + @"Images\StaffManagement");
-                    FileInfo[] files = dir.GetFiles("*.*", SearchOption.AllDirectories);
-                    foreach (FileInfo file in files)
-                    {
-
-                        if (!DSIM.Contains(file.Name))
-                        {
-                            if (file.Name != "Default.jpg")
-                            {
-                                listFileDelete.Add(file.Name);
-                            }
-                        }
-
-                    }
-                    foreach (string item in listFileDelete)
-                    {
-                        try
-                        {
-                            File.Delete(MotSoPTBoTro.pathProject() + @"Images\StaffManagement\" + item);
-                        }
-                        catch { }
-                    }
-
-                }
-                catch { }
-            });
-        }
     }
 }

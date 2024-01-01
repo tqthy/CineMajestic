@@ -27,16 +27,6 @@ namespace CineMajestic.ViewModels.ProductManagement
             {
                 productDA.deleteProduct(product);
                 loadData();
-
-                //lưu path ảnh để xóa
-
-                using(FileStream fStream =new FileStream("deleteAnh.txt", FileMode.Append, FileAccess.Write))
-                {
-                    using(StreamWriter sw = new StreamWriter(fStream))
-                    {
-                        sw.WriteLine(Path.GetFileName(product.ImageSource));
-                    }
-                }
             }
         }
     }

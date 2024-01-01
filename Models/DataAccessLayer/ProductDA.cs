@@ -6,8 +6,10 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using CineMajestic.Models.DTOs;
 using CineMajestic.Models.DTOs.ProductManagement;
+using CineMajestic.ViewModels;
 using CineMajestic.ViewModels.ProductManagement;
 
 namespace CineMajestic.Models.DataAccessLayer
@@ -33,15 +35,15 @@ namespace CineMajestic.Models.DataAccessLayer
                             {
                                 int id = reader.GetInt32(reader.GetOrdinal("ID"));
                                 string name = reader.GetString(reader.GetOrdinal("Name"));
-                                string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+
+                                byte[] imageBytes = (byte[])reader["ImageSource"]; 
+                                BitmapImage imageSource =ImageVsSQL.ByteArrayToBitmapImage(imageBytes); 
+                                
                                 int quantity = reader.GetInt32(reader.GetOrdinal("Quantity"));
                                 int purchasePrice = reader.GetInt32(reader.GetOrdinal("PurchasePrice"));
                                 int price = reader.GetInt32(reader.GetOrdinal("Price"));
                                 int type = reader.GetInt32(reader.GetOrdinal("Type"));
 
-
-
-                                imageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + imageSource;
                                 DSSP.Add(new ProductDTO(id, name, quantity, purchasePrice, price, type, imageSource));
                             }
                         }
@@ -63,19 +65,19 @@ namespace CineMajestic.Models.DataAccessLayer
                 using (SqlConnection connection = GetConnection())
                 {
                     connection.Open();
-                    string insert =
-                        "insert into Product(Name,ImageSource,Quantity,PurchasePrice,Type)\n"
-                        +
-                        "values("
-                        +
-                        "N'" + product.Name + "',"
-                        + "'" + product.ImageSource + "',"
-                        + product.Quantity.ToString() + ","
-                        + product.PurchasePrice.ToString() + ","
-                        + product.Type.ToString() + ")";
+                 
+                    byte[] imageBytes = ImageVsSQL.BitmapImageToByteArray(product.ImageSource);
+
+                    string insert = "INSERT INTO Product (Name, ImageSource, Quantity, PurchasePrice, Type) VALUES (@Name, @ImageSource, @Quantity, @PurchasePrice, @Type)";
 
                     using (SqlCommand command = new SqlCommand(insert, connection))
                     {
+                        command.Parameters.AddWithValue("@Name", product.Name);
+                        command.Parameters.AddWithValue("@ImageSource", imageBytes);
+                        command.Parameters.AddWithValue("@Quantity", product.Quantity);
+                        command.Parameters.AddWithValue("@PurchasePrice", product.PurchasePrice);
+                        command.Parameters.AddWithValue("@Type", product.Type);
+
                         command.ExecuteNonQuery();
                     }
                 }
@@ -116,24 +118,20 @@ namespace CineMajestic.Models.DataAccessLayer
                 using (SqlConnection connection = GetConnection())
                 {
                     connection.Open();
-                    string update =
-                        "update Product\n"
-                        +
-                        "set Name=" + "N'" + product.Name + "'" + ","
-                        +
-                        "Quantity=" + product.Quantity + ","
-                        +
-                        "PurchasePrice=" + product.PurchasePrice + ","
-                        +
-                        "Type=" + product.Type + ","
-                        +
-                        "ImageSource=" + "'" + product.ImageSource + "'" + "\n"
-                        +
-                        "where ID=" + product.Id;
 
+                    byte[] imageBytes = ImageVsSQL.BitmapImageToByteArray(product.ImageSource);
+
+                    string update = "UPDATE Product SET Name = @Name, Quantity = @Quantity, PurchasePrice = @PurchasePrice, Type = @Type, ImageSource = @ImageSource WHERE ID = @Id";
 
                     using (SqlCommand command = new SqlCommand(update, connection))
                     {
+                        command.Parameters.AddWithValue("@Name", product.Name);
+                        command.Parameters.AddWithValue("@Quantity", product.Quantity);
+                        command.Parameters.AddWithValue("@PurchasePrice", product.PurchasePrice);
+                        command.Parameters.AddWithValue("@Type", product.Type);
+                        command.Parameters.AddWithValue("@ImageSource", imageBytes);
+                        command.Parameters.AddWithValue("@Id", product.Id);
+
                         command.ExecuteNonQuery();
                     }
                 }
@@ -278,15 +276,16 @@ namespace CineMajestic.Models.DataAccessLayer
                             {
                                 int id = reader.GetInt32(reader.GetOrdinal("ID"));
                                 string name = reader.GetString(reader.GetOrdinal("Name"));
-                                string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+
+                                byte[] imageBytes = (byte[])reader["ImageSource"];
+                                BitmapImage imageSource = ImageVsSQL.ByteArrayToBitmapImage(imageBytes);
+
                                 int quantity = reader.GetInt32(reader.GetOrdinal("Quantity"));
                                 int purchasePrice = reader.GetInt32(reader.GetOrdinal("PurchasePrice"));
                                 int price = reader.GetInt32(reader.GetOrdinal("Price"));
                                 int type = reader.GetInt32(reader.GetOrdinal("Type"));
 
 
-
-                                imageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + imageSource;
                                 DSSP.Add(new ProductDTO(id, name, quantity, purchasePrice, price, type, imageSource));
                             }
 

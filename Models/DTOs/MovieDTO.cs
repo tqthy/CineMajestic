@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.Models.DTOs
 {
@@ -23,11 +24,11 @@ namespace CineMajestic.Models.DTOs
         public string StartDate { get; set; }
         public string Genre { get; set; }
         public string Status {  get; set; }
-        public string ImageSource { get; set; }
+        public BitmapImage ImageSource { get; set; }
 
 
         //hàm khởi tạo phục vụ get  1 movie
-        public MovieDTO(int id,string title,string decrip,string direc,string release,string language,string country,int lenght,string trailer,string startdate,string genre,string status,string imageSource,int importPrice)
+        public MovieDTO(int id,string title,string decrip,string direc,string release,string language,string country,int lenght,string trailer,string startdate,string genre,string status, BitmapImage imageSource,int importPrice)
         {
             Id = id;
             Title = title;
@@ -47,7 +48,7 @@ namespace CineMajestic.Models.DTOs
 
 
         //hàm khởi tạo phục vụ add 1 movie
-        public MovieDTO( string title, string decrip, string direc, string release, string language, string country, int lenght, string trailer, string startdate, string genre, string status, string imageSource, int importPrice)
+        public MovieDTO( string title, string decrip, string direc, string release, string language, string country, int lenght, string trailer, string startdate, string genre, string status, BitmapImage imageSource, int importPrice)
         {
             Title = title;
             Description = decrip;

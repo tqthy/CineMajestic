@@ -14,12 +14,16 @@ namespace CineMajestic.Models.DataAccessLayer
         {
             //_connectionString = "Server=tcp:192.168.0.199,1433;Database=CineMajestic;User ID=sa;Password=Password.1";
             //_connectionString = "Server=tcp:172.16.0.71,1433;Database=CinemaManagement;User ID=sa;Password=Password.1";
-            _connectionString = "Server=tcp:cinemajestic.database.windows.net,1433;Initial Catalog=Cinemajestic;Persist Security Info=False;User ID=cinemajestic;Password=Binh@2k4;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+            //            _connectionString = "Server=tcp:cinemajestic.database.windows.net,1433;Initial Catalog=Cinemajestic;Persist Security Info=False;User ID=cinemajestic;Password=Binh@2k4;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
             //Dũng
             //_connectionString = @"Data Source=DESKTOP-34OSP4G\SQLEXPRESS;Initial Catalog=CineMajestic;Integrated Security=True";
             //Bình
             //_connectionString = @"Data Source=LAPTOP-J7OECDJF\SQLEXPRESS;Initial Catalog=CineMajestic;Integrated Security=True";
+
+            //image
+            _connectionString = @"Data Source=DESKTOP-34OSP4G\SQLEXPRESS;Initial Catalog=CineMajesticImage;Integrated Security=True";
         }
+
         protected SqlConnection GetConnection()
         {
             return new SqlConnection(_connectionString);

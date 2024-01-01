@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 
 namespace CineMajestic.ViewModels.MovieManagementVM
@@ -287,8 +288,8 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         }
 
         //poster
-        private string imageSource;
-        public string? ImageSource
+        private BitmapImage imageSource;
+        public BitmapImage? ImageSource
         {
             get => imageSource;
             set
@@ -315,10 +316,20 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             StartDate = DateTime.Now;
             Status = "Đang phát hành";
         }
+
+
+        private bool checkImage=false;
         private void accept(object obj)
         {
+            if (!checkImage)
+            {
+                YesMessageBox mbb = new YesMessageBox("Thông báo", "Bạn chưa thêm poster nè!");
+                mbb.ShowDialog();
+                return;
+            }
+
             MovieDA movieDA = new MovieDA();
-            movieDA.addMovie(new MovieDTO(Title, Description, Director, ReleaseYear, Language, Country, int.Parse(Length), Trailer, StartDate.Value.ToString("yyyy-MM-dd"), Genre, Status, Path.GetFileName(ImageSource), int.Parse(ImportPrice)));
+            movieDA.addMovie(new MovieDTO(Title, Description, Director, ReleaseYear, Language, Country, int.Parse(Length), Trailer, StartDate.Value.ToString("yyyy-MM-dd"), Genre, Status, ImageSource, int.Parse(ImportPrice)));
 
             //lấy ngày tháng năm hiện tại
             DateTime dateTime = DateTime.Now;
@@ -336,48 +347,22 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         //add image
         private void addImage(object obj)
         {
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Ảnh (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+            openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*";
 
-            bool? result = openFileDialog.ShowDialog();
+            byte[] imageData;
 
-            if (result == true)
+            if (openFileDialog.ShowDialog() == true)
             {
-                try
-                {
-                    string selectedImagePath = openFileDialog.FileName;
-                    string folder = Path.GetDirectoryName(selectedImagePath);
-                    string fileName = Path.GetFileName(selectedImagePath);
-                    string extension = Path.GetExtension(fileName);//đuôi mở rộng của file
+                // Đọc dữ liệu hình ảnh vào mảng byte[]
+                imageData = File.ReadAllBytes(openFileDialog.FileName);
 
-
-                    string fileOld1 = selectedImagePath;
-
-                    string pathfileOld2 = selectedImagePath;
-
-                    while (File.Exists(MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + fileName))
-                    {
-                        fileName = MotSoPTBoTro.RandomFileName() + extension;
-                        File.Move(fileOld1, folder + @"\" + fileName);
-                        pathfileOld2 = folder + @"\" + fileName;
-                    }
-
-                    try
-                    {
-                        MotSoPTBoTro.copyFile(pathfileOld2, MotSoPTBoTro.pathProject() + @"Images\MovieManagement");
-                        ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + fileName;
-
-
-                        //đổi lại tên file người dùng chọn
-                        File.Move(pathfileOld2, selectedImagePath);
-                    }
-                    catch { }
-
-
-                }
-                catch { }
+                ImageSource = ImageVsSQL.ByteArrayToBitmapImage(imageData);
+                checkImage = true;
             }
         }
+
 
         //Phần các hàm validate _ báo lỗi
         private bool[] _canAccept = new bool[9];//phục vụ việc có cho nhấn button accept ko

@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.ViewModels.ProductManagement
 {
@@ -65,8 +66,9 @@ namespace CineMajestic.ViewModels.ProductManagement
         }
 
         //Ảnh
-        private string imageSource;
-        public string? ImageSource
+
+        private BitmapImage imageSource;
+        public BitmapImage? ImageSource
         {
             get => imageSource;
             set
@@ -148,6 +150,8 @@ namespace CineMajestic.ViewModels.ProductManagement
             Quantity = productEdit.Quantity.ToString();
             purchasePrice = productEdit.PurchasePrice.ToString();
             Type = productEdit.Type - 1;
+
+
             ImageSource = productEdit.ImageSource;
         }
 
@@ -165,9 +169,8 @@ namespace CineMajestic.ViewModels.ProductManagement
             int quantityNew = int.Parse(Quantity);
             int purchasePriceNew = int.Parse(PurchasePrice);
             int typeNew = Type + 1;
-            string imageSourceNew = Path.GetFileName(ImageSource);
             ProductDA productDA = new ProductDA();
-            productDA.editProduct(new ProductDTO(productEdit.Id, nameNew, quantityNew, purchasePriceNew, typeNew, imageSourceNew));
+            productDA.editProduct(new ProductDTO(productEdit.Id, nameNew, quantityNew, purchasePriceNew, typeNew, ImageSource));
             YesMessageBox mb = new YesMessageBox("Thông báo", "Thành công");
             mb.ShowDialog();
             wd.Close();
@@ -178,45 +181,15 @@ namespace CineMajestic.ViewModels.ProductManagement
         private void addImage(object obj)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Ảnh (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+            openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*";
 
-            bool? result = openFileDialog.ShowDialog();
+            byte[] imageData;
 
-            if (result == true)
+            if (openFileDialog.ShowDialog() == true)
             {
-                try
-                {
-                    string selectedImagePath = openFileDialog.FileName;
-                    string folder = Path.GetDirectoryName(selectedImagePath);
-                    string fileName = Path.GetFileName(selectedImagePath);
-                    string extension = Path.GetExtension(fileName);//đuôi mở rộng của file
+                imageData = File.ReadAllBytes(openFileDialog.FileName);
 
-
-                    string fileOld1 = selectedImagePath;
-
-                    string pathfileOld2 = selectedImagePath;
-
-                    while (File.Exists(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + fileName))
-                    {
-                        fileName = MotSoPhuongThucBoTro.RandomFileName() + extension;
-                        File.Move(fileOld1, folder + @"\" + fileName);
-                        pathfileOld2= folder + @"\" + fileName;
-                    }
-
-                    try
-                    {
-                        MotSoPhuongThucBoTro.copyFile(pathfileOld2, MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
-                        ImageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + fileName;
-
-
-                        //đổi lại tên file người dùng chọn
-                        File.Move(pathfileOld2, selectedImagePath);
-                    }
-                    catch { }
-
-
-                }
-                catch { }
+                ImageSource = ImageVsSQL.ByteArrayToBitmapImage(imageData);
             }
         }
 

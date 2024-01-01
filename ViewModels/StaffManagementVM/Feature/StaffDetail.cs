@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.ViewModels.StaffManagementVM
 {
@@ -44,7 +45,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         public int Salary { get; set; }
         public string Role { get; set; }
         public string NgayVaoLam { get; set; }
-        public string ImageSource {  get; set; }
+        public BitmapImage ImageSource {  get; set; }
 
         public ICommand exitCommand {  get; set; }
         StaffDetailView wd;

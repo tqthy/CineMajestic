@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.ViewModels.MovieManagementVM
 {
@@ -174,8 +175,8 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         }
 
         //poster
-        private string imageSource;
-        public string? ImageSource
+        private BitmapImage imageSource;
+        public BitmapImage? ImageSource
         {
             get => imageSource;
             set

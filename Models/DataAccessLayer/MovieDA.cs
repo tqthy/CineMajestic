@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels;
 using CineMajestic.ViewModels.MovieManagementVM;
 using System;
 using System.Collections;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -49,12 +51,12 @@ namespace CineMajestic.Models.DataAccessLayer
 
                                 string status = reader.GetString(reader.GetOrdinal("Status"));
 
-                                string ImageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
-                                ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + ImageSource;
+                                byte[] imageBytes = (byte[])reader["ImageSource"];
+                                BitmapImage imageSource = ImageVsSQL.ByteArrayToBitmapImage(imageBytes);
 
                                 int importPrice = reader.GetInt32(reader.GetOrdinal("ImportPrice"));
 
-                                list.Add(new MovieDTO(id, title, description, director, ReleaseYear.ToString(), language, country, length, trailer, StartDate, genre, status, ImageSource, importPrice));
+                                list.Add(new MovieDTO(id, title, description, director, ReleaseYear.ToString(), language, country, length, trailer, StartDate, genre, status, imageSource, importPrice));
                             }
                         }
                     }
@@ -73,41 +75,31 @@ namespace CineMajestic.Models.DataAccessLayer
                 using (SqlConnection connection = GetConnection())
                 {
                     connection.Open();
-                    string insert =
-                        "insert into MOVIE(Title,description,genre,director,releaseYear,language,country,length,trailer,startDate,status,ImportPrice,imageSource)"
-                        +
-                        "values("
-                        +
-                        "N'" + movie.Title + "',"
-                        +
-                        "N'" + movie.Description + "',"
-                        +
-                        "N'" + movie.Genre + "',"
-                        +
-                        "N'" + movie.Director + "',"
-                        +
-                         int.Parse(movie.ReleaseYear) + ","
-                        +
-                        "N'" + movie.Language + "',"
-                        +
-                        "N'" + movie.Country + "',"
-                        +
-                        movie.Length + ","
-                        +
-                        "N'" + movie.Trailer + "',"
-                        +
-                        "'" + movie.StartDate + "',"
-                        +
-                        "N'" + movie.Status + "',"
-                        +
-                        movie.ImportPrice + ","
-                        +
-                        "'" + movie.ImageSource + "')";
+
+                    byte[] imageBytes = ImageVsSQL.BitmapImageToByteArray(movie.ImageSource); 
+
+                    string insert = "INSERT INTO MOVIE (Title, Description, Genre, Director, ReleaseYear, Language, Country, Length, Trailer, StartDate, Status, ImportPrice, ImageSource) VALUES (@Title, @Description, @Genre, @Director, @ReleaseYear, @Language, @Country, @Length, @Trailer, @StartDate, @Status, @ImportPrice, @ImageSource)";
+
                     using (SqlCommand command = new SqlCommand(insert, connection))
                     {
+                        command.Parameters.AddWithValue("@Title", movie.Title);
+                        command.Parameters.AddWithValue("@Description", movie.Description);
+                        command.Parameters.AddWithValue("@Genre", movie.Genre);
+                        command.Parameters.AddWithValue("@Director", movie.Director);
+                        command.Parameters.AddWithValue("@ReleaseYear", int.Parse(movie.ReleaseYear));
+                        command.Parameters.AddWithValue("@Language", movie.Language);
+                        command.Parameters.AddWithValue("@Country", movie.Country);
+                        command.Parameters.AddWithValue("@Length", movie.Length);
+                        command.Parameters.AddWithValue("@Trailer", movie.Trailer);
+                        command.Parameters.AddWithValue("@StartDate", movie.StartDate);
+                        command.Parameters.AddWithValue("@Status", movie.Status);
+                        command.Parameters.AddWithValue("@ImportPrice", movie.ImportPrice);
+                        command.Parameters.AddWithValue("@ImageSource", imageBytes);
+
                         command.ExecuteNonQuery();
                     }
                 }
+
             }
             catch { }
         }
@@ -234,73 +226,34 @@ namespace CineMajestic.Models.DataAccessLayer
                 using (SqlConnection connection = GetConnection())
                 {
                     connection.Open();
-                    string update =
-                        "update Movie\n"
-                        +
-                        "set Title=" + "N'" + movie.Title + "',"
-                        +
-                        "Description=" + "N'" + movie.Description + "',"
-                        +
-                        "Genre=" + "N'" + movie.Genre + "',"
-                        +
-                        "Director=" + "N'" + movie.Director + "',"
-                        +
-                        "ReleaseYear=" + movie.ReleaseYear + ","
-                        +
-                        "Language=" + "N'" + movie.Language + "',"
-                        +
-                        "Country=" + "N'" + movie.Country + "',"
-                        +
-                        "Length=" + movie.Length + ","
-                        +
-                        "Trailer=" + "N'" + movie.Trailer + "',"
-                        +
-                        "StartDate=" + "'" + movie.StartDate + "',"
-                        +
-                        "Status=" + "N'" + movie.Status + "',"
-                        +
-                        "ImportPrice=" + movie.ImportPrice + ","
-                        +
-                        "ImageSource=" + "'" + movie.ImageSource + "'\n"
-                        +
-                        "where Id=" + movie.Id;
+
+                    byte[] imageBytes = ImageVsSQL.BitmapImageToByteArray(movie.ImageSource); 
+
+                    string update = "UPDATE Movie SET Title = @Title, Description = @Description, Genre = @Genre, Director = @Director, ReleaseYear = @ReleaseYear, Language = @Language, Country = @Country, Length = @Length, Trailer = @Trailer, StartDate = @StartDate, Status = @Status, ImportPrice = @ImportPrice, ImageSource = @ImageSource WHERE Id = @Id";
+
                     using (SqlCommand command = new SqlCommand(update, connection))
                     {
+                        command.Parameters.AddWithValue("@Title", movie.Title);
+                        command.Parameters.AddWithValue("@Description", movie.Description);
+                        command.Parameters.AddWithValue("@Genre", movie.Genre);
+                        command.Parameters.AddWithValue("@Director", movie.Director);
+                        command.Parameters.AddWithValue("@ReleaseYear", int.Parse(movie.ReleaseYear));
+                        command.Parameters.AddWithValue("@Language", movie.Language);
+                        command.Parameters.AddWithValue("@Country", movie.Country);
+                        command.Parameters.AddWithValue("@Length", movie.Length);
+                        command.Parameters.AddWithValue("@Trailer", movie.Trailer);
+                        command.Parameters.AddWithValue("@StartDate", movie.StartDate);
+                        command.Parameters.AddWithValue("@Status", movie.Status);
+                        command.Parameters.AddWithValue("@ImportPrice", movie.ImportPrice);
+                        command.Parameters.AddWithValue("@ImageSource", imageBytes);
+                        command.Parameters.AddWithValue("@Id", movie.Id);
+
                         command.ExecuteNonQuery();
                     }
                 }
+
             }
             catch { }
-        }
-
-
-        //lấy toàn bộ imageSource phục vụ việc xóa ảnh
-        public List<string> listImageSource()
-        {
-            List<string> list = new List<string>();
-            try
-            {
-                using (SqlConnection connection = GetConnection())
-                {
-                    connection.Open();
-                    string truyvan =
-                        "select ImageSource from Movie";
-                    using (SqlCommand command = new SqlCommand(truyvan, connection))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
-                                list.Add(imageSource);
-                            }
-                        }
-                    }
-                }
-            }
-            catch { }
-
-            return list;
         }
 
 

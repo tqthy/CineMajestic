@@ -3,15 +3,22 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Resources;
 using CineMajestic.Models.DTOs;
 using CineMajestic.Models.DTOs.StaffManagement;
+using CineMajestic.ViewModels;
 using CineMajestic.ViewModels.InformationManagement;
 using Microsoft.Extensions.Primitives;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Windows;
+using System.Windows.Documents;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -55,9 +62,32 @@ namespace CineMajestic.Models.DataAccessLayer
                                 DateTime NgayVL = reader.GetDateTime(reader.GetOrdinal("NgayVaolam"));
                                 string ngayVL = NgayVL.ToString("dd/MM/yyyy");
 
-                                string ImageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                                if (!reader.IsDBNull(reader.GetOrdinal("ImageSource")))
+                                {
+                                    byte[] imageBytes = (byte[])reader["ImageSource"];
+                                    BitmapImage imageSource = ImageVsSQL.ByteArrayToBitmapImage(imageBytes);
 
-                                list.Add(new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL, MotSoPTBoTro.pathProject() + @"Images\StaffManagement\" + ImageSource));
+                                    list.Add(new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL, imageSource));
+                                }
+                                else
+                                {
+                                    Uri resourceUri = new Uri("pack://application:,,,/Images/InformationManagement/Default.jpg", UriKind.Absolute);
+                                    StreamResourceInfo streamInfo = System.Windows.Application.GetResourceStream(resourceUri);
+
+                                    byte[] imageBytes;
+                                    using (Stream imageStream = streamInfo.Stream)
+                                    {
+                                        using (MemoryStream ms = new MemoryStream())
+                                        {
+                                            imageStream.CopyTo(ms);
+                                            imageBytes = ms.ToArray();
+                                        }
+                                    }
+
+                                    BitmapImage imageSource = ImageVsSQL.ByteArrayToBitmapImage(imageBytes);
+
+                                    list.Add(new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL, imageSource));
+                                }
                             }
                         }
                     }
@@ -71,7 +101,8 @@ namespace CineMajestic.Models.DataAccessLayer
         //insert
         public void addStaff(StaffDTO staff)
         {
-            try {
+            try
+            {
                 using (SqlConnection connection = GetConnection())
                 {
                     connection.Open();
@@ -227,7 +258,7 @@ namespace CineMajestic.Models.DataAccessLayer
         //lấy nhân viên có id là staff_id
         public StaffDTO Staffstaff_Id(int Staff_Id)
         {
-            StaffDTO staffDTO = new StaffDTO("admin","1/1/2000","Nam","admin@123","0358967125",1500000,"Quản lí","1/1/2023");
+            StaffDTO staffDTO = new StaffDTO("admin", "1/1/2000", "Nam", "admin@123", "0358967125", 1500000, "Quản lí", "1/1/2023");
             try
             {
                 using (SqlConnection connection = GetConnection())
@@ -266,9 +297,31 @@ namespace CineMajestic.Models.DataAccessLayer
                                 DateTime NgayVL = reader.GetDateTime(reader.GetOrdinal("NgayVaolam"));
                                 string ngayVL = NgayVL.ToString("dd/MM/yyyy");
 
-                                string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                                if (!reader.IsDBNull(reader.GetOrdinal("ImageSource")))
+                                {
+                                    byte[] imageBytes = (byte[])reader["ImageSource"];
+                                    BitmapImage imageSource = ImageVsSQL.ByteArrayToBitmapImage(imageBytes);
+                                    staffDTO = new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL, imageSource);
 
-                                staffDTO = new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL, MotSoPTBoTro.pathProject() + @"Images\StaffManagement\" + imageSource);
+                                }
+                                else
+                                {
+                                    Uri resourceUri = new Uri("pack://application:,,,/Images/InformationManagement/Default.jpg", UriKind.Absolute);
+                                    StreamResourceInfo streamInfo = System.Windows.Application.GetResourceStream(resourceUri);
+
+                                    byte[] imageBytes;
+                                    using (Stream imageStream = streamInfo.Stream)
+                                    {
+                                        using (MemoryStream ms = new MemoryStream())
+                                        {
+                                            imageStream.CopyTo(ms);
+                                            imageBytes = ms.ToArray();
+                                        }
+                                    }
+
+                                    BitmapImage imageSource = ImageVsSQL.ByteArrayToBitmapImage(imageBytes);
+                                    staffDTO = new StaffDTO(id, fullname, birth, gender, email, phoneNumber, salary, role, ngayVL, imageSource);
+                                }
                             }
                         }
                     }
@@ -281,60 +334,34 @@ namespace CineMajestic.Models.DataAccessLayer
 
 
         //update image
-        public void updateImageStaff(int id, string imageSource)
+        public void updateImageStaff(int id, BitmapImage imageSource)
         {
             try
             {
                 using (SqlConnection connection = GetConnection())
                 {
                     connection.Open();
-                    string update =
-                        "update Staff\n"
-                        +
-                        "set ImageSource=" + "'" + imageSource + "'\n"
 
-                        +
-                        "where Id=" + id;
+                    byte[] imageBytes = ImageVsSQL.BitmapImageToByteArray(imageSource);
 
+                    string update = "UPDATE Staff SET ImageSource = @ImageSource WHERE Id = @Id";
 
                     using (SqlCommand command = new SqlCommand(update, connection))
                     {
+                        // Thêm các tham số vào câu lệnh SQL
+                        command.Parameters.AddWithValue("@ImageSource", imageBytes);
+                        command.Parameters.AddWithValue("@Id", id);
+
+                        // Thực thi câu lệnh
                         command.ExecuteNonQuery();
                     }
                 }
+
             }
             catch { }
         }
 
 
-        //lấy toàn bộ imageSource phục vụ việc xóa ảnh
-        public List<string> listImageSource()
-        {
-            List<string> list = new List<string>();
-            try
-            {
-                using (SqlConnection connection = GetConnection())
-                {
-                    connection.Open();
-                    string truyvan =
-                        "select ImageSource from Staff";
-                    using (SqlCommand command = new SqlCommand(truyvan, connection))
-                    {
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
-                                list.Add(imageSource);
-                            }
-                        }
-                    }
-                }
-            }
-            catch { }
-
-            return list;
-        }
 
         public long GetSalaryByYear(string year)
         {

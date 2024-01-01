@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.ViewModels.ProductManagement
 {
@@ -38,6 +39,7 @@ namespace CineMajestic.ViewModels.ProductManagement
 
     public class AddProductViewModel : MainBaseViewModel
     {
+        bool checkImage = false;//kiểm tra xem add ảnh chưa
         //Tên sản phẩm
         private string name;
         public string Name
@@ -60,8 +62,8 @@ namespace CineMajestic.ViewModels.ProductManagement
             }
         }
 
-        private string imageSource;
-        public string? ImageSource
+        private BitmapImage imageSource;
+        public BitmapImage? ImageSource
         {
             get => imageSource;
             set
@@ -116,21 +118,20 @@ namespace CineMajestic.ViewModels.ProductManagement
                 OnPropertyChanged(nameof(PurchasePriceError));
             }
         }
-        public int Type {  get; set; }
+        public int Type { get; set; }
 
         AddProduct wd;//phục vụ việc đóng window
         public ICommand quitCommand { get; set; }//thoát k thêm product nữa
         public ICommand acceptCommand { get; set; }//đồng ý add
-        public ICommand addImageCommand {  get; set; }//add ảnh sản phẩm
+        public ICommand addImageCommand { get; set; }//add ảnh sản phẩm
 
         public AddProductViewModel(AddProduct wd)
         {
-            Type =0;
+            Type = 0;
             quitCommand = new ViewModelCommand(quit);
-            acceptCommand = new ViewModelCommand(accept,canAccept);
+            acceptCommand = new ViewModelCommand(accept, canAccept);
             addImageCommand = new ViewModelCommand(addImage);
             this.wd = wd;
-            deleteImage();
         }
 
         private void quit(object obj)
@@ -142,8 +143,12 @@ namespace CineMajestic.ViewModels.ProductManagement
         //đồng ý thêm Product
         private void accept(object obj)
         {
-
-            ImageSource = Path.GetFileName(ImageSource);
+            if (checkImage == false)
+            {
+                YesMessageBox mbb = new YesMessageBox("Thông báo", "Bạn chưa thêm ảnh nè!");
+                mbb.ShowDialog();
+                return;
+            }
             Type += 1;
             ProductDA productDA = new ProductDA();
             productDA.addProduct(new ProductDTO(Name, int.Parse(Quantity), int.Parse(PurchasePrice), Type, ImageSource));
@@ -156,73 +161,23 @@ namespace CineMajestic.ViewModels.ProductManagement
         //add image
         private void addImage(object obj)
         {
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Ảnh (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+            openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*";
 
-            bool? result = openFileDialog.ShowDialog();
+            byte[] imageData;
 
-            if (result == true)
+            if (openFileDialog.ShowDialog() == true)
             {
-                try
-                {
-                    string selectedImagePath = openFileDialog.FileName;
-                    string folder = Path.GetDirectoryName(selectedImagePath);
-                    string fileName = Path.GetFileName(selectedImagePath);
-                    string extension = Path.GetExtension(fileName);//đuôi mở rộng của file
+                // Đọc dữ liệu hình ảnh vào mảng byte[]
+                imageData = File.ReadAllBytes(openFileDialog.FileName);
 
-
-                    string fileOld1 = selectedImagePath;
-
-                    string pathfileOld2 = selectedImagePath;
-
-                    while (File.Exists(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + fileName))
-                    {
-                        fileName = MotSoPhuongThucBoTro.RandomFileName() + extension;
-                        File.Move(fileOld1, folder + @"\" + fileName);
-                        pathfileOld2 = folder + @"\" + fileName;
-                    }
-
-                    try
-                    {
-                        MotSoPhuongThucBoTro.copyFile(pathfileOld2, MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
-                        ImageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + fileName;
-
-
-                        //đổi lại tên file người dùng chọn
-                        File.Move(pathfileOld2, selectedImagePath);
-                    }
-                    catch { }
-
-
-                }
-                catch { }
+                ImageSource = ImageVsSQL.ByteArrayToBitmapImage(imageData);
+                checkImage = true;
             }
         }
 
 
-
-        //cái này là phục vụ cho cái deleteproduct,editproduct,thêm product
-        private void deleteImage()
-        {
-            Task.Run(() =>
-            {
-                try
-                {
-                    string s = "";
-                    DirectoryInfo dir = new DirectoryInfo(MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement");
-                    FileInfo[] files = dir.GetFiles("*.*", SearchOption.AllDirectories);
-                    foreach (FileInfo file in files)
-                    {
-                        try
-                        {
-                            File.Delete(file.FullName);
-                        }
-                        catch { }
-                    }
-                }
-                catch { }
-            });
-        }
 
         //Các hàm Validate để báo lỗi
 
@@ -230,7 +185,7 @@ namespace CineMajestic.ViewModels.ProductManagement
 
         private bool canAccept(object obj)
         {
-             return _canAccept[0] && _canAccept[1] && _canAccept[2];
+            return _canAccept[0] && _canAccept[1] && _canAccept[2];
         }
         private void ValidateName()
         {

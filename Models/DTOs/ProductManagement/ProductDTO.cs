@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.Models.DTOs.ProductManagement
 {
@@ -15,7 +16,7 @@ namespace CineMajestic.Models.DTOs.ProductManagement
         private int price;
         private int purchasePrice;
         private int type;//1 là thức ăn,2 là đồ uống
-        private string imageSource;
+        private BitmapImage imageSource;
         private int quantity_Choice = 1;//dùng cho phần order thôi
         private int totalPrice_QuantityChoice;//dùng cho phần order thôi
 
@@ -56,10 +57,10 @@ namespace CineMajestic.Models.DTOs.ProductManagement
 
         public int Price { get { return price; } set { price = value; } }
         public int Type { get { return type; } set { type = value; } }
-        public string ImageSource { get { return imageSource; } set { imageSource = value; } }
+        public BitmapImage ImageSource { get { return imageSource; } set { imageSource = value; } }
 
         //constructor phục vụ việc getdata
-        public ProductDTO(int id, string name, int quantity, int purchasePrice, int price, int type, string imageSource)
+        public ProductDTO(int id, string name, int quantity, int purchasePrice, int price, int type, BitmapImage imageSource)
         {
             Id = id;
             Name = name;
@@ -71,7 +72,7 @@ namespace CineMajestic.Models.DTOs.ProductManagement
         }
 
         //constructor phục vụ việc edit 1 product
-        public ProductDTO(int id, string name, int quantity, int purchasePrice, int type, string imageSource)
+        public ProductDTO(int id, string name, int quantity, int purchasePrice, int type, BitmapImage imageSource)
         {
             Id = id;
             Name = name;
@@ -81,7 +82,7 @@ namespace CineMajestic.Models.DTOs.ProductManagement
             ImageSource = imageSource;
         }
         //constructor phục vụ việc add 1 product
-        public ProductDTO(string name, int quantity, int purchasePrice, int type, string imageSource)
+        public ProductDTO(string name, int quantity, int purchasePrice, int type, BitmapImage imageSource)
         {
             Name = name;
             Quantity = quantity;

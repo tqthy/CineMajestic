@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.ViewModels.MovieManagementVM
 {
@@ -26,8 +27,6 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
         private void EditMovie(object obj)
         {
-            deleteImage();
-
 
             EditFilmView editFilmView = new EditFilmView(obj as MovieDTO);
             editFilmView.ShowDialog();
@@ -35,45 +34,6 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             loadData();
         }
 
-
-        //xóa image không dùng
-        private void deleteImage()
-        {
-            MovieDA movieDA = new MovieDA();
-            List<string> DSIM = new List<string>(movieDA.listImageSource());
-            List<string> listFileDelete = new List<string>();
-            Task.Run(() =>
-            {
-                try
-                {
-                    string s = "";
-                    DirectoryInfo dir = new DirectoryInfo(MotSoPTBoTro.pathProject() + @"Images\MovieManagement");
-                    FileInfo[] files = dir.GetFiles("*.*", SearchOption.AllDirectories);
-                    foreach (FileInfo file in files)
-                    {
-
-                        if (!DSIM.Contains(file.Name))
-                        {
-                            if (file.Name != "Doremon.jpg")
-                            {
-                                listFileDelete.Add(file.Name);
-                            }
-                        }
-
-                    }
-                    foreach (string item in listFileDelete)
-                    {
-                        try
-                        {
-                            File.Delete(MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + item);
-                        }
-                        catch { }
-                    }
-
-                }
-                catch { }
-            });
-        }
     }
 
 
@@ -308,8 +268,8 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         }
 
         //poster
-        private string imageSource;
-        public string? ImageSource
+        private BitmapImage imageSource;
+        public BitmapImage? ImageSource
         {
             get => imageSource;
             set
@@ -381,19 +341,12 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
         private void accept(object obj)
         {
-            string imageSource = "";
-            try
-            {
-                imageSource = Path.GetFileName(ImageSource);
-            }
-            catch { }
-
-
+           
             MovieDA movieDA = new MovieDA();
 
             try
             {
-                movieDA.editMovie(new MovieDTO(movieDTO.Id, Title, Description, Director, ReleaseYear, Language, Country, int.Parse(Length), Trailer, StartDate.Value.ToString("yyyy-MM-dd"), Genre, Status, imageSource, int.Parse(ImportPrice)));
+                movieDA.editMovie(new MovieDTO(movieDTO.Id, Title, Description, Director, ReleaseYear, Language, Country, int.Parse(Length), Trailer, StartDate.Value.ToString("yyyy-MM-dd"), Genre, Status, ImageSource, int.Parse(ImportPrice)));
             }
             catch { }
 
@@ -404,51 +357,24 @@ namespace CineMajestic.ViewModels.MovieManagementVM
 
             editFilmView.Close();
         }
+
+
         //add image
         private void addImage(object obj)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Ảnh (*.jpg, *.jpeg, *.png)|*.jpg;*.jpeg;*.png";
+            openFileDialog.Filter = "Image Files (*.png;*.jpg;*.jpeg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*";
 
-            bool? result = openFileDialog.ShowDialog();
+            byte[] imageData;
 
-            if (result == true)
+            if (openFileDialog.ShowDialog() == true)
             {
-                try
-                {
-                    string selectedImagePath = openFileDialog.FileName;
-                    string folder = Path.GetDirectoryName(selectedImagePath);
-                    string fileName = Path.GetFileName(selectedImagePath);
-                    string extension = Path.GetExtension(fileName);//đuôi mở rộng của file
+                imageData = File.ReadAllBytes(openFileDialog.FileName);
 
-
-                    string fileOld1 = selectedImagePath;
-
-                    string pathfileOld2 = selectedImagePath;
-
-                    while (File.Exists(MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + fileName))
-                    {
-                        fileName = MotSoPTBoTro.RandomFileName() + extension;
-                        File.Move(fileOld1, folder + @"\" + fileName);
-                        pathfileOld2 = folder + @"\" + fileName;
-                    }
-
-                    try
-                    {
-                        MotSoPTBoTro.copyFile(pathfileOld2, MotSoPTBoTro.pathProject() + @"Images\MovieManagement");
-                        ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + fileName;
-
-
-                        //đổi lại tên file người dùng chọn
-                        File.Move(pathfileOld2, selectedImagePath);
-                    }
-                    catch { }
-
-
-                }
-                catch { }
+                ImageSource = ImageVsSQL.ByteArrayToBitmapImage(imageData);
             }
         }
+
 
         //Phần các hàm validate _ báo lỗi
         private bool[] _canAccept = new bool[9];//phục vụ việc có cho nhấn button accept ko
