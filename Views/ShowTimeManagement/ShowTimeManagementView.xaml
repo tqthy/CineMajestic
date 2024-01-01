@@ -198,67 +198,37 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
 
-                        <!--  Nút sửa +xóa  -->
+                        <!--  Nút xóa  -->
                         <GridViewColumn>
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-
-                                        <!--  Nút edit  -->
-                                        <Border
-                                            BorderBrush="Black"
-                                            BorderThickness="1"
-                                            CornerRadius="5"
-                                            Cursor="Hand">
-                                            <Border.Style>
-                                                <Style TargetType="Border">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="#00e5ff" />
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Border.Style>
-                                            <materialDesign:PackIcon
-                                                Width="30"
-                                                Height="30"
-                                                Kind="Pencil" />
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                                    <i:InvokeCommandAction Command="{Binding DataContext.showEditView, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </Border>
-
-                                        <!--  Nút xóa movie  -->
-                                        <Border
+                                    <!--  Nút xóa movie  -->
+                                    <Border
                                             Margin="10,0,0,0"
                                             BorderBrush="Black"
                                             BorderThickness="1"
                                             CornerRadius="5"
                                             Cursor="Hand">
-                                            <Border.Style>
-                                                <Style TargetType="Border">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="Background" Value="#ff6255" />
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Border.Style>
-                                            <materialDesign:PackIcon
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="#ff6255" />
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
+                                        <materialDesign:PackIcon
                                                 Width="30"
                                                 Height="30"
                                                 Kind="GarbageCanEmpty" />
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger EventName="MouseLeftButtonUp">
-                                                    <i:InvokeCommandAction Command="{Binding DataContext.DeleteShowtimeCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="MouseLeftButtonUp">
+                                                <i:InvokeCommandAction Command="{Binding DataContext.DeleteShowtimeCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
 
-                                        </Border>
-                                    </StackPanel>
-
+                                    </Border>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
