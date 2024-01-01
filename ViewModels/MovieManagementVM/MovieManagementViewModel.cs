@@ -29,7 +29,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
         }
 
         //Hàm load column
-        private void loadWithColumn()
+       /* private void loadWithColumn()
         {
             if (movieManagementView != null) 
             {
@@ -49,7 +49,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
                 movieManagementView.clDirector.Width = double.NaN;
             }
 
-        }
+        }*/
 
     }
 }
