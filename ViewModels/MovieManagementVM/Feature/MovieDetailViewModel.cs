@@ -218,7 +218,7 @@ namespace CineMajestic.ViewModels.MovieManagementVM
             Trailer= movieDTO.Trailer;
             StartDate= movieDTO.StartDate;
             Status=movieDTO.Status;
-            ImportPrice = movieDTO.ImportPrice.ToString();
+            ImportPrice = movieDTO.ImportPrice.ToString("N0");
             ImageSource=movieDTO.ImageSource;
         }
     }

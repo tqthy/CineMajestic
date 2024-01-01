@@ -143,7 +143,7 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "SELECT DATEPART(HOUR, BillDate) DP, SUM(QuantityTicket) FROM Bill GROUP BY DATEPART(HOUR, BillDate) " +
+                    command.CommandText = "SELECT DATEPART(HOUR, StartTime) DP, SUM(QuantityTicket) FROM Bill JOIN ShowTime ON Bill.ShowTime_Id=ShowTime.Id GROUP BY DATEPART(HOUR, StartTime) " +
                         "ORDER BY DP ASC";
                     using (var reader = command.ExecuteReader())
                     {
