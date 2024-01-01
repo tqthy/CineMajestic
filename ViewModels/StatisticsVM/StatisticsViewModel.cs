@@ -785,10 +785,11 @@ namespace CineMajestic.ViewModels.StatisticsVM
                     CurrentStatisticsView = new StatisticsProduct();
                     break;
                 case "Customer":
+                    List<TimeSpanPoint> timeSpanPoints = new List<TimeSpanPoint>();
+                    BillDA billService = new BillDA();
                     try 
                     {
-                        List<TimeSpanPoint> timeSpanPoints = new List<TimeSpanPoint>();
-                        BillDA billService = new BillDA();
+                        
                         List<Tuple<int, int>> tuples = billService.GetCustomerDistribution();
                         int iT = 0; 
                         for(int h = 0; h <= 23; ++h)
@@ -809,6 +810,13 @@ namespace CineMajestic.ViewModels.StatisticsVM
                             }
                         }
 
+                        
+                    } catch
+                    {
+
+                    }
+                    finally
+                    {
                         CLSeries = new ISeries[]
                         {
                             new LineSeries<TimeSpanPoint>
@@ -816,9 +824,6 @@ namespace CineMajestic.ViewModels.StatisticsVM
                                 Values = timeSpanPoints
                             }
                         };
-                    } catch
-                    {
-
                     }
                     
                     
