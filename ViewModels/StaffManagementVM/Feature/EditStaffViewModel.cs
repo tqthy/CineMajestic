@@ -83,6 +83,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
                 YesMessageBox msb = new YesMessageBox("Thông báo", "Sửa thông tin thành công");
                 msb.ShowDialog();
                 msb.Close();
+                wd.Close() ;
             }
         }
 

@@ -22,7 +22,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         private void PhatLuong(object obj)
         {
             string[] s = DateTime.Today.ToString("yyyy-MM-dd").Split('-');
-            YesMessageBox wd = new YesMessageBox("Thông báo", "Bạn có muốn phát lương cho nhân viên không?");
+            YesNoMessageBox wd = new YesNoMessageBox("Thông báo", "Bạn có muốn phát lương cho nhân viên không?");
             wd.ShowDialog();
             if(wd.DialogResult == false)
             {
@@ -33,7 +33,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
                 if (s[2] != "20")
                 {
                     wd.Close();
-                    YesMessageBox mb = new YesMessageBox("Cảnh cáo", "Hôm nay không phải ngày phát lương!");
+                    YesMessageBox mb = new YesMessageBox("Thông báo", "Hôm nay không phải ngày phát lương!");
                     mb.ShowDialog();
                     mb.Close();
                     return;
@@ -41,7 +41,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
                 if (MotSoPTBoTro.checkSalary())
                 {
                     wd.Close();
-                    YesMessageBox mb = new YesMessageBox("Cảnh cáo", "Tháng này đã phát lương rồi!");
+                    YesMessageBox mb = new YesMessageBox("Thông báo", "Tháng này đã phát lương rồi!");
                     mb.ShowDialog();
                     mb.Close();
                     return;

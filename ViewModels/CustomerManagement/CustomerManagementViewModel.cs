@@ -33,6 +33,7 @@ namespace CineMajestic.ViewModels.CustomerManagement
             loadData();
             editCustomer();
             exportExcel();
+            delete();
             this.customerManagementView = customerManagementView;
         }
 

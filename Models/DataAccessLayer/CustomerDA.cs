@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DTOs;
+using CineMajestic.Models.DTOs.StaffManagement;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
@@ -396,6 +397,23 @@ namespace CineMajestic.Models.DataAccessLayer
                     "where PhoneNumber=" + "'"+PhoneNumber+"'";
 
                 using (SqlCommand command = new SqlCommand(update, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        //xóa 1 customer
+        public void deleteCustomer(CustomerDTO Customer)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                string delete =
+                    "delete Customer\n"
+                    +
+                    "where Id=" + Customer.Id;
+                using (SqlCommand command = new SqlCommand(delete, connection))
                 {
                     command.ExecuteNonQuery();
                 }

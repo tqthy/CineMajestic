@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:CineMajestic.Views.CustomerManagement"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="mainUC"
     d:DesignHeight="648"
     d:DesignWidth="1000"
     FontFamily="Segoe UI"
@@ -15,8 +16,7 @@
     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
     TextOptions.TextFormattingMode="Ideal"
     TextOptions.TextRenderingMode="Auto"
-    mc:Ignorable="d"
-    x:Name="mainUC">
+    mc:Ignorable="d">
 
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
@@ -99,175 +99,179 @@
             </Button>
 
         </StackPanel>
-        <materialDesign:Card Grid.Row="1"
-                             Margin="10">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="9*" />
-                <RowDefinition Height="0.5*" />
-            </Grid.RowDefinitions>
-            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                <ListView
-                    x:Name="lvCustomer"
-                    d:ItemsSource="{d:SampleData ItemCount=5}"
-                    ItemsSource="{Binding FilterDSCTM}">
-                    <ListView.View>
-                        <GridView>
-                            <!--  Danh sách cần cột hiển thị trong listview  -->
-                            <GridViewColumn
-                                x:Name="clID"
-                                Width="Auto"
-                                Header="ID">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            Margin="16,4.5,0,0"
-                                            FontSize="18"
-                                            Text="{Binding IdFormat}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+        <materialDesign:Card Grid.Row="1" Margin="10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="9*" />
+                    <RowDefinition Height="0.5*" />
+                </Grid.RowDefinitions>
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ListView
+                        x:Name="lvCustomer"
+                        d:ItemsSource="{d:SampleData ItemCount=5}"
+                        ItemsSource="{Binding FilterDSCTM}">
+                        <ListView.View>
+                            <GridView>
+                                <!--  Danh sách cần cột hiển thị trong listview  -->
+                                <GridViewColumn
+                                    x:Name="clID"
+                                    Width="Auto"
+                                    Header="ID">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Margin="16,4.5,0,0"
+                                                FontSize="18"
+                                                Text="{Binding IdFormat}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
-                            <GridViewColumn
-                                x:Name="clFullName"
-                                Width="Auto"
-                                Header="Họ và tên">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            Margin="16,4.5,0,0"
-                                            FontSize="18"
-                                            Text="{Binding FullName}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                                <GridViewColumn
+                                    x:Name="clFullName"
+                                    Width="Auto"
+                                    Header="Họ và tên">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Margin="16,4.5,0,0"
+                                                FontSize="18"
+                                                Text="{Binding FullName}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
-                            <GridViewColumn
-                                x:Name="clSDT"
-                                Width="Auto"
-                                Header="SĐT">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            Margin="16,4.5,0,0"
-                                            FontSize="18"
-                                            Text="{Binding PhoneNumber}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                                <GridViewColumn
+                                    x:Name="clSDT"
+                                    Width="Auto"
+                                    Header="SĐT">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Margin="16,4.5,0,0"
+                                                FontSize="18"
+                                                Text="{Binding PhoneNumber}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
-                            <GridViewColumn
-                                x:Name="clEmail"
-                                Width="Auto"
-                                Header="Email">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            Margin="16,4.5,0,0"
-                                            FontSize="18"
-                                            Text="{Binding Email}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                                <GridViewColumn
+                                    x:Name="clEmail"
+                                    Width="Auto"
+                                    Header="Email">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Margin="16,4.5,0,0"
+                                                FontSize="18"
+                                                Text="{Binding Email}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
-                            <GridViewColumn
-                                x:Name="clNgayDangKi"
-                                Width="Auto"
-                                Header="Ngày đăng kí">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            Margin="16,4.5,0,0"
-                                            FontSize="18"
-                                            Text="{Binding RegDate}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
+                                <GridViewColumn
+                                    x:Name="clNgayDangKi"
+                                    Width="Auto"
+                                    Header="Ngày đăng kí">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Margin="16,4.5,0,0"
+                                                FontSize="18"
+                                                Text="{Binding RegDate}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
 
-                            <GridViewColumn
-                                x:Name="clDiem"
-                                Width="Auto"
-                                Header="Điểm">
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            Margin="16,4.5,0,0"
-                                            FontSize="18"
-                                            Text="{Binding Point}" />
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn
+                                    x:Name="clDiem"
+                                    Width="Auto"
+                                    Header="Điểm">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Margin="16,4.5,0,0"
+                                                FontSize="18"
+                                                Text="{Binding Point}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
 
-                            </GridViewColumn>
-                            <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
-                            <GridViewColumn>
-                                <GridViewColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <!--  Nút sửa  -->
-                                        <StackPanel Orientation="Horizontal">
-                                            <Border
-                                                BorderBrush="Black"
-                                                BorderThickness="0.5"
-                                                CornerRadius="5"
-                                                Cursor="Hand">
-                                                <Border.Style>
-                                                    <Style TargetType="Border">
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Background" Value="#00e5ff" />
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Border.Style>
-                                                <materialDesign:PackIcon
-                                                    Width="30"
-                                                    Height="30"
-                                                    Kind="AccountEdit" />
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                                                        <i:InvokeCommandAction Command="{Binding DataContext.showwdEditCustomerCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </Border>
-                                            <!--  Nút xóa  -->
-                                            <Border
-                                                Margin="10,0,0,0"
-                                                BorderBrush="Black"
-                                                BorderThickness="0.5"
-                                                CornerRadius="5"
-                                                Cursor="Hand">
-                                                <Border.Style>
-                                                    <Style TargetType="Border">
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="Background" Value="#ff6255" />
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Border.Style>
-                                                <materialDesign:PackIcon
-                                                    Width="30"
-                                                    Height="30"
-                                                    Kind="Delete" />
-                                            </Border>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </GridViewColumn.CellTemplate>
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </ScrollViewer>
+                                </GridViewColumn>
+                                <!--  Nút Sửa và Xóa theo thứ tự từ trái sang phải  -->
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <!--  Nút sửa  -->
+                                            <StackPanel Orientation="Horizontal">
+                                                <Border
+                                                    BorderBrush="Black"
+                                                    BorderThickness="0.5"
+                                                    CornerRadius="5"
+                                                    Cursor="Hand">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#00e5ff" />
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                    <materialDesign:PackIcon
+                                                        Width="30"
+                                                        Height="30"
+                                                        Kind="AccountEdit" />
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                            <i:InvokeCommandAction Command="{Binding DataContext.showwdEditCustomerCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </Border>
+                                                <!--  Nút xóa  -->
+                                                <Border
+                                                    Margin="10,0,0,0"
+                                                    BorderBrush="Black"
+                                                    BorderThickness="0.5"
+                                                    CornerRadius="5"
+                                                    Cursor="Hand">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border">
+                                                            <Style.Triggers>
+                                                                <Trigger Property="IsMouseOver" Value="True">
+                                                                    <Setter Property="Background" Value="#ff6255" />
+                                                                </Trigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                    <materialDesign:PackIcon
+                                                        Width="30"
+                                                        Height="30"
+                                                        Kind="Delete" />
+                                                    <i:Interaction.Triggers>
+                                                        <i:EventTrigger EventName="MouseLeftButtonDown">
+                                                            <i:InvokeCommandAction Command="{Binding DataContext.deleteCustomerCommand, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}" CommandParameter="{Binding}" />
+                                                        </i:EventTrigger>
+                                                    </i:Interaction.Triggers>
+                                                </Border>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
 
-            <!--  Phần hiển thị đồng bộ  -->
-            <TextBlock
-                Grid.Row="1"
-                Margin="0,0,70,0"
-                HorizontalAlignment="Right"
-                FontSize="17"
-                FontWeight="DemiBold"
-                Foreground="Brown"
-                Text="{Binding Notify}" />
-        </Grid>
+                <!--  Phần hiển thị đồng bộ  -->
+                <TextBlock
+                    Grid.Row="1"
+                    Margin="0,0,70,0"
+                    HorizontalAlignment="Right"
+                    FontSize="17"
+                    FontWeight="DemiBold"
+                    Foreground="Brown"
+                    Text="{Binding Notify}" />
+            </Grid>
         </materialDesign:Card>
 
     </Grid>
