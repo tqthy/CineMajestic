@@ -658,7 +658,7 @@
                                     <DataTemplate>
                                         <!--  Đồ ăn  -->
                                         <Border
-                                            Width="300"
+                                            Width="280"
                                             Height="90"
                                             Margin="0,3,0,0"
                                             BorderBrush="Black"
@@ -694,7 +694,7 @@
 
                                                         <!--  Giá cả 1 sản phẩm  -->
                                                         <TextBlock
-                                                            Margin="10,0,0,0"
+                                                            Margin="3,0,0,0"
                                                             FontSize="18"
                                                             FontWeight="DemiBold"
                                                             Text="{Binding Price}" />
@@ -728,6 +728,7 @@
 
                                                     <!--  Đơn vị đồng  -->
                                                     <TextBlock
+                                                        Margin="0,0,10,0"
                                                         VerticalAlignment="Center"
                                                         FontSize="18"
                                                         FontWeight="SemiBold"

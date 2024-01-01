@@ -377,6 +377,7 @@
                                                                         <!--  textbox số lượng  -->
                                                                         <Border BorderBrush="Black" BorderThickness="1,0,1,0">
                                                                             <TextBox
+                                                                                IsReadOnly="True"
                                                                                 Width="32"
                                                                                 Height="Auto"
                                                                                 HorizontalContentAlignment="Center"
@@ -417,7 +418,7 @@
                                                                     FontSize="10"
                                                                     Foreground="Red"
                                                                     FontWeight="DemiBold"
-                                                                    Text="gggg" />
+                                                                    Text="" />
                                                             </StackPanel>
 
 
