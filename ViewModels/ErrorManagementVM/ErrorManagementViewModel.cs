@@ -253,6 +253,7 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                 Description = ErrorDescription,
                 Staff_Id = StaffID,
                 //DateAdded = IssueDate.ToString(),
+                DateAdded = DateTime.Now.ToShortDateString(),
                 Image = Path.GetFileName(ErrorImage.UriSource.ToString()),
                 StatusColor = new SolidColorBrush(Colors.DarkRed),
                 Status = "Chờ tiếp nhận"
