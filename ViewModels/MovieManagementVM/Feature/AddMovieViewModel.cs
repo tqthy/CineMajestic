@@ -459,6 +459,11 @@ namespace CineMajestic.ViewModels.MovieManagementVM
                 LanguageError = "Không để trống!";
                 _canAccept[4] = false;
             }
+            else if (Language.Length > 20)
+            {
+                LanguageError = "Không được dài quá";
+                _canAccept[4] = false;
+            }
             else
             {
                 LanguageError = "";
