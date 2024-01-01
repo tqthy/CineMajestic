@@ -179,9 +179,10 @@ namespace CineMajestic.ViewModels.StatisticsVM
         #region Commands
 
         // overall
-        public ICommand ChangeIncomePeriodCommand { get; set; }
 
-        private void ExecuteChangeIncomePeriodCM(object obj)
+        //test
+        public IAsyncCommand ChangeIncomePeriodCommand { get; private set; }
+        private async Task ExecuteChangeIncomePeriodCM()
         {
             if (SelectedIncomePeriod == null) return;
             else
@@ -192,7 +193,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
                         {
                             if (SelectedIncomeTime != null)
                             {
-                                LoadByYear(SelectedIncomeTime);
+                                await LoadByYear(SelectedIncomeTime);
                             }
                             return;
                         }
@@ -200,15 +201,14 @@ namespace CineMajestic.ViewModels.StatisticsVM
                         {
                             if (SelectedIncomeTime != null)
                             {
-                                LoadByMonth(SelectedIncomeTime.Substring(6));
+                                await LoadByMonth(SelectedIncomeTime.Substring(6));
                             }
                             return;
                         }
                 }
             }
         }
-
-        private void LoadByYear(string year)
+        private async Task LoadByYear(string year)
         {
             BillAddMovieDA billAddMovieDA = new BillAddMovieDA();
             BillAddProductDA billAddProductDA = new BillAddProductDA();
@@ -217,17 +217,46 @@ namespace CineMajestic.ViewModels.StatisticsVM
             BillDA billDA = new BillDA();
             ErrorDA errorDA = new ErrorDA();
             StaffDA staffDA = new StaffDA();
-
+            long errorCostByYear = 0;
+            long addProductCostByYear = 0;
+            long movieCostByYear = 0;
+            long sum_income = 0;
+            long product_income = 0;
+            long salaryCostByYear = 0;
+            long sum_outcome = 0;
             try
             {
-                long errorCostByYear = errorDA.GetCostByYear(year);
-                long addProductCostByYear = billAddProductDA.GetOutcomeByYear(year) + billImportProductDA.GetOutcomeByYear(year);
-                long movieCostByYear = movieDA.GetCostByYear(year);
-                long sum_income = billDA.GetIncomeByYear(year);
-                long product_income = billDA.GetProductIncomeByYear(year);
-                long salaryCostByYear = staffDA.GetSalaryByYear(year);
-                long sum_outcome = addProductCostByYear + errorCostByYear + movieCostByYear + salaryCostByYear;
+                //errorCostByYear = errorDA.GetCostByYear(year);
+                //addProductCostByYear = billAddProductDA.GetOutcomeByYear(year) + billImportProductDA.GetOutcomeByYear(year);
+                //movieCostByYear = movieDA.GetCostByYear(year);
+                //sum_income = billDA.GetIncomeByYear(year);
+                //product_income = billDA.GetProductIncomeByYear(year);
+                //salaryCostByYear = staffDA.GetSalaryByYear(year);
+                //sum_outcome = addProductCostByYear + errorCostByYear + movieCostByYear + salaryCostByYear;
 
+                Task<long> taskErrorCost = Task.Run(() => errorDA.GetCostByYear(year));
+                Task<long> taskBillAddProduct = Task.Run(() => billAddProductDA.GetOutcomeByYear(year));
+                Task<long> taskBillImportProduct = Task.Run(() => billImportProductDA.GetOutcomeByYear(year));
+                Task<long> taskMovieCost = Task.Run(() => movieDA.GetCostByYear(year));
+                Task<long> taskSumIncome = Task.Run(() => billDA.GetIncomeByYear(year));
+                Task<long> taskProductIncome = Task.Run(() => billDA.GetProductIncomeByYear(year));
+                Task<long> taskSalary = Task.Run(() => staffDA.GetSalaryByYear(year));
+
+                await Task.WhenAll(taskErrorCost, taskBillAddProduct, taskBillImportProduct, taskMovieCost, taskSumIncome, taskProductIncome, taskSalary);
+                errorCostByYear = taskErrorCost.Result;
+                addProductCostByYear = taskBillAddProduct.Result + taskBillImportProduct.Result;
+                movieCostByYear = taskMovieCost.Result;
+                sum_income = taskSumIncome.Result;
+                product_income = taskProductIncome.Result;
+                salaryCostByYear = taskSalary.Result;
+                sum_outcome = addProductCostByYear + errorCostByYear + movieCostByYear + salaryCostByYear;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
                 IncomeText = sum_income.ToString("N0");
                 OutcomeText = sum_outcome.ToString("N0");
 
@@ -285,36 +314,58 @@ namespace CineMajestic.ViewModels.StatisticsVM
                         Name = "Sản phẩm"
                     }
                 };
+            }
+        }
 
+        private async Task LoadByMonth(string month)
+        {
+            BillAddMovieDA billAddMovieDA = new BillAddMovieDA();
+            BillAddProductDA billAddProductDA = new BillAddProductDA();
+            BillImportProductDA billImportProductDA = new BillImportProductDA();
+            MovieDA movieDA = new MovieDA();
+            BillDA billDA = new BillDA();
+            ErrorDA errorDA = new ErrorDA();
+            StaffDA staffDA = new StaffDA();
+            long errorCostByM = 0;
+            long addProductCostByM = 0;
+            long movieCostByM = 0;
+            long sum_income = 0;
+            long product_income = 0;
+            long salaryCostByM = 0;
+            long sum_outcome = 0;
+            try
+            {
+                //errorCostByYear = errorDA.GetCostByYear(year);
+                //addProductCostByYear = billAddProductDA.GetOutcomeByYear(year) + billImportProductDA.GetOutcomeByYear(year);
+                //movieCostByYear = movieDA.GetCostByYear(year);
+                //sum_income = billDA.GetIncomeByYear(year);
+                //product_income = billDA.GetProductIncomeByYear(year);
+                //salaryCostByYear = staffDA.GetSalaryByYear(year);
+                //sum_outcome = addProductCostByYear + errorCostByYear + movieCostByYear + salaryCostByYear;
+
+                Task<long> taskErrorCost = Task.Run(() => errorDA.GetCostByMonth(month));
+                Task<long> taskBillAddProduct = Task.Run(() => billAddProductDA.GetOutcomeByMonth(month));
+                Task<long> taskBillImportProduct = Task.Run(() => billImportProductDA.GetOutcomeByMonth(month));
+                Task<long> taskMovieCost = Task.Run(() => movieDA.GetCostByMonth(month));
+                Task<long> taskSumIncome = Task.Run(() => billDA.GetIncomeByMonth(month));
+                Task<long> taskProductIncome = Task.Run(() => billDA.GetProductIncomeByMonth(month));
+                Task<long> taskSalary = Task.Run(() => staffDA.GetSalaryByMonth(month));
+
+                await Task.WhenAll(taskErrorCost, taskBillAddProduct, taskBillImportProduct, taskMovieCost, taskSumIncome, taskProductIncome, taskSalary);
+                errorCostByM = taskErrorCost.Result;
+                addProductCostByM = taskBillAddProduct.Result + taskBillImportProduct.Result;
+                movieCostByM = taskMovieCost.Result;
+                sum_income = taskSumIncome.Result;
+                product_income = taskProductIncome.Result;
+                salaryCostByM = taskSalary.Result;
+                sum_outcome = addProductCostByM + errorCostByM + movieCostByM + salaryCostByM;
             }
             catch (Exception ex)
             {
 
             }
-
-
-        }
-
-        private void LoadByMonth(string month)
-        {
-            BillAddMovieDA billAddMovieDA = new BillAddMovieDA();
-            BillAddProductDA billAddProductDA = new BillAddProductDA();
-            BillImportProductDA billImportProductDA = new BillImportProductDA();
-            BillDA billDA = new BillDA();
-            ErrorDA errorDA = new ErrorDA();
-            MovieDA movieDA = new MovieDA();
-            StaffDA staffDA = new();
-
-            try
+            finally
             {
-                long errorCostByMonth = errorDA.GetCostByMonth(month);
-                long addProductCostByMonth = billAddProductDA.GetOutcomeByMonth(month) + billImportProductDA.GetOutcomeByYear(month);
-                long movieCostByMonth = movieDA.GetCostByMonth(month);
-                long sum_income = billDA.GetIncomeByMonth(month);
-                long product_income = billDA.GetProductIncomeByMonth(month);
-                long salaryCostByMonth = staffDA.GetSalaryByMonth(month);
-                long sum_outcome = addProductCostByMonth + errorCostByMonth + movieCostByMonth + salaryCostByMonth;
-
                 IncomeText = sum_income.ToString("N0");
                 OutcomeText = sum_outcome.ToString("N0");
 
@@ -335,27 +386,27 @@ namespace CineMajestic.ViewModels.StatisticsVM
                 {
                     new PieSeries<long>
                     {
-                        Values = new long[] {errorCostByMonth},
+                        Values = new long[] {errorCostByM},
                         Name = "Sự cố"
                     },
                     new PieSeries<long>
                     {
-                        Values = new long[] {addProductCostByMonth},
+                        Values = new long[] {addProductCostByM},
                         Name = "Nhập thực phẩm"
                     },
                     new PieSeries<long>
                     {
-                        Values = new long[] {movieCostByMonth},
+                        Values = new long[] {movieCostByM},
                         Name = "Nhập phim"
                     },
                     new PieSeries<long>
                     {
-                        Values = new long[] {salaryCostByMonth},
+                        Values = new long[] {salaryCostByM},
                         Name = "Lương NV"
                     },
                     new PieSeries<long>
                     {
-                        Values = new long[] {movieCostByMonth/20},
+                        Values = new long[] {movieCostByM/20},
                         Name = "Voucher"
                     }
                 };
@@ -372,18 +423,215 @@ namespace CineMajestic.ViewModels.StatisticsVM
                         Name = "Sản phẩm"
                     }
                 };
-
-            } catch (Exception ex)
-            {
-
             }
-
-
-
-            //IOSeries[0].Values = new List<string> { IncomeText};
-            //IOSeries[1].Values = new List<string> { OutcomeText };
-
         }
+
+        //test
+        //public ICommand ChangeIncomePeriodCommand { get; set; }
+
+        //private void ExecuteChangeIncomePeriodCM(object obj)
+        //{
+        //    if (SelectedIncomePeriod == null) return;
+        //    else
+        //    {
+        //        switch (SelectedIncomePeriod.Content.ToString())
+        //        {
+        //            case "Theo năm":
+        //                {
+        //                    if (SelectedIncomeTime != null)
+        //                    {
+        //                        LoadByYear(SelectedIncomeTime);
+        //                    }
+        //                    return;
+        //                }
+        //            case "Theo tháng":
+        //                {
+        //                    if (SelectedIncomeTime != null)
+        //                    {
+        //                        LoadByMonth(SelectedIncomeTime.Substring(6));
+        //                    }
+        //                    return;
+        //                }
+        //        }
+        //    }
+        //}
+
+        //private void LoadByYear(string year)
+        //{
+        //    BillAddMovieDA billAddMovieDA = new BillAddMovieDA();
+        //    BillAddProductDA billAddProductDA = new BillAddProductDA();
+        //    BillImportProductDA billImportProductDA = new BillImportProductDA();
+        //    MovieDA movieDA = new MovieDA();
+        //    BillDA billDA = new BillDA();
+        //    ErrorDA errorDA = new ErrorDA();
+        //    StaffDA staffDA = new StaffDA();
+
+        //    try
+        //    {
+        //        long errorCostByYear = errorDA.GetCostByYear(year);
+        //        long addProductCostByYear = billAddProductDA.GetOutcomeByYear(year) + billImportProductDA.GetOutcomeByYear(year);
+        //        long movieCostByYear = movieDA.GetCostByYear(year);
+        //        long sum_income = billDA.GetIncomeByYear(year);
+        //        long product_income = billDA.GetProductIncomeByYear(year);
+        //        long salaryCostByYear = staffDA.GetSalaryByYear(year);
+        //        long sum_outcome = addProductCostByYear + errorCostByYear + movieCostByYear + salaryCostByYear;
+
+        //        IncomeText = sum_income.ToString("N0");
+        //        OutcomeText = sum_outcome.ToString("N0");
+
+        //        IOSeries = new ISeries[]
+        //        {
+        //            new ColumnSeries<long>
+        //            {
+        //                Values = new List<long>{ sum_income},
+        //                Name = "Doanh thu"
+        //            },
+        //            new ColumnSeries<long>
+        //            {
+        //                Values = new List<long>{ sum_outcome },
+        //                Name = "Chi phí"
+        //            }
+        //        };
+        //        OPSeries = new ISeries[]
+        //        {
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {errorCostByYear},
+        //                Name = "Sự cố"
+        //            },
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {addProductCostByYear},
+        //                Name = "Nhập thực phẩm"
+        //            },
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {movieCostByYear},
+        //                Name = "Nhập phim"
+        //            },
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {salaryCostByYear},
+        //                Name = "Lương NV"
+        //            },
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {movieCostByYear/20},
+        //                Name = "Voucher"
+        //            }
+        //        };
+        //        IPSeries = new ISeries[]
+        //        {
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {sum_income-product_income},
+        //                Name = "Vé"
+        //            },
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {product_income},
+        //                Name = "Sản phẩm"
+        //            }
+        //        };
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //    }
+
+
+        //}
+
+        //private void LoadByMonth(string month)
+        //{
+        //    BillAddMovieDA billAddMovieDA = new BillAddMovieDA();
+        //    BillAddProductDA billAddProductDA = new BillAddProductDA();
+        //    BillImportProductDA billImportProductDA = new BillImportProductDA();
+        //    BillDA billDA = new BillDA();
+        //    ErrorDA errorDA = new ErrorDA();
+        //    MovieDA movieDA = new MovieDA();
+        //    StaffDA staffDA = new();
+
+        //    try
+        //    {
+        //        long errorCostByMonth = errorDA.GetCostByMonth(month);
+        //        long addProductCostByMonth = billAddProductDA.GetOutcomeByMonth(month) + billImportProductDA.GetOutcomeByYear(month);
+        //        long movieCostByMonth = movieDA.GetCostByMonth(month);
+        //        long sum_income = billDA.GetIncomeByMonth(month);
+        //        long product_income = billDA.GetProductIncomeByMonth(month);
+        //        long salaryCostByMonth = staffDA.GetSalaryByMonth(month);
+        //        long sum_outcome = addProductCostByMonth + errorCostByMonth + movieCostByMonth + salaryCostByMonth;
+
+        //        IncomeText = sum_income.ToString("N0");
+        //        OutcomeText = sum_outcome.ToString("N0");
+
+        //        IOSeries = new ISeries[]
+        //        {
+        //            new ColumnSeries<long>
+        //            {
+        //                Values = new List<long>{ sum_income},
+        //                Name = "Doanh thu"
+        //            },
+        //            new ColumnSeries<long>
+        //            {
+        //                Values = new List<long>{ sum_outcome },
+        //                Name = "Chi phí"
+        //            }
+        //        };
+        //        OPSeries = new ISeries[]
+        //        {
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {errorCostByMonth},
+        //                Name = "Sự cố"
+        //            },
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {addProductCostByMonth},
+        //                Name = "Nhập thực phẩm"
+        //            },
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {movieCostByMonth},
+        //                Name = "Nhập phim"
+        //            },
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {salaryCostByMonth},
+        //                Name = "Lương NV"
+        //            },
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {movieCostByMonth/20},
+        //                Name = "Voucher"
+        //            }
+        //        };
+        //        IPSeries = new ISeries[]
+        //        {
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {sum_income-product_income},
+        //                Name = "Vé"
+        //            },
+        //            new PieSeries<long>
+        //            {
+        //                Values = new long[] {product_income},
+        //                Name = "Sản phẩm"
+        //            }
+        //        };
+
+        //    } catch (Exception ex)
+        //    {
+
+        //    }
+
+
+
+        //    //IOSeries[0].Values = new List<string> { IncomeText};
+        //    //IOSeries[1].Values = new List<string> { OutcomeText };
+
+        //}
 
         // customer
 
@@ -585,7 +833,7 @@ namespace CineMajestic.ViewModels.StatisticsVM
         {
             CurrentStatisticsView = new StatisticsOverallView();
             SwitchViewStatisticsCommand = new ViewModelCommand(SwitchViewStatistics);
-            ChangeIncomePeriodCommand = new ViewModelCommand(ExecuteChangeIncomePeriodCM);
+            ChangeIncomePeriodCommand = new AsyncCommand(ExecuteChangeIncomePeriodCM);
             ChangeCustomerIncomePeriodCommand = new ViewModelCommand(ExecuteChangeCustomerIncomePeriodCM);
             ChangeMovieIncomePeriodCommand = new ViewModelCommand(ExecuteChangeMovieIncomePeriodCM);
             ChangeProductIncomePeriodCommand = new ViewModelCommand(ExecuteChangeProductIncomePeriodCM);
