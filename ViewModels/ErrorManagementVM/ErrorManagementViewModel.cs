@@ -290,7 +290,7 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
 
         public bool CanExecuteAddErrorCM(object obj)
         {
-            return true;
+            return (!string.IsNullOrEmpty(ErrorName) && !string.IsNullOrEmpty(ErrorDescription) && ErrorImage != null);
         }
 
         #endregion
