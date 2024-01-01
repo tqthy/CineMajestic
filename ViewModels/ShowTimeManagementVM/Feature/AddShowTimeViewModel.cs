@@ -77,15 +77,30 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
 
 
         //giá vé
-        private int perSeatTicketPrice;
-        public int PerSeatTicketPrice
+        private string perSeatTicketPrice;
+        public string PerSeatTicketPrice
         {
             get => perSeatTicketPrice;
             set
             {
                 perSeatTicketPrice = value;
+                ValidateTicket();
+
             }
         }
+        private string perSeatTicketPriceE;
+        public string PerSeatTicketPriceE
+        {
+            get => perSeatTicketPriceE;
+            set
+            {
+                perSeatTicketPriceE = value;
+                OnPropertyChanged(nameof(PerSeatTicketPriceE));
+            }
+        }
+
+       
+
 
 
         public ICommand AcceptCommand { get; set; }
@@ -95,7 +110,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         public AddShowTimeViewModel(string phong , AddShowTimeView addShowTimeView)
         {
             loadData();
-            AcceptCommand = new ViewModelCommand(Accept);
+            AcceptCommand = new ViewModelCommand(Accept,canAcceptAdd);
             CancelCommand = new ViewModelCommand(Cancel);
             this.addShowTimeView = addShowTimeView;
             loadSelectedPhong(phong);
@@ -143,7 +158,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
                 if (showTimeDA.canAddShowtime(SelectedPhong.Item2, startTimeByADD))
                 {
 
-                    showTimeDA.addShowtime(new ShowTimeDTO(StartTime, EndTime, PerSeatTicketPrice, SelectedPhim.Item1, SelectedPhong.Item1));
+                    showTimeDA.addShowtime(new ShowTimeDTO(StartTime, EndTime, int.Parse(PerSeatTicketPrice), SelectedPhim.Item1, SelectedPhong.Item1));
 
                     YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm suất chiếu thành công");
                     mb.ShowDialog();
@@ -175,6 +190,37 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             {
                 AuditoriumDA auditoriumDA = new AuditoriumDA();
                 SelectedPhong = new Tuple<int, string>(auditoriumDA.AuditoriumId(phong), phong);
+            }
+        }
+
+
+        private bool[] _canAccept = new bool[1];//phục vụ việc có cho nhấn button accept ko
+        private bool canAcceptAdd(object obj)
+        {
+            return _canAccept[0] && selectedPhong != null && SelectedPhim != null && showtime != null && startDate != null;
+        }
+
+        private void ValidateTicket()
+        {
+            if (string.IsNullOrWhiteSpace(PerSeatTicketPrice))
+            {
+                PerSeatTicketPriceE = "Không để trống!";
+                _canAccept[0] = false;
+            }
+            else if (!PerSeatTicketPrice.All(char.IsDigit))
+            {
+                PerSeatTicketPriceE = "Không hợp lệ!";
+                _canAccept[0] = false;
+            }
+            else if (!int.TryParse(PerSeatTicketPrice, out int lengthvalue))
+            {
+                PerSeatTicketPriceE = "Không hợp lệ!";
+                _canAccept[0] = false;
+            }
+            else
+            {
+                PerSeatTicketPriceE = "";
+                _canAccept[0] = true;
             }
         }
     }

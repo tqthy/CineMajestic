@@ -81,8 +81,8 @@
                     <DatePicker
                         Height="40"
                         Margin="60,5,20,0"
-                        FontSize="22" 
-                        SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}"/>
+                        FontSize="22"
+                        SelectedDate="{Binding StartDate, UpdateSourceTrigger=PropertyChanged}" />
                 </StackPanel>
 
             </Grid>
@@ -111,8 +111,8 @@
                         Focusable="False"
                         FontSize="22"
                         Is24Hours="True"
-                        WithSeconds="False" 
-                        SelectedTime="{Binding Showtime,UpdateSourceTrigger=PropertyChanged}"/>
+                        SelectedTime="{Binding Showtime, UpdateSourceTrigger=PropertyChanged}"
+                        WithSeconds="False" />
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
@@ -144,7 +144,12 @@
                         Margin="60,5,20,0"
                         VerticalAlignment="Center"
                         FontSize="22"
-                        Text="{Binding PerSeatTicketPrice}" />
+                        Text="{Binding PerSeatTicketPrice, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock
+                        Margin="70,0,0,0"
+                        FontSize="10"
+                        Foreground="Red"
+                        Text="{Binding PerSeatTicketPriceE}" />
                 </StackPanel>
 
             </Grid>
