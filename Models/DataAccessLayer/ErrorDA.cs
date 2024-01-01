@@ -1,4 +1,5 @@
 ﻿using CineMajestic.Models.DTOs;
+using CineMajestic.ViewModels;
 using HarfBuzzSharp;
 using LiveChartsCore.Kernel;
 using OfficeOpenXml.Drawing.Chart;
@@ -13,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace CineMajestic.Models.DataAccessLayer
 {
@@ -24,29 +26,26 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 using (SqlConnection connection = GetConnection())
                 {
-                    string date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     connection.Open();
-                    string insert =
-                        "insert into ERRORS(NAME,DESCRIPTION,DATEADDED,STATUS,STAFF_id,IMAGE)\n"
-                        +
-                        "values("
-                        +
-                        "N'" + error.Name + "',"
-                        +
-                        "N'" + error.Description + "',"
-                        +
-                        "'" + date + "',"
-                        +
-                        "N'" + error.Status + "',"
-                        +
-                        error.Staff_Id + ","
-                        +
-                        "N'" + error.Image + "')";
+                    string insert = @"
+                    INSERT INTO ERRORS (NAME, DESCRIPTION, DATEADDED, STATUS, STAFF_id, ImageSource)
+                    VALUES (@Name, @Description, @DateAdded, @Status, @StaffId, @ImageSource)";
+
                     using (SqlCommand command = new SqlCommand(insert, connection))
                     {
+                        byte[] imageBytes = ImageVsSQL.BitmapImageToByteArray(error.Image); 
+
+                        command.Parameters.AddWithValue("@Name", error.Name);
+                        command.Parameters.AddWithValue("@Description", error.Description);
+                        command.Parameters.AddWithValue("@DateAdded", DateTime.Now);
+                        command.Parameters.AddWithValue("@Status", error.Status);
+                        command.Parameters.AddWithValue("@StaffId", error.Staff_Id);
+                        command.Parameters.AddWithValue("@ImageSource", imageBytes);
+
                         command.ExecuteNonQuery();
                     }
                 }
+
             }
             catch { }
 
@@ -77,7 +76,11 @@ namespace CineMajestic.Models.DataAccessLayer
                             if (reader[5] != null) error.EndDate = reader[5].ToString();
                             if (reader[6] != null) error.Cost = reader[6].ToString();
                             error.Staff_Id = reader[7].ToString();
-                            error.Image = reader[8].ToString();
+
+                            byte[] imageBytes = (byte[])reader["ImageSource"];
+                            BitmapImage imageSource = ImageVsSQL.ByteArrayToBitmapImage(imageBytes);
+                            error.Image = imageSource;
+
                             error.StatusColor = ConvertStatusToBrush(error.Status);
                             errors.Add(error);
                         }
@@ -86,7 +89,7 @@ namespace CineMajestic.Models.DataAccessLayer
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
             }
 
             return errors;
@@ -100,30 +103,51 @@ namespace CineMajestic.Models.DataAccessLayer
             return new SolidColorBrush(System.Windows.Media.Colors.DarkRed);
         }
 
+        //public void setEndDateAndCost(string id, DateTime endDate, string cost)
+        //{
+        //  //  try
+        //    {
+        //        using (var connection = GetConnection())
+        //        using (var command = new SqlCommand())
+        //        {
+        //            connection.Open();
+        //            command.Connection = connection;
+        //            command.CommandText = "UPDATE [ERRORS] SET STATUS=@status, ENDDATE=@enddate, COST=@cost WHERE id=@id";
+        //            command.Parameters.Add("@status", SqlDbType.NVarChar).Value = "Đã xử lý";
+        //            command.Parameters.Add("@cost", SqlDbType.Int).Value = cost;
+        //            command.Parameters.Add("@enddate", SqlDbType.SmallDateTime).Value = endDate;
+        //            command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+        //            var rows = command.ExecuteNonQuery();
+        //        }
+        //    }
+        //  //  catch (Exception ex)
+        //    {
+        //       // throw ex;
+        //    }
+        //}
         public void setEndDateAndCost(string id, DateTime endDate, string cost)
         {
             try
             {
+                int costValue = int.Parse(cost);
+                int idValue = int.Parse(id);
+
                 using (var connection = GetConnection())
                 using (var command = new SqlCommand())
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "UPDATE [ERRORS] SET STATUS=@status, ENDDATE=@enddate, COST=@cost WHERE id=@id";
-                    command.Parameters.Add("@status", SqlDbType.NVarChar).Value = "Đã xử lý";
-                    command.Parameters.Add("@cost", SqlDbType.Int).Value = cost;
-                    //DateTime date;
-                    //date = DateTime.ParseExact(error.DateAdded, "d/M/yyyy h:m:s tt", CultureInfo.GetCultureInfo("en-US"), DateTimeStyles.None);
-                    command.Parameters.Add("@enddate", SqlDbType.SmallDateTime).Value = endDate;
-                    command.Parameters.Add("@id", SqlDbType.Int).Value = id;
+                    command.CommandText = "UPDATE [ERRORS] SET STATUS=@status, ENDDATE=@enddate, COST=@cost WHERE ID=@id";
+                    command.Parameters.AddWithValue("@status", "Đã xử lý");
+                    command.Parameters.AddWithValue("@cost", costValue);
+                    command.Parameters.AddWithValue("@enddate", endDate);
+                    command.Parameters.AddWithValue("@id", idValue);
                     var rows = command.ExecuteNonQuery();
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            catch { }
         }
+
 
         public void setStatus(string iD, int comboBoxStatusIndex)
         {
@@ -145,7 +169,7 @@ namespace CineMajestic.Models.DataAccessLayer
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
             }
         }
 
@@ -173,7 +197,7 @@ namespace CineMajestic.Models.DataAccessLayer
             }
             catch (Exception ex)
             {
-                throw ex;
+                //throw ex;
             }
             return result;
         }
@@ -202,9 +226,12 @@ namespace CineMajestic.Models.DataAccessLayer
             }
             catch (Exception ex)
             {
-                throw ex;
+              //  throw ex;
             }
             return result;
         }
+
+
+
     }
 }

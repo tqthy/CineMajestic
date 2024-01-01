@@ -2,6 +2,7 @@
 using CineMajestic.Models.DTOs;
 using CineMajestic.Views.ErrorManagement;
 using CineMajestic.Views.MessageBox;
+using LiveChartsCore.Kernel;
 using Microsoft.VisualBasic.Devices;
 using Microsoft.Win32;
 using System;
@@ -28,11 +29,11 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         private string errorName;
         public string ErrorName { get => errorName; set { errorName = value; OnPropertyChanged(nameof(ErrorName)); } }
         private string errorDescription;
-        public string ErrorDescription { get => errorDescription; set {errorDescription = value; OnPropertyChanged(nameof(ErrorDescription)); } }
+        public string ErrorDescription { get => errorDescription; set { errorDescription = value; OnPropertyChanged(nameof(ErrorDescription)); } }
         private string staffID;
-        public string StaffID { get => staffID; set {staffID = value; OnPropertyChanged(nameof(StaffID)); } }
+        public string StaffID { get => staffID; set { staffID = value; OnPropertyChanged(nameof(StaffID)); } }
         private DateTime issueDate;
-        public DateTime IssueDate { get => issueDate; set {issueDate = value; OnPropertyChanged(nameof(IssueDate)); } }
+        public DateTime IssueDate { get => issueDate; set { issueDate = value; OnPropertyChanged(nameof(IssueDate)); } }
         private BitmapImage errorImage;
         public BitmapImage ErrorImage { get => errorImage; set { errorImage = value; OnPropertyChanged(nameof(ErrorImage)); } }
         private DateTime endDate;
@@ -61,15 +62,15 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
 
         // combobox selected item
         private string cbBoxSelectedItem;
-        public string CbBoxSelectedItem { get => cbBoxSelectedItem; set { cbBoxSelectedItem = value; OnPropertyChanged(nameof (CbBoxSelectedItem)); } }
+        public string CbBoxSelectedItem { get => cbBoxSelectedItem; set { cbBoxSelectedItem = value; OnPropertyChanged(nameof(CbBoxSelectedItem)); } }
 
         private int comboBoxStatusIndex;
-        public int ComboBoxStatusIndex { get => comboBoxStatusIndex; set {comboBoxStatusIndex = value; OnPropertyChanged(nameof(ComboBoxStatusIndex)); } }
+        public int ComboBoxStatusIndex { get => comboBoxStatusIndex; set { comboBoxStatusIndex = value; OnPropertyChanged(nameof(ComboBoxStatusIndex)); } }
 
         #endregion
 
         #region ctor
-        public ErrorManagementViewModel(int staff_Id) 
+        public ErrorManagementViewModel(int staff_Id)
         {
             StaffID = staff_Id.ToString();
             IssueDate = DateTime.Now;
@@ -125,10 +126,17 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                 }
                 catch { StaffName = "Không xác định!"; }
 
-                string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
+                //string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
                 try
                 {
-                    ErrorImage = new BitmapImage(new Uri(applicationFolder));
+                    if (obj != null)
+                    {
+                        if ((obj as ErrorDTO).Image != null)
+                        {
+                            ErrorImage = (obj as ErrorDTO).Image;
+                        }
+                    }
+
                 }
                 catch { }
                 if (string.IsNullOrEmpty(SelectedItem.EndDate))
@@ -167,12 +175,13 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                 ErrorList = new ObservableCollection<ErrorDTO>(errors);
                 YesMessageBox mb = new YesMessageBox("Thông báo", "Sửa thành công");
                 mb.ShowDialog();
-            } catch (Exception ex)
+            }
+            catch
             {
-
             }
         }
-        public bool CanExecuteEditErrorCommand(object obj) 
+
+        public bool CanExecuteEditErrorCommand(object obj)
         {
             if (ComboBoxStatusIndex == 2) return !String.IsNullOrEmpty(Cost);
             return true;
@@ -192,12 +201,15 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
                     StaffDA staffDA = new();
                     StaffName = staffDA.Staffstaff_Id(Convert.ToInt32(SelectedItem.Staff_Id)).FullName;
                 }
-                catch { MessageBox.Show("Nhân viên báo cáo sự cố này không còn trong hệ thống,bạn không thể tiếp tục chỉnh sửa sự cố này!");return; }
+                catch { MessageBox.Show("Nhân viên báo cáo sự cố này không còn trong hệ thống,bạn không thể tiếp tục chỉnh sửa sự cố này!"); return; }
 
-                string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
+                // string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages", SelectedItem.Image);
                 try
                 {
-                    ErrorImage = new BitmapImage(new Uri(applicationFolder));
+                    if (obj != null)
+                    {
+                        ErrorImage = (obj as ErrorDTO).Image;
+                    }
                 }
                 catch { }
 
@@ -248,45 +260,48 @@ namespace CineMajestic.ViewModels.ErrorManagementVM
         public void ExecuteAddErrorCM(object obj)
         {
             ErrorDA errorDA = new ErrorDA();
-            ErrorDTO errorDTO = new ErrorDTO() {
+            ErrorDTO errorDTO = new ErrorDTO()
+            {
                 Name = ErrorName,
                 Description = ErrorDescription,
                 Staff_Id = StaffID,
                 //DateAdded = IssueDate.ToString(),
                 DateAdded = DateTime.Now.ToShortDateString(),
-                Image = Path.GetFileName(ErrorImage.UriSource.ToString()),
+                Image = ErrorImage,
                 StatusColor = new SolidColorBrush(Colors.DarkRed),
                 Status = "Chờ tiếp nhận"
             };
-         //   try
-            {
-                errorDA.UploadError(errorDTO);
-                // MSG BOX CUSTOM
-                YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm thành công");
-                mb.ShowDialog();
-                ErrorList.Add(errorDTO);
-            }
-           /// catch (Exception ex)
-            {
+            //   try
+            //   {
+            errorDA.UploadError(errorDTO);
+            // MSG BOX CUSTOM
+            YesMessageBox mb = new YesMessageBox("Thông báo", "Thêm thành công");
+            mb.ShowDialog();
+            ErrorList.Add(errorDTO);
+            List<ErrorDTO> errors = errorDA.GetAllErrors();
+            ErrorList = new ObservableCollection<ErrorDTO>(errors);
+            //  }
+            /// catch (Exception ex)
+            //  {
             //    return;
-            }
+            //}
 
-            try
-            {
-                string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages");
-                if (!Directory.Exists(applicationFolder))
-                {
-                    Directory.CreateDirectory(applicationFolder);
-                }
-                try
-                {
-                    File.Copy(ErrorImage.UriSource.LocalPath, Path.Combine(applicationFolder, errorDTO.Image), true);
-                }
-                catch { }
+            //try
+            //{
+            //    string applicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "CineMajestic", "ErrorImages");
+            //    if (!Directory.Exists(applicationFolder))
+            //    {
+            //        Directory.CreateDirectory(applicationFolder);
+            //    }
+            //    try
+            //    {
+            //        File.Copy(ErrorImage.UriSource.LocalPath, Path.Combine(applicationFolder, errorDTO.Image), true);
+            //    }
+            //    catch { }
 
-            }
-            catch { }
-           
+            //}
+            //   catch { }
+
         }
 
         public bool CanExecuteAddErrorCM(object obj)
