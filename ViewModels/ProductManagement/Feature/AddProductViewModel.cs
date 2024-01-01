@@ -281,9 +281,9 @@ namespace CineMajestic.ViewModels.ProductManagement
                 PurchasePriceError = "Giá không hợp lệ";
                 _canAccept[2] = false;
             }
-            else if (int.Parse(PurchasePrice) < 0)
+            else if (!int.TryParse(PurchasePrice, out int PurchasePriceValue))
             {
-                PurchasePriceError = "Giá không hợp lệ";
+                PurchasePriceError = "Không hợp lệ!";
                 _canAccept[2] = false;
             }
             else

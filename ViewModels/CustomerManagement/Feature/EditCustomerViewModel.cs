@@ -289,9 +289,9 @@ namespace CineMajestic.ViewModels.CustomerManagement
                 PointError = "Point không hợp lệ!";
                 _canAccept[4] = false;
             }
-            else if (int.Parse(Point) < 0)
+            else if (!int.TryParse(Point, out int pointvalue))
             {
-                PointError = "Point không hợp lệ!";
+                PointError = "Không hợp lệ!";
                 _canAccept[4] = false;
             }
             else

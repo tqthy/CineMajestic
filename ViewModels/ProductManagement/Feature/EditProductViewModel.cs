@@ -270,9 +270,9 @@ namespace CineMajestic.ViewModels.ProductManagement
                 QuantityError = "Số lượng không hợp lệ";
                 _canAccept[1] = false;
             }
-            else if (int.Parse(Quantity) < 0)
+            else if (!int.TryParse(Quantity, out int Quantityvalue))
             {
-                QuantityError = "Số lượng không hợp lệ";
+                QuantityError = "Không hợp lệ!";
                 _canAccept[1] = false;
             }
             else
@@ -293,9 +293,9 @@ namespace CineMajestic.ViewModels.ProductManagement
                 PurchasePriceError = "Giá không hợp lệ";
                 _canAccept[2] = false;
             }
-            else if (int.Parse(PurchasePrice) < 0)
+            else if (!int.TryParse(Quantity, out int Pricevalue))
             {
-                PurchasePriceError = "Giá không hợp lệ";
+                PurchasePriceError = "Không hợp lệ!";
                 _canAccept[2] = false;
             }
             else
