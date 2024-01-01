@@ -225,8 +225,8 @@ namespace CineMajestic.ViewModels.StatisticsVM
                 long movieCostByYear = movieDA.GetCostByYear(year);
                 long sum_income = billDA.GetIncomeByYear(year);
                 long product_income = billDA.GetProductIncomeByYear(year);
-                long sum_outcome = addProductCostByYear + errorCostByYear + movieCostByYear;
                 long salaryCostByYear = staffDA.GetSalaryByYear(year);
+                long sum_outcome = addProductCostByYear + errorCostByYear + movieCostByYear + salaryCostByYear;
 
                 IncomeText = sum_income.ToString("N0");
                 OutcomeText = sum_outcome.ToString("N0");
@@ -312,8 +312,8 @@ namespace CineMajestic.ViewModels.StatisticsVM
                 long movieCostByMonth = movieDA.GetCostByMonth(month);
                 long sum_income = billDA.GetIncomeByMonth(month);
                 long product_income = billDA.GetProductIncomeByMonth(month);
-                long sum_outcome = addProductCostByMonth + errorCostByMonth + movieCostByMonth;
                 long salaryCostByMonth = staffDA.GetSalaryByMonth(month);
+                long sum_outcome = addProductCostByMonth + errorCostByMonth + movieCostByMonth + salaryCostByMonth;
 
                 IncomeText = sum_income.ToString("N0");
                 OutcomeText = sum_outcome.ToString("N0");
