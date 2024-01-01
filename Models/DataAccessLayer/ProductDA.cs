@@ -19,32 +19,37 @@ namespace CineMajestic.Models.DataAccessLayer
         {
             ObservableCollection<ProductDTO> DSSP = new ObservableCollection<ProductDTO>();
 
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string truyvan = "select * from Product";
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string truyvan = "select * from Product";
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
                     {
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            int id = reader.GetInt32(reader.GetOrdinal("ID"));
-                            string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
-                            int quantity = reader.GetInt32(reader.GetOrdinal("Quantity"));
-                            int purchasePrice = reader.GetInt32(reader.GetOrdinal("PurchasePrice"));
-                            int price = reader.GetInt32(reader.GetOrdinal("Price"));
-                            int type = reader.GetInt32(reader.GetOrdinal("Type"));
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(reader.GetOrdinal("ID"));
+                                string name = reader.GetString(reader.GetOrdinal("Name"));
+                                string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                                int quantity = reader.GetInt32(reader.GetOrdinal("Quantity"));
+                                int purchasePrice = reader.GetInt32(reader.GetOrdinal("PurchasePrice"));
+                                int price = reader.GetInt32(reader.GetOrdinal("Price"));
+                                int type = reader.GetInt32(reader.GetOrdinal("Type"));
 
 
 
-                            imageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + imageSource;
-                            DSSP.Add(new ProductDTO(id, name, quantity, purchasePrice, price, type, imageSource));
+                                imageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + imageSource;
+                                DSSP.Add(new ProductDTO(id, name, quantity, purchasePrice, price, type, imageSource));
+                            }
                         }
                     }
                 }
             }
+            catch { }
+
             return DSSP;
         }
 
@@ -53,44 +58,52 @@ namespace CineMajestic.Models.DataAccessLayer
         //thêm 1 sản phẩm
         public void addProduct(ProductDTO product)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string insert =
-                    "insert into Product(Name,ImageSource,Quantity,PurchasePrice,Type)\n"
-                    +
-                    "values("
-                    +
-                    "N'" + product.Name + "',"
-                    + "'" + product.ImageSource + "',"
-                    + product.Quantity.ToString() + ","
-                    + product.PurchasePrice.ToString() + ","
-                    + product.Type.ToString() + ")";
-
-                using (SqlCommand command = new SqlCommand(insert, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string insert =
+                        "insert into Product(Name,ImageSource,Quantity,PurchasePrice,Type)\n"
+                        +
+                        "values("
+                        +
+                        "N'" + product.Name + "',"
+                        + "'" + product.ImageSource + "',"
+                        + product.Quantity.ToString() + ","
+                        + product.PurchasePrice.ToString() + ","
+                        + product.Type.ToString() + ")";
+
+                    using (SqlCommand command = new SqlCommand(insert, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
 
         //xóa 1 sản phẩm
         public void deleteProduct(ProductDTO product)
         {
-            using (SqlConnection connection = GetConnection())
-            {
-                connection.Open();
-                string delete =
-                    "delete Product\n"
-                    +
-                    "where ID=" + product.Id;
-
-                using (SqlCommand command = new SqlCommand(delete, connection))
+            try {
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string delete =
+                        "delete Product\n"
+                        +
+                        "where ID=" + product.Id;
+
+                    using (SqlCommand command = new SqlCommand(delete, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
+            
         }
 
 
@@ -98,53 +111,61 @@ namespace CineMajestic.Models.DataAccessLayer
         //update sản phẩm
         public void editProduct(ProductDTO product)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string update =
-                    "update Product\n"
-                    +
-                    "set Name=" + "N'" + product.Name + "'" + ","
-                    +
-                    "Quantity=" + product.Quantity + ","
-                    +
-                    "PurchasePrice=" + product.PurchasePrice + ","
-                    +
-                    "Type=" + product.Type + ","
-                    +
-                    "ImageSource=" + "'" + product.ImageSource + "'" + "\n"
-                    +
-                    "where ID=" + product.Id;
-
-
-                using (SqlCommand command = new SqlCommand(update, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string update =
+                        "update Product\n"
+                        +
+                        "set Name=" + "N'" + product.Name + "'" + ","
+                        +
+                        "Quantity=" + product.Quantity + ","
+                        +
+                        "PurchasePrice=" + product.PurchasePrice + ","
+                        +
+                        "Type=" + product.Type + ","
+                        +
+                        "ImageSource=" + "'" + product.ImageSource + "'" + "\n"
+                        +
+                        "where ID=" + product.Id;
+
+
+                    using (SqlCommand command = new SqlCommand(update, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
 
         //import số lượng product
         public void importSL(ProductDTO product, int sl)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                int slnew = sl + product.Quantity;
-                connection.Open();
-                string update =
-                    "update Product\n"
-                    +
-                    "set Quantity=" + slnew
-                    +
-                    "where ID=" + product.Id;
-
-
-                using (SqlCommand command = new SqlCommand(update, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    int slnew = sl + product.Quantity;
+                    connection.Open();
+                    string update =
+                        "update Product\n"
+                        +
+                        "set Quantity=" + slnew
+                        +
+                        "where ID=" + product.Id;
+
+
+                    using (SqlCommand command = new SqlCommand(update, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
         public List<ProductStatisticsDTO> GetTopProductByMonth(string month)
@@ -229,48 +250,51 @@ namespace CineMajestic.Models.DataAccessLayer
         public ObservableCollection<ProductDTO> getDSSPTheoLoai(int Type)//1 là thức ăn,2 là đồ uống
         {
             ObservableCollection<ProductDTO> DSSP = new ObservableCollection<ProductDTO>();
-
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string truyvan = "";
-                if (Type == 0)
+                using (SqlConnection connection = GetConnection())
                 {
-                    truyvan = "select * from Product";
-                }
-                else if (Type == 1)
-                {
-                    truyvan = "select * from Product where Type=1";
-                }
-                else if (Type == 2)
-                {
-                    truyvan = "select * from Product where Type=2";
-                }
-
-
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
-                {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string truyvan = "";
+                    if (Type == 0)
                     {
-                        while (reader.Read())
+                        truyvan = "select * from Product";
+                    }
+                    else if (Type == 1)
+                    {
+                        truyvan = "select * from Product where Type=1";
+                    }
+                    else if (Type == 2)
+                    {
+                        truyvan = "select * from Product where Type=2";
+                    }
+
+
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            int id = reader.GetInt32(reader.GetOrdinal("ID"));
-                            string name = reader.GetString(reader.GetOrdinal("Name"));
-                            string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
-                            int quantity = reader.GetInt32(reader.GetOrdinal("Quantity"));
-                            int purchasePrice = reader.GetInt32(reader.GetOrdinal("PurchasePrice"));
-                            int price = reader.GetInt32(reader.GetOrdinal("Price"));
-                            int type = reader.GetInt32(reader.GetOrdinal("Type"));
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(reader.GetOrdinal("ID"));
+                                string name = reader.GetString(reader.GetOrdinal("Name"));
+                                string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                                int quantity = reader.GetInt32(reader.GetOrdinal("Quantity"));
+                                int purchasePrice = reader.GetInt32(reader.GetOrdinal("PurchasePrice"));
+                                int price = reader.GetInt32(reader.GetOrdinal("Price"));
+                                int type = reader.GetInt32(reader.GetOrdinal("Type"));
 
 
 
-                            imageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + imageSource;
-                            DSSP.Add(new ProductDTO(id, name, quantity, purchasePrice, price, type, imageSource));
+                                imageSource = MotSoPhuongThucBoTro.pathProject() + @"Images\ProductManagement\" + imageSource;
+                                DSSP.Add(new ProductDTO(id, name, quantity, purchasePrice, price, type, imageSource));
+                            }
+
                         }
-
                     }
                 }
             }
+            catch { }
             return DSSP;
         }
 
@@ -278,23 +302,27 @@ namespace CineMajestic.Models.DataAccessLayer
         //cập nhật lại số lượng product sau khi thanh toán hóa đơn
         public void updateQuantity(int id,int quantity)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                
-                connection.Open();
-                string update =
-                    "update Product\n"
-                    +
-                    "set Quantity=Quantity - "+quantity+"\n" 
-                    +
-                    "where ID=" + id;
-
-
-                using (SqlCommand command = new SqlCommand(update, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+
+                    connection.Open();
+                    string update =
+                        "update Product\n"
+                        +
+                        "set Quantity=Quantity - " + quantity + "\n"
+                        +
+                        "where ID=" + id;
+
+
+                    using (SqlCommand command = new SqlCommand(update, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
     }
 }

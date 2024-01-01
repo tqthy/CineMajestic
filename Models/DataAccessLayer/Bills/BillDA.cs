@@ -171,36 +171,40 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
         //thêm 1 bill
         public void addBill(BillDTO billDTO)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string insert =
-                    "insert into Bill(Staff_Id,Customer_Id,ShowTime_Id,QuantityTicket,PerSeatTicketPrice,Discount,Note,Total,BillDate)\n"
-                    +
-                    "values("
-                    +
-                    billDTO.Staff_Id + ","
-                    +
-                    billDTO.Customer_Id + ","
-                    +
-                    billDTO.Showtime_Id + ","
-                    +
-                    billDTO.QuantityTicket + ","
-                    +
-                    billDTO.PerTicketPrice + ","
-                    +
-                    billDTO.Discount + ","
-                    +
-                    "N'" + billDTO.Note + "',"
-                    +
-                    billDTO.Total + ","
-                    +
-                    "'" + billDTO.BillDate + "')";
-                using (SqlCommand command = new SqlCommand(insert, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string insert =
+                        "insert into Bill(Staff_Id,Customer_Id,ShowTime_Id,QuantityTicket,PerSeatTicketPrice,Discount,Note,Total,BillDate)\n"
+                        +
+                        "values("
+                        +
+                        billDTO.Staff_Id + ","
+                        +
+                        billDTO.Customer_Id + ","
+                        +
+                        billDTO.Showtime_Id + ","
+                        +
+                        billDTO.QuantityTicket + ","
+                        +
+                        billDTO.PerTicketPrice + ","
+                        +
+                        billDTO.Discount + ","
+                        +
+                        "N'" + billDTO.Note + "',"
+                        +
+                        billDTO.Total + ","
+                        +
+                        "'" + billDTO.BillDate + "')";
+                    using (SqlCommand command = new SqlCommand(insert, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
 
@@ -208,21 +212,26 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
         //iden curent
         public int identCurrent()
         {
-            int identCurrent;
-            using (SqlConnection connection = GetConnection())
+            int identCurrent = 0; 
+            try
             {
-                connection.Open();
-                string cm =
-                    "select ident_current('Bill') as lastId";
-                using (SqlCommand command = new SqlCommand(cm, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string cm =
+                        "select ident_current('Bill') as lastId";
+                    using (SqlCommand command = new SqlCommand(cm, connection))
                     {
-                        reader.Read();
-                        identCurrent = (int)reader.GetDecimal(reader.GetOrdinal("lastId"));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            identCurrent = (int)reader.GetDecimal(reader.GetOrdinal("lastId"));
+                        }
                     }
                 }
             }
+            catch { }
+
             return identCurrent;
         }
     }

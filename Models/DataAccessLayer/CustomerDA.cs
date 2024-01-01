@@ -23,95 +23,108 @@ namespace CineMajestic.Models.DataAccessLayer
             soLuongChuSo = identCurrent().ToString().Length;//phục vụ format id
 
             ObservableCollection<CustomerDTO> list = new ObservableCollection<CustomerDTO>();
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string truyvan = "select * from Customer";
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string truyvan = "select * from Customer";
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
                     {
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            int id = reader.GetInt32(reader.GetOrdinal("ID"));
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(reader.GetOrdinal("ID"));
 
-                            string fullname = reader.GetString(reader.GetOrdinal("FULLNAME"));
+                                string fullname = reader.GetString(reader.GetOrdinal("FULLNAME"));
 
-                            string phonenumber = reader.GetString(reader.GetOrdinal("PHONENUMBER"));
+                                string phonenumber = reader.GetString(reader.GetOrdinal("PHONENUMBER"));
 
-                            string email = reader.GetString(reader.GetOrdinal("EMAIL"));
+                                string email = reader.GetString(reader.GetOrdinal("EMAIL"));
 
-                            int point = reader.GetInt32(reader.GetOrdinal("POINT"));
+                                int point = reader.GetInt32(reader.GetOrdinal("POINT"));
 
-                            DateTime birth = reader.GetDateTime(reader.GetOrdinal("BIRTH"));
-                            string Birth = birth.ToString("dd/MM/yyyy");
+                                DateTime birth = reader.GetDateTime(reader.GetOrdinal("BIRTH"));
+                                string Birth = birth.ToString("dd/MM/yyyy");
 
-                            DateTime regdate = reader.GetDateTime(reader.GetOrdinal("REGDATE"));
-                            string Regdate = regdate.ToString("dd/MM/yyyy");
+                                DateTime regdate = reader.GetDateTime(reader.GetOrdinal("REGDATE"));
+                                string Regdate = regdate.ToString("dd/MM/yyyy");
 
-                            string gender = reader.GetString(reader.GetOrdinal("GENDER"));
+                                string gender = reader.GetString(reader.GetOrdinal("GENDER"));
 
-                            list.Add(new CustomerDTO(id, fullname, phonenumber, email, point, Birth, Regdate, gender));
+                                list.Add(new CustomerDTO(id, fullname, phonenumber, email, point, Birth, Regdate, gender));
+                            }
                         }
                     }
                 }
             }
+            catch { }
             return list;
         }
 
         //edit 1 khách hàng
         public void editCustomer(CustomerDTO customer)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string update =
-                    "update Customer\n"
-                    +
-                    "set FullName=" + "N'" + customer.FullName + "',"
-                    +
-                    "PhoneNumber =" + "'" + customer.PhoneNumber + "',"
-                    +
-                    "Email=" + "'" + customer.Email + "',"
-                    +
-                    "RegDate=" + "'" + customer.RegDate + "',"
-                    +
-                    "Point=" + customer.Point + "\n"
-                    +
-                    "where Id=" + customer.Id;
-
-                using (SqlCommand command = new SqlCommand(update, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string update =
+                        "update Customer\n"
+                        +
+                        "set FullName=" + "N'" + customer.FullName + "',"
+                        +
+                        "PhoneNumber =" + "'" + customer.PhoneNumber + "',"
+                        +
+                        "Email=" + "'" + customer.Email + "',"
+                        +
+                        "RegDate=" + "'" + customer.RegDate + "',"
+                        +
+                        "Point=" + customer.Point + "\n"
+                        +
+                        "where Id=" + customer.Id;
+
+                    using (SqlCommand command = new SqlCommand(update, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
 
         //iden curent
         public int identCurrent()
         {
-            int identCurrent;
-            using (SqlConnection connection = GetConnection())
+            int identCurrent = 0;
+            try
             {
-                connection.Open();
-                string cm =
-                    "select ident_current('CUSTOMER') as lastId";
-                using (SqlCommand command = new SqlCommand(cm, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string cm =
+                        "select ident_current('CUSTOMER') as lastId";
+                    using (SqlCommand command = new SqlCommand(cm, connection))
                     {
-                        reader.Read();
-                        identCurrent = (int)reader.GetDecimal(reader.GetOrdinal("lastId"));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            identCurrent = (int)reader.GetDecimal(reader.GetOrdinal("lastId"));
+                        }
                     }
                 }
             }
+            catch { }
             return identCurrent;
         }
 
         public static string formatID(int id, string type = "KH")
         {
             string format = "";
+
             if (soLuongChuSo < 4)
             {
                 format = "000";
@@ -159,43 +172,47 @@ namespace CineMajestic.Models.DataAccessLayer
                 pointMin = 1200;
             }
             List<CustomerDTO> list = new List<CustomerDTO>();
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string truyvan = "select * from Customer";
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string truyvan = "select * from Customer";
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
                     {
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            int point = reader.GetInt32(reader.GetOrdinal("POINT"));
-
-                            if (point >= pointMin)
+                            while (reader.Read())
                             {
+                                int point = reader.GetInt32(reader.GetOrdinal("POINT"));
 
-                                int id = reader.GetInt32(reader.GetOrdinal("ID"));
+                                if (point >= pointMin)
+                                {
 
-                                string fullname = reader.GetString(reader.GetOrdinal("FULLNAME"));
+                                    int id = reader.GetInt32(reader.GetOrdinal("ID"));
 
-                                string phonenumber = reader.GetString(reader.GetOrdinal("PHONENUMBER"));
+                                    string fullname = reader.GetString(reader.GetOrdinal("FULLNAME"));
 
-                                string email = reader.GetString(reader.GetOrdinal("EMAIL"));
+                                    string phonenumber = reader.GetString(reader.GetOrdinal("PHONENUMBER"));
 
-                                DateTime birth = reader.GetDateTime(reader.GetOrdinal("BIRTH"));
-                                string Birth = birth.ToString("dd/MM/yyyy");
+                                    string email = reader.GetString(reader.GetOrdinal("EMAIL"));
 
-                                DateTime regdate = reader.GetDateTime(reader.GetOrdinal("REGDATE"));
-                                string Regdate = regdate.ToString("dd/MM/yyyy");
+                                    DateTime birth = reader.GetDateTime(reader.GetOrdinal("BIRTH"));
+                                    string Birth = birth.ToString("dd/MM/yyyy");
 
-                                string gender = reader.GetString(reader.GetOrdinal("GENDER"));
+                                    DateTime regdate = reader.GetDateTime(reader.GetOrdinal("REGDATE"));
+                                    string Regdate = regdate.ToString("dd/MM/yyyy");
 
-                                list.Add(new CustomerDTO(id, fullname, phonenumber, email, point, Birth, Regdate, gender));
+                                    string gender = reader.GetString(reader.GetOrdinal("GENDER"));
+
+                                    list.Add(new CustomerDTO(id, fullname, phonenumber, email, point, Birth, Regdate, gender));
+                                }
                             }
                         }
                     }
                 }
             }
+            catch { }
             return list;
         }
 
@@ -216,22 +233,25 @@ namespace CineMajestic.Models.DataAccessLayer
             {
                 pointMin = 1200;
             }
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                int pointNew = customerDTO.Point - pointMin;
-                connection.Open();
-                string update =
-                    "update Customer\n"
-                    +
-                    "set Point=" + pointNew
-                    +
-                    "where Id=" + customerDTO.Id;
-
-                using (SqlCommand command = new SqlCommand(update, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    int pointNew = customerDTO.Point - pointMin;
+                    connection.Open();
+                    string update =
+                        "update Customer\n"
+                        +
+                        "set Point=" + pointNew
+                        +
+                        "where Id=" + customerDTO.Id;
+
+                    using (SqlCommand command = new SqlCommand(update, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
-            }
+            } catch { }
 
         }
 
@@ -324,27 +344,33 @@ namespace CineMajestic.Models.DataAccessLayer
         //kiểm tra khách hàng đã có trong hệ thống chưa
         public bool checkCustom(string input)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string truyvan =
-                    "select PhoneNumber from CUSTOMER";
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using(SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string truyvan =
+                        "select PhoneNumber from CUSTOMER";
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
                     {
-                        while(reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            string PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber"));
-                            if (input == PhoneNumber)
+                            while (reader.Read())
                             {
-                                return true;
+                                string PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber"));
+                                if (input == PhoneNumber)
+                                {
+                                    return true;
+                                }
                             }
                         }
                     }
+
+
+
                 }
             }
-
+            catch { }
             return false; ;
         }
 
@@ -352,72 +378,84 @@ namespace CineMajestic.Models.DataAccessLayer
         //thêm một khách hàng
         public void addCustom(CustomerDTO customerDTO)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string insert =
-                    "insert into CUSTOMER(FullName,PhoneNumber,Email,Point,Birth,RegDate,Gender)\n"
-                    +
-                    "values("
-                    +
-                    "N'" + customerDTO.FullName + "',"
-                    +
-                    "'" + customerDTO.PhoneNumber + "',"
-                    +
-                    "'" + customerDTO.Email + "',"
-                    +
-                    customerDTO.Point + ","
-                    +
-                    "'" + customerDTO.Birth + "',"
-                    +
-                     "'" + customerDTO.RegDate + "',"
-                    +
-                     "N'" + customerDTO.Gender + "')";
-
-                using (SqlCommand command = new SqlCommand(insert, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
-                }
+                    connection.Open();
+                    string insert =
+                        "insert into CUSTOMER(FullName,PhoneNumber,Email,Point,Birth,RegDate,Gender)\n"
+                        +
+                        "values("
+                        +
+                        "N'" + customerDTO.FullName + "',"
+                        +
+                        "'" + customerDTO.PhoneNumber + "',"
+                        +
+                        "'" + customerDTO.Email + "',"
+                        +
+                        customerDTO.Point + ","
+                        +
+                        "'" + customerDTO.Birth + "',"
+                        +
+                         "'" + customerDTO.RegDate + "',"
+                        +
+                         "N'" + customerDTO.Gender + "')";
 
+                    using (SqlCommand command = new SqlCommand(insert, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                }
             }
+            catch { }
         }
 
 
         //update custom theo sđt
         public void updateCustomBySDT(int Point,string PhoneNumber)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string update =
-                    "update Customer\n"
-                    +
-                    "set Point =Point+" + Point + "\n"
-                    +
-                    "where PhoneNumber=" + "'"+PhoneNumber+"'";
-
-                using (SqlCommand command = new SqlCommand(update, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string update =
+                        "update Customer\n"
+                        +
+                        "set Point =Point+" + Point + "\n"
+                        +
+                        "where PhoneNumber=" + "'" + PhoneNumber + "'";
+
+                    using (SqlCommand command = new SqlCommand(update, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
         //xóa 1 customer
         public void deleteCustomer(CustomerDTO Customer)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string delete =
-                    "delete Customer\n"
-                    +
-                    "where Id=" + Customer.Id;
-                using (SqlCommand command = new SqlCommand(delete, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string delete =
+                        "delete Customer\n"
+                        +
+                        "where Id=" + Customer.Id;
+                    using (SqlCommand command = new SqlCommand(delete, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
     }
 }

@@ -42,25 +42,28 @@ namespace CineMajestic.Models.DataAccessLayer
         public List<UserDTO> getAccounts()
         {
             List<UserDTO>list= new List<UserDTO>();
-
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string select = "select * from Accounts";
-                using (SqlCommand command = new SqlCommand(select, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string select = "select * from Accounts";
+                    using (SqlCommand command = new SqlCommand(select, connection))
                     {
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            string Username = reader.GetString(reader.GetOrdinal("Username"));
-                            string Password = reader.GetString(reader.GetOrdinal("Password"));
-                            int Staff_Id  = reader.GetInt32(reader.GetOrdinal("Staff_Id"));
-                            list.Add(new UserDTO(Username, Password, Staff_Id));
+                            while (reader.Read())
+                            {
+                                string Username = reader.GetString(reader.GetOrdinal("Username"));
+                                string Password = reader.GetString(reader.GetOrdinal("Password"));
+                                int Staff_Id = reader.GetInt32(reader.GetOrdinal("Staff_Id"));
+                                list.Add(new UserDTO(Username, Password, Staff_Id));
+                            }
                         }
                     }
                 }
             }
+            catch { }
 
             return list;
         }
@@ -82,28 +85,31 @@ namespace CineMajestic.Models.DataAccessLayer
 
         public UserDTO GetByUsername(string username)
         {
-            UserDTO? user = null;
-            using (var connection = GetConnection())
-            using (var command = new SqlCommand())
+            UserDTO user = new();
+            try
             {
-                connection.Open();
-                command.Connection = connection;
-                command.CommandText = "SELECT * FROM [ACCOUNTS] WHERE Username=@username";
-                command.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
-                using (var reader = command.ExecuteReader())
+                using (var connection = GetConnection())
+                using (var command = new SqlCommand())
                 {
-                    if (reader.Read())
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT * FROM [ACCOUNTS] WHERE Username=@username";
+                    command.Parameters.Add("@username", SqlDbType.VarChar).Value = username;
+                    using (var reader = command.ExecuteReader())
                     {
-                        user = new UserDTO()
+                        if (reader.Read())
                         {
-                            //Id = reader[0].ToString(),
-                            //Username = reader[1].ToString(),
-                            //Password = string.Empty,
-                            //AccountType = reader[3].ToString(),
-                        };
+                            user = new UserDTO()
+                            {
+                                //Id = reader[0].ToString(),
+                                //Username = reader[1].ToString(),
+                                //Password = string.Empty,
+                                //AccountType = reader[3].ToString(),
+                            };
+                        }
                     }
                 }
-            }
+            } catch { }
             return user;
         }
 
@@ -115,59 +121,71 @@ namespace CineMajestic.Models.DataAccessLayer
         //insert  account
         public void addAccount(UserDTO user)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string insert =
-                    "insert into ACCOUNTS\n"
-                    +
-                    "values("
-                    +
-                    "'" + user.Username + "',"
-                    +
-                    "'" + user.Password + "',"
-                    +
-                    user.Staff_Id + ")";
-                using (SqlCommand command = new SqlCommand(insert, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string insert =
+                        "insert into ACCOUNTS\n"
+                        +
+                        "values("
+                        +
+                        "'" + user.Username + "',"
+                        +
+                        "'" + user.Password + "',"
+                        +
+                        user.Staff_Id + ")";
+                    using (SqlCommand command = new SqlCommand(insert, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
         //delete account
         public void deleteAccount(StaffDTO staff)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string delete =
-                    "delete ACCOUNTS\n"
-                +
-                    "where Staff_Id=" + staff.Id;
-                using (SqlCommand command = new SqlCommand(delete, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string delete =
+                        "delete ACCOUNTS\n"
+                    +
+                        "where Staff_Id=" + staff.Id;
+                    using (SqlCommand command = new SqlCommand(delete, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
         //phương thức phục vụ phần quên pass(ở forgot) 
         public void changePassword(string username, string passwordNew)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string update =
-                    "update Accounts\n"
-                    +
-                    "set Password=" + "'" + passwordNew + "'\n"
-                    +
-                    "where Username=" + "'" + username + "'";
-                using (SqlCommand command = new SqlCommand(update, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string update =
+                        "update Accounts\n"
+                        +
+                        "set Password=" + "'" + passwordNew + "'\n"
+                        +
+                        "where Username=" + "'" + username + "'";
+                    using (SqlCommand command = new SqlCommand(update, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
 
@@ -175,30 +193,32 @@ namespace CineMajestic.Models.DataAccessLayer
         public List<Tuple<string, string>> selectUserAndMail()
         {
             List<Tuple<string, string>> result = new List<Tuple<string, string>>();
-
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string select =
-                    "select Username,Email\n"
-                    +
-                    "from Accounts\n"
-                    +
-                    "join Staff on Accounts.Staff_Id=Staff.Id";
-                using (SqlCommand command = new SqlCommand(select, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string select =
+                        "select Username,Email\n"
+                        +
+                        "from Accounts\n"
+                        +
+                        "join Staff on Accounts.Staff_Id=Staff.Id";
+                    using (SqlCommand command = new SqlCommand(select, connection))
                     {
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            string Username = reader.GetString(reader.GetOrdinal("Username"));
-                            string Email = reader.GetString(reader.GetOrdinal("Email"));
-                            result.Add(Tuple.Create(Username, Email));
+                            while (reader.Read())
+                            {
+                                string Username = reader.GetString(reader.GetOrdinal("Username"));
+                                string Email = reader.GetString(reader.GetOrdinal("Email"));
+                                result.Add(Tuple.Create(Username, Email));
+                            }
                         }
                     }
                 }
             }
-
+            catch { }
             return result;
         }
 
@@ -207,25 +227,29 @@ namespace CineMajestic.Models.DataAccessLayer
         public List<string> selectUsername()
         {
             List<string> result = new List<string>();
-            using(SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string truyvan =
-                    "select Username\n"
-                    +
-                    "from Accounts";
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string truyvan =
+                        "select Username\n"
+                        +
+                        "from Accounts";
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
                     {
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            string username = reader.GetString(reader.GetOrdinal("Username"));
-                            result.Add(username);
+                            while (reader.Read())
+                            {
+                                string username = reader.GetString(reader.GetOrdinal("Username"));
+                                result.Add(username);
+                            }
                         }
                     }
                 }
             }
+            catch { }
 
             return result;
         }
@@ -234,48 +258,56 @@ namespace CineMajestic.Models.DataAccessLayer
         //phương thức phục vụ phần đổi pass ở Information
         public void changePassword(int Staff_Id,string passwordNew)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string update =
-                    "update Accounts\n"
-                    +
-                    "set Password=" + "'" + passwordNew + "'\n"
-                    +
-                    "where Staff_Id=" + "'" + Staff_Id + "'";
-                using (SqlCommand command = new SqlCommand(update, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string update =
+                        "update Accounts\n"
+                        +
+                        "set Password=" + "'" + passwordNew + "'\n"
+                        +
+                        "where Staff_Id=" + "'" + Staff_Id + "'";
+                    using (SqlCommand command = new SqlCommand(update, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
 
         //truy vấn lấy password ứng với id là staffID(phục vụ phần changepassword ở information)
         public string passwordStaff_Id(int Staff_Id)
         {
-            string result = ""; 
-            using (SqlConnection connection = GetConnection())
+            string result = "";
+            try
             {
-                connection.Open();
-                string truyvan =
-                    "select Password\n"
-                    +
-                    "from Accounts\n"
-                    +
-                    "where Staff_Id=" + Staff_Id;
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string truyvan =
+                        "select Password\n"
+                        +
+                        "from Accounts\n"
+                        +
+                        "where Staff_Id=" + Staff_Id;
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
                     {
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            string password = reader.GetString(reader.GetOrdinal("Password"));
-                            result = password;
+                            while (reader.Read())
+                            {
+                                string password = reader.GetString(reader.GetOrdinal("Password"));
+                                result = password;
+                            }
                         }
                     }
                 }
             }
+            catch { }
 
             return result;
         }

@@ -19,44 +19,48 @@ namespace CineMajestic.Models.DataAccessLayer
         public ObservableCollection<MovieDTO> getAllMovie()
         {
             ObservableCollection<MovieDTO> list = new ObservableCollection<MovieDTO>();
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string truyvan = "select * from Movie";
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string truyvan = "select * from Movie";
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
                     {
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            int id = reader.GetInt32(reader.GetOrdinal("id"));
-                            string title = reader.GetString(reader.GetOrdinal("Title"));
-                            string description = reader.GetString(reader.GetOrdinal("Description"));
-                            string genre = reader.GetString(reader.GetOrdinal("Genre"));
-                            string director = reader.GetString(reader.GetOrdinal("Director"));
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(reader.GetOrdinal("id"));
+                                string title = reader.GetString(reader.GetOrdinal("Title"));
+                                string description = reader.GetString(reader.GetOrdinal("Description"));
+                                string genre = reader.GetString(reader.GetOrdinal("Genre"));
+                                string director = reader.GetString(reader.GetOrdinal("Director"));
 
-                            int ReleaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
+                                int ReleaseYear = reader.GetInt32(reader.GetOrdinal("ReleaseYear"));
 
-                            string language = reader.GetString(reader.GetOrdinal("Language"));
-                            string country = reader.GetString(reader.GetOrdinal("Country"));
-                            int length = reader.GetInt32(reader.GetOrdinal("Length"));
-                            string trailer = reader.GetString(reader.GetOrdinal("Trailer"));
+                                string language = reader.GetString(reader.GetOrdinal("Language"));
+                                string country = reader.GetString(reader.GetOrdinal("Country"));
+                                int length = reader.GetInt32(reader.GetOrdinal("Length"));
+                                string trailer = reader.GetString(reader.GetOrdinal("Trailer"));
 
-                            DateTime startDate = reader.GetDateTime(reader.GetOrdinal("StartDate"));
-                            string StartDate = startDate.ToString("dd/MM/yyyy");
+                                DateTime startDate = reader.GetDateTime(reader.GetOrdinal("StartDate"));
+                                string StartDate = startDate.ToString("dd/MM/yyyy");
 
-                            string status = reader.GetString(reader.GetOrdinal("Status"));
+                                string status = reader.GetString(reader.GetOrdinal("Status"));
 
-                            string ImageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
-                            ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + ImageSource;
+                                string ImageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                                ImageSource = MotSoPTBoTro.pathProject() + @"Images\MovieManagement\" + ImageSource;
 
-                            int importPrice = reader.GetInt32(reader.GetOrdinal("ImportPrice"));
+                                int importPrice = reader.GetInt32(reader.GetOrdinal("ImportPrice"));
 
-                            list.Add(new MovieDTO(id, title, description, director, ReleaseYear.ToString(), language, country, length, trailer, StartDate, genre, status, ImageSource, importPrice));
+                                list.Add(new MovieDTO(id, title, description, director, ReleaseYear.ToString(), language, country, length, trailer, StartDate, genre, status, ImageSource, importPrice));
+                            }
                         }
                     }
                 }
             }
+            catch { }
             return list;
         }
 
@@ -64,44 +68,48 @@ namespace CineMajestic.Models.DataAccessLayer
         //add 1 movie
         public void addMovie(MovieDTO movie)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string insert =
-                    "insert into MOVIE(Title,description,genre,director,releaseYear,language,country,length,trailer,startDate,status,ImportPrice,imageSource)"
-                    +
-                    "values("
-                    +
-                    "N'" + movie.Title + "',"
-                    +
-                    "N'" + movie.Description + "',"
-                    +
-                    "N'" + movie.Genre + "',"
-                    +
-                    "N'" + movie.Director + "',"
-                    +
-                     int.Parse(movie.ReleaseYear) + ","
-                    +
-                    "N'" + movie.Language + "',"
-                    +
-                    "N'" + movie.Country + "',"
-                    +
-                    movie.Length + ","
-                    +
-                    "N'" + movie.Trailer + "',"
-                    +
-                    "'" + movie.StartDate + "',"
-                    +
-                    "N'" + movie.Status + "',"
-                    +
-                    movie.ImportPrice + ","
-                    +
-                    "'" + movie.ImageSource + "')";
-                using (SqlCommand command = new SqlCommand(insert, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string insert =
+                        "insert into MOVIE(Title,description,genre,director,releaseYear,language,country,length,trailer,startDate,status,ImportPrice,imageSource)"
+                        +
+                        "values("
+                        +
+                        "N'" + movie.Title + "',"
+                        +
+                        "N'" + movie.Description + "',"
+                        +
+                        "N'" + movie.Genre + "',"
+                        +
+                        "N'" + movie.Director + "',"
+                        +
+                         int.Parse(movie.ReleaseYear) + ","
+                        +
+                        "N'" + movie.Language + "',"
+                        +
+                        "N'" + movie.Country + "',"
+                        +
+                        movie.Length + ","
+                        +
+                        "N'" + movie.Trailer + "',"
+                        +
+                        "'" + movie.StartDate + "',"
+                        +
+                        "N'" + movie.Status + "',"
+                        +
+                        movie.ImportPrice + ","
+                        +
+                        "'" + movie.ImageSource + "')";
+                    using (SqlCommand command = new SqlCommand(insert, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
 
@@ -109,39 +117,47 @@ namespace CineMajestic.Models.DataAccessLayer
         //xóa 1 movie
         public void deleteMovie(MovieDTO movie)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string delete =
-                    "delete Movie\n"
-                    +
-                    "where id=" + movie.Id;
-                using (SqlCommand command = new SqlCommand(delete, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string delete =
+                        "delete Movie\n"
+                        +
+                        "where id=" + movie.Id;
+                    using (SqlCommand command = new SqlCommand(delete, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
 
         //iden curent
         public int identCurrent()
         {
-            int identCurrent;
-            using (SqlConnection connection = GetConnection())
+            int identCurrent = 0;
+            try
             {
-                connection.Open();
-                string cm =
-                    "select ident_current('Movie') as lastId";
-                using (SqlCommand command = new SqlCommand(cm, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string cm =
+                        "select ident_current('Movie') as lastId";
+                    using (SqlCommand command = new SqlCommand(cm, connection))
                     {
-                        reader.Read();
-                        identCurrent = (int)reader.GetDecimal(reader.GetOrdinal("lastId"));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            identCurrent = (int)reader.GetDecimal(reader.GetOrdinal("lastId"));
+                        }
                     }
                 }
             }
+            catch { }
             return identCurrent;
         }
 
@@ -150,31 +166,35 @@ namespace CineMajestic.Models.DataAccessLayer
         public List<Tuple<int, string>> getDSTitleDPH()
         {
             List<Tuple<int, string>> result = new List<Tuple<int, string>>();
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string truyvan =
-                    "select id,title\n"
-                    +
-                    "from movie\n"
-                    +
-                    "where Status=N'Đang phát hành'";
-
-
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int id = reader.GetInt32(reader.GetOrdinal("id"));
-                            string title = reader.GetString(reader.GetOrdinal("Title"));
+                    connection.Open();
+                    string truyvan =
+                        "select id,title\n"
+                        +
+                        "from movie\n"
+                        +
+                        "where Status=N'Đang phát hành'";
 
-                            result.Add(new Tuple<int, string>(id, title));
+
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
+                    {
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                int id = reader.GetInt32(reader.GetOrdinal("id"));
+                                string title = reader.GetString(reader.GetOrdinal("Title"));
+
+                                result.Add(new Tuple<int, string>(id, title));
+                            }
                         }
                     }
                 }
             }
+            catch { }
             return result;
 
         }
@@ -184,21 +204,24 @@ namespace CineMajestic.Models.DataAccessLayer
         public int MovieLength(int id)
         {
             int kq = 0;
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string truyvan = "select length from movie\n"
-                    + "where Id=" + id;
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string truyvan = "select length from movie\n"
+                        + "where Id=" + id;
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
                     {
-                        reader.Read();
-                        kq = reader.GetInt32(reader.GetOrdinal("Length"));
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            reader.Read();
+                            kq = reader.GetInt32(reader.GetOrdinal("Length"));
+                        }
                     }
                 }
             }
-
+            catch { }
             return kq;
         }
 
@@ -206,44 +229,48 @@ namespace CineMajestic.Models.DataAccessLayer
         //update(edit) movie
         public void editMovie(MovieDTO movie)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string update =
-                    "update Movie\n"
-                    +
-                    "set Title=" + "N'" + movie.Title + "',"
-                    +
-                    "Description=" + "N'" + movie.Description + "',"
-                    +
-                    "Genre=" + "N'" + movie.Genre + "',"
-                    +
-                    "Director=" + "N'" + movie.Director + "',"
-                    +
-                    "ReleaseYear=" + movie.ReleaseYear + ","
-                    +
-                    "Language=" + "N'" + movie.Language + "',"
-                    +
-                    "Country=" + "N'" + movie.Country + "',"
-                    +
-                    "Length=" + movie.Length + ","
-                    +
-                    "Trailer=" + "N'" + movie.Trailer + "',"
-                    +
-                    "StartDate=" + "'" + movie.StartDate + "',"
-                    +
-                    "Status=" + "N'" + movie.Status + "',"
-                    +
-                    "ImportPrice=" + movie.ImportPrice + ","
-                    +
-                    "ImageSource=" + "'" + movie.ImageSource + "'\n"
-                    +
-                    "where Id=" + movie.Id;
-                using (SqlCommand command = new SqlCommand(update, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string update =
+                        "update Movie\n"
+                        +
+                        "set Title=" + "N'" + movie.Title + "',"
+                        +
+                        "Description=" + "N'" + movie.Description + "',"
+                        +
+                        "Genre=" + "N'" + movie.Genre + "',"
+                        +
+                        "Director=" + "N'" + movie.Director + "',"
+                        +
+                        "ReleaseYear=" + movie.ReleaseYear + ","
+                        +
+                        "Language=" + "N'" + movie.Language + "',"
+                        +
+                        "Country=" + "N'" + movie.Country + "',"
+                        +
+                        "Length=" + movie.Length + ","
+                        +
+                        "Trailer=" + "N'" + movie.Trailer + "',"
+                        +
+                        "StartDate=" + "'" + movie.StartDate + "',"
+                        +
+                        "Status=" + "N'" + movie.Status + "',"
+                        +
+                        "ImportPrice=" + movie.ImportPrice + ","
+                        +
+                        "ImageSource=" + "'" + movie.ImageSource + "'\n"
+                        +
+                        "where Id=" + movie.Id;
+                    using (SqlCommand command = new SqlCommand(update, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
 
@@ -251,24 +278,27 @@ namespace CineMajestic.Models.DataAccessLayer
         public List<string> listImageSource()
         {
             List<string> list = new List<string>();
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string truyvan =
-                    "select ImageSource from Movie";
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string truyvan =
+                        "select ImageSource from Movie";
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
                     {
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
-                            list.Add(imageSource);
+                            while (reader.Read())
+                            {
+                                string imageSource = reader.GetString(reader.GetOrdinal("ImageSource"));
+                                list.Add(imageSource);
+                            }
                         }
                     }
                 }
             }
-
+            catch { }
 
             return list;
         }

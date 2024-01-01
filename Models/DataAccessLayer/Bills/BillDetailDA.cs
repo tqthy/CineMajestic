@@ -12,26 +12,30 @@ namespace CineMajestic.Models.DataAccessLayer.Bills
     {
         public void addBillDetail(int bill_Id,ProductDTO productDTO)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string insert =
-                    "insert into BillDetail(Bill_Id,Product_Id,Quantity,UnitPrice)\n"
-                    +
-                    "values("
-                    +
-                    bill_Id + ","
-                    +
-                    productDTO.Id + ","
-                    +
-                    productDTO.Quantity_Choice + ","
-                    +
-                    productDTO.Price + ")";
-                using (SqlCommand command = new SqlCommand(insert, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string insert =
+                        "insert into BillDetail(Bill_Id,Product_Id,Quantity,UnitPrice)\n"
+                        +
+                        "values("
+                        +
+                        bill_Id + ","
+                        +
+                        productDTO.Id + ","
+                        +
+                        productDTO.Quantity_Choice + ","
+                        +
+                        productDTO.Price + ")";
+                    using (SqlCommand command = new SqlCommand(insert, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
     }
 }

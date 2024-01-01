@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,24 +14,28 @@ namespace CineMajestic.Models.DataAccessLayer
         //add 1 bill
         public void addBill(BillAddMovieDTO billAddMovieDTO)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string insert =
-                    "insert into Bill_AddMovie(Movie_Id,BillDate,Total)\n"
-                    +
-                    "values("
-                    +
-                    billAddMovieDTO.Movie_Id + ","
-                    +
-                    "'" + billAddMovieDTO.BillDate + "',"
-                    +
-                    billAddMovieDTO.Total + ")";
-                using (SqlCommand command = new SqlCommand(insert, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string insert =
+                        "insert into Bill_AddMovie(Movie_Id,BillDate,Total)\n"
+                        +
+                        "values("
+                        +
+                        billAddMovieDTO.Movie_Id + ","
+                        +
+                        "'" + billAddMovieDTO.BillDate + "',"
+                        +
+                        billAddMovieDTO.Total + ")";
+                    using (SqlCommand command = new SqlCommand(insert, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
 
@@ -38,21 +43,24 @@ namespace CineMajestic.Models.DataAccessLayer
         //bổ trợ delete 1 movie
         public void updateMovie_IdNull(int Movie_Id)
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string updateNull =
-                    "update Bill_AddMovie\n"
-                    +
-                    "set Movie_Id=null\n"
-                    +
-                    "where Movie_Id=" + Movie_Id;
-                using (SqlCommand command = new SqlCommand(updateNull, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string updateNull =
+                        "update Bill_AddMovie\n"
+                        +
+                        "set Movie_Id=null\n"
+                        +
+                        "where Movie_Id=" + Movie_Id;
+                    using (SqlCommand command = new SqlCommand(updateNull, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
-
+            catch { }
         }
 
 

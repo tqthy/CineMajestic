@@ -13,15 +13,19 @@ namespace CineMajestic.Models.DataAccessLayer
         //phát lương all
         public void PhatLuongAll()
         {
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string pro = "execute sp_phatluong_staff_salary";
-                using (SqlCommand command = new SqlCommand(pro, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    string pro = "execute sp_phatluong_staff_salary";
+                    using (SqlCommand command = new SqlCommand(pro, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
+            catch { }
         }
 
 
@@ -29,24 +33,28 @@ namespace CineMajestic.Models.DataAccessLayer
         public List<string> listDateBill()
         {
             List<string> list = new List<string>();
-            using (SqlConnection connection = GetConnection())
+            try
             {
-                connection.Open();
-                string truyvan = "select BillDate from Staff_Salary";
-                using (SqlCommand command = new SqlCommand(truyvan, connection))
+                using (SqlConnection connection = GetConnection())
                 {
-                    using (SqlDataReader reader = command.ExecuteReader())
+                    connection.Open();
+                    string truyvan = "select BillDate from Staff_Salary";
+                    using (SqlCommand command = new SqlCommand(truyvan, connection))
                     {
-                        while (reader.Read())
+                        using (SqlDataReader reader = command.ExecuteReader())
                         {
-                            DateTime billDate = reader.GetDateTime(reader.GetOrdinal("BillDate"));
-                            string BillDate = billDate.ToString("yyyy-MM-dd");
-                            string[] s = BillDate.Split(' ');
-                            list.Add(s[0]);
+                            while (reader.Read())
+                            {
+                                DateTime billDate = reader.GetDateTime(reader.GetOrdinal("BillDate"));
+                                string BillDate = billDate.ToString("yyyy-MM-dd");
+                                string[] s = BillDate.Split(' ');
+                                list.Add(s[0]);
+                            }
                         }
                     }
                 }
             }
+            catch { }
 
 
             return list;
