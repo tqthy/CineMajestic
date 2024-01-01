@@ -141,7 +141,7 @@
             <!--  poster  -->
             <Border
                 Grid.Row="2"
-                Grid.RowSpan="6"
+                Grid.RowSpan="7"
                 Grid.Column="1"
                 Margin="10"
                 Background="#3f2305"
@@ -154,7 +154,7 @@
             </Border>
             <Border
                 Grid.Row="2"
-                Grid.RowSpan="6"
+                Grid.RowSpan="7"
                 Grid.Column="1"
                 Margin="15"
                 CornerRadius="3">
@@ -163,7 +163,7 @@
 
             <Border
                 Grid.Row="1"
-                Grid.RowSpan="7"
+                Grid.RowSpan="8"
                 Grid.Column="2"
                 Margin="2,5,5,5"
                 BorderBrush="LightGray"
@@ -249,7 +249,7 @@
                     <TextBlock
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
-                        Text="{Binding Language}" />
+                        Text="{Binding Language}"/>
                     <TextBlock VerticalAlignment="Center" Text="." />
                 </StackPanel>
 
@@ -296,7 +296,7 @@
 
             <!--  Row 3  -->
 
-            <Grid
+            <!--<Grid
                 Grid.Row="4"
                 Grid.Column="2"
                 Margin="10,0,0,0">
@@ -310,7 +310,7 @@
                         FontWeight="SemiBold"
                         Text="Năm phát hành:" />
 
-                    <!--  Bindning năm phát hành  -->
+                    --><!--  Bindning năm phát hành  --><!--
                     <TextBlock
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
@@ -326,14 +326,14 @@
                         FontWeight="SemiBold"
                         Text="Ngày khởi chiếu:" />
 
-                    <!--  Binding ngày khởi chiếu  -->
+                    --><!--  Binding ngày khởi chiếu  --><!--
                     <TextBlock
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         Text="{Binding StartDate}" />
                     <TextBlock VerticalAlignment="Center" Text="." />
                 </StackPanel>
-            </Grid>
+            </Grid>-->
 
             <!--  Row 4  -->
 
