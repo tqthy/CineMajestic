@@ -31,7 +31,7 @@ namespace CineMajestic.ViewModels.InformationManagement
             staffDA.updateImageStaff(Staff_Id, imageSourceNew);
             if (ImageSource != imageSourceOld)
             {
-                YesMessageBox mb = new YesMessageBox("Thông báo", "Đổi ảnh thành công");
+                YesMessageBox mb = new YesMessageBox("Thông báo", "Đổi ảnh đại diện thành công");
                 mb.ShowDialog();
             }
         }

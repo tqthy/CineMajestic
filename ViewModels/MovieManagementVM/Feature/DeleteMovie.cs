@@ -28,7 +28,8 @@ namespace CineMajestic.ViewModels.MovieManagementVM
                 ShowTimeDA showTimeDA = new ShowTimeDA();
                 if (showTimeDA.checkShowtimeByMovie((obj as MovieDTO).Id))
                 {
-                    MessageBox.Show("Phim đang có trong ít nhất 1 suất chiếu,bạn không được phép xóa!");
+                    YesMessageBox mb2 = new YesMessageBox("Lỗi","Phim đang có trong ít nhất 1 suất chiếu,bạn không được phép xóa!");
+                    mb2.ShowDialog();
                     return;
                 }
 
