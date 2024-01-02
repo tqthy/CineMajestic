@@ -87,9 +87,9 @@
                             <RowDefinition Height="55" />
                             <RowDefinition Height="55" />
                             <RowDefinition Height="55" />
-                            <RowDefinition Height="55" />
                             <RowDefinition Height="40" />
                             <RowDefinition Height="40" />
+                            <RowDefinition Height="50" />
                             <RowDefinition Height="40" />
                             <RowDefinition />
                         </Grid.RowDefinitions>
@@ -164,7 +164,7 @@
                                     Margin="10,0,0,0"
                                     FontSize="8.5"
                                     Foreground="red"
-                                    Text="{Binding FullNameError}" />
+                                    Text="" />
                             </StackPanel>
                         </Grid>
 
@@ -289,29 +289,39 @@
                                 VerticalAlignment="Center"
                                 FontSize="18"
                                 Text="Khuyến mãi:" />
-                            <StackPanel
-                                Grid.Column="1"
-                                Margin="0,0,3,0"
-                                HorizontalAlignment="Right"
-                                Orientation="Horizontal">
+                            <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
+                                <StackPanel
+                                    Margin="0,0,3,0"
+                                    HorizontalAlignment="Right"
+                                    Orientation="Horizontal">
 
-                                <!--  Binding khuyến mãi  -->
-                                <TextBox
-                                    Width="120"
-                                    Height="30"
-                                    Margin="18,0,0,0"
-                                    VerticalAlignment="Center"
-                                    FontSize="18"
-                                    FontWeight="SemiBold"
-                                    Text="{Binding ChangeDiscount, UpdateSourceTrigger=PropertyChanged}" />
+                                    <!--  Binding khuyến mãi  -->
+                                    <TextBox
+                                        Width="120"
+                                        Height="30"
+                                        Margin="18,0,0,0"
+                                        VerticalAlignment="Center"
+                                        HorizontalContentAlignment="Right"
+                                        FontSize="18"
+                                        FontWeight="SemiBold"
+                                        Text="{Binding ChangeDiscount, UpdateSourceTrigger=PropertyChanged}" />
 
-                                <!--  Đơn vị đồng  -->
+                                    <!--  Đơn vị đồng  -->
+                                    <TextBlock
+                                        VerticalAlignment="Center"
+                                        FontSize="18"
+                                        FontWeight="SemiBold"
+                                        Text=" đ" />
+                                </StackPanel>
+
+                                <!--  Báo lỗi  -->
                                 <TextBlock
-                                    VerticalAlignment="Center"
-                                    FontSize="18"
-                                    FontWeight="SemiBold"
-                                    Text=" đ" />
+                                    Margin="12,0,0,0"
+                                    FontSize="8.5"
+                                    Foreground="Red"
+                                    Text="" />
                             </StackPanel>
+
                         </Grid>
 
                         <Grid Grid.Row="8">
