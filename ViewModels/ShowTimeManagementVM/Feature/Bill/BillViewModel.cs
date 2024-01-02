@@ -59,7 +59,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             this.orderDTO = orderDTO;
             showTimeDTO = orderDTO.showTimeDTO;
             BackCommand = new ViewModelCommand(Back);
-            Paycommand = new ViewModelCommand(Pay);
+            Paycommand = new ViewModelCommand(Pay,canPay);
             this.Staff_Id = Staff_Id;
             loadBillDTO();
             this.ticketBookingView = ticketBookingView;
@@ -125,7 +125,7 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             CustomerDA customerDA = new CustomerDA();
             if (!customerDA.checkCustom(billDTO.PhoneNumber))//nếu khách hàng chưa tồn tại
             {
-                customerDA.addCustom(new Models.DTOs.CustomerDTO(billDTO.PhoneNumber, billDTO.Fullname, billDTO.Email, point));
+                customerDA.addCustom(new Models.DTOs.CustomerDTO(billDTO.PhoneNumber, billDTO.FullName, billDTO.Email, point));
             }
             else
             {
@@ -164,6 +164,11 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             ticketBookingView.Close();
         }
 
+        private bool canPay(object obj)
+        {
+            return billDTO._canAccept[0] && billDTO._canAccept[1] && billDTO._canAccept[2];
+        }
+
 
         private void setData()
         {
@@ -171,7 +176,12 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
             billDTO.Showtime_Id = showTimeDTO.Id;
             billDTO.BillDate = DateTime.Now.ToString("yyyy-MM-dd");
             billDTO.PerTicketPrice = showTimeDTO.PerSeatTicketPrice;
-            billDTO.QuantityTicket = billDTO.TotalPriceTicket / showTimeDTO.PerSeatTicketPrice;
+            try
+            {
+                billDTO.QuantityTicket = billDTO.TotalPriceTicket / showTimeDTO.PerSeatTicketPrice;
+            }
+            catch { }
+
             try
             {
                 billDTO.Discount = int.Parse(changeDiscount);

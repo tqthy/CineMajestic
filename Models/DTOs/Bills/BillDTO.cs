@@ -64,11 +64,78 @@ namespace CineMajestic.Models.DTOs.Bills
         public int TotalPriceProduct { get; set; }//tổng tiền product
 
 
-        //khách hàng
-        public string PhoneNumber {  get; set; }
-        public string Fullname {  get; set; }
-        public string Email {  get; set; }
+        //khách hàng,//tạm thời sẽ xử lý lỗi người dùng ở đây,sau này phát triển sẽ sang viewmodel xử lý
+        //Số điện thoại
+        public bool[] _canAccept = new bool[3];
+        private string phoneNumber;
+        public string PhoneNumber
+        {
+            get => phoneNumber;
+            set
+            {
+                phoneNumber = value;
+                ValidatePhoneNumber();
+            }
+        }
 
+        private string phoneNumberError;
+        public string PhoneNumberError
+        {
+            get => phoneNumberError;
+            set
+            {
+                phoneNumberError = value;
+                OnPropertyChanged(nameof(PhoneNumberError));
+            }
+        }
+
+
+        //họ và tên
+        private string fullName;
+        public string FullName
+        {
+            get => fullName;
+            set
+            {
+                fullName = value;
+                ValidateFullName();
+            }
+        }
+
+        private string fullNameError;
+        public string FullNameError
+        {
+            get => fullNameError;
+            set
+            {
+                fullNameError = value;
+                OnPropertyChanged(nameof(FullNameError));
+            }
+        }
+
+
+
+        //email
+        private string email;
+        public string Email
+        {
+            get => email;
+            set
+            {
+                email = value;
+                ValidateEmail();
+            }
+        }
+        private string emailError;
+        public string EmailError
+        {
+            get => emailError;
+            set
+            {
+                emailError = value;
+                OnPropertyChanged(nameof(EmailError));
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -76,6 +143,65 @@ namespace CineMajestic.Models.DTOs.Bills
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+
+
+
+        private void ValidateFullName()
+        {
+            if (string.IsNullOrWhiteSpace(FullName))
+            {
+                FullNameError = "Họ và tên không được để trống!";
+                _canAccept[1] = false;
+            }
+            else
+            {
+                FullNameError = "";
+                _canAccept[1] = true;
+            }
+        }
+
+        private void ValidateEmail()
+        {
+            if (string.IsNullOrWhiteSpace(Email))
+            {
+                EmailError = "Email không được để trống!";
+                _canAccept[2] = false;
+
+            }
+            else if (!Email.Contains("@"))
+            {
+                EmailError = "Email không hợp lệ!";
+                _canAccept[2] = false;
+            }
+            else
+            {
+                EmailError = "";
+                _canAccept[2] = true;
+            }
+        }
+
+        private void ValidatePhoneNumber()
+        {
+            if (string.IsNullOrWhiteSpace(PhoneNumber))
+            {
+                PhoneNumberError = "SĐT không được để trống!";
+                _canAccept[0] = false;
+            }
+            else if (!PhoneNumber.All(char.IsDigit))
+            {
+                PhoneNumberError = "Số điện thoại chỉ được chứa chữ số!";
+                _canAccept[0] = false;
+
+            }
+            else
+            {
+                PhoneNumberError = "";
+                _canAccept[0] = true;
+            }
+        }
+
+
 
     }
 }

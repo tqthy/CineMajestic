@@ -131,9 +131,11 @@
                                     FontSize="18"
                                     Text="{Binding billDTO.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock
+                                    Name="txbPhoneNumberError"
                                     Margin="10,0,0,0"
                                     FontSize="8.5"
-                                    Foreground="red" />
+                                    Foreground="red"
+                                    Text="{Binding billDTO.PhoneNumberError}" />
                             </StackPanel>
                         </Grid>
 
@@ -159,12 +161,13 @@
                                     VerticalAlignment="Center"
                                     VerticalContentAlignment="Center"
                                     FontSize="18"
-                                    Text="{Binding billDTO.Fullname, UpdateSourceTrigger=PropertyChanged}" />
+                                    Text="{Binding billDTO.FullName, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock
+                                    Name="txbFullNameError"
                                     Margin="10,0,0,0"
                                     FontSize="8.5"
                                     Foreground="red"
-                                    Text="" />
+                                    Text="{Binding billDTO.FullNameError}" />
                             </StackPanel>
                         </Grid>
 
@@ -192,9 +195,11 @@
                                     FontSize="18"
                                     Text="{Binding billDTO.Email, UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock
+                                    Name="txbEmailError"
                                     Margin="10,0,0,0"
                                     FontSize="8.5"
-                                    Foreground="red" />
+                                    Foreground="red"
+                                    Text="{Binding billDTO.EmailError}" />
                             </StackPanel>
                         </Grid>
 
@@ -315,6 +320,7 @@
                                 </StackPanel>
 
                                 <!--  Báo lỗi  -->
+                                <!--không dùng nữa-->
                                 <TextBlock
                                     Margin="12,0,0,0"
                                     FontSize="8.5"
