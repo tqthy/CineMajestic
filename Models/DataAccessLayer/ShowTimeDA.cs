@@ -248,5 +248,23 @@ namespace CineMajestic.Models.DataAccessLayer
             catch { }
             return true;
         }
+
+        //xóa suất chiếu khi suất chiếu đã chiếu xong r
+        public void deleteShowtimeDone()
+        {
+            try
+            {
+                using (SqlConnection connection = GetConnection())
+                {
+                    connection.Open();
+                    string delete = "delete ShowTime where EndTime <=GETDATE()";
+                    using (SqlCommand command = new SqlCommand(delete, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch { }
+        }
     }
 }

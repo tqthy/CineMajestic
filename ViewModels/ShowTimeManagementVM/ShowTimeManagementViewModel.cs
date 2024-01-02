@@ -26,6 +26,8 @@ namespace CineMajestic.ViewModels.ShowTimeManagementVM
         private int Staff_Id;
         public ShowTimeManagementViewModel(int Staff_Id)
         {
+            ShowTimeDA showTimeDA = new ShowTimeDA();
+            showTimeDA.deleteShowtimeDone();
             loadData();//lần đầu mở thì vào phần all
             Auditorium();
             AddShowTime();
