@@ -391,7 +391,7 @@ namespace CineMajestic.ViewModels.StaffManagementVM
         {
             if (NgayVL < Birth)
             {
-                NgayVLError = "Ngày đăng ký phải lớn hơn ngày sinh!";
+                NgayVLError = "Ngày vào làm phải lớn hơn ngày sinh!";
                 _canAccept[4] = false;
             }
             else
