@@ -42,6 +42,7 @@ namespace CineMajestic.ViewModels
         {
             SwitchViewCommand = new ViewModelCommand(SwitchView);
             this.Staff_Id = Staff_Id;
+            CurrentView = new InformationView(Staff_Id);
         }
 
         private void SwitchView(object userControlName)

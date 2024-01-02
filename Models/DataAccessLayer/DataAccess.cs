@@ -13,9 +13,7 @@ namespace CineMajestic.Models.DataAccessLayer
         private readonly string _connectionString;
         public DataAccess()
         {
-           // _connectionString = "Server=tcp:cinemajestic.database.windows.net,1433;Initial Catalog=Cinemajestic;Persist Security Info=False;User ID=cinemajestic;Password=Binh@2k4;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-            _connectionString = ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString;
-
+              _connectionString = ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString;
         }
 
         protected SqlConnection GetConnection()
